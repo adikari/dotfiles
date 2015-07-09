@@ -1,0 +1,17 @@
+[core]
+	filemode = false
+[user]
+	name = Subash Adhikari
+	email = me@subash.com.au
+[color]
+	ui = true
+[log]
+  date = relative
+[format]
+  pretty = format:%C(yellow)%h %Cblue %ad %Cgreen %aN%Cred%d %Creset%s
+[alias]
+  a = add
+	s = status
+	c = checkout
+	b = branch
+	l = log
