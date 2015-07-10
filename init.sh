@@ -19,6 +19,9 @@ dotfiles[gitconfig]=git/gitconfig
 for i in "${!dotfiles[@]}"; do
   config=~/.$i
   mv $config "$BACKUP_DIR" 2>/dev/null
-  ln -s dotfiles/${dotfiles[$i]} $config
+  ln -s $HOME/dotfiles/${dotfiles[$i]} $config
 done
+
+mv $HOME/.config/powerline "$BACKUP_DIR" 2>/dev/null
+ln -s $HOME/dotfiles/powerline/powerline-config $HOME/.config/powerline
 
