@@ -1,19 +1,25 @@
 #/bin/bash
 
+# update configuration submodules
 git submodule init
 git submodule update --init --recursive
 
 BACKUP_DIR="/tmp/$(date)"
 mkdir "$BACKUP_DIR"
 
-mv ~/.zshrc "$BACKUP_DIR"
-ln -s dotfiles/zsh/zshrc ~/.zshrc
+declare -A dotfiles
 
-mv ~/.vimrc "$BACKUP_DIR"
-ln -s dotfiles/vim/vimrc ~/.vimrc
+# list of dotfiles
+dotfiles[zshrc]=zsh/zshrc
+dotfiles[vimrc]=vim/vimrc
+dotfiles[tmux.conf]=tmux/tmux.conf
+dotfiles[gitconfig]=git/gitconfig
 
-mv ~/.tmux.conf "$BACKUP_DIR"
-ln -s dotfiles/tmux/tmux.conf ~/.tmux.conf
+# load each dotfiles
+for i in "${!dotfiles[@]}"
+do
+  config=~/.$i
+  mv $config "$BACKUP_DIR" 2>/dev/null
+  ln -s dotfiles/${dotfiles[$i]} $config
+done
 
-mv ~/.gitconfig "$BACKUP_DIR"
-ln -s dotfiles/git/gitconfig ~/.gitconfig
