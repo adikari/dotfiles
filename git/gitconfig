@@ -1,5 +1,6 @@
 [core]
 	filemode = false
+	editor = vim
 [user]
 	name = Subash Adhikari
 	email = me@subash.com.au
