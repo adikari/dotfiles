@@ -1,12 +1,12 @@
 [submodule "vim"]
 	path = vim
-	url = git@github.com:adikari/vim-config.git
+	url = https://github.com/adikari/vim-config.git
 [submodule "powerline"]
 	path = powerline
-	url = git@github.com:adikari/powerline-config.git
+	url = https://github.com/adikari/powerline-config.git
 [submodule "tmux"]
 	path = tmux
-	url = git@github.com:adikari/tmux-config.git
+	url = https://github.com/adikari/tmux-config.git
 [submodule "zsh"]
 	path = zsh
-	url = git@github.com:adikari/zsh-config.git
+	url = https://github.com/adikari/zsh-config.git
