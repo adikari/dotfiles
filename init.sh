@@ -1,6 +1,6 @@
 #/bin/bash
 
-# update configuration submodules
+update configuration submodules
 git submodule init
 git submodule update --init --recursive
 
@@ -22,6 +22,11 @@ for i in "${!dotfiles[@]}"; do
   ln -s $HOME/dotfiles/${dotfiles[$i]} $config
 done
 
-mv $HOME/.config/powerline "$BACKUP_DIR" 2>/dev/null
-ln -s $HOME/dotfiles/powerline/powerline-config $HOME/.config/powerline
+config=$HOME/.config
+if [ ! -d $config ]; then
+  mkdir $config
+fi
+
+mv $config/powerline "$BACKUP_DIR" 2>/dev/null
+ln -s $HOME/dotfiles/powerline/powerline-config $config/powerline
 
