@@ -10,3 +10,4 @@
 [submodule "zsh"]
 	path = zsh
 	url = https://github.com/adikari/zsh-config.git
+
