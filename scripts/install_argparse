@@ -1,4 +1,5 @@
 #!/bin/bash
+. ./scripts/colors
 
 # install argparse if not exist
 $(python -c "import argparse" 2>/dev/null)
