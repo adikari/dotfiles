@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# install argparse if not exist
+$(python -c "import argparse" 2>/dev/null)
+if [ $? -eq 1 ]; then
+  echo -e "\n${red}Python argparse not found. Installing...${nc}"
+  argparse=argparse-1.2.1
+  tmp=/tmp
+  [ -d $tmp ] || mkdir $tmp
+  cd $tmp
+  wget https://argparse.googlecode.com/files/$argparse.tar.gz
+  tar xfv $argparse.tar.gz
+  cd $argparse
+  sudo python setup.py install
+  sudo rm -r $tmp/$argparse $tmp/$argparse.tar.gz
+  cd $HOME/dotfiles
+  echo -e "\n${red}Python argparse successfully installed.${nc}"
+fi
+

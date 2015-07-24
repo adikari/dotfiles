@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 yellow='\033[0;33m'
 green='\033[0;32m'
@@ -6,6 +6,7 @@ red='\033[0;31m'
 nc='\033[0m'
 
 restart_required=false
+scripts=./scripts
 
 # update configuration submodules
 git submodule init
@@ -49,22 +50,7 @@ fi
 mv $config/powerline "$BACKUP_DIR" 2>/dev/null
 ln -s $HOME/dotfiles/powerline/powerline-config $config/powerline
 
-# install argparse if not exist
-$(python -c "import argparse" 2>/dev/null)
-if [ $? -eq 1 ]; then
-  echo -e "\n${red}Python argparse not found. Installing...${nc}"
-  argparse=argparse-1.2.1
-  tmp=/tmp
-  [ -d $tmp ] || mkdir $tmp
-  cd $tmp
-  wget https://argparse.googlecode.com/files/$argparse.tar.gz
-  tar xfv $argparse.tar.gz
-  cd $argparse
-  sudo python setup.py install
-  sudo rm -r $tmp/$argparse $tmp/$argparse.tar.gz
-  cd $HOME/dotfiles
-  echo -e "\n${red}Python argparse successfully installed.${nc}"
-fi
+source $scripts/install_argparse
 
 echo -e "\n${green}Hurray!!! Dotfiles successfully setup.${nc}\n"
 
