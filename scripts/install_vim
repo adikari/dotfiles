@@ -16,7 +16,7 @@ if ! vim --version | grep +python &>/dev/null; then
     --enable-rubyinterp
 
   sudo make clean && sudo make && sudo make install
-  cd /tmp && rm sudo -rf vim74 vim-7.4.tar.bz2
+  cd /tmp && sudo rm -rf vim74 vim-7.4.tar.bz2
 
   echo -e "\n${green}Vim74 is successfully installed.${nc}"
 fi

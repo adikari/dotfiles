@@ -19,7 +19,7 @@ case "$python_version" in
       cd Python-2.7.10
       ./configure --prefix=$install_dir
       sudo make && sudo make install
-      cd /tmp && sudo rm -r Python-2.7.10*
+      cd /tmp && sudo rm -rf Python-2.7.10*
 
       echo -e "\n${green}$python_version was successfully installed.${nc}"
     ;;
