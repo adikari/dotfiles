@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./scripts/colors
+. $HOME/dotfiles/scripts/colors
 
 # install huge vim with python support
 if ! vim --version | grep +python &>/dev/null; then

@@ -1,5 +1,5 @@
 #!/bin/bash
-. ./scripts/colors
+. $HOME/dotfiles/scripts/colors
 
 # install argparse if not exist
 $(python -c "import argparse" 2>/dev/null)
