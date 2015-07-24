@@ -50,6 +50,8 @@ fi
 mv $config/powerline "$BACKUP_DIR" 2>/dev/null
 ln -s $HOME/dotfiles/powerline/powerline-config $config/powerline
 
+source $scripts/install_python
+source $scripts/install_vim
 source $scripts/install_argparse
 
 echo -e "\n${green}Hurray!!! Dotfiles successfully setup.${nc}\n"
