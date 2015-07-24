@@ -47,6 +47,9 @@ fi
 mv $config/powerline "$BACKUP_DIR" 2>/dev/null
 ln -s $HOME/dotfiles/powerline/powerline-config $config/powerline
 
+# install powerline fonts
+source $scripts/install_fonts
+
 source $scripts/install_python
 source $scripts/install_vim
 source $scripts/install_argparse
