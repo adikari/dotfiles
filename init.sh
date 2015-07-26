@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./scripts/colors
+. ./scripts/utils/colors
 
 restart_required=false
 scripts=./scripts
@@ -11,12 +11,13 @@ git submodule init
 git submodule update --init --recursive
 
 # install powerline fonts
-source $scripts/install_fonts
+source $scripts/install/fonts
 
-source $scripts/install_python
-source $scripts/install_vim
-source $scripts/install_argparse
-source $scripts/install_cowsay
+source $scripts/install/python
+source $scripts/install/vim
+source $scripts/install/argparse
+source $scripts/install/cowsay
+#source $scripts/install/fortune
 
 BACKUP_DIR="/tmp/dotfiles_$(date +%Y%m%d%H%M%S)"
 mkdir "$BACKUP_DIR"

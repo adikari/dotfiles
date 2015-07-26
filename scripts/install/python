@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. $HOME/dotfiles/scripts/colors
+. $HOME/dotfiles/scripts/utils/colors
 
 install_dir=/usr/local/bin
 python_version=$(python --version 2>&1)

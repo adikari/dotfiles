@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. $HOME/dotfiles/scripts/colors
+. $HOME/dotfiles/scripts/utils/colors
 
 # Set source and target directories
 powerline_fonts_dir=$HOME/dotfiles/powerline/fonts
