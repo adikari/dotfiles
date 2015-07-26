@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# installs cow
+# to uninstall
+# 1. remove /usr/bin/cowsay /usr/bin/cowthink
+# 2. remove /usr/local/share/cows
+
+if ! command -v cowsay >/dev/null 2>&1; then
+  cd /tmp
+  git clone https://github.com/schacon/cowsay.git
+  cd cowsay
+  ./install.sh
+  sudo rm -rf /tmp/cowsay
+fi
