@@ -1,5 +1,11 @@
 #!/bin/bash
 
-if ! command -v cowsay >/dev/null 2>&1; then
+. $HOME/dotfiles/scripts/utils/has_command
 
+if has_command brew; then
+  brew install fortune
+elif has_command yum; then
+  sudo yum install fortune
+elif has_command apt-get; then
+  sudo apt-get install fortune
 fi

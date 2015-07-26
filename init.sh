@@ -17,7 +17,7 @@ source $scripts/install/python
 source $scripts/install/vim
 source $scripts/install/argparse
 source $scripts/install/cowsay
-#source $scripts/install/fortune
+source $scripts/install/fortune
 
 BACKUP_DIR="/tmp/dotfiles_$(date +%Y%m%d%H%M%S)"
 mkdir "$BACKUP_DIR"
