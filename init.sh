@@ -4,6 +4,7 @@
 
 restart_required=false
 scripts=./scripts
+bin=/usr/local/bin
 
 # update configuration submodules
 git submodule init
@@ -38,6 +39,11 @@ for i in "${!dotfiles[@]}"; do
     if [ "$i" == "zshrc" ]; then restart_required=true; fi
   fi
 done
+
+# set up phpcs
+ln -s $HOME/dotfiles/phpcs/scripts/phpcs $bin/phpcs 2>/dev/null
+ln -s $HOME/dotfiles/phpcs/scripts/phpcbf $bin/phpcbf 2>/dev/null
+echo -e "\n${green}PHPCS is successfully set up.${nc}"
 
 config=$HOME/.config
 if [ ! -d $config ]; then
