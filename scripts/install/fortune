@@ -1,11 +1,8 @@
 #!/bin/bash
 
 . $HOME/dotfiles/scripts/utils/has_command
+. $HOME/dotfiles/scripts/utils/introduce
 
-if has_command brew; then
-  brew install fortune
-elif has_command yum; then
-  sudo yum install fortune
-elif has_command apt-get; then
-  sudo apt-get install fortune
+if ! has_command fortune; then
+  introduce fortune
 fi
