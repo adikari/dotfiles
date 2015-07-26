@@ -11,3 +11,6 @@
 	path = zsh
 	url = https://github.com/adikari/zsh-config.git
 
+[submodule "phpcs/PHP_CodeSniffer"]
+	path = phpcs/PHP_CodeSniffer
+	url = https://github.com/squizlabs/PHP_CodeSniffer.git

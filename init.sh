@@ -41,8 +41,9 @@ for i in "${!dotfiles[@]}"; do
 done
 
 # set up phpcs
-ln -s $HOME/dotfiles/phpcs/scripts/phpcs $bin/phpcs 2>/dev/null
-ln -s $HOME/dotfiles/phpcs/scripts/phpcbf $bin/phpcbf 2>/dev/null
+phpcs=$HOME/dotfiles/phpcs/PHP_CodeSniffer
+ln -s $phpcs/scripts/phpcs $bin/phpcs 2>/dev/null
+ln -s $phpcs/scripts/phpcbf $bin/phpcbf 2>/dev/null
 echo -e "\n${green}PHPCS is successfully set up.${nc}"
 
 config=$HOME/.config
