@@ -11,6 +11,6 @@ if ! has_command cowsay; then
   cd /tmp
   git clone https://github.com/schacon/cowsay.git
   cd cowsay
-  ./install.sh
+  sudo ./install.sh
   sudo rm -rf /tmp/cowsay
 fi
