@@ -24,4 +24,4 @@ if [[ -n `which fc-cache` ]]; then
   fc-cache -f $font_dir
 fi
 
-echo -e "${green}All Powerline fonts installed to $font_dir.${nc}\n"
+echo -e "\n${green}All Powerline fonts installed to $font_dir.${nc}"
