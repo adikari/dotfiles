@@ -9,8 +9,8 @@ scripts=./scripts
 git submodule init
 git submodule update --init --recursive
 
-source $scripts/link_dotfiles
 source $scripts/change_shell
+source $scripts/link_dotfiles
 
 source $scripts/install/fonts
 
@@ -26,7 +26,6 @@ echo -e "\n${green}Hurray!!! Dotfiles successfully setup.${nc}\n"
 
 if [ "$restart_required" = true ]; then
   echo -e "${red}You must restart your session in order for configurations to take affect!!!${nc}\n"
+  unset restart_required
 fi
 
-# clean variables
-unset restart_required
