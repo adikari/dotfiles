@@ -1,16 +1,17 @@
 #!/bin/bash
 
 . ./scripts/utils/colors
+. ./scripts/utils/backup_dir
 
-restart_required=false
 scripts=./scripts
-bin=/usr/local/bin
 
 # update configuration submodules
 git submodule init
 git submodule update --init --recursive
 
-# install powerline fonts
+source $scripts/link_dotfiles
+source $scripts/change_shell
+
 source $scripts/install/fonts
 
 source $scripts/install/python
@@ -19,49 +20,9 @@ source $scripts/install/argparse
 source $scripts/install/cowsay
 source $scripts/install/fortune
 
-BACKUP_DIR="/tmp/dotfiles_$(date +%Y%m%d%H%M%S)"
-mkdir "$BACKUP_DIR"
-
-declare -A dotfiles
-
-# list of dotfiles
-dotfiles[zshrc]=zsh/zshrc
-dotfiles[vimrc]=vim/vimrc
-dotfiles[tmux.conf]=tmux/tmux.conf
-dotfiles[gitconfig]=git/gitconfig
-
-# load each dotfiles
-for i in "${!dotfiles[@]}"; do
-  config=~/.$i
-  dotfile=${dotfiles[$i]}
-
-  if ! diff $config $dotfile &>/dev/null; then
-
-    if [ -f $config ]; then
-      mv $config "$BACKUP_DIR" 2>/dev/null
-      echo -e "\n${yellow}$config is backed up in "$BACKUP_DIR".${nc}"
-    fi
-
-    ln -s $HOME/dotfiles/$dotfile $config
-    echo -e "\n${green}$dotfile is successfully linked.${nc}"
-
-    if [ "$i" == "zshrc" ]; then restart_required=true; fi
-  fi
-done
-
-# set up phpcs
-phpcs=$HOME/dotfiles/phpcs/PHP_CodeSniffer
-sudo ln -s $phpcs/scripts/phpcs $bin/phpcs 2>/dev/null
-sudo ln -s $phpcs/scripts/phpcbf $bin/phpcbf 2>/dev/null
-echo -e "\n${green}PHPCS is successfully set up.${nc}"
-
-config=$HOME/.config
-if [ ! -d $config ]; then
-  mkdir $config
-fi
-
-mv $config/powerline "$BACKUP_DIR" 2>/dev/null
-ln -s $HOME/dotfiles/powerline/powerline-config $config/powerline
+source $scripts/link_dotfiles
+source $scripts/setup_phpcs
+source $scripts/setup_powerline
 
 echo -e "\n${green}Hurray!!! Dotfiles successfully setup.${nc}\n"
 

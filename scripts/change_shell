@@ -1,0 +1,8 @@
+#!/bin/bash
+. ./scripts/utils/backup_dir
+
+if [ $SHELL != $(which zsh) ];then
+  echo -e "${yellow}For dotfiles to work, we need to change shell to zsh.${nc}"
+  chsh -s $(which zsh)
+fi
+

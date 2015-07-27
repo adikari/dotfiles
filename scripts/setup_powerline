@@ -1,0 +1,13 @@
+#!/bin/bash
+
+. $HOME/dotfiles/scripts/utils/colors
+
+config=$HOME/.config
+if [ ! -d $config ]; then
+  mkdir $config
+fi
+
+mv $config/powerline "$BACKUP_DIR" 2>/dev/null
+ln -s $HOME/dotfiles/powerline/powerline-config $config/powerline
+
+
