@@ -1,5 +1,9 @@
 #!/bin/bash
-. ./scripts/utils/backup_dir
+. $HOME/dotfiles/scripts/utils/backup_dir
+. $HOME/dotfiles/scripts/utils/has_command
+. $HOME/dotfiles/scripts/utils/introduce
+
+has_command zsh || introduce zsh
 
 if [ $SHELL != $(which zsh) ];then
   echo -e "${yellow}For dotfiles to work, we need to change shell to zsh.${nc}"
