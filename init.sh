@@ -51,8 +51,8 @@ done
 
 # set up phpcs
 phpcs=$HOME/dotfiles/phpcs/PHP_CodeSniffer
-ln -s $phpcs/scripts/phpcs $bin/phpcs 2>/dev/null
-ln -s $phpcs/scripts/phpcbf $bin/phpcbf 2>/dev/null
+sudo ln -s $phpcs/scripts/phpcs $bin/phpcs 2>/dev/null
+sudo ln -s $phpcs/scripts/phpcbf $bin/phpcbf 2>/dev/null
 echo -e "\n${green}PHPCS is successfully set up.${nc}"
 
 config=$HOME/.config
