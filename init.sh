@@ -18,7 +18,6 @@ source $scripts/install/python
 source $scripts/install/vim
 source $scripts/install/argparse
 
-source $scripts/link_dotfiles
 source $scripts/setup_phpcs
 source $scripts/setup_powerline
 
@@ -26,7 +25,6 @@ echo -e "\n${green}Hurray!!! Dotfiles successfully setup.${nc}\n"
 
 if [ "$restart_required" = true ]; then
   echo -e "${red}You must restart your session in order for configurations to take affect!!!${nc}\n"
+  unset restart_required
 fi
 
-# clean variables
-unset restart_required
