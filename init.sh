@@ -30,3 +30,5 @@ if [ "$restart_required" = true ]; then
   echo -e "${red}You must restart your session in order for configurations to take affect!!!${nc}\n"
 fi
 
+# clean variables
+unset restart_required

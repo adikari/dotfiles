@@ -3,6 +3,8 @@
 . $HOME/dotfiles/scripts/utils/backup_dir
 . $HOME/dotfiles/scripts/utils/colors
 
+export restart_required=false
+
 declare -A dotfiles
 
 # list of dotfiles
@@ -10,8 +12,6 @@ dotfiles[zshrc]=zsh/zshrc
 dotfiles[vimrc]=vim/vimrc
 dotfiles[tmux.conf]=tmux/tmux.conf
 dotfiles[gitconfig]=git/gitconfig
-
-restart_required=false
 
 # load each dotfiles
 for i in "${!dotfiles[@]}"; do
@@ -28,7 +28,7 @@ for i in "${!dotfiles[@]}"; do
     ln -s $HOME/dotfiles/$dotfile $config
     echo -e "\n${green}$dotfile is successfully linked.${nc}"
 
-    if [ "$i" == "zshrc" ]; then export restart_required=true; fi
+    if [ "$i" == "zshrc" ]; then restart_required=true; fi
   fi
 done
 
