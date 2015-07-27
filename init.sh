@@ -17,8 +17,6 @@ source $scripts/install/fonts
 source $scripts/install/python
 source $scripts/install/vim
 source $scripts/install/argparse
-source $scripts/install/cowsay
-source $scripts/install/fortune
 
 source $scripts/link_dotfiles
 source $scripts/setup_phpcs
