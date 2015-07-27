@@ -9,8 +9,8 @@ scripts=./scripts
 git submodule init
 git submodule update --init --recursive
 
-source $scripts/link_dotfiles
 source $scripts/change_shell
+source $scripts/link_dotfiles
 
 source $scripts/install/fonts
 

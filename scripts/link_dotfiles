@@ -3,7 +3,7 @@
 . $HOME/dotfiles/scripts/utils/backup_dir
 . $HOME/dotfiles/scripts/utils/colors
 
-export restart_required=false
+restart_required=false
 
 declare -A dotfiles
 
@@ -28,7 +28,7 @@ for i in "${!dotfiles[@]}"; do
     ln -s $HOME/dotfiles/$dotfile $config
     echo -e "\n${green}$dotfile is successfully linked.${nc}"
 
-    if [ "$i" == "zshrc" ]; then restart_required=true; fi
+    if [ "$i" == "zshrc" ]; then export restart_required=true; fi
   fi
 done
 
