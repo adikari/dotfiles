@@ -1,9 +1,11 @@
 #!/bin/bash
 
-. ./scripts/utils/colors
-. ./scripts/utils/backup_dir
+# @TODO: when installing and cd into tmp, save $(pwd) and navigate back
 
-scripts=./scripts
+scripts=$HOME/dotfiles/scripts
+
+. $scripts/utils/colors
+. $scripts/utils/backup_dir
 
 # update configuration submodules
 git submodule init
