@@ -2,7 +2,7 @@
 
 . $HOME/dotfiles/scripts/utils/colors
 
-install_dir=/usr/local/bin
+install_dir=/usr/local
 python_version=$(python --version 2>&1)
 required_version=2.7
 
@@ -21,6 +21,6 @@ case "$python_version" in
       sudo make && sudo make install
       cd /tmp && sudo rm -rf Python-2.7.10*
 
-      echo -e "\n${green}$python_version was successfully installed.${nc}"
+      echo -e "\n${green}$required_version was successfully installed.${nc}"
     ;;
 esac
