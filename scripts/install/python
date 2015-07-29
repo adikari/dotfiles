@@ -5,6 +5,7 @@
 install_dir=/usr/local
 python_version=$(python --version 2>&1)
 required_version=2.7
+current_dir=$(pwd)
 
 case "$python_version" in
     *" $required_version"*)
@@ -20,6 +21,7 @@ case "$python_version" in
       ./configure --prefix=$install_dir
       sudo make && sudo make install
       cd /tmp && sudo rm -rf Python-2.7.10*
+      cd $current_dir
 
       echo -e "\n${green}$required_version was successfully installed.${nc}"
     ;;

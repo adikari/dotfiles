@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# @TODO: when installing and cd into tmp, save $(pwd) and navigate back
-
 scripts=$HOME/dotfiles/scripts
 
 . $scripts/utils/colors

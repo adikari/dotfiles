@@ -2,6 +2,8 @@
 
 . $HOME/dotfiles/scripts/utils/colors
 
+current_dir=$(pwd)
+
 # install huge vim with python support
 if ! vim --version | grep +python &>/dev/null; then
   cd /tmp
@@ -16,6 +18,7 @@ if ! vim --version | grep +python &>/dev/null; then
 
   sudo make && sudo make install
   cd /tmp && sudo rm -rf vim
+  cd $current_dir
 
   echo -e "\n${green}Vim74 is successfully installed.${nc}"
 fi
