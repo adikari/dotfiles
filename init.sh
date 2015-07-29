@@ -1,9 +1,9 @@
 #!/bin/bash
 
-. ./scripts/utils/colors
-. ./scripts/utils/backup_dir
+scripts=$HOME/dotfiles/scripts
 
-scripts=./scripts
+. $scripts/utils/colors
+. $scripts/utils/backup_dir
 
 # update configuration submodules
 git submodule init
