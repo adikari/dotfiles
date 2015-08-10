@@ -1,9 +1,6 @@
 [submodule "vim"]
 	path = vim
 	url = https://github.com/adikari/vim-config.git
-[submodule "powerline"]
-	path = powerline
-	url = https://github.com/adikari/powerline-config.git
 [submodule "tmux"]
 	path = tmux
 	url = https://github.com/adikari/tmux-config.git
