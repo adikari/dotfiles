@@ -13,13 +13,12 @@ source $scripts/change_shell
 source $scripts/link_dotfiles
 
 source $scripts/install/fonts
-
-source $scripts/install/python
 source $scripts/install/vim
-source $scripts/install/argparse
+
+#source $scripts/install/python
+#source $scripts/install/argparse
 
 source $scripts/setup_phpcs
-source $scripts/setup_powerline
 
 echo -e "\n${green}Hurray!!! Dotfiles successfully setup.${nc}\n"
 
