@@ -64,6 +64,12 @@ change_shell() {
   fi
 }
 
+# Run vim-plug's install process.
+# Vim starts with just a registry of plugins and the `nocompatible` flag.
+install_vim_plugins() {
+  vim -u ~/dotfiles/vim/plugins.vim -N +PlugClean! +PlugUpdate! +quitall!
+}
+
 # update configuration submodules
 git submodule init
 git submodule update --init --recursive
@@ -78,6 +84,8 @@ link $dotfiles/git/gitconfig $HOME/.gitconfig
 
 link $phpcs/scripts/phpcs $bin/phpcs
 link $phpcs/scripts/phpcbf $bin/phpcbf
+
+install_vim_plugins
 
 echo -e "\n${green}Hurray!!! Dotfiles successfully setup.${nc}\n"
 
