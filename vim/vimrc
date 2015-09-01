@@ -1,13 +1,12 @@
-set runtimepath+=~/dotfiles/vim
+set runtimepath+=$HOME/dotfiles/vim
 
 " Load the plugins
-if filereadable(expand("~/dotfiles/vim/plugins.vim"))
-  source ~/dotfiles/vim/plugins.vim
+if filereadable(expand("$HOME/dotfiles/vim/plugins.vim"))
+  source $HOME/dotfiles/vim/plugins.vim
 endif
 
-
 " Source local scripts/plugins
-for filePath in split(globpath('~/dotfiles/vim/vimrcs', '*.vim'), '\n')
+for filePath in split(globpath('$HOME/dotfiles/vim/vimrcs', '*.vim'), '\n')
   execute 'source' filePath
 endfor
 
