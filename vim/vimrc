@@ -1,5 +1,11 @@
 set runtimepath+=~/dotfiles/vim
 
+" Load the plugins
+if filereadable(expand("~/dotfiles/vim/plugins.vim"))
+  source ~/dotfiles/vim/plugins.vim
+endif
+
+
 " Source local scripts/plugins
 for filePath in split(globpath('~/dotfiles/vim/vimrcs', '*.vim'), '\n')
   execute 'source' filePath
