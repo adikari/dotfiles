@@ -1,0 +1,15 @@
+set runtimepath+=~/dotfiles/vim
+
+" Source local scripts/plugins
+for filePath in split(globpath('~/dotfiles/vim/vimrcs', '*.vim'), '\n')
+  execute 'source' filePath
+endfor
+
+" load custom config if available
+if !empty(glob("$HOME/.my_vimrc"))
+  execute 'source $HOME/.my_vimrc'
+endif
+
+colorscheme ir_black
+
+
