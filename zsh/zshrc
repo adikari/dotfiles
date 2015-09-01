@@ -1,0 +1,45 @@
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/dotfiles/zsh/oh-my-zsh
+ZSH_CUSTOM=$HOME/dotfiles/zsh/custom
+
+DOTFILES=$HOME/dotfiles
+
+ZSH_THEME="cloud"
+
+# Set to this to use case-sensitive completion
+CASE_SENSITIVE="true"
+
+# Comment this out to disable weekly auto-update checks
+DISABLE_AUTO_UPDATE="true"
+
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
+
+# Uncomment following line if you want to disable autosetting terminal title.
+DISABLE_AUTO_TITLE="true"
+
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+COMPLETION_WAITING_DOTS="true"
+
+plugins=(
+  z composer bower grunt brew brew-cask common-aliases
+  git gitignore laravel vagrant chuckcow
+)
+
+export LC_ALL=en_AU.UTF-8
+export LANG=en_AU.UTF-8
+
+source $ZSH/oh-my-zsh.sh
+source $DOTFILES/zsh/custom/aliases
+
+# Customize to your needs...
+setopt rmstarsilent
+setopt nohistverify
+
+export EDITOR=vim
+zstyle ':completion:*' matcher-list ''
+
+# load custom config if there is any
+if [ -f $HOME/.my_zshrc ]; then
+  source $HOME/.my_zshrc
+fi
