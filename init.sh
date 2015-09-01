@@ -8,11 +8,9 @@ nc='\033[0m'
 
 # create backup directory
 backup_dir="/tmp/dotfiles_$(date +%Y%m%d)"
-phpcs=$dotfiles/phpcs/PHP_CodeSniffer
-
 bin=/usr/local/bin
 dotfiles=$HOME/dotfiles
-
+phpcs=$dotfiles/phpcs/PHP_CodeSniffer
 restart_required=false
 
 # create backup
@@ -23,6 +21,7 @@ backup() {
   fi
 
   if [ -f $1 ]; then
+    echo $1
     mv $1 $backup_dir
     echo -e "\n${yellow}$1 is backed up in "$backup_dir".${nc}"
   fi
