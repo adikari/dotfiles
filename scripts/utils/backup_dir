@@ -1,5 +1,0 @@
-#!/bin/bash
-
-BACKUP_DIR="/tmp/dotfiles_$(date +%Y%m%d%H%M%S)"
-[ -d $BACKUP_DIR ] || mkdir "$BACKUP_DIR"
-
