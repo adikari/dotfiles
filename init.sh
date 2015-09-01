@@ -7,9 +7,8 @@ red='\033[0;31m'
 nc='\033[0m'
 
 # create backup directory
-backup_dir="/tmp/dotfiles_$(date +%Y%m%d%H%M%S)"
-[ -d $backup_dir ] || mkdir "$backup_dir"
-echo -e "${green}Backup directory $backup_dir created.${nc}"
+backup_dir="/tmp/dotfiles_$(date +%Y%m%d)"
+phpcs=$dotfiles/phpcs/PHP_CodeSniffer
 
 bin=/usr/local/bin
 dotfiles=$HOME/dotfiles
@@ -18,8 +17,13 @@ restart_required=false
 
 # create backup
 backup() {
-  if [ -f $config ]; then
-    mv $1 "$backup_dir" 2>/dev/null
+  if [ ! -d $backup_dir ]; then
+    mkdir "$backup_dir"
+    echo -e "${green}Backup directory $backup_dir created.${nc}"
+  fi
+
+  if [ -f $1 ]; then
+    mv $1 $backup_dir
     echo -e "\n${yellow}$1 is backed up in "$backup_dir".${nc}"
   fi
 }
@@ -61,27 +65,19 @@ change_shell() {
   fi
 }
 
-# setup phpcs
-setup_phpcs() {
-  phpcs=$dotfiles/phpcs/PHP_CodeSniffer
-
-  link $phpcs/scripts/phpcs $bin/phpcs
-  link $phpcs/scripts/phpcbf $bin/phpcbf
-
-  echo -e "\n${green}PHPCS is successfully set up.${nc}"
-}
-
-# # update configuration submodules
+# update configuration submodules
 git submodule init
 git submodule update --init --recursive
 
+#change shell to zsh
 change_shell zsh
 
 link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/vim/vimrc $HOME/.vimrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 
-setup_phpcs
+link $phpcs/scripts/phpcs $bin/phpcs
+link $phpcs/scripts/phpcbf $bin/phpcbf
 
 echo -e "\n${green}Hurray!!! Dotfiles successfully setup.${nc}\n"
 
