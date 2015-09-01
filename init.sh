@@ -12,11 +12,7 @@ git submodule update --init --recursive
 source $scripts/change_shell
 source $scripts/link_dotfiles
 
-source $scripts/install/fonts
 source $scripts/install/vim
-
-#source $scripts/install/python
-#source $scripts/install/argparse
 
 source $scripts/setup_phpcs
 
