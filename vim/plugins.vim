@@ -1,4 +1,4 @@
-call plug('~/.vim/plugged')
+call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/neocomplcache.vim'
 
