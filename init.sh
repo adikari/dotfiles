@@ -67,7 +67,7 @@ change_shell() {
 # Run vim-plug's install process.
 # Vim starts with just a registry of plugins and the `nocompatible` flag.
 install_vim_plugins() {
-  vim -u ~/dotfiles/vim/plugins.vim -N +PlugClean! +PlugUpdate! +quitall!
+  vim +PlugClean! +PlugUpdate! +quitall!
 }
 
 # update configuration submodules
