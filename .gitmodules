@@ -1,13 +1,3 @@
-[submodule "vim"]
-	path = vim
-	url = https://github.com/adikari/vim-config.git
-[submodule "tmux"]
-	path = tmux
-	url = https://github.com/adikari/tmux-config.git
-[submodule "zsh"]
-	path = zsh
-	url = https://github.com/adikari/zsh-config.git
-
 [submodule "phpcs/PHP_CodeSniffer"]
 	path = phpcs/PHP_CodeSniffer
 	url = https://github.com/squizlabs/PHP_CodeSniffer.git
