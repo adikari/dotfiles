@@ -37,14 +37,18 @@ if ! has_command cowsay; then
   cd $current_dir
 fi
 
-plugin="chucknorris"
+chuckcow() {
+  plugin="chucknorris"
 
-if [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
+  if [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
 
-  if has_command cowsay && has_command fortune; then
-    source $ZSH/plugins/$plugin/$plugin.plugin.zsh
-    fortune -a $ZSH/plugins/chucknorris/fortunes | cowsay
+    if has_command cowsay && has_command fortune; then
+      source $ZSH/plugins/$plugin/$plugin.plugin.zsh
+      fortune -a $ZSH/plugins/chucknorris/fortunes | cowsay
+    fi
   fi
-fi
+}
+
+chuckcow
 
 
