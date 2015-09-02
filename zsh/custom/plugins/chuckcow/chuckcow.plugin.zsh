@@ -28,8 +28,6 @@ fi
 # 1. remove /usr/bin/cowsay /usr/bin/cowthink
 # 2. remove /usr/local/share/cows
 
-. $HOME/dotfiles/scripts/utils/has_command
-
 if ! has_command cowsay; then
   cd /tmp
   git clone https://github.com/schacon/cowsay.git
