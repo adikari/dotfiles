@@ -18,17 +18,9 @@ Plug 'honza/vim-snippets'
 
 Plug 'jlanzarotta/bufexplorer'
 
-Plug 'kien/ctrlp.vim'
-
 Plug 'junegunn/goyo.vim'
 
-Plug 'scrooloose/nerdtree'
-
-Plug 'scrooloose/snipmate-snippets'
-
-Plug 'scrooloose/syntastic'
-
-Plug 'Shougo/neocomplcache.vim'
+Plug 'kien/ctrlp.vim'
 
 Plug 'mattn/emmet-vim'
 
@@ -37,6 +29,14 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'mileszs/ack.vim'
+
+Plug 'scrooloose/nerdtree'
+
+Plug 'scrooloose/snipmate-snippets'
+
+Plug 'scrooloose/syntastic'
+
+Plug 'Shougo/neocomplcache.vim'
 
 Plug 'terryma/vim-expand-region'
 
@@ -53,6 +53,8 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 
 Plug 'tpope/vim-surround'
+
+Plug 'twerth/ir_black'
 
 Plug 'vim-scripts/mru.vim'
 
