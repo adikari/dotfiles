@@ -1,4 +1,5 @@
-PATH="$HOME/dotfiles/bin:$PATH"
+# Add dotfiles bin to path
+[ -d $HOME/dotfiles/bin ] && PATH="$HOME/dotfiles/bin:$PATH"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/dotfiles/zsh/oh-my-zsh
