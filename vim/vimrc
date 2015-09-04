@@ -15,6 +15,5 @@ if !empty(glob("$HOME/.my_vimrc"))
   execute 'source $HOME/.my_vimrc'
 endif
 
-colorscheme ir_black
 
 
