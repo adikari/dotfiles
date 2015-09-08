@@ -32,8 +32,6 @@ Plug 'mileszs/ack.vim'
 
 Plug 'scrooloose/nerdtree'
 
-Plug 'scrooloose/snipmate-snippets'
-
 Plug 'scrooloose/syntastic'
 
 Plug 'Shougo/neocomplcache.vim'
