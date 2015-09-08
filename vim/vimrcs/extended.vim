@@ -27,10 +27,10 @@ set guioptions-=L
 " Colorscheme
 if has("gui_running")
     set background=dark
-    colorscheme peaksea
+    colorscheme ir_black
 else
-    colorscheme desert
-    let g:colors_name="desert"
+    colorscheme ir_black
+    let g:colors_name="ir_black"
 endif
 
 

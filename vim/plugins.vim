@@ -54,6 +54,10 @@ Plug 'tpope/vim-surround'
 
 Plug 'twerth/ir_black'
 
+Plug 'vim-pandoc/vim-pandoc'
+
+Plug 'vim-pandoc/vim-pandoc-syntax'
+
 Plug 'vim-scripts/mru.vim'
 
 Plug 'vim-scripts/nginx.vim'
