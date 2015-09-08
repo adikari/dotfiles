@@ -10,8 +10,6 @@ Plug 'editorconfig/editorconfig-vim'
 
 Plug 'edkolev/tmuxline.vim'
 
-Plug 'garbas/vim-snipmate'
-
 Plug 'heavenshell/vim-jsdoc'
 
 Plug 'honza/vim-snippets'
@@ -35,6 +33,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 
 Plug 'Shougo/neocomplcache.vim'
+
+Plug 'Shougo/neosnippet.vim'
 
 Plug 'terryma/vim-expand-region'
 
