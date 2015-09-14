@@ -1,0 +1,22 @@
+{
+  "name": "dotfiles",
+  "version": "1.0.0",
+  "description": "packages for dotfiles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adikari/dotfiles.git"
+  },
+  "author": "Subash Adhikari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adikari/dotfiles/issues"
+  },
+  "homepage": "https://github.com/adikari/dotfiles#readme",
+  "devDependencies": {
+    "jshint": "^2.8.0"
+  }
+}
