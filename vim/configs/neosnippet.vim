@@ -12,4 +12,6 @@ if has('conceal')
 endif
 
 let g:neosnippet#snippets_directory='$HOME/dotfiles/vim/plugged/vim-snippets/snippets'
+let g:neosnippet#snippets_directory='$HOME/dotfiles/vim/snippets'
+
 
