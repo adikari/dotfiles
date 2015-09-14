@@ -74,6 +74,9 @@ install_vim_plugins() {
 git submodule init
 git submodule update --init --recursive
 
+# install npm packages
+npm install
+
 #change shell to zsh
 change_shell zsh
 
