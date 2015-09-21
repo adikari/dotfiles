@@ -1,5 +1,6 @@
-" script bound to Control-P
-autocmd FileType php inoremap <Leader>d <ESC>:call PhpDocSingle()<CR>i
-autocmd FileType php nnoremap <Leader>d :call PhpDocSingle()<CR>
-autocmd FileType php vnoremap <Leader>d :call PhpDocRange()<CR>
+" script bound to pdv
+let g:pdv_template_dir = "$HOME/dotfiles/vim/plugged/pdv/templates"
+
+autocmd FileType php inoremap <Leader>d <ESC>:call pdv#DocumentCurrentLine()<CR>i
+autocmd FileType php nnoremap <Leader>d :call pdv#DocumentCurrentLine()<CR>
 

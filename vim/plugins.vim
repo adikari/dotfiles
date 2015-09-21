@@ -40,6 +40,8 @@ Plug 'terryma/vim-expand-region'
 
 Plug 'terryma/vim-multiple-cursors'
 
+Plug 'tobyS/vmustache'
+
 Plug 'tobyS/pdv'
 
 Plug 'tpope/vim-commentary'
