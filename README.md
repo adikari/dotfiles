@@ -1,5 +1,11 @@
 # Dotfiles
 
+## What is this
+
+My development set up is fully on commandline, with combination of many tools. This project have all the configuration for the tools that I have written and improved over years. As I am working between multiple machines, I wanted to centralize all my configurations and this is the product.
+
+## How to set up
+
 The setup of dotfiles is done using the `init.sh` script.
 
 ```sh
@@ -18,7 +24,6 @@ The dotfiles will set up:
 3. [Git config]
 4. [Tmux]
 
-My development set up is fully on commandline, with combination of many tools. This project have all the configuration for the tools that I have written and improved over years. 
 
 I am at the moment working on detailed documentation on each features that will be added by installing this project.  
 
