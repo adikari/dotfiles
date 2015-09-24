@@ -18,6 +18,10 @@ The dotfiles will set up:
 3. [Git config]
 4. [Tmux]
 
+My development set up is fully on commandline, with combination of many tools. This project have all the configuration for the tools that I have written and improved over years. 
+
+I am at the moment working on detailed documentation on each features that will be added by installing this project.  
+
 If you have any issues, please contact me at me@subash.com.au.
 
 [Powerline]: https://github.com/powerline/powerline
