@@ -28,6 +28,8 @@ Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'mileszs/ack.vim'
 
+Plug 'nathanaelkane/vim-indent-guides'
+
 Plug 'scrooloose/nerdtree'
 
 Plug 'scrooloose/syntastic'
