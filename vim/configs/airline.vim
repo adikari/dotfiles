@@ -9,6 +9,9 @@ set laststatus=2
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
 
+" show wordcount
+let g:airline#extensions#wordcount#filetypes = '\vhelp|markdown|rst|org|pandoc'"
+
 
 
 
