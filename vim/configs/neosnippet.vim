@@ -11,6 +11,9 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
+" disable runtime snippets
+let g:neosnippet#disable_runtime_snippets = { '_' : 1, }
+
 let g:neosnippet#snippets_directory='$HOME/dotfiles/vim/plugged/vim-snippets/snippets'
 let g:neosnippet#snippets_directory='$HOME/dotfiles/vim/snippets'
 
