@@ -16,3 +16,5 @@
 	c = checkout
 	b = branch
 	l = log
+[difftool]
+  prompt = false
