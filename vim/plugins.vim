@@ -6,6 +6,8 @@ Plug 'bling/vim-airline'
 
 Plug 'cakebaker/scss-syntax.vim'
 
+Plug 'Raimondi/delimitMate'
+
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'edkolev/tmuxline.vim'
