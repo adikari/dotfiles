@@ -24,6 +24,8 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'kien/ctrlp.vim'
 
+Plug 'majutsushi/tagbar'
+
 Plug 'mattn/emmet-vim'
 
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -56,6 +58,8 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-markdown'
 
+Plug 'vim-php/tagbar-phpctags.vim'
+
 Plug 'tpope/vim-repeat'
 
 Plug 'tpope/vim-surround'
@@ -69,8 +73,6 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-scripts/mru.vim'
 
 Plug 'vim-scripts/nginx.vim'
-
-Plug 'vim-scripts/taglist.vim'
 
 Plug 'vim-scripts/tlib'
 
