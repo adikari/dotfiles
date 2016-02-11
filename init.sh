@@ -17,13 +17,13 @@ restart_required=false
 backup() {
   if [ ! -d $backup_dir ]; then
     mkdir "$backup_dir"
-    echo -e "${green}Backup directory $backup_dir created.${nc}"
+    echo "${green}Backup directory $backup_dir created.${nc}"
   fi
 
   if [ -f $1 ]; then
     echo $1
     mv $1 $backup_dir
-    echo -e "\n${yellow}$1 is backed up in "$backup_dir".${nc}"
+    echo "\n${yellow}$1 is backed up in "$backup_dir".${nc}"
   fi
 }
 
@@ -37,7 +37,7 @@ link() {
   if ! diff $1 $2 &>/dev/null; then
     backup $2; sudo ln -sf $1 $2 2>/dev/null
 
-    echo -e "\n${green}$2 is successfully linked.${nc}"
+    echo "\n${green}$2 is successfully linked.${nc}"
 
     if [ "$2" == "zshrc" ]; then restart_required=true; fi
   fi
@@ -59,7 +59,7 @@ change_shell() {
   has_command $1 || introduce $1
 
   if [ $SHELL != $(which $1) ];then
-    echo -e "${yellow}For dotfiles to work, we need to change shell to zsh.${nc}"
+    echo "${yellow}For dotfiles to work, we need to change shell to zsh.${nc}"
     chsh -s $(which $1)
   fi
 }
@@ -90,9 +90,9 @@ link $phpcs/scripts/phpcbf $bin/phpcbf
 
 install_vim_plugins
 
-echo -e "\n${green}Hurray!!! Dotfiles successfully setup.${nc}\n"
+echo "\n${green}Hurray!!! Dotfiles successfully setup.${nc}\n"
 
 if [ "$restart_required" = true ]; then
-   echo -e "${red}You must restart your session in order for configurations to take affect!!!${nc}\n"
+   echo "${red}You must restart your session in order for configurations to take affect!!!${nc}\n"
 fi
 
