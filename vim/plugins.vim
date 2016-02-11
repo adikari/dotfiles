@@ -34,8 +34,6 @@ Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'mileszs/ack.vim'
 
-Plug 'Yggdroot/indentLine'
-
 Plug 'scrooloose/nerdtree'
 
 Plug 'scrooloose/syntastic'
@@ -43,6 +41,8 @@ Plug 'scrooloose/syntastic'
 Plug 'Shougo/neocomplcache.vim'
 
 Plug 'Shougo/neosnippet.vim'
+
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 Plug 'terryma/vim-expand-region'
 
@@ -58,8 +58,6 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-markdown'
 
-Plug 'vim-php/tagbar-phpctags.vim'
-
 Plug 'tpope/vim-repeat'
 
 Plug 'tpope/vim-surround'
@@ -70,10 +68,14 @@ Plug 'vim-pandoc/vim-pandoc'
 
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
+Plug 'vim-php/tagbar-phpctags.vim'
+
 Plug 'vim-scripts/mru.vim'
 
 Plug 'vim-scripts/nginx.vim'
 
 Plug 'vim-scripts/tlib'
+
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
