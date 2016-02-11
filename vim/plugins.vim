@@ -2,7 +2,7 @@ call plug#begin('~/dotfiles/vim/plugged')
 
 Plug 'amix/vim-zenroom2'
 
-Plug 'ariblade/vim-rooter'
+Plug 'airblade/vim-rooter'
 
 Plug 'bling/vim-airline'
 

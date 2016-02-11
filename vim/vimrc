@@ -5,13 +5,13 @@ if filereadable(expand("$HOME/dotfiles/vim/plugins.vim"))
   source $HOME/dotfiles/vim/plugins.vim
 endif
 
-" Source plugin configs
-for filePath in split(globpath('$HOME/dotfiles/vim/configs', '*.vim'), '\n')
+" Source vimrcs
+for filePath in split(globpath('$HOME/dotfiles/vim/vimrcs', '*.vim'), '\n')
   execute 'source' filePath
 endfor
 
-" Source vimrcs
-for filePath in split(globpath('$HOME/dotfiles/vim/vimrcs', '*.vim'), '\n')
+" Source plugin configs
+for filePath in split(globpath('$HOME/dotfiles/vim/configs', '*.vim'), '\n')
   execute 'source' filePath
 endfor
 
