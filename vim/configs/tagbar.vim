@@ -4,7 +4,7 @@ nmap <leader>tt :TagbarToggle<CR>
 " let g:tagbar_ctags_bin = '/usr/bin/ctags'
 
 " show visibility symbols
-let g:tagbar_show_visibility = 0
+let g:tagbar_show_visibility = 1
 
 " tagbar opened and closed folds sumbols
 let g:tagbar_iconchars = ['▸', '▾']
