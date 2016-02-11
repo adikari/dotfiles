@@ -1,11 +1,5 @@
 #!/bin/sh
 
-# color constants
-yellow='\033[0;33m'
-green='\033[0;32m'
-red='\033[0;31m'
-nc='\033[0m'
-
 # create backup directory
 backup_dir="/tmp/dotfiles_$(date +%Y%m%d)"
 bin=/usr/local/bin
@@ -17,13 +11,13 @@ restart_required=false
 backup() {
   if [ ! -d $backup_dir ]; then
     mkdir "$backup_dir"
-    echo "${green}Backup directory $backup_dir created.${nc}"
+    echo "Backup directory $backup_dir created."
   fi
 
   if [ -f $1 ]; then
     echo $1
     mv $1 $backup_dir
-    echo "\n${yellow}$1 is backed up in "$backup_dir".${nc}"
+    echo "$1 is backed up in $backup_dir"
   fi
 }
 
@@ -37,7 +31,7 @@ link() {
   if ! diff $1 $2 &>/dev/null; then
     backup $2; sudo ln -sf $1 $2 2>/dev/null
 
-    echo "\n${green}$2 is successfully linked.${nc}"
+    echo "$2 is successfully linked."
 
     if [ "$2" == "zshrc" ]; then restart_required=true; fi
   fi
@@ -59,7 +53,7 @@ change_shell() {
   has_command $1 || introduce $1
 
   if [ $SHELL != $(which $1) ];then
-    echo "${yellow}For dotfiles to work, we need to change shell to zsh.${nc}"
+    echo "For dotfiles to work, we need to change shell to zsh."
     chsh -s $(which $1)
   fi
 }
@@ -90,9 +84,9 @@ link $phpcs/scripts/phpcbf $bin/phpcbf
 
 install_vim_plugins
 
-echo "\n${green}Hurray!!! Dotfiles successfully setup.${nc}\n"
+echo "Hurray!!! Dotfiles successfully setup."
 
 if [ "$restart_required" = true ]; then
-   echo "${red}You must restart your session in order for configurations to take affect!!!${nc}\n"
+   echo "You must restart your session in order for configurations to take affect!!!"
 fi
 
