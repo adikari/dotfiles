@@ -4,6 +4,15 @@
 
 My development set up is fully on commandline, with combination of many tools. This project have all the configuration for the tools that I have written and improved over years. As I am working between multiple machines, I wanted to centralize all my configurations and this is the product.
 
+## Dependencies
+
+Currently this dotfiles depends on the following. I will make these optional in future and add ability to turn them on or off.
+
+1. eclipse (headless or GUI)
+2. eclim
+3. ctags
+4. fortune
+
 ## How to set up
 
 The setup of dotfiles is done using the `init.sh` script.
@@ -25,7 +34,7 @@ The dotfiles will set up:
 4. [Tmux]
 
 
-I am at the moment working on detailed documentation on each features that will be added by installing this project.  
+I am at the moment working on detailed documentation on each features that will be added by installing this project.
 
 If you have any issues, please contact me at me@subash.com.au.
 
