@@ -54,6 +54,8 @@ Plug 'tobyS/pdv'
 
 Plug 'tpope/vim-commentary'
 
+Plug 'tpope/vim-cucumber'
+
 Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-markdown'
