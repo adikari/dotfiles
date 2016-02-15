@@ -2,6 +2,9 @@
 [ -d $HOME/dotfiles/bin ] && PATH="$HOME/dotfiles/bin:$PATH"
 [ -d $HOME/dotfiles/node_modules/.bin ] && PATH="$HOME/dotfiles/node_modules/.bin:$PATH"
 
+[ -d /usr/local/sbin ] && PATH="/usr/local/sbin:$PATH"
+[ -d $HOME/bin ] && PATH="$HOME/bin:$PATH"
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/dotfiles/zsh/oh-my-zsh
 ZSH_CUSTOM=$HOME/dotfiles/zsh/custom
