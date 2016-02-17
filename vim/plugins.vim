@@ -78,6 +78,8 @@ Plug 'vim-scripts/nginx.vim'
 
 Plug 'vim-scripts/tlib'
 
+Plug 'wesQ3/vim-windowswap'
+
 Plug 'Yggdroot/indentLine'
 
 call plug#end()
