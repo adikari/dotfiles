@@ -151,9 +151,6 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-" highlight code that goes over 80 chars
-au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -426,5 +423,23 @@ function! <SID>BufcloseCloseIt()
    if buflisted(l:currentBufNum)
      execute("bdelete! ".l:currentBufNum)
    endif
+endfunction
+
+" highlight code that goes over 80 chars
+nnoremap <leader>h :call HighLightOverlength()<cr>
+function! HighLightOverlength()
+  if !exists("w:overlength_highlight")
+    let w:overlength_highlight = 0
+  endif
+
+  if !w:overlength_highlight
+    let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    echon 'Overlength highlighting enabled'
+    let w:overlength_highlight = 1
+  else
+    call clearmatches()
+    echon 'Overlength highlighting disabled'
+    let w:overlength_highlight = 0
+  endif
 endfunction
 
