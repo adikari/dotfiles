@@ -343,6 +343,9 @@ map <leader>p :cp<cr>
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
+" Change spellcheck error to underline
+hi SpellBad cterm=underline
+
 " Shortcuts using <leader>
 map <leader>sn ]s
 map <leader>sp [s
