@@ -8,10 +8,9 @@ My development set up is fully on commandline, with combination of many tools. T
 
 Currently this dotfiles depends on the following. I will make these optional in future and add ability to turn them on or off.
 
-1. eclipse (headless or GUI)
-2. eclim
-3. ctags
-4. fortune
+1. ctags
+2. phpcs
+3. fortune
 
 ## How to set up
 
@@ -32,6 +31,11 @@ The dotfiles will set up:
 2. [Vim]
 3. [Git config]
 4. [Tmux]
+
+## TODOS
+1. Add prompt to install script for optional functionality to be installed.
+2. Optional functionality: phpcs, fortune, ctags, phpctags, eclim
+3. Add detailed documentation about each functionalities
 
 
 I am at the moment working on detailed documentation on each features that will be added by installing this project.
