@@ -78,6 +78,7 @@ link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/vim/vimrc $HOME/.vimrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 link $dotfiles/git/gitconfig $HOME/.gitconfig
+link $dotfiles/.tern-project $HOME/.tern-project
 
 link $phpcs/scripts/phpcs $bin/phpcs
 link $phpcs/scripts/phpcbf $bin/phpcbf
