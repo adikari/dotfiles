@@ -78,7 +78,7 @@ link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/vim/vimrc $HOME/.vimrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 link $dotfiles/git/gitconfig $HOME/.gitconfig
-link $dotfiles/configs/tern-project $HOME/.tern-project
+link $dotfiles/configs/tern-config $HOME/.tern-config
 link $dotfiles/configs/editorconfig $HOME/.editorconfig
 link $dotfiles/configs/jshintrc $HOME/.jshintrc
 
