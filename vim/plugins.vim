@@ -42,13 +42,9 @@ Plug 'scrooloose/nerdtree'
 
 Plug 'scrooloose/syntastic'
 
-Plug 'Shougo/neocomplete.vim'
-
 Plug 'Shougo/neosnippet.vim'
 
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 Plug 'terryma/vim-expand-region'
 
@@ -71,6 +67,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
 Plug 'twerth/ir_black'
+
+Plug 'Valloric/YouCompleteMe', { 'do': 'install.py --tern-completer' }
 
 Plug 'vim-pandoc/vim-pandoc'
 
