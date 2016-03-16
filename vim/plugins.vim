@@ -64,7 +64,7 @@ Plug 'tpope/vim-surround'
 
 Plug 'twerth/ir_black'
 
-Plug 'Valloric/YouCompleteMe', { 'do': 'install.py --tern-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 
 Plug 'vim-pandoc/vim-pandoc'
 
