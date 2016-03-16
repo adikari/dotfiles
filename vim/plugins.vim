@@ -42,8 +42,6 @@ Plug 'scrooloose/syntastic'
 
 Plug 'Shougo/neosnippet.vim'
 
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-
 Plug 'terryma/vim-expand-region'
 
 Plug 'terryma/vim-multiple-cursors'
