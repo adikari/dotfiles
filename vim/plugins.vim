@@ -42,7 +42,7 @@ Plug 'scrooloose/nerdtree'
 
 Plug 'scrooloose/syntastic'
 
-Plug 'Shougo/neocomplcache.vim'
+Plug 'Shougo/neocomplete.vim'
 
 Plug 'Shougo/neosnippet.vim'
 
