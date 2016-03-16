@@ -16,8 +16,6 @@ Plug 'edkolev/tmuxline.vim'
 
 Plug 'heavenshell/vim-jsdoc'
 
-Plug 'honza/vim-snippets'
-
 Plug 'jlanzarotta/bufexplorer'
 
 Plug 'junegunn/goyo.vim'
@@ -39,8 +37,6 @@ Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
 
 Plug 'scrooloose/syntastic'
-
-Plug 'Shougo/neosnippet.vim'
 
 Plug 'terryma/vim-expand-region'
 
