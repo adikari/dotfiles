@@ -24,6 +24,8 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'kien/ctrlp.vim'
 
+Plug 'leafgarland/typescript-vim'
+
 Plug 'majutsushi/tagbar'
 
 Plug 'mattn/emmet-vim'
@@ -34,6 +36,8 @@ Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'mileszs/ack.vim'
 
+Plug 'Quramy/tsuquyomi'
+
 Plug 'scrooloose/nerdtree'
 
 Plug 'scrooloose/syntastic'
@@ -41,6 +45,8 @@ Plug 'scrooloose/syntastic'
 Plug 'Shougo/neocomplcache.vim'
 
 Plug 'Shougo/neosnippet.vim'
+
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
