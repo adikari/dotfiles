@@ -6,11 +6,21 @@ My development set up is fully on commandline, with combination of many tools. T
 
 ## Dependencies
 
-Currently this dotfiles depends on the following. I will make these optional in future and add ability to turn them on or off.
+Currently this dotfiles depends on the following. If you have dependencies missing you will asked to install it during installation.
+
+### Mandatory
+1. Vim 7.4 with python support
+2. zsh shell
+
+### Optional
+Eventhough these are optional, I highly recommend to install. If you continue without these dependencies, functionality dependent on them will not be installed.
 
 1. ctags
 2. phpcs
 3. fortune
+4. cmake
+5. npm
+
 
 ## How to set up
 
@@ -33,9 +43,9 @@ The dotfiles will set up:
 4. [Tmux]
 
 ## TODOS
-1. Add prompt to install script for optional functionality to be installed.
-2. Optional functionality: phpcs, fortune, ctags, phpctags, eclim
-3. Add detailed documentation about each functionalities
+1. Add detailed documentation about each functionalities
+2. Based upon optional dependency, disable some zsh plugins
+3. Remove hardcoded gitconfig and add prompt to set it up
 
 
 I am at the moment working on detailed documentation on each features that will be added by installing this project.
