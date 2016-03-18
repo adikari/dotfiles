@@ -26,6 +26,18 @@ has_command() {
   command -v $1 >/dev/null 2>&1
 }
 
+# Prompt for yes or no answer
+prompt () {
+  while true; do
+    read -p "$1 (yes/no)" yn
+    case $yn in
+      [Yy]* ) return 0;;
+      [Nn]* ) return 1;;
+      * ) echo "Please answer yes or no.";;
+    esac
+  done
+}
+
 # create symlink
 link() {
   if ! diff $1 $2 &>/dev/null; then
@@ -39,9 +51,15 @@ link() {
 
 # change shell to zsh
 change_shell() {
-  if [ $SHELL != $(which $1) ];then
+  shell=$(which $1)
+  if [ $SHELL != $shell ];then
     echo "For dotfiles to work, we need to change shell to zsh."
-    chsh -s $(which $1)
+    if prompt "Do you want to change shell to zsh?"; then
+      chsh -s $shell
+    else
+      "Please come back when you decide to use zsh shell :("
+      exit 1
+    fi
   fi
 }
 
@@ -49,18 +67,6 @@ change_shell() {
 # Vim starts with just a registry of plugins and the `nocompatible` flag.
 install_vim_plugins() {
   vim +PlugClean! +PlugUpdate! +quitall!
-}
-
-# Prompt for yes or no answer
-prompt () {
-  while true; do
-    read -p "$1 (yes/no)" yn
-    case $yn in
-      [Yy]* ) return 0;;
-      [Nn]* ) return 1;;
-      * ) echo "Please answer yes or no.";;
-    esac
-  done
 }
 
 # Check dependencies
@@ -72,7 +78,7 @@ check_dependencies() {
       echo "You must install $1 in order to continue."
       exit 1
     else
-      echo "Some of the functionality will not be available if you continue."
+      echo "$2 will not be available if you continue."
     fi
 
     if ! prompt "Do you want to continue?"; then
@@ -84,8 +90,11 @@ check_dependencies() {
 
 # check dependencies required
 check_dependencies zsh required
-check_dependencies cmake # also check in plugins.vim to not install ycm if cmake doesnt exist
-check_dependencies fortune # remove fortune from zsh plugin if no fortune
+check_dependencies cmake "Vim autocomplete" # also check in plugins.vim to not install ycm if cmake doesnt exist
+check_dependencies fortune "Fortune quotes" # remove fortune from zsh plugin if no fortune
+
+#change shell to zsh
+change_shell zsh
 
 # update configuration submodules
 git submodule init
@@ -93,9 +102,6 @@ git submodule update --init --recursive
 
 # install npm packages
 npm install
-
-#change shell to zsh
-change_shell zsh
 
 link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/vim/vimrc $HOME/.vimrc
