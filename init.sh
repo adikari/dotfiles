@@ -4,7 +4,6 @@
 backup_dir="/tmp/dotfiles_$(date +%Y%m%d)"
 bin=/usr/local/bin
 dotfiles=$HOME/dotfiles
-phpcs=$dotfiles/phpcs/PHP_CodeSniffer
 restart_required=false
 
 # create backup
@@ -104,7 +103,9 @@ git submodule init
 git submodule update --init --recursive
 
 # install npm packages
-npm install
+if has_command npm;then
+  npm install
+fi
 
 link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/vim/vimrc $HOME/.vimrc
@@ -113,9 +114,6 @@ link $dotfiles/git/gitconfig $HOME/.gitconfig
 link $dotfiles/configs/tern-config $HOME/.tern-config
 link $dotfiles/configs/editorconfig $HOME/.editorconfig
 link $dotfiles/configs/jshintrc $HOME/.jshintrc
-
-link $phpcs/scripts/phpcs $bin/phpcs
-link $phpcs/scripts/phpcbf $bin/phpcbf
 
 install_vim_plugins
 
