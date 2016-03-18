@@ -87,13 +87,41 @@ check_dependencies() {
   fi
 }
 
+check_vim_version() {
+  if ! has_command; then
+    echo "Error: Vim not found. Please install vim with python support."
+    exit 1
+  fi
+
+  has_correct_version=$(bc <<< "$(vim --version | head -1 | cut -d ' ' -f 5) >= 7.4")
+  has_python_support=$(vim --version | grep -c '+python')
+
+  error=false
+  if (( ! $has_correct_version ));then
+    error=true
+    echo "Error: Vim version must at least be 7.4."
+  fi
+
+  if [[ $has_python_support = 0 ]];then
+    error=true
+    echo "Error: Vim must be compiled with python support."
+  fi
+
+  if [[ $error = true ]];then
+    echo "vim --version for more info"
+    echo "Instructions to upgrade: https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source"
+  fi
+}
+
+
 # check dependencies required
 check_dependencies zsh required
+check_vim_version
 check_dependencies cmake "Vim autocomplete"
 check_dependencies pandoc "Vim pandoc"
 check_dependencies ctags "Php tag defination"
 check_dependencies phpcs "Php standard checks"
-check_dependencies fortune "Fortune quotes" # remove fortune from zsh plugin if no fortune
+check_dependencies fortune "Fortune quotes" # @TODO: remove fortune from zsh plugin if no fortune
 
 #change shell to zsh
 change_shell zsh
