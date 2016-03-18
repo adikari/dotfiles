@@ -12,7 +12,9 @@ Plug 'Raimondi/delimitMate'
 
 Plug 'editorconfig/editorconfig-vim'
 
-Plug 'edkolev/tmuxline.vim'
+if executable("tmux")
+  Plug 'edkolev/tmuxline.vim'
+endif
 
 Plug 'heavenshell/vim-jsdoc'
 
@@ -24,7 +26,10 @@ Plug 'kien/ctrlp.vim'
 
 Plug 'leafgarland/typescript-vim'
 
-Plug 'majutsushi/tagbar'
+if executable("ctags")
+  Plug 'majutsushi/tagbar'
+  Plug 'vim-php/tagbar-phpctags.vim'
+endif
 
 Plug 'mattn/emmet-vim'
 
@@ -60,13 +65,14 @@ Plug 'tpope/vim-surround'
 
 Plug 'twerth/ir_black'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+if executable("cmake")
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+endif
 
-Plug 'vim-pandoc/vim-pandoc'
-
-Plug 'vim-pandoc/vim-pandoc-syntax'
-
-Plug 'vim-php/tagbar-phpctags.vim'
+if executable("pandoc")
+  Plug 'vim-pandoc/vim-pandoc'
+  Plug 'vim-pandoc/vim-pandoc-syntax'
+endif
 
 Plug 'vim-scripts/mru.vim'
 
