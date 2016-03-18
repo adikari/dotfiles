@@ -64,6 +64,25 @@ install_vim_plugins() {
   vim +PlugClean! +PlugUpdate! +quitall!
 }
 
+# Check dependencies
+# TODO : check all other dependencies
+check_dependencies() {
+  shall_exit=false
+
+  if ! has_command cmake; then
+    echo "Missing dependency: cmake not found!!"
+    shall_exit=true
+  fi
+
+  if $shall_exit; then
+    echo "Error: Install missing dependencies and try again!!"
+    exit 1
+  fi
+}
+
+# check dependencies required
+check_dependencies
+
 # update configuration submodules
 git submodule init
 git submodule update --init --recursive
