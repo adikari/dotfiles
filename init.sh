@@ -90,7 +90,10 @@ check_dependencies() {
 
 # check dependencies required
 check_dependencies zsh required
-check_dependencies cmake "Vim autocomplete" # also check in plugins.vim to not install ycm if cmake doesnt exist
+check_dependencies cmake "Vim autocomplete"
+check_dependencies pandoc "Vim pandoc"
+check_dependencies ctags "Php tag defination"
+check_dependencies phpcs "Php standard checks"
 check_dependencies fortune "Fortune quotes" # remove fortune from zsh plugin if no fortune
 
 #change shell to zsh
