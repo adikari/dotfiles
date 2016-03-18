@@ -37,21 +37,8 @@ link() {
   fi
 }
 
-# install given command if not already exists
-introduce() {
-  if has_command brew; then
-    brew install $1
-  elif has_command yum; then
-    sudo yum install $1
-  elif has_command apt-get; then
-    sudo apt-get install $1
-  fi
-}
-
 # change shell to zsh
 change_shell() {
-  has_command $1 || introduce $1
-
   if [ $SHELL != $(which $1) ];then
     echo "For dotfiles to work, we need to change shell to zsh."
     chsh -s $(which $1)
@@ -64,6 +51,7 @@ install_vim_plugins() {
   vim +PlugClean! +PlugUpdate! +quitall!
 }
 
+# Prompt for yes or no answer
 prompt () {
   while true; do
     read -p "$1 (yes/no)" yn
@@ -95,8 +83,9 @@ check_dependencies() {
 }
 
 # check dependencies required
-check_dependencies cmake
-check_dependencies fortune
+check_dependencies zsh required
+check_dependencies cmake # also check in plugins.vim to not install ycm if cmake doesnt exist
+check_dependencies fortune # remove fortune from zsh plugin if no fortune
 
 # update configuration submodules
 git submodule init
