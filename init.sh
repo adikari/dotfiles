@@ -64,24 +64,39 @@ install_vim_plugins() {
   vim +PlugClean! +PlugUpdate! +quitall!
 }
 
+prompt () {
+  while true; do
+    read -p "$1 (yes/no)" yn
+    case $yn in
+      [Yy]* ) return 0;;
+      [Nn]* ) return 1;;
+      * ) echo "Please answer yes or no.";;
+    esac
+  done
+}
+
 # Check dependencies
-# TODO : check all other dependencies
 check_dependencies() {
-  shall_exit=false
+  if ! has_command $1; then
+    echo "Missing dependency: $1 not found!! "
 
-  if ! has_command cmake; then
-    echo "Missing dependency: cmake not found!!"
-    shall_exit=true
-  fi
+    if [ "$2" == "required" ];then
+      echo "You must install $1 in order to continue."
+      exit 1
+    else
+      echo "Some of the functionality will not be available if you continue."
+    fi
 
-  if $shall_exit; then
-    echo "Error: Install missing dependencies and try again!!"
-    exit 1
+    if ! prompt "Do you want to continue?"; then
+      echo "Please install $1 and try again."
+      exit 1
+    fi
   fi
 }
 
 # check dependencies required
-check_dependencies
+check_dependencies cmake
+check_dependencies fortune
 
 # update configuration submodules
 git submodule init
