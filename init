@@ -40,7 +40,7 @@ prompt () {
 # create symlink
 link() {
   if ! diff $1 $2 &>/dev/null; then
-    backup $2; sudo ln -sf $1 $2 2>/dev/null
+    backup $2; ln -sf $1 $2 2>/dev/null
 
     echo "$2 is successfully linked."
 
@@ -87,6 +87,7 @@ check_dependencies() {
   fi
 }
 
+# check if vim version is compatible
 check_vim_version() {
   if ! has_command; then
     echo "Error: Vim not found. Please install vim with python support."
