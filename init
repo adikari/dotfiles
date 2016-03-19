@@ -56,7 +56,7 @@ change_shell() {
     if prompt "Do you want to change shell to zsh?"; then
       chsh -s $shell
     else
-      "Please come back when you decide to use zsh shell :("
+      echo "Please come back when you decide to use zsh shell :("
       exit 1
     fi
   fi
@@ -177,6 +177,8 @@ if has_command npm;then
   npm install
 fi
 
+install_vim_plugins
+
 link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/vim/vimrc $HOME/.vimrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
@@ -184,7 +186,8 @@ link $dotfiles/configs/tern-config $HOME/.tern-config
 link $dotfiles/configs/editorconfig $HOME/.editorconfig
 link $dotfiles/configs/jshintrc $HOME/.jshintrc
 
-install_vim_plugins
+exec zsh
+echo "Restarting shell"
 
 echo "Hurray!!! Dotfiles successfully setup."
 
