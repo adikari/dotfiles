@@ -30,7 +30,7 @@ The setup of dotfiles is done using the `init.sh` script.
     $ cd ~
     $ git clone https://github.com/adikari/dotfiles.git
     $ cd dotfiles
-    $ ./init.sh
+    $ ./init
 ```
 
 Thats all we need to do. The script will set up everything and prepare the environment.
