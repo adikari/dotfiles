@@ -113,6 +113,46 @@ check_vim_version() {
   fi
 }
 
+set_git_user() {
+  read -p "Your $1: " input
+
+  if [[ -z $input ]];then
+    echo "No $1 provided. git user $1 is not set."
+  else
+    git config --global user.$1 $input
+    echo "git user $1 set to $input"
+  fi
+}
+
+setup_git() {
+  [ ! -f $HOME/.gitconfig ] && touch $HOME/.gitconfig
+
+  gcg="git config --global"
+
+  guser=$($gcg "user.name")
+  gemail=$($gcg "user.email")
+
+  echo "Setting up git config..."
+
+  [[ -z  $guser ]] && set_git_user name
+
+  [[ -z  $gemail ]] && set_git_user email
+
+  $gcg core.filemode false
+  echo "git core.filemode set to false."
+  $gcg core.editor vim
+  echo "git core.editor set to vim."
+  $gcg color.ui true
+  echo "git color.ui set to true."
+  $gcg log.date relative
+  echo "git log.date set to relative."
+  $gcg format.pretty "format:%C(yellow)%h %Cblue %ad %Cgreen %aN%Cred%d %Creset%s"
+  echo "git format.pretty set to be pretty."
+  $gcg diftool.prompt false
+  echo "git diftool.prompt set to false."
+
+  echo "Git setup completed."
+}
 
 # check dependencies required
 check_dependencies zsh required
@@ -126,6 +166,8 @@ check_dependencies fortune "Fortune quotes" # @TODO: remove fortune from zsh plu
 #change shell to zsh
 change_shell zsh
 
+setup_git
+
 # update configuration submodules
 git submodule init
 git submodule update --init --recursive
@@ -138,7 +180,6 @@ fi
 link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/vim/vimrc $HOME/.vimrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
-link $dotfiles/git/gitconfig $HOME/.gitconfig
 link $dotfiles/configs/tern-config $HOME/.tern-config
 link $dotfiles/configs/editorconfig $HOME/.editorconfig
 link $dotfiles/configs/jshintrc $HOME/.jshintrc
