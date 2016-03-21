@@ -127,4 +127,8 @@ autocmd FileAppendPre   * :call CleanFile()
 autocmd FilterWritePre  * :call CleanFile()
 autocmd BufWritePre     * :call CleanFile()
 
+" close preview when selection is made
+autocmd CompleteDone * pclose
+
+
 
