@@ -121,7 +121,7 @@ set_git_user() {
   if [[ -z $input ]];then
     echo "No $1 provided. git user $1 is not set."
   else
-    git config --global user.$1 $input
+    git config --global user.$1 "$input"
     echo "git user $1 set to $input"
   fi
 }
