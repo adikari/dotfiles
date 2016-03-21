@@ -1,4 +1,4 @@
-if exists(':TagbarToggle')
+if !empty(glob('$HOME/dotfiles/vim/plugged/tagbar/plugin/tagbar.vim'))
   nmap <leader>tt :TagbarToggle<CR>
 
   " path to ctags executable
@@ -16,3 +16,5 @@ if exists(':TagbarToggle')
   " automatically focus on tagbar when opened
   let g:tagbar_autofocus = 1
 endif
+
+

@@ -1,4 +1,4 @@
-if exists(":Pandoc")
+if !empty(glob('$HOME/dotfiles/vim/plugged/vim-pandoc/plugin/pandoc.vim'))
   " disable fancy symbols
   let g:pandoc#syntax#conceal#use = 0
 
@@ -11,6 +11,5 @@ if exists(":Pandoc")
   "let g:pandoc#command#autoexec_on_writes = 1
   "let g:pandoc#command#autoexec_command = 'Pandoc docx'
 endif
-
 
 
