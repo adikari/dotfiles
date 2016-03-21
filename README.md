@@ -17,7 +17,7 @@ Currently this dotfiles depends on the following. If you have dependencies missi
 ### Optional
 Eventhough these are optional, I highly recommend to install. If you continue without these dependencies, functionality dependent on them will not be installed.
 
-1. ctags
+1. exuberant ctags
 2. phpcs
 3. fortune
 4. cmake
