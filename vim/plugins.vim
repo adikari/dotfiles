@@ -26,7 +26,8 @@ Plug 'kien/ctrlp.vim'
 
 Plug 'leafgarland/typescript-vim'
 
-if executable("ctags")
+call system("ctags --version")
+if ! v:shell_error
   Plug 'majutsushi/tagbar'
   Plug 'vim-php/tagbar-phpctags.vim'
 endif
