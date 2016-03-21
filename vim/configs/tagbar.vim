@@ -1,4 +1,4 @@
-if exists(":TagbarToogle")
+if exists(':TagbarToggle')
   nmap <leader>tt :TagbarToggle<CR>
 
   " path to ctags executable
