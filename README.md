@@ -1,6 +1,6 @@
 # Dotfiles
 
-## What is this
+## What is this?
 
 As I am working between multiple machines, it took me days trying to set up my dev machine everytime I moved to a new computer. I wanted to centralize all my configurations and set up my dev tools quickly and automatically with just running a single script.
 
@@ -8,7 +8,7 @@ This dotfiles has various tools, plugins, key-bindings and configurations that I
 
 ## Dependencies
 
-Currently this dotfiles depends on the following. If you have dependencies missing you will asked to install it during installation.
+Currently this dotfiles depends on the following. If you have dependencies missing you will be asked to install it during installation.
 
 ### Mandatory
 1. Vim 7.4 with python support

@@ -111,6 +111,7 @@ check_vim_version() {
   if [[ $error = true ]];then
     echo "vim --version for more info"
     echo "Instructions to upgrade: https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source"
+    exit 1
   fi
 }
 
