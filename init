@@ -68,22 +68,20 @@ install_vim_plugins() {
   vim +PlugClean! +PlugUpdate! +quitall!
 }
 
-# Check dependencies
-check_dependencies() {
-  if ! has_command $1; then
-    echo "Missing dependency: $1 not found!! "
+# Prompt for dependency missing
+prompt_dependency() {
+  echo "Missing dependency: $1 not found!! "
 
-    if [ "$2" == "required" ];then
-      echo "You must install $1 in order to continue."
-      exit 1
-    else
-      echo "$2 will not be available if you continue."
-    fi
+  if [ "$2" == "required" ];then
+    echo "You must install $1 in order to continue."
+    exit 1
+  else
+    echo "$2 will not be available if you continue."
+  fi
 
-    if ! prompt "Do you want to continue?"; then
-      echo "Please install $1 and try again."
-      exit 1
-    fi
+  if ! prompt "Do you want to continue?"; then
+    echo "Please install $1 and try again."
+    exit 1
   fi
 }
 
@@ -157,13 +155,22 @@ setup_git() {
 }
 
 # check dependencies required
-check_dependencies zsh required
 check_vim_version
-check_dependencies cmake "Vim autocomplete"
-check_dependencies pandoc "Vim pandoc"
-check_dependencies ctags "Php tag defination"
-check_dependencies phpcs "Php standard checks"
-check_dependencies fortune "Fortune quotes" # @TODO: remove fortune from zsh plugin if no fortune
+
+! has_command zsh && prompt_dependency zsh required
+! has_command cmake && prompt_dependency cmake "Vim autocomplete"
+! has_command pandoc && prompt_dependency pandoc "Vim pandoc"
+! has_command phpcs && prompt_dependency phpcs "Php standard checks"
+! has_command fortune && prompt_dependency fortune "Fortune quotes" # @TODO: remove fortune from zsh plugin if no fortune
+
+if ! has_command ctags;then
+  prompt_dependency ctags "Php tag defination"
+else
+  # check if exuberant ctags
+  ctags --version >/dev/null 2>&1
+  [ $? -ne 0 ] && prompt_dependency "exuberant ctags"\
+  "BSD ctags will not work. Please install exuberant ctags.\nPhp tag defination"
+fi
 
 #change shell to zsh
 change_shell zsh
