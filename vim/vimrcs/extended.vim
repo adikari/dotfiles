@@ -128,7 +128,10 @@ autocmd FilterWritePre  * :call CleanFile()
 autocmd BufWritePre     * :call CleanFile()
 
 " close preview when selection is made
-autocmd CompleteDone * pclose
+"autocmd CompleteDone * pclose
+
+" disable scratch preview
+autocmd BufEnter * set completeopt-=preview
 
 
 
