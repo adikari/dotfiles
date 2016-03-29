@@ -36,6 +36,11 @@ plugins=(
 export LC_ALL=en_AU.UTF-8
 export LANG=en_AU.UTF-8
 
+# load custom config if there is any
+if [ -f $HOME/.my_zshrc ]; then
+  source $HOME/.my_zshrc
+fi
+
 source $ZSH/oh-my-zsh.sh
 source $DOTFILES/zsh/custom/aliases
 
@@ -46,7 +51,4 @@ setopt nohistverify
 export EDITOR=vim
 zstyle ':completion:*' matcher-list ''
 
-# load custom config if there is any
-if [ -f $HOME/.my_zshrc ]; then
-  source $HOME/.my_zshrc
-fi
+
