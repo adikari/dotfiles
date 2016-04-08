@@ -36,6 +36,8 @@ plugins=(
 export LC_ALL=en_AU.UTF-8
 export LANG=en_AU.UTF-8
 
+alias fucking=sudo
+
 # load custom config if there is any
 if [ -f $HOME/.my_zshrc ]; then
   source $HOME/.my_zshrc
