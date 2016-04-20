@@ -2,5 +2,7 @@
 alias ss="sudo su -"
 alias tmux="tmux -2"
 
+alias junit="java org.junit.runner.JUnitCore"
+
 
 
