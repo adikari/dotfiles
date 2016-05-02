@@ -29,6 +29,9 @@ Plug 'leafgarland/typescript-vim'
 call system("ctags --version")
 if ! v:shell_error
   Plug 'majutsushi/tagbar'
+endif
+
+if executable("phpctags")
   Plug 'vim-php/tagbar-phpctags.vim'
 endif
 
