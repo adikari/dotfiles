@@ -1,6 +1,6 @@
 if !empty(glob('$HOME/dotfiles/vim/plugged/vim-pandoc/plugin/pandoc.vim'))
   " disable fancy symbols
-  let g:pandoc#syntax#conceal#use = 0
+  " let g:pandoc#syntax#conceal#use = 0
 
   let g:pandoc#biblio#sources = "bcgl"
 
