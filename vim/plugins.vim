@@ -26,6 +26,8 @@ Plug 'kien/ctrlp.vim'
 
 Plug 'leafgarland/typescript-vim'
 
+Plug 'lervag/vimtex'
+
 call system("ctags --version")
 if ! v:shell_error
   Plug 'majutsushi/tagbar'
