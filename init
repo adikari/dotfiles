@@ -174,7 +174,7 @@ else
 fi
 
 #change shell to zsh
-change_shell zsh
+#change_shell zsh
 
 setup_git
 
