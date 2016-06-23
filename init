@@ -48,20 +48,6 @@ link() {
   fi
 }
 
-# change shell to zsh
-change_shell() {
-  shell=$(which $1)
-  if [ $SHELL != $shell ];then
-    echo "For dotfiles to work, we need to change shell to zsh."
-    if prompt "Do you want to change shell to zsh?"; then
-      chsh -s $shell
-    else
-      echo "Please come back when you decide to use zsh shell :("
-      exit 1
-    fi
-  fi
-}
-
 # Run vim-plug's install process.
 # Vim starts with just a registry of plugins and the `nocompatible` flag.
 install_vim_plugins() {
@@ -172,9 +158,6 @@ else
   [ $? -ne 0 ] && prompt_dependency "exuberant ctags"\
   "BSD ctags will not work. Please install exuberant ctags.\nPhp tag defination"
 fi
-
-#change shell to zsh
-#change_shell zsh
 
 setup_git
 
