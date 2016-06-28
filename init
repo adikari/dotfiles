@@ -164,11 +164,6 @@ setup_git
 git submodule init
 git submodule update --init --recursive
 
-# install npm packages
-if has_command npm;then
-  npm install
-fi
-
 install_vim_plugins
 
 link $dotfiles/zsh/zshrc $HOME/.zshrc
