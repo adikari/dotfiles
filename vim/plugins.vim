@@ -14,10 +14,6 @@ Plug 'Raimondi/delimitMate'
 
 Plug 'editorconfig/editorconfig-vim'
 
-if executable("tmux")
-  Plug 'edkolev/tmuxline.vim'
-endif
-
 Plug 'heavenshell/vim-jsdoc'
 
 Plug 'jlanzarotta/bufexplorer'
