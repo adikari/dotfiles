@@ -11,7 +11,7 @@ ZSH_CUSTOM=$HOME/dotfiles/zsh/custom
 
 DOTFILES=$HOME/dotfiles
 
-ZSH_THEME="cloud"
+ZSH_THEME="my-cloud"
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="false"
