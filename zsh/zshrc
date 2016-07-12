@@ -36,8 +36,6 @@ plugins=(
 export LC_ALL=en_AU.UTF-8
 export LANG=en_AU.UTF-8
 
-export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
-
 alias fucking=sudo
 
 # load custom config if there is any
