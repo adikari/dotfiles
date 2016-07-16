@@ -82,6 +82,8 @@
 	<true/>
 	<key>MaxVertically</key>
 	<false/>
+	<key>NSFontPanelAttributes</key>
+	<string>1, 0</string>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/dotfiles/iterm</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -117,9 +119,9 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>255 354 445 167 0 0 1680 1050 </string>
+	<string>255 293 445 288 0 0 1680 1027 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>378 564 606 456 0 0 1680 1027 </string>
+	<string>378 564 606 456 0 0 1680 1050 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>896 428 384 129 0 0 1280 800 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
@@ -371,7 +373,7 @@
 			<key>Hide After Opening</key>
 			<false/>
 			<key>Horizontal Spacing</key>
-			<real>0.89999997615814209</real>
+			<real>0.86272587977259985</real>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
@@ -686,7 +688,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SauceCodePowerline-Semibold 10</string>
+			<string>SauceCodePowerline-Medium 11</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -852,7 +854,7 @@
 			<key>Use Italic Font</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>1.0289273262023926</real>
+			<real>1.0075194289885372</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
