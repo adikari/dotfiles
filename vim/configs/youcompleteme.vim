@@ -1,1 +1,1 @@
-
+let g:EclimCompletionMethod = 'omnifunc'
