@@ -135,6 +135,8 @@ setup_git() {
   echo "git format.pretty set to be pretty."
   $gcg diftool.prompt false
   echo "git diftool.prompt set to false."
+  $gcg credential.helper "cache --timeout 7200"
+  echo "git credential cache set to 2 hours."
 
   echo "Git setup completed."
 }
