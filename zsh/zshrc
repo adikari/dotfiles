@@ -53,4 +53,8 @@ setopt nohistverify
 export EDITOR=vim
 zstyle ':completion:*' matcher-list ''
 
-
+# add jenv to path
+if which jenv > /dev/null; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
