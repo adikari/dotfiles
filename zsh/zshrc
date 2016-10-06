@@ -54,7 +54,7 @@ export EDITOR=vim
 zstyle ':completion:*' matcher-list ''
 
 # add jenv to path
-if which jenv > /dev/null; then
+if which jenv > /dev/null 2>&1; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
 fi
