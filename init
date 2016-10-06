@@ -170,6 +170,7 @@ install_vim_plugins
 
 link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/vim/vimrc $HOME/.vimrc
+link $dotfiles/eclim/eclimrc $HOME/.eclimrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 link $dotfiles/configs/tern-config $HOME/.tern-config
 link $dotfiles/configs/jshintrc $HOME/.jshintrc
