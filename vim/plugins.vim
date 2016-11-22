@@ -43,9 +43,13 @@ Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'mileszs/ack.vim'
 
+Plug 'Quramy/tsuquyomi'
+
 Plug 'scrooloose/nerdtree'
 
 Plug 'scrooloose/syntastic'
+
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 Plug 'terryma/vim-expand-region'
 
