@@ -43,9 +43,13 @@ Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'mileszs/ack.vim'
 
+Plug 'Quramy/tsuquyomi'
+
 Plug 'scrooloose/nerdtree'
 
 Plug 'scrooloose/syntastic'
+
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 Plug 'terryma/vim-expand-region'
 
@@ -70,7 +74,11 @@ Plug 'tpope/vim-surround'
 Plug 'twerth/ir_black'
 
 if executable("cmake")
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+  if executable("mono")
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --omnisharp-completer' }
+  else
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+  endif
 endif
 
 if executable("pandoc")
