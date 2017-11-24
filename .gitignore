@@ -4,3 +4,4 @@ temp_dirs/undodir*
 temp_dirs/yankring_history_v2.txt
 node_modules
 *.swp
+*.log
