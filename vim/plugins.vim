@@ -43,8 +43,6 @@ Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'mileszs/ack.vim'
 
-Plug 'Quramy/tsuquyomi'
-
 Plug 'scrooloose/nerdtree'
 
 Plug 'scrooloose/syntastic'
