@@ -14,6 +14,8 @@ Plug 'Raimondi/delimitMate'
 
 Plug 'editorconfig/editorconfig-vim'
 
+Plug 'ekalinin/Dockerfile.vim'
+
 Plug 'heavenshell/vim-jsdoc'
 
 Plug 'jlanzarotta/bufexplorer'
