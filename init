@@ -175,7 +175,6 @@ link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 link $dotfiles/configs/tern-config $HOME/.tern-config
 link $dotfiles/configs/jshintrc $HOME/.jshintrc
 
-exec zsh
 echo "Restarting shell"
 
 echo "Hurray!!! Dotfiles successfully setup."
