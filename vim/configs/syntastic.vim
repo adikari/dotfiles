@@ -7,6 +7,7 @@ let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 let g:syntastic_typescript_tsc_fname = ''
 
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_html_tidy_exec = 'tidy5'
 
 " populate errors to vim location lists
 let g:syntastic_always_populate_loc_list = 1
