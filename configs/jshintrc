@@ -19,6 +19,7 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
+    "jest": true,
     "angular": false,
     /* AMD */
     "define": false,
