@@ -37,6 +37,7 @@ export LC_ALL=en_AU.UTF-8
 export LANG=en_AU.UTF-8
 
 alias fucking=sudo
+alias av=aws-vault
 
 # load custom config if there is any
 if [ -f $HOME/.my_zshrc ]; then
