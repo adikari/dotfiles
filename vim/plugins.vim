@@ -45,6 +45,8 @@ Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'mileszs/ack.vim'
 
+Plug 'mtscout6/syntastic-local-eslint.vim'
+
 Plug 'scrooloose/nerdtree'
 
 Plug 'scrooloose/syntastic'
