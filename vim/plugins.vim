@@ -47,6 +47,10 @@ Plug 'mileszs/ack.vim'
 
 Plug 'mtscout6/syntastic-local-eslint.vim'
 
+Plug 'mxw/vim-jsx'
+
+Plug 'pangloss/vim-javascript'
+
 Plug 'scrooloose/nerdtree'
 
 Plug 'scrooloose/syntastic'
