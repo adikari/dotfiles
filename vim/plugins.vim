@@ -24,6 +24,8 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'kien/ctrlp.vim'
 
+Plug 'leafgarland/typescript-vim'
+
 Plug 'lervag/vimtex'
 
 call system("ctags --version")
@@ -46,6 +48,14 @@ Plug 'mtscout6/syntastic-local-eslint.vim'
 Plug 'mxw/vim-jsx'
 
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'pangloss/vim-javascript'
 
