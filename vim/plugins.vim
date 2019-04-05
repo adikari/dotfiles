@@ -45,6 +45,8 @@ Plug 'mtscout6/syntastic-local-eslint.vim'
 
 Plug 'mxw/vim-jsx'
 
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
+
 Plug 'pangloss/vim-javascript'
 
 Plug 'scrooloose/nerdtree'
