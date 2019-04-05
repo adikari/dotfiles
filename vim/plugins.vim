@@ -24,8 +24,6 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'kien/ctrlp.vim'
 
-Plug 'leafgarland/typescript-vim'
-
 Plug 'lervag/vimtex'
 
 call system("ctags --version")
@@ -36,8 +34,6 @@ endif
 if executable("phpctags")
   Plug 'vim-php/tagbar-phpctags.vim'
 endif
-
-Plug 'mattn/emmet-vim'
 
 Plug 'MarcWeber/vim-addon-mw-utils'
 
@@ -78,14 +74,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 
 Plug 'twerth/ir_black'
-
-if executable("cmake")
-  if executable("mono")
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --omnisharp-completer' }
-  else
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
-  endif
-endif
 
 if executable("pandoc")
   Plug 'vim-pandoc/vim-pandoc'
