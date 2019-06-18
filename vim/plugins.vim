@@ -61,6 +61,8 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'pangloss/vim-javascript'
 
+Plug 'peitalin/vim-jsx-typescript'
+
 Plug 'scrooloose/nerdtree'
 
 Plug 'scrooloose/syntastic'
