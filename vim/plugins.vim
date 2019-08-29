@@ -8,15 +8,9 @@ Plug 'airblade/vim-rooter'
 
 Plug 'bling/vim-airline'
 
-Plug 'cakebaker/scss-syntax.vim'
-
 Plug 'Raimondi/delimitMate'
 
 Plug 'editorconfig/editorconfig-vim'
-
-Plug 'ekalinin/Dockerfile.vim'
-
-Plug 'heavenshell/vim-jsdoc'
 
 Plug 'jlanzarotta/bufexplorer'
 
@@ -25,8 +19,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'kien/ctrlp.vim'
 
 Plug 'leafgarland/typescript-vim'
-
-Plug 'lervag/vimtex'
 
 call system("ctags --version")
 if ! v:shell_error
@@ -61,19 +53,19 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'pangloss/vim-javascript'
 
-Plug 'peitalin/vim-jsx-typescript'
+" Plug 'peitalin/vim-jsx-typescript'
 
 Plug 'scrooloose/nerdtree'
 
 Plug 'scrooloose/syntastic'
+
+Plug 'sheerun/vim-polyglot'
 
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 Plug 'terryma/vim-expand-region'
 
 Plug 'terryma/vim-multiple-cursors'
-
-Plug 'tobyS/vmustache'
 
 Plug 'tobyS/pdv'
 
@@ -82,8 +74,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-cucumber'
 
 Plug 'tpope/vim-fugitive'
-
-Plug 'tpope/vim-markdown'
 
 Plug 'tpope/vim-repeat'
 
@@ -97,8 +87,6 @@ if executable("pandoc")
 endif
 
 Plug 'vim-scripts/mru.vim'
-
-Plug 'vim-scripts/nginx.vim'
 
 Plug 'vim-scripts/tlib'
 
