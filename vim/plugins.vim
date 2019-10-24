@@ -37,7 +37,7 @@ Plug 'mileszs/ack.vim'
 
 Plug 'mtscout6/syntastic-local-eslint.vim'
 
-Plug 'mxw/vim-jsx'
+" Plug 'mxw/vim-jsx'
 
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
