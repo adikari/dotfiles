@@ -128,6 +128,8 @@ set foldcolumn=1
 " Enable syntax highlighting
 syntax enable
 
+autocmd BufEnter * :syntax sync fromstart
+
 " Use 256 colours
 set t_Co=256
 
