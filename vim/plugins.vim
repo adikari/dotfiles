@@ -4,8 +4,6 @@ call plug#begin('~/dotfiles/vim/plugged')
 
 Plug 'amix/vim-zenroom2'
 
-Plug 'airblade/vim-rooter'
-
 Plug 'bling/vim-airline'
 
 Plug 'Raimondi/delimitMate'
@@ -18,8 +16,6 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'kien/ctrlp.vim'
 
-Plug 'leafgarland/typescript-vim'
-
 call system("ctags --version")
 if ! v:shell_error
   Plug 'majutsushi/tagbar'
@@ -29,15 +25,13 @@ if executable("phpctags")
   Plug 'vim-php/tagbar-phpctags.vim'
 endif
 
+Plug 'mtscout6/syntastic-local-eslint.vim'
+
 Plug 'MarcWeber/vim-addon-mw-utils'
 
 Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'mileszs/ack.vim'
-
-Plug 'mtscout6/syntastic-local-eslint.vim'
-
-" Plug 'mxw/vim-jsx'
 
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
@@ -52,8 +46,6 @@ Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'pangloss/vim-javascript'
-
-" Plug 'peitalin/vim-jsx-typescript'
 
 Plug 'scrooloose/nerdtree'
 
