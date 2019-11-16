@@ -82,6 +82,8 @@ Plug 'vim-scripts/mru.vim'
 
 Plug 'vim-scripts/tlib'
 
+Plug 'wakatime/vim-wakatime'
+
 Plug 'wesQ3/vim-windowswap'
 
 Plug 'Yggdroot/indentLine'
