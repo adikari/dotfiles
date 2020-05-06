@@ -10,6 +10,8 @@ Plug 'Raimondi/delimitMate'
 
 Plug 'editorconfig/editorconfig-vim'
 
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 Plug 'jlanzarotta/bufexplorer'
 
 Plug 'junegunn/goyo.vim'

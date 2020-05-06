@@ -11,7 +11,7 @@ ZSH_CUSTOM=$HOME/dotfiles/zsh/custom
 
 DOTFILES=$HOME/dotfiles
 
-ZSH_THEME="my-cloud"
+ZSH_THEME="my-muse"
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="false"
@@ -58,6 +58,13 @@ zstyle ':completion:*' matcher-list ''
 if which jenv > /dev/null 2>&1; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
+fi
+
+if [ -d $HOME/go ]; then
+  export GOPATH=$HOME/go
+  export GOROOT=/usr/local/opt/go/libexec
+  export PATH=$PATH:$GOPATH/bin
+  export PATH=$PATH:$GOROOT/bin
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
