@@ -4,13 +4,13 @@ call plug#begin('~/dotfiles/vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 
-Plug 'bling/vim-airline'
-
-Plug 'Raimondi/delimitMate'
+Plug 'dense-analysis/ale'
 
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+Plug 'itchyny/lightline.vim'
 
 Plug 'jlanzarotta/bufexplorer'
 
@@ -44,9 +44,9 @@ Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
-Plug 'scrooloose/nerdtree'
+Plug 'Raimondi/delimitMate'
 
-Plug 'dense-analysis/ale'
+Plug 'scrooloose/nerdtree'
 
 Plug 'sheerun/vim-polyglot'
 

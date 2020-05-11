@@ -7,9 +7,6 @@ highlight ALEWarning ctermbg=none cterm=underline"
 let g:ale_sign_priority=30
 let g:gitgutter_sign_priority=9
 
-" integrate to vim airline
-let g:airline#extensions#ale#enabled = 1
-
 " enable loc list
 let g:ale_open_list = 1
 let g:ale_list_window_size = 5
