@@ -178,7 +178,8 @@ set softtabstop=2
 
 " mark tabs and spaces with .
 set list
-set listchars=tab:\|.,trail:.,extends:$,nbsp:=
+" set listchars=tab:\|.,trail:.,extends:$,nbsp:=
+set listchars=tab:\ \ ,trail:.,extends:$,nbsp:=
 
 
 " Linebreak on 500 characters
