@@ -135,7 +135,8 @@ set t_Co=256
 
 " Colorscheme
 try
-  colorscheme ir_black
+  colorscheme gruvbox
+  let g:gruvbox_italic=0
 catch
 endtry
 

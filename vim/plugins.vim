@@ -36,6 +36,8 @@ Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'mileszs/ack.vim'
 
+Plug 'morhetz/gruvbox'
+
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
