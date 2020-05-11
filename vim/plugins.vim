@@ -28,7 +28,10 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 
 Plug 'michaeljsmith/vim-indent-object'
 
-Plug 'mileszs/ack.vim'
+call system("ag --version")
+if ! v:shell_error
+  Plug 'mileszs/ack.vim'
+endif
 
 Plug 'morhetz/gruvbox'
 
