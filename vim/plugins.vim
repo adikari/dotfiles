@@ -52,7 +52,7 @@ Plug 'pangloss/vim-javascript'
 
 Plug 'scrooloose/nerdtree'
 
-Plug 'scrooloose/syntastic'
+Plug 'dense-analysis/ale'
 
 Plug 'sheerun/vim-polyglot'
 
