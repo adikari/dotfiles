@@ -2,6 +2,8 @@ set runtimepath+=$HOME/dotfiles/vim
 
 call plug#begin('~/dotfiles/vim/plugged')
 
+Plug 'airblade/vim-gitgutter'
+
 Plug 'amix/vim-zenroom2'
 
 Plug 'bling/vim-airline'
