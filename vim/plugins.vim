@@ -16,7 +16,8 @@ Plug 'jlanzarotta/bufexplorer'
 
 Plug 'junegunn/goyo.vim'
 
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call system("ctags --version")
 if ! v:shell_error
