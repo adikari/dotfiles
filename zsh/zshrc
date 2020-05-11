@@ -29,8 +29,8 @@ DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 
 plugins=(
-  z composer bower grunt brew brew-cask common-aliases
-  git gitignore laravel vagrant chuckcow
+  z brew brew-cask common-aliases
+  git gitignore vagrant chuckcow
 )
 
 export LC_ALL=en_AU.UTF-8
@@ -38,6 +38,11 @@ export LANG=en_AU.UTF-8
 
 alias fucking=sudo
 alias av=aws-vault
+
+if type nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+  alias vi="nvim"
+fi
 
 # load custom config if there is any
 if [ -f $HOME/.my_zshrc ]; then
