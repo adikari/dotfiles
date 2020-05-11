@@ -70,34 +70,6 @@ prompt_dependency() {
   fi
 }
 
-# check if vim version is compatible
-check_vim_version() {
-  if ! has_command; then
-    echo "Error: Vim not found. Please install vim with python support."
-    exit 1
-  fi
-
-  has_correct_version=$(bc <<< "$(vim --version | head -1 | cut -d ' ' -f 5) >= 7.4")
-  has_python_support=$(vim --version | grep -c '+python')
-
-  error=false
-  if (( ! $has_correct_version ));then
-    error=true
-    echo "Error: Vim version must at least be 7.4."
-  fi
-
-  if [[ $has_python_support = 0 ]];then
-    error=true
-    echo "Error: Vim must be compiled with python support."
-  fi
-
-  if [[ $error = true ]];then
-    echo "vim --version for more info"
-    echo "Instructions to upgrade: https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source"
-    exit 1
-  fi
-}
-
 set_git_user() {
   read -p "Your $1: " input
 
@@ -141,24 +113,13 @@ setup_git() {
   echo "Git setup completed."
 }
 
-# check dependencies required
-check_vim_version
-
 ! has_command zsh && prompt_dependency zsh required
+! has_command nvim && prompt_dependency nvim "Neo Vim"
 ! has_command cmake && prompt_dependency cmake "Vim autocomplete"
 ! has_command pandoc && prompt_dependency pandoc "Vim pandoc"
-! has_command phpcs && prompt_dependency phpcs "Php standard checks"
-! has_command fortune && prompt_dependency fortune "Fortune quotes" # @TODO: remove fortune from zsh plugin if no fortune
-! has_command phpctags && prompt_dependency phpctags "Php tag defination"
-
-if ! has_command ctags;then
-  prompt_dependency ctags "Tag defination"
-else
-  # check if exuberant ctags
-  ctags --version >/dev/null 2>&1
-  [ $? -ne 0 ] && prompt_dependency "exuberant ctags"\
-  "BSD ctags will not work. Please install exuberant ctags.\nPhp tag defination"
-fi
+# @TODO: remove fortune from zsh plugin if no fortune
+! has_command fortune && prompt_dependency fortune "Fortune quotes"
+! has_command ctags && prompt_dependency ctags "Tag defination"
 
 setup_git
 
@@ -170,10 +131,21 @@ install_vim_plugins
 
 link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/vim/vimrc $HOME/.vimrc
-link $dotfiles/eclim/eclimrc $HOME/.eclimrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
-link $dotfiles/configs/tern-config $HOME/.tern-config
-link $dotfiles/configs/jshintrc $HOME/.jshintrc
+
+if has_command nvim; then
+  echo "nvim found. configuring to use nvim.."
+
+  nvim_dir=$HOME/.config/nvim
+
+  [ ! -d $backup_dir ] && mkdir $nvim_dir
+  touch $nvim_dir/init.vim
+  cat > $nvim_dir/init.vim <<EOF
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc
+EOF
+fi
 
 echo "Restarting shell"
 
