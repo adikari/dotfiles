@@ -73,3 +73,5 @@ if [ -d $HOME/go ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(direnv hook zsh)"
