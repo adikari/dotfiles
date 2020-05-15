@@ -1,4 +1,4 @@
 {
   "javascript.suggestionActions.enabled": false,
-  "yaml.customTags": ["!GetAtt", "!Ref"]
+  "yaml.customTags": ["!GetAtt", "!Ref", "!Sub"]
 }

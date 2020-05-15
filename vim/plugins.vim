@@ -4,13 +4,13 @@ call plug#begin('~/dotfiles/vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 
+Plug 'bling/vim-airline'
+
 Plug 'dense-analysis/ale'
 
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-Plug 'itchyny/lightline.vim'
 
 Plug 'jlanzarotta/bufexplorer'
 
