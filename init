@@ -97,7 +97,7 @@ setup_git() {
 
   $gcg core.filemode false
   echo "git core.filemode set to false."
-  $gcg core.editor vim
+  $gcg core.editor nvim
   echo "git core.editor set to vim."
   $gcg color.ui true
   echo "git color.ui set to true."
