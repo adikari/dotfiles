@@ -45,8 +45,6 @@ Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-
 Plug 'Raimondi/delimitMate'
 
 Plug 'scrooloose/nerdtree'
