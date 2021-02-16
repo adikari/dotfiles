@@ -2,8 +2,6 @@ set runtimepath+=$HOME/dotfiles/vim
 
 call plug#begin('~/dotfiles/vim/plugged')
 
-Plug 'airblade/vim-gitgutter'
-
 Plug 'bling/vim-airline'
 
 Plug 'dense-analysis/ale'
@@ -26,8 +24,6 @@ endif
 
 Plug 'MarcWeber/vim-addon-mw-utils'
 
-Plug 'michaeljsmith/vim-indent-object'
-
 call system("ag --version")
 if ! v:shell_error
   Plug 'mileszs/ack.vim'
@@ -43,7 +39,7 @@ Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'Raimondi/delimitMate'
 

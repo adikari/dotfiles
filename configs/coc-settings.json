@@ -1,5 +1,16 @@
 {
+  "prettier.requireConfig": true,
   "javascript.suggestionActions.enabled": false,
-  "yaml.customTags": ["!GetAtt", "!Ref", "!Sub"],
-  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript"]
+  "yaml.customTags": ["!GetAtt", "!Ref", "!Sub", "!Join", "!Not", "!Equals"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "Markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "graphql",
+    "json"
+  ]
 }
