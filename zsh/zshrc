@@ -72,9 +72,9 @@ if [ -d $HOME/go ]; then
   export PATH=$PATH:$GOROOT/bin
 fi
 
+# use vim mode in terminal
+bindkey -v
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(direnv hook zsh)"
-
-# use vim mode in terminal
-bindkey -v
