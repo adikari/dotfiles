@@ -75,3 +75,6 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(direnv hook zsh)"
+
+# use vim mode in terminal
+bindkey -v
