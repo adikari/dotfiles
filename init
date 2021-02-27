@@ -138,7 +138,8 @@ if has_command nvim; then
 
   nvim_dir=$HOME/.config/nvim
 
-  [ ! -d $backup_dir ] && mkdir -p $nvim_dir
+  [ ! -d $nvim_dir ] && mkdir -p $nvim_dir
+
   touch $nvim_dir/init.vim
   cat > $nvim_dir/init.vim <<EOF
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
