@@ -49,6 +49,10 @@ if [ -f $HOME/.my_zshrc ]; then
   source $HOME/.my_zshrc
 fi
 
+if [ -x "$(command -v asdf)" ]; then
+  . $(brew --prefix asdf)/asdf.sh
+fi
+
 source $ZSH/oh-my-zsh.sh
 source $DOTFILES/zsh/custom/aliases
 
