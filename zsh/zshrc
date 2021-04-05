@@ -70,10 +70,7 @@ if which jenv > /dev/null 2>&1; then
 fi
 
 if [ -d $HOME/go ]; then
-  export GOPATH=$HOME/go
-  export GOROOT=/usr/local/opt/go/libexec
-  export PATH=$PATH:$GOPATH/bin
-  export PATH=$PATH:$GOROOT/bin
+  export GO111MODULE=on
 fi
 
 # use vim mode in terminal
