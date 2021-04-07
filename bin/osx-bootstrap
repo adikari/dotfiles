@@ -1,0 +1,75 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# install homebrew if not already installed
+if ! type "brew" > /dev/null 2>&1; then
+  echo "installing homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
+
+echo "updating brew..."
+brew update
+
+echo "tapping dupes"
+brew tap homebrew/dupes
+
+binaries=(
+ bash
+ cmake
+ ctags
+ fortune
+ git
+ gh
+ go
+ lua
+ openssl
+ readline
+ tmux
+ unrar
+ nvim
+ gradle
+ kotlin-language-server
+)
+
+echo "installing binaries..."
+brew install ${binaries[@]}
+
+# install cask applications
+apps=(
+  dropbox
+  notion
+  iterm2
+  docker
+  osxfuse
+  sequel-pro
+)
+
+echo "installing applications..."
+brew install ${apps[@]}
+
+echo "tapping cask fonts"
+brew tap homebrew/fonts
+
+fonts=(
+  font-m-plus
+  font-clear-sans
+  font-roboto
+  font-fantasque-sans-mono
+)
+
+# install fonts
+echo "installing fonts..."
+brew install ${fonts[@]}
+
+echo "installing powerline fonts..."
+currentdir=$(pwd)
+cd /tmp
+git clone https://github.com/powerline/fonts.git && cd fonts
+chmod +x install.sh
+./install.sh
+cd $currentdir
+
+echo "cleaning up"
+rm -rf /tmp/fonts
+brew cleanup
