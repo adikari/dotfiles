@@ -38,6 +38,10 @@
       "rootPatterns": ["go.mod"],
       "trace.server": "verbose",
       "filetypes": ["go"]
+    },
+    "kotlin": {
+      "command": "/usr/local/opt/kotlin-language-server/bin/kotlin-language-server",
+      "filetypes": ["kotlin"]
     }
   }
 }
