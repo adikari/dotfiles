@@ -71,6 +71,7 @@ fi
 
 if [ -d $HOME/go ]; then
   export GO111MODULE=on
+  export PATH="$HOME/go/bin:$PATH"
 fi
 
 # use vim mode in terminal
