@@ -2,6 +2,8 @@ set runtimepath+=$HOME/dotfiles/vim
 
 call plug#begin('~/dotfiles/vim/plugged')
 
+Plug 'aliou/bats.vim'
+
 Plug 'bling/vim-airline'
 
 Plug 'dense-analysis/ale'
