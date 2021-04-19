@@ -4,6 +4,7 @@
 
 [ -d /usr/local/sbin ] && PATH="/usr/local/sbin:$PATH"
 [ -d $HOME/bin ] && PATH="$HOME/bin:$PATH"
+[ -d $HOME/local/bin ] && PATH="$HOME/local/bin:$PATH"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/dotfiles/zsh/oh-my-zsh
@@ -72,6 +73,10 @@ fi
 if [ -d $HOME/go ]; then
   export GO111MODULE=on
   export PATH="$HOME/go/bin:$PATH"
+fi
+
+if [ -d $HOME/.cargo ]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 # use vim mode in terminal

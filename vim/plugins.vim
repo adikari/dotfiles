@@ -46,6 +46,8 @@ Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'Raimondi/delimitMate'
 
+Plug 'rust-lang/rust.vim'
+
 Plug 'scrooloose/nerdtree'
 
 Plug 'sheerun/vim-polyglot'
