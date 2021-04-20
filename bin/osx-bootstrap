@@ -74,9 +74,3 @@ brew cleanup
 # install rust and rust analyzer
 echo "installing rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
-echo "installing rust analyzer"
-git clone https://github.com/rust-analyzer/rust-analyzer.git && cd rust-analyzer
-cargo xtask install
-cd ..
-rm -rf ./rust-analyzer

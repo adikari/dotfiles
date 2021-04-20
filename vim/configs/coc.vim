@@ -77,3 +77,6 @@ command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` for fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Install coc plugins
+let g:coc_global_extensions = ['coc-rust-analyzer']
