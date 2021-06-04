@@ -13,7 +13,6 @@ brew update
 
 binaries=(
  bash
- cmake
  ctags
  fortune
  git
@@ -23,10 +22,10 @@ binaries=(
  openssl
  readline
  tmux
- unrar
  nvim
  gradle
  kotlin-language-server
+ rust
 )
 
 echo "installing binaries..."
@@ -34,19 +33,23 @@ brew install ${binaries[@]}
 
 # install cask applications
 apps=(
+  cmake
   dropbox
-  notion
   iterm2
   docker
   osxfuse
   sequel-pro
+  brave-browser
+  1password
+  vlc
+  google-backup-and-sync
 )
 
 echo "installing applications..."
-brew install ${apps[@]}
+brew install --cask ${apps[@]}
 
 echo "tapping cask fonts"
-brew tap homebrew/fonts
+brew tap homebrew/cask-fonts
 
 fonts=(
   font-m-plus
