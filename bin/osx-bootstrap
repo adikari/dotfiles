@@ -11,6 +11,7 @@ fi
 echo "updating brew..."
 brew update
 
+# install binaries
 binaries=(
  bash
  ctags
@@ -25,8 +26,9 @@ binaries=(
  nvim
  gradle
  kotlin-language-server
- rust
  yarn
+ reattach-to-user-namespace
+ svn
 )
 
 echo "installing binaries..."
@@ -49,17 +51,19 @@ apps=(
 echo "installing applications..."
 brew install --cask ${apps[@]}
 
+# install rust and rust analyzer
+echo "installing rust and rust analyzer"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 echo "tapping cask fonts"
 brew tap homebrew/cask-fonts
 
+# install fonts
 fonts=(
-  font-m-plus
   font-clear-sans
   font-roboto
   font-fantasque-sans-mono
 )
 
-# install fonts
 echo "installing fonts..."
 brew install ${fonts[@]}
 
@@ -75,6 +79,3 @@ echo "cleaning up"
 rm -rf /tmp/fonts
 brew cleanup
 
-# install rust and rust analyzer
-echo "installing rust"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
