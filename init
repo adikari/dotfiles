@@ -113,6 +113,9 @@ setup_git() {
   echo "git credential cache set to 2 hours."
   $gcg init.defaultBranch main
   echo "git set default branch to main"
+  $gcg pull.rebase true
+  echo "git set pull to rebase"
+  
 
   echo "Git setup completed."
 }
