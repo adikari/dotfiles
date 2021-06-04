@@ -26,6 +26,7 @@ binaries=(
  gradle
  kotlin-language-server
  rust
+ yarn
 )
 
 echo "installing binaries..."
