@@ -46,6 +46,7 @@ apps=(
   1password
   vlc
   google-backup-and-sync
+  adobe-acrobat-reader
 )
 
 echo "installing applications..."
