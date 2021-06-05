@@ -47,6 +47,8 @@ apps=(
   vlc
   google-backup-and-sync
   adobe-acrobat-reader
+  slack
+  zoom
 )
 
 echo "installing applications..."
