@@ -29,6 +29,7 @@ binaries=(
  yarn
  reattach-to-user-namespace
  svn
+ tmuxinator
 )
 
 echo "installing binaries..."
