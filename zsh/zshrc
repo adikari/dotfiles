@@ -30,7 +30,7 @@ DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 
 plugins=(
-  z brew brew-cask common-aliases
+  asdf z brew brew-cask common-aliases
   git gitignore vagrant chuckcow
 )
 
