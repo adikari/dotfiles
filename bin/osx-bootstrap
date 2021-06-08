@@ -32,6 +32,7 @@ binaries=(
  tmuxinator
  asdf
  gpg # required by asdf nodejs plugin
+ fzf
 )
 
 echo "installing binaries..."
@@ -57,9 +58,17 @@ apps=(
 echo "installing applications..."
 brew install --cask ${apps[@]}
 
+# configure fzf bindings
+/usr/local/opt/fzf/install --all
+
 # install rust and rust analyzer
 echo "installing rust and rust analyzer"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+if ! type "rustup" > /dev/null 2>&1; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+else
+  echo "rustup is already installed."
+fi
+
 echo "tapping cask fonts"
 brew tap homebrew/cask-fonts
 
@@ -74,12 +83,16 @@ echo "installing fonts..."
 brew install ${fonts[@]}
 
 echo "installing powerline fonts..."
-currentdir=$(pwd)
-cd /tmp
-git clone https://github.com/powerline/fonts.git && cd fonts
-chmod +x install.sh
-./install.sh
-cd $currentdir
+if [ -f "$HOME/Library/Fonts/Inconsolata for Powerline.otf" ]; then
+  echo "powerline is fonts already installed."
+else
+  currentdir=$(pwd)
+  cd /tmp
+  git clone https://github.com/powerline/fonts.git && cd fonts
+  chmod +x install.sh
+  ./install.sh
+  cd $currentdir
+fi
 
 echo "cleaning up"
 rm -rf /tmp/fonts
