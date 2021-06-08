@@ -7,6 +7,7 @@ backup_dir="/tmp/dotfiles_$(date +%Y%m%d)"
 bin=/usr/local/bin
 dotfiles=$HOME/dotfiles
 restart_required=false
+tmuxinator_dir=$HOME/.config/tmuxinator
 
 # create backup
 backup() {
@@ -115,7 +116,6 @@ setup_git() {
   echo "git set default branch to main"
   $gcg pull.rebase true
   echo "git set pull to rebase"
-  
 
   echo "Git setup completed."
 }
@@ -141,6 +141,7 @@ install_vim_plugins
 link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/vim/vimrc $HOME/.vimrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
+mkdir -p $tmuxinator_dir && link $dotfiles/tmux/editor.yml $tmuxinator_dir/editor.yml
 
 if has_command nvim; then
   echo "nvim found. configuring to use nvim.."
