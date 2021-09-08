@@ -98,6 +98,8 @@ setup_git() {
 
   [[ -z  $gemail ]] && set_git_user email
 
+  $gcg core.ignorecase false
+  echo "git core.ignorecase set to false."
   $gcg core.filemode false
   echo "git core.filemode set to false."
   $gcg core.editor nvim
