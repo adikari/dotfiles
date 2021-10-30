@@ -1833,6 +1833,10 @@
 			<string>~/code</string>
 		</dict>
 	</array>
+	<key>OpenArrangementAtStartup</key>
+	<false/>
+	<key>OpenNoWindowsAtStartup</key>
+	<false/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -1866,12 +1870,18 @@
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
+	<key>PromptOnQuit</key>
+	<false/>
 	<key>SoundForEsc</key>
 	<false/>
+	<key>TabStyleWithAutomaticOption</key>
+	<integer>4</integer>
 	<key>UseLionStyleFullscreen</key>
 	<false/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

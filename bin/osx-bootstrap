@@ -8,6 +8,8 @@ if ! type "brew" > /dev/null 2>&1; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
+brew tap ringohub/redis-cli
+
 echo "updating brew..."
 brew update
 
@@ -33,6 +35,9 @@ binaries=(
  asdf
  gpg # required by asdf nodejs plugin
  fzf
+ peco
+ emojify
+ redis-cli
 )
 
 echo "installing binaries..."
