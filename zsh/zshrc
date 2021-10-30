@@ -56,7 +56,6 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 source $DOTFILES/zsh/custom/aliases
-source $DOTFILES/emoji-cli/emoji-cli.zsh
 
 # Customize to your needs...
 setopt rmstarsilent
