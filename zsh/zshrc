@@ -31,7 +31,7 @@ COMPLETION_WAITING_DOTS="true"
 
 plugins=(
   asdf z brew brew-cask common-aliases
-  git gitignore vagrant chuckcow
+  git gitignore vagrant chuckcow emoji
 )
 
 export LC_ALL=en_AU.UTF-8
