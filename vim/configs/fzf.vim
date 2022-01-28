@@ -1,1 +1,1 @@
-map <c-f> :Files<CR>
+map <c-f> :GFiles<CR>

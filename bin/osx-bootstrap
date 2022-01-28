@@ -8,10 +8,17 @@ if ! type "brew" > /dev/null 2>&1; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
-brew tap ringohub/redis-cli
-
 echo "updating brew..."
 brew update
+
+# brew taps
+taps=(
+  ringohub/redis-cli
+  heroku/brew
+)
+
+echo "tapping brews..."
+brew install ${taps[@]}
 
 # install binaries
 binaries=(
@@ -38,6 +45,7 @@ binaries=(
  peco
  emojify
  redis-cli
+ heroku
 )
 
 echo "installing binaries..."

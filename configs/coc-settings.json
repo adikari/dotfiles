@@ -21,6 +21,7 @@
     "!Split",
     "!Join sequence"
   ],
+  "css.customData": ["~/dotfiles/configs/css_custom_data.json"],
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "markdown",
