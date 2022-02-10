@@ -116,7 +116,11 @@ asdf global nodejs 16.13.0
 echo "installing aws-mfa"
 pip3 install aws-mfa
 
+echo "installing tmux-plugins"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 echo "cleaning up"
 rm -rf /tmp/fonts
 brew cleanup
+
 
