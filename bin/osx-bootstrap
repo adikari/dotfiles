@@ -42,10 +42,12 @@ binaries=(
  asdf
  gpg # required by asdf nodejs plugin
  fzf
+ direnv
  peco
  emojify
  redis-cli
  heroku
+ awscli
 )
 
 echo "installing binaries..."
@@ -111,6 +113,8 @@ asdf plugin add nodejs
 asdf install nodejs 16.13.0
 asdf global nodejs 16.13.0
 
+echo "installing aws-mfa"
+pip3 install aws-mfa
 
 echo "cleaning up"
 rm -rf /tmp/fonts
