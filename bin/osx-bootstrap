@@ -18,7 +18,7 @@ taps=(
 )
 
 echo "tapping brews..."
-brew install ${taps[@]}
+brew tap ${taps[@]}
 
 # install binaries
 binaries=(
@@ -57,12 +57,11 @@ apps=(
   dropbox
   iterm2
   docker
-  osxfuse
   sequel-pro
   brave-browser
   1password
   vlc
-  google-backup-and-sync
+  google-drive
   adobe-acrobat-reader
   slack
   zoom
@@ -72,7 +71,7 @@ echo "installing applications..."
 brew install --cask ${apps[@]}
 
 # configure fzf bindings
-/usr/local/opt/fzf/install --all
+$(brew --prefix)/opt/fzf/install --all
 
 # install rust and rust analyzer
 echo "installing rust and rust analyzer"
@@ -106,6 +105,12 @@ else
   ./install.sh
   cd $currentdir
 fi
+
+echo "installing nodejs"
+asdf plugin add nodejs
+asdf install nodejs 16.13.0
+asdf global nodejs 16.13.0
+
 
 echo "cleaning up"
 rm -rf /tmp/fonts

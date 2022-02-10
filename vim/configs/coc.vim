@@ -79,4 +79,4 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Install coc plugins
-let g:coc_global_extensions = ['coc-rust-analyzer']
+let g:coc_global_extensions = ['coc-rust-analyzer', 'coc-prettier', 'coc-json', 'coc-tsserver']
