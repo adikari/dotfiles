@@ -30,8 +30,8 @@ DISABLE_AUTO_TITLE="true"
 COMPLETION_WAITING_DOTS="true"
 
 plugins=(
-  asdf z brew brew-cask common-aliases
-  git gitignore vagrant chuckcow emoji
+  fnm z aws rust tmux npm yarn 1password
+  git gitignore chuckcow emoji docker docker-compose
 )
 
 export LC_ALL=en_AU.UTF-8
@@ -50,9 +50,7 @@ if [ -f $HOME/.my_zshrc ]; then
   source $HOME/.my_zshrc
 fi
 
-if [ -x "$(command -v asdf)" ]; then
-  . $(brew --prefix asdf)/asdf.sh
-fi
+[ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
 
 source $ZSH/oh-my-zsh.sh
 source $DOTFILES/zsh/custom/aliases

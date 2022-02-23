@@ -39,8 +39,7 @@ binaries=(
  reattach-to-user-namespace
  svn
  tmuxinator
- asdf
- gpg # required by asdf nodejs plugin
+ fnm
  fzf
  direnv
  peco
@@ -109,9 +108,9 @@ else
 fi
 
 echo "installing nodejs"
-asdf plugin add nodejs
-asdf install nodejs 16.13.0
-asdf global nodejs 16.13.0
+fnm install --lts
+fnm default lts-latest
+echo "$(fnm current)" > ~/.node-version
 
 echo "installing aws-mfa"
 pip3 install aws-mfa
