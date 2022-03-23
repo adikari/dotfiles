@@ -12,6 +12,8 @@ Plug 'editorconfig/editorconfig-vim'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+Plug 'github/copilot.vim'
+
 Plug 'jlanzarotta/bufexplorer'
 
 Plug 'junegunn/goyo.vim'
