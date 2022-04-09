@@ -47,6 +47,7 @@ binaries=(
  redis-cli
  heroku
  awscli
+ fig
 )
 
 echo "installing binaries..."

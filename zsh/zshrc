@@ -1,3 +1,9 @@
+# Fig pre block. Keep at the top of this file.
+if [ -x "$(command -v fig)" ]; then
+  export PATH="${PATH}:${HOME}/.local/bin"
+  eval "$(fig init zsh pre)"
+fi
+
 # Add dotfiles bin to path
 [ -d $HOME/dotfiles/bin ] && PATH="$HOME/dotfiles/bin:$PATH"
 [ -d $HOME/dotfiles/node_modules/.bin ] && PATH="$HOME/dotfiles/node_modules/.bin:$PATH"
@@ -83,3 +89,7 @@ bindkey -v
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(direnv hook zsh)"
+
+# Fig post block. Keep at the bottom of this file.
+ [ -x "$(command -v fig)" ] && eval "$(fig init zsh post)"
+
