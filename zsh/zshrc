@@ -1,8 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-if [ -x "$(command -v fig)" ]; then
-  export PATH="${PATH}:${HOME}/.local/bin"
-  eval "$(fig init zsh pre)"
-fi
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 
 # Add dotfiles bin to path
 [ -d $HOME/dotfiles/bin ] && PATH="$HOME/dotfiles/bin:$PATH"
@@ -91,5 +88,4 @@ bindkey -v
 eval "$(direnv hook zsh)"
 
 # Fig post block. Keep at the bottom of this file.
- [ -x "$(command -v fig)" ] && eval "$(fig init zsh post)"
-
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
