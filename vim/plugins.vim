@@ -6,7 +6,7 @@ Plug 'aliou/bats.vim'
 
 Plug 'bling/vim-airline'
 
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 Plug 'editorconfig/editorconfig-vim'
 
