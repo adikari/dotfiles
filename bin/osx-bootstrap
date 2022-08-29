@@ -123,4 +123,6 @@ echo "cleaning up"
 rm -rf /tmp/fonts
 brew cleanup
 
+echo "setting up mac defaults"
+defaults write -g ApplePressAndHoldEnabled -bool true # enable key repeats
 
