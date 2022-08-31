@@ -1,0 +1,30 @@
+[default]
+output = json
+
+[profile memories-dev]
+sso_start_url = https://memoriestech.awsapps.com/start
+sso_region = ap-southeast-2
+sso_account_id = 553929853619
+sso_role_name = MemoriesDevelopersAccess
+region = us-west-1
+
+[profile st-production]
+sso_start_url = https://monebag.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 662596749192
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile st-staging]
+sso_start_url = https://monebag.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 078871451527
+sso_role_name = AdministratorAccess
+region = us-east-1
+
+[profile st-buildkite]
+sso_start_url = https://monebag.awsapps.com/start
+sso_region = us-east-1
+sso_account_id = 602901700392
+sso_role_name = AdministratorAccess
+region = us-east-1
