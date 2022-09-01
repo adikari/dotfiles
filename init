@@ -116,9 +116,9 @@ setup_git() {
   $gcg init.defaultBranch main
   echo "git set default branch to main"
   $gcg pull.rebase true
-  echo "git set pull to rebase"
-  $gcg branch.master.mergeOptions "--squash"
-  $gcg branch.main.mergeOptions "--squash"
+  # echo "git set pull to rebase"
+  # $gcg branch.master.mergeOptions "--squash"
+  # $gcg branch.main.mergeOptions "--squash"
 
   echo "Git setup completed."
 }
