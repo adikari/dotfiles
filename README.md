@@ -10,15 +10,16 @@ This dotfiles has various tools, plugins, key-bindings and configurations that I
 
 Currently this dotfiles depends on the following. If you have dependencies missing you will be asked to install it during installation.
 
+Dependencies are automatically installed in osx
+
 ### Mandatory
-1. Vim 7.4 with python support
+1. Vim 7.4 with python support or NeoVim (recommended)
 2. zsh shell
 
 ### Optional
 Eventhough these are optional, I highly recommend to install. If you continue without these dependencies, functionality dependent on them will not be installed.
 
 1. exuberant ctags
-2. phpcs
 3. fortune
 4. cmake
 5. npm

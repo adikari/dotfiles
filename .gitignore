@@ -2,6 +2,8 @@ vim/.netrwhist
 vim/plugged
 temp_dirs/undodir*
 temp_dirs/yankring_history_v2.txt
+configs/karabiner/automatic_backups
 node_modules
+Session.vim
 *.swp
 *.log

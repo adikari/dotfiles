@@ -1,0 +1,56 @@
+.blacklist [
+    "terminal"
+    "iterm2"
+]
+
+# toggle window zoom
+ctrl - d : yabai -m window --toggle zoom-parent
+ctrl - f : yabai -m window --toggle zoom-fullscreen
+
+# swap managed window
+ctrl - i : yabai -m window --swap north
+ctrl - l : yabai -m window --swap east
+ctrl - j : yabai -m window --swap west
+ctrl - k : yabai -m window --swap south
+
+# focus window
+ctrl + cmd - i : yabai -m window --focus north
+ctrl + cmd - l : yabai -m window --focus east
+ctrl + cmd - j : yabai -m window --focus west
+ctrl + cmd - k : yabai -m window --focus south
+
+## rotate tree 90
+ctrl - r : yabai -m space --rotate 90
+
+## flip the tree vertically
+ctrl - h : yabai -m space --mirror y-axis
+
+# toggle window split type
+ctrl - e : yabai -m window --toggle split
+
+# send window to desktop and follow focus
+# ctrl + cmd - j : yabai -m window --space next; yabai -m space --focus next
+# ctrl + cmd - l : yabai -m window --space prev; yabai -m space --focus prev
+
+# move managed window
+# ctrl - h : yabai -m window --warp east
+
+# balance size of windows
+ctrl + cmd - b : yabai -m space --balance
+
+# make floating window fill screen
+# shift + ctrl - up     : yabai -m window --grid 1:1:0:0:1:1
+
+# make floating window fill left-half of screen
+# shift + ctrl - left   : yabai -m window --grid 1:2:0:0:1:1
+
+# increase window size
+ctrl + cmd - j : yabai -m window --resize left:-20:0
+ctrl + cmd - i : yabai -m window --resize top:0:-20
+
+# decrease window size
+ctrl + cmd - k : yabai -m window --resize bottom:0:-20
+# shift + cmd - w : yabai -m window --resize top:0:20
+
+# float / unfloat window and center on screen
+ctrl - t : yabai -m window --toggle float --grid 4:4:1:1:2:2

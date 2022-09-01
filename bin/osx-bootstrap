@@ -12,13 +12,12 @@ echo "updating brew..."
 brew update
 
 # brew taps
-taps=(
-  ringohub/redis-cli
-  heroku/brew
-)
+# taps=(
+#   heroku/brew
+# )
 
-echo "tapping brews..."
-brew tap ${taps[@]}
+# echo "tapping brews..."
+# brew tap ${taps[@]}
 
 # install binaries
 binaries=(
@@ -26,7 +25,7 @@ binaries=(
  ctags
  fortune
  git
- gh
+ gh # github cli
  go
  lua
  openssl
@@ -38,16 +37,14 @@ binaries=(
  yarn
  reattach-to-user-namespace
  svn
- tmuxinator
  fnm
  fzf
  direnv
- peco
- emojify
- redis-cli
- heroku
  awscli
- fig
+ fig # command line auto complete
+ jq # lightweight json parser
+ koekeishiya/formulae/yabai # MacOS window manager
+ koekeishiya/formulae/skhd # Simple hotkey daemon for macOS
 )
 
 echo "installing binaries..."
@@ -58,8 +55,8 @@ apps=(
   cmake
   dropbox
   iterm2
+  pandoc
   docker
-  sequel-pro
   brave-browser
   1password
   vlc
@@ -67,6 +64,11 @@ apps=(
   adobe-acrobat-reader
   slack
   zoom
+  microsoft-teams
+  miro
+  notion
+  postman
+  Karabiner-elements # keyboard manager
 )
 
 echo "installing applications..."
@@ -113,11 +115,10 @@ fnm install --lts
 fnm default lts-latest
 echo "$(fnm current)" > ~/.node-version
 
-echo "installing aws-mfa"
-pip3 install aws-mfa
-
 echo "installing tmux-plugins"
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 echo "cleaning up"
 rm -rf /tmp/fonts
@@ -126,3 +127,4 @@ brew cleanup
 echo "setting up mac defaults"
 defaults write -g ApplePressAndHoldEnabled -bool true # enable key repeats
 
+echo "🎉  Done"

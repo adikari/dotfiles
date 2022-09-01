@@ -65,6 +65,9 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-surround'
 
+" automatically save vim session on exit
+Plug 'tpope/vim-obsession'
+
 if executable("pandoc")
   Plug 'vim-pandoc/vim-pandoc'
   Plug 'vim-pandoc/vim-pandoc-syntax'

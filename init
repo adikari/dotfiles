@@ -139,11 +139,19 @@ setup_git
 git submodule init
 git submodule update --init --recursive
 
-install_vim_plugins
+# install_vim_plugins
 
 link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/vim/vimrc $HOME/.vimrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
+link $dotfiles/configs/yabairc $HOME/.yabairc
+link $dotfiles/configs/skhdrc $HOME/.skhdrc
+
+[ ! -d $HOME/.config/karabiner ] && mkdir $HOME/.config/karabiner
+link $dotfiles/configs/karabiner.json $HOME/.skhdrc
+
+brew services start yabai
+brew services start skhd
 
 if has_command nvim; then
   echo "nvim found. configuring to use nvim.."
