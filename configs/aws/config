@@ -1,30 +1,50 @@
 [default]
 output = json
 
-[profile memories-dev]
-sso_start_url = https://memoriestech.awsapps.com/start
-sso_region = ap-southeast-2
-sso_account_id = 553929853619
-sso_role_name = MemoriesDevelopersAccess
-region = us-west-1
+[profile memories]
 
-[profile st-production]
-sso_start_url = https://monebag.awsapps.com/start
-sso_region = us-east-1
-sso_account_id = 662596749192
-sso_role_name = AdministratorAccess
-region = us-east-1
+[profile monebag]
+
+[profile memories-dev]
+source_profile = memories
+region = ap-southeast-2
+mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
+role_arn = arn:aws:iam::553929853619:role/poweruser
+
+[profile memories-qa]
+source_profile = memories
+region = ap-southeast-2
+mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
+role_arn = arn:aws:iam::950915291766:role/poweruser
+
+[profile memories-preprod]
+source_profile = memories
+region = ap-southeast-2
+mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
+role_arn = arn:aws:iam::763448569211:role/poweruser
+
+[profile memories-prod]
+source_profile = memories
+region = ap-southeast-2
+mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
+role_arn = arn:aws:iam::667173084846:role/poweruser
 
 [profile st-staging]
-sso_start_url = https://monebag.awsapps.com/start
-sso_region = us-east-1
-sso_account_id = 078871451527
-sso_role_name = AdministratorAccess
+source_profile = monebag
 region = us-east-1
+mfa_serial = arn:aws:iam::017910759669:mfa/subash
+role_arn = arn:aws:iam::078871451527:role/admins
+
+[profile st-production]
+source_profile = monebag
+region = us-east-1
+mfa_serial = arn:aws:iam::017910759669:mfa/subash
+role_arn = arn:aws:iam::662596749192:role/admins
 
 [profile st-buildkite]
-sso_start_url = https://monebag.awsapps.com/start
-sso_region = us-east-1
-sso_account_id = 602901700392
-sso_role_name = AdministratorAccess
+source_profile = monebag
 region = us-east-1
+mfa_serial = arn:aws:iam::017910759669:mfa/subash
+role_arn = arn:aws:iam::stringlytyped-buildkite:role/admins
+
+
