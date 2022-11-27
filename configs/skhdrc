@@ -1,4 +1,5 @@
 .blacklist [
+    "alacritty"
     "terminal"
     "iterm2"
 ]

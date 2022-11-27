@@ -146,6 +146,7 @@ link $dotfiles/vim/vimrc $HOME/.vimrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 link $dotfiles/configs/yabairc $HOME/.yabairc
 link $dotfiles/configs/skhdrc $HOME/.skhdrc
+link $dotfiles/configs/alacritty.yml $HOME/.alacritty.yml
 
 [ ! -d $HOME/.config/karabiner ] && mkdir $HOME/.config/karabiner
 link $dotfiles/configs/karabiner.json $HOME/.skhdrc

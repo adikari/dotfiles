@@ -55,6 +55,7 @@ apps=(
   cmake
   dropbox
   iterm2
+  alacritty
   pandoc
   docker
   brave-browser
