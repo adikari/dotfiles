@@ -1,6 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
-
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Add dotfiles bin to path
 [ -d $HOME/dotfiles/bin ] && PATH="$HOME/dotfiles/bin:$PATH"
 [ -d $HOME/dotfiles/node_modules/.bin ] && PATH="$HOME/dotfiles/node_modules/.bin:$PATH"
@@ -88,4 +87,4 @@ bindkey -v
 eval "$(direnv hook zsh)"
 
 # Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

@@ -2,44 +2,56 @@
 output = json
 
 [profile memories]
+region = ap-southeast-2
 
 [profile monebag]
 
-[profile memories-dev]
+[profile mem-main]
+source_profile = memories
+region = ap-southeast-2
+mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
+
+[profile mem-dev]
 source_profile = memories
 region = ap-southeast-2
 mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
 role_arn = arn:aws:iam::553929853619:role/poweruser
+credential_process = /opt/homebrew/bin/aws-vault exec -j mem-dev
 
-[profile memories-qa]
+[profile mem-qa]
 source_profile = memories
 region = ap-southeast-2
 mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
 role_arn = arn:aws:iam::950915291766:role/poweruser
+credential_process = /opt/homebrew/bin/aws-vault exec -j mem-qa
 
-[profile memories-preprod]
+[profile mem-preprod]
 source_profile = memories
 region = ap-southeast-2
 mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
 role_arn = arn:aws:iam::763448569211:role/poweruser
+credential_process = /opt/homebrew/bin/aws-vault exec -j mem-preprod
 
-[profile memories-prod]
+[profile mem-prod]
 source_profile = memories
 region = ap-southeast-2
 mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
 role_arn = arn:aws:iam::667173084846:role/poweruser
+credential_process = /opt/homebrew/bin/aws-vault exec -j mem-prod
 
 [profile st-staging]
 source_profile = monebag
 region = us-east-1
 mfa_serial = arn:aws:iam::017910759669:mfa/subash
 role_arn = arn:aws:iam::078871451527:role/admins
+credential_process = /opt/homebrew/bin/aws-vault exec -j st-staging
 
 [profile st-production]
 source_profile = monebag
 region = us-east-1
 mfa_serial = arn:aws:iam::017910759669:mfa/subash
 role_arn = arn:aws:iam::662596749192:role/admins
+credential_process = /opt/homebrew/bin/aws-vault exec -j st-production
 
 [profile st-buildkite]
 source_profile = monebag
@@ -47,4 +59,15 @@ region = us-east-1
 mfa_serial = arn:aws:iam::017910759669:mfa/subash
 role_arn = arn:aws:iam::stringlytyped-buildkite:role/admins
 
+[profile koba-playground]
+region = ap-southeast-2
+google_config.ask_role = False
+google_config.keyring = False
+google_config.duration = 43200
+google_config.role_arn = arn:aws:iam::184745837068:role/AdministratorAccess
+google_config.google_idp_id = C044ruskz
+google_config.google_sp_id = 141099054029
+google_config.u2f_disabled = False
+google_config.google_username = subash.adhikari@kobainsurance.com
+google_config.bg_response = None
 

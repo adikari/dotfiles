@@ -5,18 +5,23 @@ yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Karabiner-Elements$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Karabiner-EventViewer$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Calculator$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 
 yabai -m rule --add app="^Path Finder$" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
+yabai -m rule --add app="^Microsoft Outlook$" manage=off
 yabai -m rule --add app="^Slack$" manage=off
-yabai -m rule --add app="^Youtube$" manage=off
+yabai -m rule --add app="^YouTube$" manage=off
+yabai -m rule --add app="^YouTube Music$" manage=off
+yabai -m rule --add app="^Figma$" manage=off
 yabai -m rule --add app="^1Password$" manage=off
 yabai -m rule --add app="^iTerm2$" manage=off
 yabai -m rule --add app="^Microsoft Teams$" manage=off
 yabai -m rule --add app="^console$" manage=off
+yabai -m rule --add app="^JetBrains Rider$" manage=off
 
 #find ~/Library/Parallels/Applications\ Menus/ -maxdepth 3 -type f | awk -F'/' '{ print $NF; }' | awk '{$1=$1};1' | sort | uniq | tr "\n" "\0" | xargs -0 -I{} yabai -m rule --add app="^{}\$" title=".*" manage=on
 

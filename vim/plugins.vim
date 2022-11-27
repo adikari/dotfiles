@@ -49,6 +49,8 @@ Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
 Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
 
+Plug 'OmniSharp/omnisharp-vim'
+
 Plug 'Raimondi/delimitMate'
 
 Plug 'rust-lang/rust.vim'

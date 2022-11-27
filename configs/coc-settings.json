@@ -43,6 +43,11 @@
     "kotlin": {
       "command": "/usr/local/opt/kotlin-language-server/bin/kotlin-language-server",
       "filetypes": ["kotlin"]
+    },
+    "csharp-ls": {
+      "command": "csharp-ls",
+      "filetypes": ["cs"],
+      "rootPatterns": ["*.csproj", ".vim/", ".git/", ".hg/"]
     }
   }
 }
