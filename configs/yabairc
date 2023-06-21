@@ -11,6 +11,7 @@ yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 
 yabai -m rule --add app="^Path Finder$" manage=off
+yabai -m rule --add app="^Steam$" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^Microsoft Outlook$" manage=off
 yabai -m rule --add app="^Slack$" manage=off

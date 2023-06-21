@@ -47,7 +47,6 @@ Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'josa42/coc-sh', {'do': 'yarn install --frozen-lockfile'}
-Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
 
 Plug 'OmniSharp/omnisharp-vim'
 

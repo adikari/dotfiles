@@ -11,6 +11,27 @@ source_profile = memories
 region = ap-southeast-2
 mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
 
+[profile mem-subash]
+source_profile = memories
+region = ap-southeast-2
+mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
+role_arn = arn:aws:iam::302665975893:role/developer
+credential_process = /opt/homebrew/bin/aws-vault exec -j mem-subash
+
+[profile mem-karl]
+source_profile = memories
+region = ap-southeast-2
+mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
+role_arn = arn:aws:iam::299850029732:role/developer
+credential_process = /opt/homebrew/bin/aws-vault exec -j mem-subash
+
+[profile mem-alvin]
+source_profile = memories
+region = ap-southeast-2
+mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
+role_arn = arn:aws:iam::872030547241:role/developer
+credential_process = /opt/homebrew/bin/aws-vault exec -j mem-subash
+
 [profile mem-dev]
 source_profile = memories
 region = ap-southeast-2
@@ -39,12 +60,19 @@ mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
 role_arn = arn:aws:iam::667173084846:role/poweruser
 credential_process = /opt/homebrew/bin/aws-vault exec -j mem-prod
 
-[profile st-staging]
-source_profile = monebag
-region = us-east-1
-mfa_serial = arn:aws:iam::017910759669:mfa/subash
-role_arn = arn:aws:iam::078871451527:role/admins
-credential_process = /opt/homebrew/bin/aws-vault exec -j st-staging
+[profile mem-emily]
+source_profile = memories
+region = ap-southeast-2
+mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
+role_arn = arn:aws:iam::070476172179:role/developer
+credential_process = /opt/homebrew/bin/aws-vault exec -j mem-prod
+
+[profile mem-taz]
+source_profile = memories
+region = ap-southeast-2
+mfa_serial = arn:aws:iam::750738750585:mfa/subash.adhikari
+role_arn = arn:aws:iam::832562203440:role/developer
+credential_process = /opt/homebrew/bin/aws-vault exec -j mem-prod
 
 [profile st-production]
 source_profile = monebag
@@ -58,6 +86,25 @@ source_profile = monebag
 region = us-east-1
 mfa_serial = arn:aws:iam::017910759669:mfa/subash
 role_arn = arn:aws:iam::stringlytyped-buildkite:role/admins
+
+[profile monebag-root]
+source_profile = monebag
+region = us-east-1
+mfa_serial = arn:aws:iam::017910759669:mfa/subash
+
+[profile monebag-prod]
+source_profile = monebag
+region = us-east-1
+mfa_serial = arn:aws:iam::017910759669:mfa/subash
+role_arn = arn:aws:iam::781949632675:role/admins
+credential_process = /opt/homebrew/bin/aws-vault exec -j monebag-prod
+
+[profile monebag-dev]
+source_profile = monebag
+region = us-east-1
+mfa_serial = arn:aws:iam::017910759669:mfa/subash
+role_arn = arn:aws:iam::915852791945:role/admins
+credential_process = /opt/homebrew/bin/aws-vault exec -j monebag-dev
 
 [profile koba-playground]
 region = ap-southeast-2

@@ -31,7 +31,7 @@ font:
     x: 0
     y: 4
 
-  size: 14
+  size: 16
 
 mouse:
   double_click: { threshold: 300 }
@@ -50,8 +50,8 @@ selection:
   save_to_clipboard: true
 
 key_bindings:
-  - { key: W,        mods: Command,       action: none                        }
-  - { key: Return,        mods: Command,  action: ToggleFullScreen            }
+  - { key: W,        mods: Command,       action: None                        }
+  - { key: Return,        mods: Command,  action: ToggleFullscreen            }
 
 # Colors (Gruvbox dark)
 colors:
