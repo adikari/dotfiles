@@ -93,6 +93,8 @@ brew tap homebrew/cask-fonts
 fonts=(
   font-clear-sans
   font-roboto
+  font-hack-nerd-font
+  font-fantasque-sans-mono-nerd-font
   font-fantasque-sans-mono
 )
 
