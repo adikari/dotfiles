@@ -159,16 +159,14 @@ if has_command nvim; then
 
   nvim_dir=$HOME/.config/nvim
 
-  [ ! -d $nvim_dir ] && mkdir -p $nvim_dir
+  if [ ! -d $nvim_dir ]; then 
+    mkdir -p $nvim_dir
+    git clone https://github.com/NvChad/NvChad $nvim_dir --depth 1 
+  else 
+    echo "$nvim_dir is not empty. skipping.."
+  fi
 
-  touch $nvim_dir/init.vim
-  cat > $nvim_dir/init.vim <<EOF
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-source ~/.vimrc
-EOF
-
-  link $dotfiles/config/coc-settings.json $HOME/.config/nvim/coc-settings.json
+  link $dotfiles/nvim $HOME/.config/nvim/lua/custom
 fi
 
 echo "Restarting shell"
