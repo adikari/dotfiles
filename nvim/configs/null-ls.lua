@@ -11,11 +11,13 @@ local sources = {
   b.formatting.prettier,
   b.diagnostics.eslint_d,
 
-  -- Lua
-  b.formatting.stylua,
+  -- Go
+  b.formatting.gofmt,
+  b.formatting.goimports_reviser,
+  b.formatting.golines,
 
-  -- cpp
-  b.formatting.clang_format,
+  -- Lua
+  b.formatting.stylua
 }
 
 null_ls.setup {
