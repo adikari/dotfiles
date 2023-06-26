@@ -13,11 +13,13 @@ local sources = {
 
   -- Go
   b.formatting.gofmt,
-  b.formatting.goimports_reviser,
-  b.formatting.golines,
+  b.formatting.goimports,
 
   -- Lua
-  b.formatting.stylua
+  b.formatting.stylua,
+
+  -- cpp
+  b.formatting.clang_format,
 }
 
 null_ls.setup {
