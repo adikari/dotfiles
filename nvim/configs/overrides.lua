@@ -32,8 +32,6 @@ M.mason = {
 		"html-lsp",
 		"typescript-language-server",
 		"deno",
-		"prettier",
-		"eslint_d",
 
 		-- c/cpp stuff
 		"clangd",
@@ -41,7 +39,6 @@ M.mason = {
 	},
 }
 
--- git support in nvimtree
 M.nvimtree = {
 	git = {
 		enable = true,
