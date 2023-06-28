@@ -46,6 +46,13 @@ local plugins = {
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
+
+	{
+		"folke/zen-mode.nvim",
+		init = function()
+			require("core.utils").lazy_load("zen-mode.nvim")
+		end,
+	},
 }
 
 return plugins
