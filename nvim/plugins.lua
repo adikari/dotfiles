@@ -56,6 +56,16 @@ local plugins = {
 			require("core.utils").lazy_load("zen-mode.nvim")
 		end,
 	},
+
+	{
+		"ggandor/leap.nvim",
+		init = function()
+			require("core.utils").lazy_load("leap.nvim")
+		end,
+		config = function()
+			require("leap").add_default_mappings(true)
+		end,
+	},
 }
 
 return plugins
