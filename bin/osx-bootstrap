@@ -41,6 +41,7 @@ binaries=(
  fzf
  direnv
  awscli
+ ripgrep
  fig # command line auto complete
  jq # lightweight json parser
  koekeishiya/formulae/yabai # MacOS window manager
