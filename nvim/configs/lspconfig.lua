@@ -14,6 +14,14 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
+lspconfig.graphql.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = { "graphql-lsp", "server", "-m", "stream" },
+	filetypes = { "graphql", "gql", "typescript", "typescriptreact", "javascript", "javascriptreact" },
+	root_dir = util.root_pattern(".git", ".graphqlrc*", ".graphql.config.*", "graphql.config.*"),
+})
+
 -- go lsp configuration
 lspconfig.gopls.setup({
 	on_attach = on_attach,
