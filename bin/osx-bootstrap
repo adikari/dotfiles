@@ -55,8 +55,6 @@ brew install ${binaries[@]}
 # install cask applications
 apps=(
   cmake
-  dropbox
-  iterm2
   alacritty
   docker
   brave-browser
@@ -67,7 +65,6 @@ apps=(
   slack
   zoom
   microsoft-teams
-  miro
   notion
   postman
   Karabiner-elements # keyboard manager
@@ -127,7 +124,7 @@ fi
 echo "setting up mac defaults"
 defaults write -g ApplePressAndHoldEnabled -bool true # enable key repeats
 defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
-defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
 
 echo "cleaning up"
 rm -rf /tmp/fonts
