@@ -6,7 +6,7 @@ echo "Installing dependencies"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "Platform is mac osx. Installing.."
-  ./osx-bootstrap
+  ./bin/osx-bootstrap
 fi
 
 echo "Done installing dependencies."

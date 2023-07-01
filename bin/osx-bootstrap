@@ -42,6 +42,7 @@ binaries=(
  direnv
  awscli
  ripgrep
+ hammerspoon
  fig # command line auto complete
  jq # lightweight json parser
  koekeishiya/formulae/yabai # MacOS window manager
@@ -57,7 +58,6 @@ apps=(
   dropbox
   iterm2
   alacritty
-  pandoc
   docker
   brave-browser
   1password
@@ -124,13 +124,13 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-echo "cleaning up"
-rm -rf /tmp/fonts
-brew cleanup
-
 echo "setting up mac defaults"
 defaults write -g ApplePressAndHoldEnabled -bool true # enable key repeats
 defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+
+echo "cleaning up"
+rm -rf /tmp/fonts
+brew cleanup
 
 echo "🎉  Done"
