@@ -1,4 +1,4 @@
-hs.hotkey.bind({ "ctrl" }, "space", function()
+hs.hotkey.bind({ "command" }, "`", function()
 	local app = hs.application.get("alacritty")
 	if app then
 		if not app:mainWindow() then
