@@ -121,6 +121,10 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
+echo "starting services"
+skhd --start-service
+yabai --start-service
+
 echo "setting up mac defaults"
 defaults write -g ApplePressAndHoldEnabled -bool true # enable key repeats
 defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)

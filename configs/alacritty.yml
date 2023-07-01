@@ -42,6 +42,14 @@ cursor:
   style: Block
   unfocused_hollow: true
 
+# open tmux at start
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
+      
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
