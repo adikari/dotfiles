@@ -2,9 +2,8 @@ env:
   TERM: alacritty
 
 window:
-  # dynamic_padding: true
-  decorations: buttonless
-  startup_mode: SimpleFullscreen
+  decorations: 'none'
+  startup_mode: SimpleFullScreen
 
 font:
   normal:
