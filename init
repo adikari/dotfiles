@@ -123,12 +123,21 @@ setup_git() {
   echo "Git setup completed."
 }
 
-./bin/install-dependencies
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  echo "Platform is mac osx. Installing.."
+  ./bin/osx-bootstrap
+
+  link $dotfiles/configs/yabairc $HOME/.yabairc
+  link $dotfiles/configs/hammerspoon.lua $HOME/.hammerspoon/init.lua
+  link $dotfiles/configs/hammerspoon.lua $HOME/.hammerspoon/yabai.lua
+
+  [ ! -d $HOME/.config/karabiner ] && mkdir $HOME/.config/karabiner
+  link $dotfiles/configs/karabiner.json $HOME/karabiner/karabiner.json
+fi
 
 ! has_command zsh && prompt_dependency zsh required
 ! has_command nvim && prompt_dependency nvim "Neo Vim"
 ! has_command cmake && prompt_dependency cmake "Vim autocomplete"
-! has_command pandoc && prompt_dependency pandoc "Vim pandoc"
 # @TODO: remove fortune from zsh plugin if no fortune
 ! has_command fortune && prompt_dependency fortune "Fortune quotes"
 ! has_command ctags && prompt_dependency ctags "Tag defination"
@@ -139,21 +148,10 @@ setup_git
 git submodule init
 git submodule update --init --recursive
 
-# install_vim_plugins
-
 link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/vim/vimrc $HOME/.vimrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
-link $dotfiles/configs/yabairc $HOME/.yabairc
-link $dotfiles/configs/skhdrc $HOME/.skhdrc
 link $dotfiles/configs/alacritty.yml $HOME/.alacritty.yml
-link $dotfiles/configs/hammerspoon.lua $HOME/.hammerspoon/init.lua
-
-[ ! -d $HOME/.config/karabiner ] && mkdir $HOME/.config/karabiner
-link $dotfiles/configs/karabiner.json $HOME/.skhdrc
-
-brew services start yabai
-brew services start skhd
 
 if has_command nvim; then
   echo "nvim found. configuring to use nvim.."

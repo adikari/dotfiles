@@ -46,7 +46,6 @@ binaries=(
  fig # command line auto complete
  jq # lightweight json parser
  koekeishiya/formulae/yabai # MacOS window manager
- koekeishiya/formulae/skhd # Simple hotkey daemon for macOS
 )
 
 echo "installing binaries..."
@@ -122,7 +121,6 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
 fi
 
 echo "starting services"
-skhd --start-service
 yabai --start-service
 
 echo "setting up mac defaults"

@@ -1,3 +1,6 @@
+require("yabai")
+
+-- show hide alacritty
 hs.hotkey.bind({ "command" }, "`", function()
 	local app = hs.application.get("alacritty")
 	if app then
