@@ -37,8 +37,8 @@ end
 ctrl("d", { "-m", "window", "--toggle", "zoom-parent" })
 ctrl("f", { "-m", "window", "--toggle", "zoom-fullscreen" })
 ctrl("r", { "-m", "space", "--rotate", "90" })
-ctrl("h", { "-m", "window", "--wrap", "east" })
--- ctrl("t", { "-m", "window", "--toggle", "float", "-m", "window", "--grid", "4:4:1:1:2:2" })
+ctrl("h", { "-m", "space", "--mirror", "y-axis" })
+ctrl("t", { "-m", "window", "--toggle", "float", "--grid", "4:4:1:1:2:2" })
 ctrl("e", { "-m", "window", "--toggle", "split" })
 
 ctrl("j", { "-m", "window", "--focus", "west" })
