@@ -128,8 +128,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   ./bin/osx-bootstrap
 
   link $dotfiles/configs/yabairc $HOME/.yabairc
-  link $dotfiles/configs/hammerspoon.lua $HOME/.hammerspoon/init.lua
-  link $dotfiles/configs/hammerspoon.lua $HOME/.hammerspoon/yabai.lua
+  link $dotfiles/configs/hammerspoon/init.lua $HOME/.hammerspoon/init.lua
+  link $dotfiles/configs/hammerspoon/yabai.lua $HOME/.hammerspoon/yabai.lua
 
   [ ! -d $HOME/.config/karabiner ] && mkdir $HOME/.config/karabiner
   link $dotfiles/configs/karabiner.json $HOME/karabiner/karabiner.json

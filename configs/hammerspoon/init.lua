@@ -1,4 +1,10 @@
-require("yabai")
+local yabai = require("yabai")
+
+hs.application.watcher
+	.new(function(app, eventType)
+		yabai.handler(app, eventType)
+	end)
+	:start()
 
 -- show hide alacritty
 hs.hotkey.bind({ "command" }, "`", function()
