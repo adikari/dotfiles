@@ -1,5 +1,4 @@
 local hotkeys = hs.hotkey.modal.new({ "cmd", "shift", "alt" }, "F19")
-hotkeys:enter()
 
 local yabai = {}
 
@@ -50,5 +49,7 @@ commandCtrl("j", { "-m", "window", "--swap", "west" })
 commandCtrl("k", { "-m", "window", "--swap", "south" })
 commandCtrl("i", { "-m", "window", "--swap", "north" })
 commandCtrl("l", { "-m", "window", "--swap", "east" })
+
+hotkeys:enter()
 
 return yabai

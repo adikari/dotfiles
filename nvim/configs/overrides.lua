@@ -31,6 +31,7 @@ M.mason = {
 		-- web dev stuff
 		"css-lsp",
 		"html-lsp",
+		"tailwindcss-language-server",
 		"typescript-language-server",
 		"deno",
 		"graphql-language-service-cli",
