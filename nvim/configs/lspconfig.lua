@@ -41,4 +41,4 @@ lspconfig.gopls.setup({
 })
 
 -- disable inline diagnostic
--- vim.diagnostic.config({ virtual_text = false })
+vim.diagnostic.config({ virtual_text = false })
