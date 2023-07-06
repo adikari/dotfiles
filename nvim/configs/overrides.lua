@@ -35,6 +35,8 @@ M.mason = {
 		"typescript-language-server",
 		"deno",
 		"graphql-language-service-cli",
+		"yaml-language-server",
+		"json-lsp",
 
 		-- c/cpp stuff
 		"clangd",

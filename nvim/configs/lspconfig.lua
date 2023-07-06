@@ -5,7 +5,7 @@ local util = require("lspconfig/util")
 local lspconfig = require("lspconfig")
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd", "tailwindcss" }
+local servers = { "html", "cssls", "tsserver", "clangd", "tailwindcss", "yamlls", "jsonls" }
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
@@ -41,4 +41,4 @@ lspconfig.gopls.setup({
 })
 
 -- disable inline diagnostic
-vim.diagnostic.config({ virtual_text = false })
+-- vim.diagnostic.config({ virtual_text = false })
