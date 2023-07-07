@@ -6,6 +6,9 @@ hs.application.watcher
 	end)
 	:start()
 
+-- install hammerspoon cli
+hs.ipc.cliInstall("/opt/homebrew/")
+
 -- show hide alacritty
 hs.hotkey.bind({ "command" }, "`", function()
 	local app = hs.application.get("alacritty")
