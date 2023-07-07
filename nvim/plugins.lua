@@ -66,6 +66,14 @@ local plugins = {
 			require("leap").add_default_mappings(true)
 		end,
 	},
+
+	{
+		"kylechui/nvim-surround",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup()
+		end,
+	},
 }
 
 return plugins
