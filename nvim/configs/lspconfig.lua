@@ -5,7 +5,7 @@ local util = require("lspconfig/util")
 local lspconfig = require("lspconfig")
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd", "tailwindcss", "yamlls", "jsonls" }
+local servers = { "html", "cssls", "clangd", "tailwindcss", "yamlls", "jsonls" }
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
@@ -13,6 +13,29 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
+
+-- typescript lsp configuration
+lspconfig.tsserver.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = { "typescript-language-server", "--stdio" },
+	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+	init_options = { hostInfo = "neovim" },
+	root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+	single_file_support = true,
+	commands = {
+		OrganizeImports = {
+			function()
+				vim.lsp.buf.execute_command({
+					command = "_typescript.organizeImports",
+					arguments = { vim.api.nvim_buf_get_name(0) },
+					title = "",
+				})
+			end,
+			description = "Organize Imports",
+		},
+	},
+})
 
 -- graphql lsp configuration
 lspconfig.graphql.setup({
@@ -42,7 +65,7 @@ lspconfig.gopls.setup({
 })
 
 -- lua lsp configuration
-require("lspconfig").lua_ls.setup({
+lspconfig.lua_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 
