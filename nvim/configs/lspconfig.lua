@@ -14,6 +14,7 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
+-- graphql lsp configuration
 lspconfig.graphql.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -35,6 +36,31 @@ lspconfig.gopls.setup({
 			usePlaceholders = true,
 			analyses = {
 				unusedparams = true,
+			},
+		},
+	},
+})
+
+-- lua lsp configuration
+require("lspconfig").lua_ls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim", "hs" },
+			},
+			workspace = {
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+					[vim.fn.stdpath("data") .. "/lazy/extensions/nvchad_types"] = true,
+					[vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
+					["/Applications/Hammerspoon.app/Contents/Resources/extensions/hs/"] = true,
+				},
+				maxPreload = 100000,
+				preloadFileSize = 10000,
 			},
 		},
 	},
