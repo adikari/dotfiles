@@ -89,5 +89,7 @@ lspconfig.lua_ls.setup({
 	},
 })
 
--- disable inline diagnostic
+-- disable inline diagnostic and display floating window on cursor hold
 vim.diagnostic.config({ virtual_text = false })
+vim.o.updatetime = 250
+vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
