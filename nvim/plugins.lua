@@ -1,79 +1,99 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
-	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			{
-				"jose-elias-alvarez/null-ls.nvim",
-				config = function()
-					require("custom.configs.null-ls")
-				end,
-			},
-		},
-		config = function()
-			require("plugins.configs.lspconfig")
-			require("custom.configs.lspconfig")
-		end,
-	},
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+          require "custom.configs.null-ls"
+        end,
+      },
+    },
+    config = function()
+      require "plugins.configs.lspconfig"
+      require "custom.configs.lspconfig"
+    end,
+  },
 
-	-- override plugin configs
-	{
-		"williamboman/mason.nvim",
-		opts = overrides.mason,
-	},
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        dependencies = {
+          {
+            "zbirenbaum/copilot.lua",
+            opts = {
+              suggestion = { enabled = false },
+              panel = { enabled = false },
+            },
+          },
+        },
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+    },
+    config = function()
+      require "plugins.configs.cmp"
+      require "custom.configs.cmp"
+    end,
+  },
 
-	{
-		"nvim-treesitter/nvim-treesitter",
-		opts = overrides.treesitter,
-	},
+  {
+    "williamboman/mason.nvim",
+    opts = overrides.mason,
+  },
 
-	{
-		"nvim-tree/nvim-tree.lua",
-		opts = overrides.nvimtree,
-	},
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = overrides.treesitter,
+  },
 
-	{
-		"max397574/better-escape.nvim",
-		event = "InsertEnter",
-		config = function()
-			require("better_escape").setup()
-		end,
-	},
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = overrides.nvimtree,
+  },
 
-	{
-		"folke/trouble.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		keys = {
-			{ "<leader>tt", "<cmd>TroubleToggle<cr>", "Toggle Trouble", { silent = true, noremap = true } },
-		},
-	},
+  {
+    "max397574/better-escape.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("better_escape").setup()
+    end,
+  },
 
-	{
-		"folke/zen-mode.nvim",
-		init = function()
-			require("core.utils").lazy_load("zen-mode.nvim")
-		end,
-	},
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      { "<leader>tt", "<cmd>TroubleToggle<cr>", "Toggle Trouble", { silent = true, noremap = true } },
+    },
+  },
 
-	{
-		"ggandor/leap.nvim",
-		init = function()
-			require("core.utils").lazy_load("leap.nvim")
-		end,
-		config = function()
-			require("leap").add_default_mappings(true)
-		end,
-	},
+  {
+    "folke/zen-mode.nvim",
+    event = "VeryLazy",
+  },
 
-	{
-		"kylechui/nvim-surround",
-		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup()
-		end,
-	},
+  {
+    "ggandor/leap.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("leap").add_default_mappings(true)
+    end,
+  },
+
+  {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup()
+    end,
+  },
 }
 
 return plugins
