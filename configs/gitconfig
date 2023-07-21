@@ -1,0 +1,40 @@
+[user]
+  name = subash
+  email = me@subash.com.au
+	signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCwDoJbBZ0cmChf7/m7k64/PivvZtzdh9lsI2GeryoS0DdjTBveMYOByACMC294wDlzyWrEXQGQbI4tz8kuz9OAdlPw2wtt2uzwnM2ad6t6hYRuyzCe/a+6Qq/oAWr1csFB2tTVdL2ihT8DWUeBicgA+Pn2gkWMfaKw5ek1pL0wL62HzX4SCby44Mkdnsv9NC5ux4Hxdll9Fge0fbhFZDdKm/K27+0A2URTreoa0I3D7Rsyr+M/7IuLacBFtXDSbXPZnom/3ulrt6k6EMrTyu8EOumGxD5sdXn85IbJG61gIcgcVJwbpVEtuflHF89eXilvZTAGebwH0o2sKCGpt6/O5eE6Wdn9R/FL1H7SHCO8xxCh7anEKEivO3eJmMmtabIExWOq7+CfbVIImkd/ossCdAgA5LAH7falWbF58IgFuekQoJkOkYQXZOzRP7SDxrGxiWkuPN6cWRbpKSx+dMgVSC8vUX6N5kTslG9dWpK7A2XB2bjBGdrbxM7wJZ+7zal1k7VXj2VJEv6Sbu3t1hC4lZvdxllrLCr4jsi97YYDn6mKlaQRBRMnZwTEGaED5kgGgHm3MyIawfC8ebL/VRyou1mNht320QwVTE5OfRC+LXKhIQVGYsttX3sGc7WivJ543TJZ5Q6sjtSbrRqU5AmXer7T0a30bsxDueN4vdwLRQ==
+
+[core]
+  ignorecase = false
+  filemode = false
+  editor = nvim
+  
+[color]
+  ui = true
+
+[log]
+  date = relative
+
+[format]
+  pretty = format:%C(yellow)%h %Cblue %ad %Cgreen %aN%Cred%d %Creset%s
+
+[diftool]
+  prompt = false
+
+[credential]
+  helper = cache --timeout 7200
+
+[init]
+  defaultBranch = main
+
+[pull]
+  rebase = true
+
+[gpg]
+  format = ssh
+  
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+  
+[commit]
+  gpgsign = true
+

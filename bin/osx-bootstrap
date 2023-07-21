@@ -21,6 +21,7 @@ brew update
 
 # install binaries
 binaries=(
+ zsh
  bash
  ctags
  fortune
@@ -132,4 +133,4 @@ echo "cleaning up"
 rm -rf /tmp/fonts
 brew cleanup
 
-echo "🎉  Done"
+echo "🎉  completed osx bootstrap"

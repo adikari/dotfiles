@@ -27,18 +27,6 @@ has_command() {
   command -v $1 >/dev/null 2>&1
 }
 
-# Prompt for yes or no answer
-prompt () {
-  while true; do
-    read -p "$1 (yes/no)" yn
-    case $yn in
-      [Yy]* ) return 0;;
-      [Nn]* ) return 1;;
-      * ) echo "Please answer yes or no.";;
-    esac
-  done
-}
-
 # create symlink
 link() {
   if ! diff $1 $2 &>/dev/null; then
@@ -50,79 +38,6 @@ link() {
   fi
 }
 
-# Run vim-plug's install process.
-install_vim_plugins() {
-  vim -N -u ~/dotfiles/vim/plugins.vim +PlugClean! +PlugUpdate! +quitall!
-}
-
-# Prompt for dependency missing
-prompt_dependency() {
-  echo "Missing dependency: $1 not found!! "
-
-  if [ "$2" == "required" ];then
-    echo "You must install $1 in order to continue."
-    exit 1
-  else
-    echo "$2 will not be available if you continue."
-  fi
-
-  if ! prompt "Do you want to continue?"; then
-    echo "Please install $1 and try again."
-    exit 1
-  fi
-}
-
-set_git_user() {
-  read -p "Your $1: " input
-
-  if [[ -z $input ]];then
-    echo "No $1 provided. git user $1 is not set."
-  else
-    git config --global user.$1 "$input"
-    echo "git user $1 set to $input"
-  fi
-}
-
-setup_git() {
-  [ ! -f $HOME/.gitconfig ] && touch $HOME/.gitconfig
-
-  gcg="git config --global"
-
-  guser=$($gcg "user.name")
-  gemail=$($gcg "user.email")
-
-  echo "Setting up git config..."
-
-  [[ -z  $guser ]] && set_git_user name
-
-  [[ -z  $gemail ]] && set_git_user email
-
-  $gcg core.ignorecase false
-  echo "git core.ignorecase set to false."
-  $gcg core.filemode false
-  echo "git core.filemode set to false."
-  $gcg core.editor nvim
-  echo "git core.editor set to vim."
-  $gcg color.ui true
-  echo "git color.ui set to true."
-  $gcg log.date relative
-  echo "git log.date set to relative."
-  $gcg format.pretty "format:%C(yellow)%h %Cblue %ad %Cgreen %aN%Cred%d %Creset%s"
-  echo "git format.pretty set to be pretty."
-  $gcg diftool.prompt false
-  echo "git diftool.prompt set to false."
-  $gcg credential.helper "cache --timeout 7200"
-  echo "git credential cache set to 2 hours."
-  $gcg init.defaultBranch main
-  echo "git set default branch to main"
-  $gcg pull.rebase true
-  # echo "git set pull to rebase"
-  # $gcg branch.master.mergeOptions "--squash"
-  # $gcg branch.main.mergeOptions "--squash"
-
-  echo "Git setup completed."
-}
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "Platform is mac osx. Installing.."
   ./bin/osx-bootstrap
@@ -131,25 +46,19 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   link $dotfiles/configs/hammerspoon/init.lua $HOME/.hammerspoon/init.lua
   link $dotfiles/configs/hammerspoon/yabai.lua $HOME/.hammerspoon/yabai.lua
 
-  [ ! -d $HOME/.config/karabiner ] && mkdir $HOME/.config/karabiner
-  link $dotfiles/configs/karabiner.json $HOME/karabiner/karabiner.json
+  karabiner_dir=$HOME/.config/karabiner
+  [ ! -d $karabiner_dir ] && mkdir $karabiner_dir
+  link $dotfiles/configs/karabiner/karabiner.json $karabiner_dir/karabiner.json
 fi
 
-! has_command zsh && prompt_dependency zsh required
-! has_command nvim && prompt_dependency nvim "Neo Vim"
-! has_command cmake && prompt_dependency cmake "Vim autocomplete"
-# @TODO: remove fortune from zsh plugin if no fortune
-! has_command fortune && prompt_dependency fortune "Fortune quotes"
-! has_command ctags && prompt_dependency ctags "Tag defination"
+link $dotfiles/configs/gitconfig $HOME/.gitconfig
 
-setup_git
-
-# update configuration submodules
 git submodule init
 git submodule update --init --recursive
 
+git config --global user.signingkey "$(op read "op://private/github ssh key/public key" --no-newline)"
+
 link $dotfiles/zsh/zshrc $HOME/.zshrc
-link $dotfiles/vim/vimrc $HOME/.vimrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 link $dotfiles/configs/alacritty.yml $HOME/.alacritty.yml
 
@@ -175,4 +84,3 @@ echo "Hurray!!! Dotfiles successfully setup."
 if [ "$restart_required" = true ]; then
    echo "You must restart your session in order for configurations to take affect!!!"
 fi
-
