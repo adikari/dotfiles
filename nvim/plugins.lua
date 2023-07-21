@@ -94,6 +94,10 @@ local plugins = {
       require("nvim-surround").setup()
     end,
   },
+
+  { "ThePrimeagen/harpoon", 
+    event = "VeryLazy",
+  },
 }
 
 return plugins
