@@ -33,7 +33,6 @@ binaries=(
  tmux
  nvim
  gradle
- kotlin-language-server
  yarn
  reattach-to-user-namespace
  svn
@@ -58,6 +57,7 @@ apps=(
   docker
   brave-browser
   1password
+  1password/tap/1password-cli
   vlc
   google-drive
   adobe-acrobat-reader

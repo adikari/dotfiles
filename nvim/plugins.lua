@@ -95,8 +95,21 @@ local plugins = {
     end,
   },
 
-  { "ThePrimeagen/harpoon", 
+  { "ThePrimeagen/harpoon", event = "VeryLazy", dependencies = { "nvim-lua/plenary.nvim" } },
+
+  {
+    "jackMort/ChatGPT.nvim",
     event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup {
+        api_key_cmd = "op read op://private/openai/nvim_api_key --no-newline",
+      }
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
   },
 }
 
