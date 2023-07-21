@@ -4,8 +4,13 @@ local M = {}
 M.general = {
   n = {
     [";"] = { ":", "Enter command mode", opts = { nowait = true } },
-    ["<leader>cc"] = { ":%bd|e#<CR>", "Close all buffer but current", opts = { nowait = true } },
-    ["<leader>oi"] = { ":OrganizeImports<CR>", "Organise imports", opts = { nowait = true } },
+    ["<leader>cc"] = { "<cmd>%bd|e#<CR>", "Close all buffer but current", opts = { nowait = true } },
+    ["<leader>oi"] = { "<cmd>OrganizeImports<CR>", "Organise imports", opts = { nowait = true } },
+
+    ["<C-h>"] = { "<cmd>TmuxNavigateLeft<CR>", "Window left" },
+    ["<C-l>"] = { "<cmd>TmuxNavigateRight<CR>", "Window right" },
+    ["<C-j>"] = { "<cmd>TmuxNavigateDown<CR>", "Window down" },
+    ["<C-k>"] = { "<cmd>TmuxNavigateUp<CR>", "Window up" },
   },
 }
 

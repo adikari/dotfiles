@@ -97,6 +97,8 @@ local plugins = {
 
   { "ThePrimeagen/harpoon", event = "VeryLazy", dependencies = { "nvim-lua/plenary.nvim" } },
 
+  { "christoomey/vim-tmux-navigator", lazy = false },
+
   {
     "jackMort/ChatGPT.nvim",
     event = "VeryLazy",
