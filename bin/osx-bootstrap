@@ -53,7 +53,7 @@ brew install ${binaries[@]}
 # install cask applications
 apps=(
   cmake
-  alacritty
+  kitty
   docker
   brave-browser
   1password

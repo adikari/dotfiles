@@ -21,9 +21,12 @@ yabai -m rule --add app="^Figma$" manage=off
 yabai -m rule --add app="^1Password$" manage=off
 yabai -m rule --add app="^iTerm2$" manage=off
 yabai -m rule --add app="^Alacritty$" manage=off
+yabai -m rule --add app="^kitty$" manage=off
 yabai -m rule --add app="^Microsoft Teams$" manage=off
 yabai -m rule --add app="^console$" manage=off
 yabai -m rule --add app="^JetBrains Rider$" manage=off
+
+yabai -m rule --add app='^kitty$' border=off
 
 #find ~/Library/Parallels/Applications\ Menus/ -maxdepth 3 -type f | awk -F'/' '{ print $NF; }' | awk '{$1=$1};1' | sort | uniq | tr "\n" "\0" | xargs -0 -I{} yabai -m rule --add app="^{}\$" title=".*" manage=on
 

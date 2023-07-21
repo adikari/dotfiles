@@ -3,34 +3,34 @@ local hotkeys = hs.hotkey.modal.new({ "cmd", "shift", "alt" }, "F19")
 local yabai = {}
 
 function yabai.handler(app, eventType)
-	if app == "Alacritty" then
-		if eventType == hs.application.watcher.activated then
-			hotkeys:exit()
-		elseif eventType == hs.application.watcher.deactivated then
-			hotkeys:enter()
-		end
-	end
+  if app == "kitty" then
+    if eventType == hs.application.watcher.activated then
+      hotkeys:exit()
+    elseif eventType == hs.application.watcher.deactivated then
+      hotkeys:enter()
+    end
+  end
 end
 
 local function execute(args)
-	hs.task
-		.new("/opt/homebrew/bin/yabai", nil, function(_, ...)
-			print("stream", hs.inspect(table.pack(...)))
-			return true
-		end, args)
-		:start()
+  hs.task
+    .new("/opt/homebrew/bin/yabai", nil, function(_, ...)
+      print("stream", hs.inspect(table.pack(...)))
+      return true
+    end, args)
+    :start()
 end
 
 local function ctrl(key, commands)
-	hotkeys:bind({ "ctrl" }, key, function()
-		execute(commands)
-	end)
+  hotkeys:bind({ "ctrl" }, key, function()
+    execute(commands)
+  end)
 end
 
 local function commandCtrl(key, commands)
-	hotkeys:bind({ "command", "ctrl" }, key, function()
-		execute(commands)
-	end)
+  hotkeys:bind({ "command", "ctrl" }, key, function()
+    execute(commands)
+  end)
 end
 
 ctrl("d", { "-m", "window", "--toggle", "zoom-parent" })
