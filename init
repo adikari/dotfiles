@@ -63,6 +63,17 @@ link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 link $dotfiles/configs/alacritty.yml $HOME/.alacritty.yml
 
+echo "installing tmux-plugins"
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+  git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+fi
+
+echo "setting up alacritty theme"
+if [ ! -d "$HOME/.config/alacritty/catppuccin" ]; then
+  git clone https://github.com/catppuccin/alacritty.git $HOME/.config/alacritty/catppuccin
+fi
+
+
 if has_command nvim; then
   echo "nvim found. configuring to use nvim.."
 

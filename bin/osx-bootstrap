@@ -43,7 +43,6 @@ binaries=(
  awscli
  ripgrep
  hammerspoon
- fig # command line auto complete
  jq # lightweight json parser
  koekeishiya/formulae/yabai # MacOS window manager
 )
@@ -115,11 +114,6 @@ echo "installing nodejs"
 fnm install --lts
 fnm default lts-latest
 echo "$(fnm current)" > ~/.node-version
-
-echo "installing tmux-plugins"
-if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
 
 echo "starting services"
 yabai --start-service
