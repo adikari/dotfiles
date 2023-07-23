@@ -53,10 +53,6 @@ fi
 
 link $dotfiles/configs/gitconfig $HOME/.gitconfig
 
-# update configuration submodules
-git submodule init
-git submodule update --init --recursive
-
 link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 

@@ -6,43 +6,24 @@
 [ -d $HOME/bin ] && PATH="$HOME/bin:$PATH"
 [ -d $HOME/local/bin ] && PATH="$HOME/local/bin:$PATH"
 
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/dotfiles/zsh/oh-my-zsh
-ZSH_CUSTOM=$HOME/dotfiles/zsh/custom
-
 DOTFILES=$HOME/dotfiles
 
-ZSH_THEME="my-muse"
 
-# Set to this to use case-sensitive completion
-CASE_SENSITIVE="false"
-
-# Comment this out to disable weekly auto-update checks
-DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-COMPLETION_WAITING_DOTS="true"
-
-plugins=(
-  fnm z aws rust tmux npm yarn 1password
-  git gitignore chuckcow emoji docker docker-compose
-)
-
+# plugins=(
+#   fnm z aws rust tmux npm yarn 1password
+#   git gitignore chuckcow emoji docker docker-compose
+# )
+#
 export LC_ALL=en_AU.UTF-8
 export LANG=en_AU.UTF-8
+export EDITOR=nvim
 
-alias fucking=sudo
-alias av=aws-vault
+# use vim mode in terminal
+bindkey -v
 
-if type nvim > /dev/null 2>&1; then
-  alias vim='nvim'
-  alias vi="nvim"
+# attach tmux when terminal starts
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  tmux attach || exec tmux new-session;
 fi
 
 # load custom config if there is any
@@ -50,17 +31,10 @@ if [ -f $HOME/.my_zshrc ]; then
   source $HOME/.my_zshrc
 fi
 
+source $DOTFILES/zsh/aliases
+
+# load fnm
 [ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd --version-file-strategy recursive)"
-
-source $ZSH/oh-my-zsh.sh
-source $DOTFILES/zsh/custom/aliases
-
-# Customize to your needs...
-setopt rmstarsilent
-setopt nohistverify
-
-export EDITOR=vim
-zstyle ':completion:*' matcher-list ''
 
 # add jenv to path
 if which jenv > /dev/null 2>&1; then
@@ -79,13 +53,6 @@ fi
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
-fi
-
-# use vim mode in terminal
-bindkey -v
-
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  tmux attach || exec tmux new-session;
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
