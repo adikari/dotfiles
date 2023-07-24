@@ -8,6 +8,11 @@ bin=/usr/local/bin
 dotfiles=$HOME/dotfiles
 restart_required=false
 
+kitty_dir=$HOME/.config/kitty
+karabiner_dir=$HOME/.config/karabiner
+nvim_dir=$HOME/.config/nvim
+powerlevel10k_dir=$HOME/powerlevel10k
+
 # create backup
 backup() {
   if [ ! -d $backup_dir ]; then
@@ -46,8 +51,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   link $dotfiles/configs/hammerspoon/init.lua $HOME/.hammerspoon/init.lua
   link $dotfiles/configs/hammerspoon/yabai.lua $HOME/.hammerspoon/yabai.lua
 
-  karabiner_dir=$HOME/.config/karabiner
-  [ ! -d $karabiner_dir ] && mkdir $karabiner_dir
+    [ ! -d $karabiner_dir ] && mkdir $karabiner_dir
   link $dotfiles/configs/karabiner/karabiner.json $karabiner_dir/karabiner.json
 fi
 
@@ -56,7 +60,6 @@ link $dotfiles/configs/gitconfig $HOME/.gitconfig
 link $dotfiles/zsh/zshrc $HOME/.zshrc
 link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 
-kitty_dir=$HOME/.config/kitty
 [ ! -d $kitty_dir ] && mkdir $kitty_dir
 link $dotfiles/configs/kitty/kitty.conf $kitty_dir/kitty.conf
 
@@ -68,8 +71,6 @@ fi
 if has_command nvim; then
   echo "nvim found. configuring to use nvim.."
 
-  nvim_dir=$HOME/.config/nvim
-
   if [ ! -d $nvim_dir ]; then 
     mkdir -p $nvim_dir
     git clone https://github.com/NvChad/NvChad $nvim_dir --depth 1 
@@ -80,10 +81,15 @@ if has_command nvim; then
   link $dotfiles/nvim $HOME/.config/nvim/lua/custom
 fi
 
-echo "Restarting shell"
+if [ ! -d $powerlevel10k_dir ]; then
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $powerlevel10k_dir
+fi
 
 echo "Hurray!!! Dotfiles successfully setup."
 
 if [ "$restart_required" = true ]; then
    echo "You must restart your session in order for configurations to take affect!!!"
+else 
+  echo "Restarting shell"
+  exec zsh
 fi
