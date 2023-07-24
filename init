@@ -11,7 +11,6 @@ restart_required=false
 kitty_dir=$HOME/.config/kitty
 karabiner_dir=$HOME/.config/karabiner
 nvim_dir=$HOME/.config/nvim
-powerlevel10k_dir=$HOME/powerlevel10k
 
 # create backup
 backup() {
@@ -79,10 +78,6 @@ if has_command nvim; then
   fi
 
   link $dotfiles/nvim $HOME/.config/nvim/lua/custom
-fi
-
-if [ ! -d $powerlevel10k_dir ]; then
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $powerlevel10k_dir
 fi
 
 echo "Hurray!!! Dotfiles successfully setup."

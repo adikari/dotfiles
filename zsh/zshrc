@@ -1,8 +1,18 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+export LC_ALL=en_AU.UTF-8
+export LANG=en_AU.UTF-8
+export EDITOR=nvim
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+# use vim mode in terminal
+bindkey -v
+
+# improve completion select
+zstyle ':completion:*' menu select
+
+# load completions
+autoload -U compinit; compinit
+
+source $HOME/dotfiles/zsh/aliases.zsh
+source $HOME/dotfiles/zsh/plugins.zsh
 
 # Add dotfiles bin to path
 [ -d $HOME/dotfiles/bin ] && PATH="$HOME/dotfiles/bin:$PATH"
@@ -17,18 +27,6 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 #   git gitignore chuckcow emoji docker docker-compose
 # )
 #
-export LC_ALL=en_AU.UTF-8
-export LANG=en_AU.UTF-8
-export EDITOR=nvim
-
-# use vim mode in terminal
-bindkey -v
-
-# improve completion select
-zstyle ':completion:*' menu select
-
-# load completions
-autoload -U compinit; compinit
 
 # attach tmux when terminal starts
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
@@ -39,10 +37,6 @@ fi
 if [ -f $HOME/.my_zshrc ]; then
   source $HOME/.my_zshrc
 fi
-
-source $HOME/dotfiles/zsh/aliases.zsh
-source $HOME/dotfiles/zsh/plugins.zsh
-source $HOME/dotfiles/zsh/p10k.zsh
 
 # load fnm
 [ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd --version-file-strategy recursive)" > /dev/null 2>&1
