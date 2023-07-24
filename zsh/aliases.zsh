@@ -1,4 +1,3 @@
-#!/bin/zsh
 alias ss="sudo su -"
 alias tmux="tmux -2"
 

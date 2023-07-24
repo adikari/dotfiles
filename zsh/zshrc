@@ -24,6 +24,12 @@ export EDITOR=nvim
 # use vim mode in terminal
 bindkey -v
 
+# improve completion select
+zstyle ':completion:*' menu select
+
+# load completions
+autoload -U compinit; compinit
+
 # attach tmux when terminal starts
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   tmux attach || exec tmux new-session;
@@ -34,7 +40,8 @@ if [ -f $HOME/.my_zshrc ]; then
   source $HOME/.my_zshrc
 fi
 
-source $HOME/dotfiles/zsh/aliases
+source $HOME/dotfiles/zsh/aliases.zsh
+source $HOME/dotfiles/zsh/plugins.zsh
 source $HOME/dotfiles/zsh/p10k.zsh
 
 # load fnm
@@ -60,6 +67,5 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 
 eval "$(direnv hook zsh)"
