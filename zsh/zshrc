@@ -16,6 +16,7 @@ fi
 [ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd --version-file-strategy recursive)" > /dev/null 2>&1
 
 source $HOME/dotfiles/zsh/aliases.zsh
+source $HOME/dotfiles/zsh/completions.zsh
 source $HOME/dotfiles/zsh/plugins.zsh
 
 # Add dotfiles bin to path
