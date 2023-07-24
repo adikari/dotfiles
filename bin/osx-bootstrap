@@ -24,7 +24,6 @@ binaries=(
  zsh
  bash
  ctags
- fortune
  git
  gh # github cli
  go
