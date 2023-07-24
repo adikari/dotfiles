@@ -24,7 +24,6 @@ binaries=(
  zsh
  bash
  ctags
- fortune
  git
  gh # github cli
  go
@@ -92,7 +91,6 @@ fonts=(
   font-roboto
   font-hack-nerd-font
   font-fantasque-sans-mono-nerd-font
-  font-fantasque-sans-mono
 )
 
 echo "installing fonts..."
