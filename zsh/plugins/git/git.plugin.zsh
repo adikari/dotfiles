@@ -5,6 +5,10 @@ git_version="${${(As: :)$(git version 2>/dev/null)}[3]}"
 #
 # Functions
 #
+function git_current_branch() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo ${ref#refs/heads/}
+}
 
 # The name of the current branch
 # Back-compatibility wrapper for when this function was defined here in

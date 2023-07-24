@@ -2,15 +2,10 @@ export LC_ALL=en_AU.UTF-8
 export LANG=en_AU.UTF-8
 export EDITOR=nvim
 export ZSH_COMPLETION_DIR=$HOME/.zsh_completions
+export ZSH_PLUGIN_DIR=$HOME/.zsh_plugins
 
 # use vim mode in terminal
 bindkey -v
-
-# improve completion select
-zstyle ':completion:*' menu select
-
-[ ! -d $ZSH_COMPLETION_DIR ] && mkdir -p $ZSH_COMPLETION_DIR
-fpath=($ZSH_COMPLETION_DIR $fpath)
 
 source $HOME/dotfiles/zsh/aliases.zsh
 source $HOME/dotfiles/zsh/plugins.zsh
