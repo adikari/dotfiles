@@ -28,4 +28,4 @@ autoload -U compinit; compinit
 source $plugins_dir/z/zsh-z.plugin.zsh
 source $plugins_dir/git/git.plugin.zsh
 source $plugins_dir/github/github.plugin.zsh
-
+source $plugins_dir/autosuggestions/plugin.zsh
