@@ -7,4 +7,4 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 source $ZSH_PLUGIN_DIR/powerlevel10k/powerlevel10k.zsh-theme
-source $HOME/dotfiles/zsh/p10k.zsh
+source $HOME/dotfiles/zsh/plugins/powerlevel10k/p10k.zsh

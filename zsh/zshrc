@@ -4,9 +4,6 @@ export EDITOR=nvim
 export ZSH_COMPLETION_DIR=$HOME/.zsh_completions
 export ZSH_PLUGIN_DIR=$HOME/.zsh_plugins
 
-# use vim mode in terminal
-bindkey -v
-
 # better autocomplete
 zstyle ':completion:*' menu select
 
