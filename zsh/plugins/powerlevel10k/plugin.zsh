@@ -2,6 +2,9 @@ if [ ! -d $ZSH_PLUGIN_DIR/powerlevel10k ]; then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_PLUGIN_DIR/powerlevel10k
 fi
 
+# move prompt to the bottom
+printf '\n%.0s' {1..100}
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
