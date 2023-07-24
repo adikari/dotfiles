@@ -91,7 +91,6 @@ fonts=(
   font-roboto
   font-hack-nerd-font
   font-fantasque-sans-mono-nerd-font
-  font-fantasque-sans-mono
 )
 
 echo "installing fonts..."

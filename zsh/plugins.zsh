@@ -10,7 +10,9 @@ completions=(
 )
 
 # load completion files
-for i ("$completions[@]") $i completion zsh > "${ZSH_COMPLETION_DIR}/_$i"
+for i ("$completions[@]"); do 
+  (( ${+commands[$i]} )) && $i completion zsh > "${ZSH_COMPLETION_DIR}/_$i"
+done
 
 autoload -U compinit; compinit
 
