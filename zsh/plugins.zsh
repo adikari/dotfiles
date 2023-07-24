@@ -11,8 +11,6 @@ fi
 source $ZSH_PLUGIN_DIR/powerlevel10k/powerlevel10k.zsh-theme
 source $HOME/dotfiles/zsh/p10k.zsh
 
-zstyle ':completion:*' menu select
-
 [ ! -d $ZSH_COMPLETION_DIR ] && mkdir -p $ZSH_COMPLETION_DIR
 fpath=($ZSH_COMPLETION_DIR $fpath)
 

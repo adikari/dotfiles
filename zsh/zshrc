@@ -7,6 +7,9 @@ export ZSH_PLUGIN_DIR=$HOME/.zsh_plugins
 # use vim mode in terminal
 bindkey -v
 
+# better autocomplete
+zstyle ':completion:*' menu select
+
 source $HOME/dotfiles/zsh/aliases.zsh
 source $HOME/dotfiles/zsh/plugins.zsh
 
