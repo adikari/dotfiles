@@ -1,16 +1,5 @@
 plugins_dir=$HOME/dotfiles/zsh/plugins
 
-if [ ! -d $ZSH_PLUGIN_DIR/powerlevel10k ]; then
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_PLUGIN_DIR/powerlevel10k
-fi
-
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-source $ZSH_PLUGIN_DIR/powerlevel10k/powerlevel10k.zsh-theme
-source $HOME/dotfiles/zsh/p10k.zsh
-
 [ ! -d $ZSH_COMPLETION_DIR ] && mkdir -p $ZSH_COMPLETION_DIR
 fpath=($ZSH_COMPLETION_DIR $fpath)
 
@@ -29,3 +18,7 @@ source $plugins_dir/z/zsh-z.plugin.zsh
 source $plugins_dir/git/git.plugin.zsh
 source $plugins_dir/github/github.plugin.zsh
 source $plugins_dir/autosuggestions/plugin.zsh
+source $plugins_dir/syntax-highlight/plugin.zsh
+
+# load at last after all plugins in case they have output in terminal
+source $plugins_dir/powerlevel10k/plugin.zsh
