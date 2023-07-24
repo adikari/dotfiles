@@ -113,6 +113,14 @@ local plugins = {
       "nvim-telescope/telescope.nvim",
     },
   },
+
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = { "markdown" },
+    config = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
 }
 
 return plugins
