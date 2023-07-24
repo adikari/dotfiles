@@ -1,6 +1,7 @@
 export LC_ALL=en_AU.UTF-8
 export LANG=en_AU.UTF-8
 export EDITOR=nvim
+export ZSH_COMPLETION_DIR=$HOME/.zsh_completions
 
 # use vim mode in terminal
 bindkey -v
@@ -8,8 +9,8 @@ bindkey -v
 # improve completion select
 zstyle ':completion:*' menu select
 
-# load completions
-autoload -U compinit; compinit
+[ ! -d $ZSH_COMPLETION_DIR ] && mkdir -p $ZSH_COMPLETION_DIR
+fpath=($ZSH_COMPLETION_DIR $fpath)
 
 source $HOME/dotfiles/zsh/aliases.zsh
 source $HOME/dotfiles/zsh/plugins.zsh
@@ -21,12 +22,6 @@ source $HOME/dotfiles/zsh/plugins.zsh
 [ -d /usr/local/sbin ] && PATH="/usr/local/sbin:$PATH"
 [ -d $HOME/bin ] && PATH="$HOME/bin:$PATH"
 [ -d $HOME/local/bin ] && PATH="$HOME/local/bin:$PATH"
-
-# plugins=(
-#   fnm z aws rust tmux npm yarn 1password
-#   git gitignore chuckcow emoji docker docker-compose
-# )
-#
 
 # attach tmux when terminal starts
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
