@@ -1,0 +1,91 @@
+#!/usr/bin/env sh
+#
+#                   ╭╮
+#                  ╭╯╰╮
+#      ╭──┬╮╭┬─╮╭──┼╮╭┼──┬──┬──╮
+#      │╭╮││││╭╮┤ ─┤│││╭╮│╭╮││─┤
+#      │╰╯│╰╯│││├──││╰┤╭╮│╰╯││─┤
+#      ╰─╮├──┴╯╰┴──╯╰─┴╯╰┴─╮├──╯
+#      ╭─╯│              ╭─╯│
+#      ╰──╯              ╰──╯
+#
+#
+#      gunstage
+#      🔫 `git unstage` as a service
+#      author: Lucas Larson
+#      license: GPLP 1.0 or later (GPL-compatible)
+#      https://github.com/LucasLarson/gunstage
+#
+
+gunstage() {
+
+  # check whether we’re in a Git repository
+  # https://stackoverflow.com/a/53809163
+  if command git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+
+    case $1 in
+    -A | --all)
+
+      # get top-level directory
+      top_level_directory="$(command git rev-parse --show-toplevel)"
+
+      # unstage everything
+      command git reset --quiet HEAD -- "${top_level_directory-}"
+      command git status
+      ;;
+
+    --new)
+      # unstage only new files
+      command git diff --cached --diff-filter=A --name-only --relative | while IFS='' read -r file; do
+        command git reset --quiet HEAD -- "${file-}"
+      done && command git status
+      ;;
+
+    -V | --version)
+      command git --git-dir="$(
+        command -v -- git-unstage |
+          command sed -e 's/\(.*\)bin\/git-unstage/\1.git/'
+      )" describe --tags
+      exit 0
+      ;;
+
+    *)
+      # run the same command against each argument, if any
+      # otherwise use `.` for everything in the current directory and below
+      for file in "${@:-.}"; do
+
+        # https://github.com/gggritso/site/commit/a07b620
+        command git reset --quiet HEAD -- "${file}"
+
+        # perform a `git status` only if the loop was successful
+      done && command git status
+
+      ;;
+    esac
+
+  else
+    # we’re not in a Git repository
+    # store the failed if as a return status
+    # https://github.com/ohmyzsh/ohmyzsh/pull/9238#discussion_r484806772
+    return_value="$?"
+
+    # if called from outside a Git repository, then
+    # provide instructions on how to use it
+    printf 'gunstage must be called from within a Git repository\n' >&2
+    printf 'create a file and a repository, then stage and gunstage:\n
+            touch file && # create a file called ' >&2
+    printf '\342\200\234file\342\200\235 \134
+            git init && # make a Git repository if necessary \134
+            git add file && git status # stage the file you just created
+
+            # now use \140gunstage\140 to unstage the file
+            gunstage file # huzzah.\n\n
+            gunstage # \360\237\224\253 \140git unstage\140 as a service
+            https://github.com/LucasLarson/gunstage\n\n' >&2
+    return "${return_value}"
+  fi
+
+  unset top_level_directory file return_value
+}
+
+gunstage "$@"
