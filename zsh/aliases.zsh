@@ -6,3 +6,5 @@ alias av=aws-vault
 
 alias vim='nvim'
 alias vi="nvim"
+
+alias pn="pnpm"

@@ -34,6 +34,7 @@ binaries=(
  nvim
  gradle
  yarn
+ pnpm
  reattach-to-user-namespace
  svn
  fnm
