@@ -31,12 +31,12 @@ has_command() {
   command -v $1 >/dev/null 2>&1
 }
 
-# create symlink
-link() {
+# create symsymlink
+symlink() {
   if ! diff $1 $2 &>/dev/null; then
-    backup $2; ln -sf $1 $2 2>/dev/null
+    backup $2; ln -sf $1 $2 
 
-    echo "$2 is successfully linked."
+    echo "$2 is successfully symlinked."
 
     if [ "$2" == "zshrc" ]; then restart_required=true; fi
   fi
@@ -46,21 +46,21 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "Platform is mac osx. Installing.."
   ./bin/osx-bootstrap
 
-  link $dotfiles/configs/yabairc $HOME/.yabairc
-  link $dotfiles/configs/hammerspoon/init.lua $HOME/.hammerspoon/init.lua
-  link $dotfiles/configs/hammerspoon/yabai.lua $HOME/.hammerspoon/yabai.lua
+  symlink $dotfiles/configs/yabairc $HOME/.yabairc
+  symlink $dotfiles/configs/hammerspoon/init.lua $HOME/.hammerspoon/init.lua
+  symlink $dotfiles/configs/hammerspoon/yabai.lua $HOME/.hammerspoon/yabai.lua
 
-    [ ! -d $karabiner_dir ] && mkdir $karabiner_dir
-  link $dotfiles/configs/karabiner/karabiner.json $karabiner_dir/karabiner.json
+  [ ! -d $karabiner_dir ] && mkdir $karabiner_dir
+  symlink $dotfiles/configs/karabiner/karabiner.json $karabiner_dir/karabiner.json
 fi
 
-link $dotfiles/configs/gitconfig $HOME/.gitconfig
+symlink $dotfiles/configs/gitconfig $HOME/.gitconfig
 
-link $dotfiles/zsh/zshrc $HOME/.zshrc
-link $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
+symlink $dotfiles/zsh/zshrc $HOME/.zshrc
+symlink $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 
 [ ! -d $kitty_dir ] && mkdir $kitty_dir
-link $dotfiles/configs/kitty/kitty.conf $kitty_dir/kitty.conf
+symlink $dotfiles/configs/kitty/kitty.conf $kitty_dir/kitty.conf
 
 echo "installing tmux-plugins"
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
@@ -77,7 +77,7 @@ if has_command nvim; then
     echo "$nvim_dir is not empty. skipping.."
   fi
 
-  link $dotfiles/nvim $HOME/.config/nvim/lua/custom
+  symlink $dotfiles/nvim $HOME/.config/nvim/lua/custom
 fi
 
 echo "Hurray!!! Dotfiles successfully setup."

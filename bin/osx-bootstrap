@@ -21,6 +21,13 @@ brew update
 
 # install binaries
 binaries=(
+ cmake
+ asio
+ jsoncpp
+ lz4
+ pkg-config
+ xxhash
+ openssl
  zsh
  bash
  ctags
@@ -28,7 +35,6 @@ binaries=(
  gh # github cli
  go
  lua
- openssl
  readline
  tmux
  nvim
@@ -36,6 +42,7 @@ binaries=(
  yarn
  pnpm
  reattach-to-user-namespace
+ openvpn
  svn
  fnm
  fzf
@@ -50,9 +57,8 @@ binaries=(
 echo "installing binaries..."
 brew install ${binaries[@]}
 
-# install cask applications
+# install applications
 apps=(
-  cmake
   kitty
   docker
   brave-browser
@@ -60,28 +66,18 @@ apps=(
   1password/tap/1password-cli
   vlc
   google-drive
-  adobe-acrobat-reader
+  discord
   slack
-  zoom
   microsoft-teams
-  notion
   postman
   Karabiner-elements # keyboard manager
 )
 
 echo "installing applications..."
-brew install --cask ${apps[@]}
+brew install ${apps[@]}
 
 # configure fzf bindings
 $(brew --prefix)/opt/fzf/install --all
-
-# install rust and rust analyzer
-echo "installing rust and rust analyzer"
-if ! type "rustup" > /dev/null 2>&1; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-else
-  echo "rustup is already installed."
-fi
 
 echo "tapping cask fonts"
 brew tap homebrew/cask-fonts
@@ -107,6 +103,14 @@ else
   chmod +x install.sh
   ./install.sh
   cd $currentdir
+fi
+
+# install rust and rust analyzer
+if ! type "rustup" > /dev/null 2>&1; then
+  echo "installing rust and rust analyzer"
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+else
+  echo "rustup is ready."
 fi
 
 echo "installing nodejs"
