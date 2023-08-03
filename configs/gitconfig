@@ -1,7 +1,7 @@
 [user]
   name = subash
   email = me@subash.com.au
-	signingkey = ~/.ssh/github_id_rsa.pub
+	; signingkey = ~/.ssh/github_id_rsa.pub
 
 [core]
   ignorecase = false
@@ -29,9 +29,9 @@
 [pull]
   rebase = true
 
-[gpg]
-  format = ssh
-  
-[commit]
-  gpgsign = true
-
+; [gpg]
+;   format = ssh
+;   
+; [commit]
+;   gpgsign = true
+;

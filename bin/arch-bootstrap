@@ -1,0 +1,71 @@
+#!/bin/bash
+
+set -euo pipefail
+
+sudo pacman -Syu --noconfirm
+
+install_aur() {
+  if ! pacman -Qs $1 > /dev/null 2>&1; then
+    echo "installing $1"
+    sudo pacman -S --needed git base-devel --noconfirm && \
+      cd /tmp && \
+      git clone https://aur.archlinux.org/$1.git && \
+      cd $1 && makepkg -si --noconfirm
+  fi
+}
+
+binaries=(
+  cmake
+  openssl  
+  zsh   
+  bash
+  go
+  github-cli
+  lua
+  tmux
+  neovim
+  yarn
+  pnpm
+  openvpn
+  curl
+  unzip
+  fzf
+  ripgrep
+  jq
+  rustup
+  aws-vault
+  aws-cli
+
+  # applications
+  kitty
+  plasma-desktop
+  docker
+  dolphin
+  kio-gdrive
+  # 1password
+  # 1password cli
+  # discord
+  # slack
+
+  # fonts
+  ttf-fantasque-nerd
+)
+
+echo "installing packages with pacman"
+sudo pacman -S ${binaries[@]} --noconfirm
+
+apps=(
+  brave-bin  
+  postman-bin
+)
+
+echo "installing packages from aur"
+for i in "${apps[@]}"; do install_aur $i; done
+
+echo "installing default rust"
+rustup default stable
+
+echo "installing fnm"
+cargo install fnm
+
+echo "🎉  completed arch bootstrap"

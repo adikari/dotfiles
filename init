@@ -6,7 +6,6 @@ set -euo pipefail
 backup_dir="/tmp/dotfiles_$(date +%Y%m%d)"
 bin=/usr/local/bin
 dotfiles=$HOME/dotfiles
-restart_required=false
 
 kitty_dir=$HOME/.config/kitty
 karabiner_dir=$HOME/.config/karabiner
@@ -37,8 +36,6 @@ symlink() {
     backup $2; ln -sf $1 $2 
 
     echo "$2 is successfully symlinked."
-
-    if [ "$2" == "zshrc" ]; then restart_required=true; fi
   fi
 }
 
@@ -52,6 +49,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   [ ! -d $karabiner_dir ] && mkdir $karabiner_dir
   symlink $dotfiles/configs/karabiner/karabiner.json $karabiner_dir/karabiner.json
+fi
+
+if [ -f /etc/arch-release ]; then
+  echo "Platform is arch. Installing.."
+  ./bin/arch-bootstrap
 fi
 
 symlink $dotfiles/configs/gitconfig $HOME/.gitconfig
@@ -80,11 +82,16 @@ if has_command nvim; then
   symlink $dotfiles/nvim $HOME/.config/nvim/lua/custom
 fi
 
+if [[ $SHELL != *"zsh" ]]; then
+  has_command zsh && chsh -s $(which zsh)
+fi
+
 echo "Hurray!!! Dotfiles successfully setup."
 
-if [ "$restart_required" = true ]; then
-   echo "You must restart your session in order for configurations to take affect!!!"
-else 
-  echo "Restarting shell"
-  exec zsh
-fi
+# source $HOME/.zshrc
+# if [ "$restart_required" = true ]; then
+#    echo "You must restart your session in order for configurations to take affect!!!"
+# else 
+#   echo "Restarting shell"
+#   exec zsh
+# fi

@@ -22,11 +22,6 @@ brew update
 # install binaries
 binaries=(
  cmake
- asio
- jsoncpp
- lz4
- pkg-config
- xxhash
  openssl
  zsh
  bash
@@ -49,6 +44,7 @@ binaries=(
  direnv
  awscli
  ripgrep
+ aws-vault
  hammerspoon
  jq # lightweight json parser
  koekeishiya/formulae/yabai # MacOS window manager
