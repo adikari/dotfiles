@@ -7,10 +7,11 @@ backup_dir="/tmp/dotfiles_$(date +%Y%m%d)"
 bin=/usr/local/bin
 dotfiles=$HOME/dotfiles
 
-kitty_dir=$HOME/.config/kitty
-karabiner_dir=$HOME/.config/karabiner
-nvim_dir=$HOME/.config/nvim
-i3_dir=$HOME/.config/i3
+export XDG_CONFIG_HOME="$HOME/.config"
+kitty_dir=$XDG_CONFIG_HOME/kitty
+karabiner_dir=$XDG_CONFIG_HOME/karabiner
+nvim_dir=$XDG_CONFIG_HOME/nvim
+i3_dir=$XDG_CONFIG_HOME/i3
 
 # create backup
 backup() {

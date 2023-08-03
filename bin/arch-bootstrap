@@ -35,11 +35,12 @@ binaries=(
   rustup
   aws-vault
   aws-cli
+  ly # login manager
 
   #i3
   i3-wm
   i3status
-  dmenu
+  rofi
   i3lock
 
   # applications
@@ -73,5 +74,10 @@ rustup default stable
 
 echo "installing fnm"
 cargo install fnm
+fnm install --lts
+fnm default lts-latest
+echo "$(fnm current)" > ~/.node-version
+
+pip install kitti3
 
 echo "🎉  completed arch bootstrap"
