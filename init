@@ -12,6 +12,8 @@ kitty_dir=$XDG_CONFIG_HOME/kitty
 karabiner_dir=$XDG_CONFIG_HOME/karabiner
 nvim_dir=$XDG_CONFIG_HOME/nvim
 i3_dir=$XDG_CONFIG_HOME/i3
+rofi_dir=$XDG_CONFIG_HOME/rofi/userconfig
+rofi_theme_dir=$HOME/.local/share/rofi/themes
 
 # create backup
 backup() {
@@ -68,6 +70,12 @@ symlink $dotfiles/configs/kitty/kitty.conf $kitty_dir/kitty.conf
 
 [ ! -d $i3_dir ] && mkdir $i3_dir
 symlink $dotfiles/configs/i3/config $i3_dir/config
+
+[ ! -d $rofi_dir ] && mkdir -p $rofi_dir
+symlink $dotfiles/configs/rofi/config.rasi $rofi_dir/config.rasi
+
+[ ! -d $rofi_theme_dir ] && mkdir -p $rofi_theme_dir
+symlink $dotfiles/configs/rofi/catppuccin-mocha.rasi $rofi_theme_dir/catppuccin-mocha.rasi
 
 echo "installing tmux-plugins"
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then

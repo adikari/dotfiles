@@ -1,4 +1,5 @@
 set $mod Mod1
+set $term kitty
 
 # Font for window titles.
 font pango:FantasqueSansM Nerd Font 10 
@@ -30,16 +31,9 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # floating terminal
-for_window [instance="dropdown-terminal"] move scratchpad; border none
-exec --no-startup-id kitty --name dropdown-terminal
-bindsym $mod+` [instance="dropdown-terminal"] scratchpad show;
-
-## plasma specif config
-for_window [title="Desktop - Plasma"] kill; floating enable; border none
-for_window [title="pop-up"]; floating enable; border none
-for_window [title="task_dialog"]; floating enable; border none
-for_window [title="system_settings"]; floating enable; border none
-for_window [title="plasma-desktop"]; floating enable; border none
+exec --no-startup-id $term --name terminal
+for_window [instance="terminal"]; mark "terwin" move scratchpad; 
+bindsym $mod+grave [con_mark="^terwin$"] fullscreen enable, scratchpad show
 
 # start a terminal
 bindsym $mod+Return exec $term
@@ -48,6 +42,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec "rofi -modi drun,run -show drun"
+bindsym $mod+Tab exec "rofi -modi drun,run -show window"
 
 # change focus
 bindsym $mod+h focus left
@@ -97,7 +92,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+Shift+a focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -140,21 +135,24 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-msg exit"
+bindsym $mod+Control+l exec "i3lock -c 1e1e2e"
+exec "xautolock -detectsleep -time 3 -locker \"i3lock -c 1e1e2e\""
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-  bindsym l resize shrink width 10 px or 10 ppt
-  bindsym j resize grow height 10 px or 10 ppt
-  bindsym k resize shrink height 10 px or 10 ppt
-  bindsym h resize grow width 10 px or 10 ppt
+  bindsym l resize shrink width 5 px or 5 ppt
+  bindsym j resize grow height 5 px or 5 ppt
+  bindsym k resize shrink height 5 px or 5 ppt
+  bindsym h resize grow width 5 px or 5 ppt
 
   # same bindings, but for the arrow keys
-  bindsym Left resize shrink width 10 px or 10 ppt
-  bindsym Down resize grow height 10 px or 10 ppt
-  bindsym Up resize shrink height 10 px or 10 ppt
-  bindsym Right resize grow width 10 px or 10 ppt
+  bindsym Left resize shrink width 5 px or 5 ppt
+  bindsym Down resize grow height 5 px or 5 ppt
+  bindsym Up resize shrink height 5 px or 5 ppt
+  bindsym Right resize grow width 5 px or 5 ppt
 
   # back to normal: Enter or Escape or $mod+r
   bindsym Return mode "default"
@@ -163,6 +161,27 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+mode "move" {
+  bindsym $mod+Tab focus right
+
+  bindsym Left  move left
+  bindsym Down  move down
+  bindsym Up    move up
+  bindsym Right move right
+
+  bindsym h     move left
+  bindsym j     move down
+  bindsym k     move up
+  bindsym l     move right
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+m mode "default"
+}
+
+bindsym $mod+m mode "move" focus floating
 
 # theme
 set $rosewater #f5e0dc
@@ -193,7 +212,7 @@ set $crust     #11111b
 
 # target                 title      bg        text    indicator   border
 client.focused           $green     $green    $base   $green      $green
-client.unfocused         $base      $base     $text   $base       $base
+client.unfocused         $surface2      $base     $text   $base       $base
 client.urgent            $red       $red      $base   $red        $red
 client.placeholder       $overlay0  $surface0 $text   $overlay0   $overlay0
 client.background        $base
