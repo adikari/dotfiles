@@ -10,6 +10,7 @@ dotfiles=$HOME/dotfiles
 kitty_dir=$HOME/.config/kitty
 karabiner_dir=$HOME/.config/karabiner
 nvim_dir=$HOME/.config/nvim
+i3_dir=$HOME/.config/i3
 
 # create backup
 backup() {
@@ -63,6 +64,9 @@ symlink $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 
 [ ! -d $kitty_dir ] && mkdir $kitty_dir
 symlink $dotfiles/configs/kitty/kitty.conf $kitty_dir/kitty.conf
+
+[ ! -d $i3_dir ] && mkdir $i3_dir
+symlink $dotfiles/configs/i3/config $i3_dir/config
 
 echo "installing tmux-plugins"
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then

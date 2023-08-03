@@ -36,6 +36,12 @@ binaries=(
   aws-vault
   aws-cli
 
+  #i3
+  i3-wm
+  i3status
+  dmenu
+  i3lock
+
   # applications
   kitty
   plasma-desktop
@@ -54,13 +60,13 @@ binaries=(
 echo "installing packages with pacman"
 sudo pacman -S ${binaries[@]} --noconfirm
 
-apps=(
+aurs=(
   brave-bin  
   postman-bin
 )
 
 echo "installing packages from aur"
-for i in "${apps[@]}"; do install_aur $i; done
+for i in "${aurs[@]}"; do install_aur $i; done
 
 echo "installing default rust"
 rustup default stable
