@@ -2,19 +2,13 @@
 
 set -euo pipefail
 
+current_dir=$(pwd)
+arch=$(uname -m)
+
 sudo pacman -Syu --noconfirm
 
-install_aur() {
-  if ! pacman -Qs $1 > /dev/null 2>&1; then
-    echo "installing $1"
-    sudo pacman -S --needed git base-devel --noconfirm && \
-      cd /tmp && \
-      git clone https://aur.archlinux.org/$1.git && \
-      cd $1 && makepkg -si --noconfirm
-  fi
-}
-
 binaries=(
+  base-devel
   cmake
   openssl  
   zsh   
@@ -29,6 +23,7 @@ binaries=(
   openvpn
   curl
   unzip
+  tar
   fzf
   ripgrep
   jq
@@ -50,7 +45,6 @@ binaries=(
   docker
   dolphin
   kio-gdrive
-  # 1password
   # 1password cli
   # discord
   # slack
@@ -62,6 +56,16 @@ binaries=(
 echo "installing packages with pacman"
 sudo pacman -S ${binaries[@]} --noconfirm
 
+install_aur() {
+  if ! pacman -Qs $1 > /dev/null 2>&1; then
+    echo "installing $1"
+    sudo pacman -S --needed git base-devel --noconfirm && \
+      cd /tmp && \
+      git clone https://aur.archlinux.org/$1.git && \
+      cd $1 && makepkg -si --noconfirm
+  fi
+}
+
 aurs=(
   brave-bin  
   postman-bin
@@ -69,6 +73,17 @@ aurs=(
 
 echo "installing packages from aur"
 for i in "${aurs[@]}"; do install_aur $i; done
+
+if ! command -v 1password >/dev/null 2>&1; then
+  echo "installing 1password.."
+  cd /tmp
+  curl -sSO https://downloads.1password.com/linux/tar/stable/$arch/1password-latest.tar.gz
+  sudo tar -xf 1password-latest.tar.gz
+  sudo mkdir -p /opt/1Password
+  sudo mv 1password-*/* /opt/1Password
+  sudo /opt/1Password/after-install.sh
+  cd $current_dir
+fi
 
 echo "installing default rust"
 rustup default stable
