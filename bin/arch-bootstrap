@@ -3,7 +3,8 @@
 set -euo pipefail
 
 current_dir=$(pwd)
-arch=$(uname -m)
+ARCH=$(uname -m)
+[ $ARCH = "aarch64" ] && ARCH="arm64"
 
 sudo pacman -Syu --noconfirm
 
@@ -13,13 +14,6 @@ binaries=(
   openssl  
   zsh   
   bash
-  go
-  github-cli
-  lua
-  tmux
-  neovim
-  yarn
-  pnpm
   openvpn
   curl
   unzip
@@ -27,17 +21,27 @@ binaries=(
   fzf
   ripgrep
   jq
-  rustup
-  aws-vault
-  aws-cli
 
-  # window management
+  # development
+  go
+  rustup
+  aws-cli
+  github-cli
+  lua
+  tmux
+  neovim
+  yarn
+  pnpm
+
+  # window / session management
   i3-wm
   i3status
   i3lock
   rofi
   wmctrl
   xautolock
+  lxsession 
+  aws-vault
 
   # applications
   kitty
@@ -45,7 +49,6 @@ binaries=(
   docker
   dolphin
   kio-gdrive
-  # 1password cli
   # discord
   # slack
 
@@ -69,15 +72,24 @@ install_aur() {
 aurs=(
   brave-bin  
   postman-bin
+  1password-cli
 )
 
 echo "installing packages from aur"
 for i in "${aurs[@]}"; do install_aur $i; done
+#
+# if ! command -v op >/dev/null 2>&1; then
+#   echo "installing 1pasword cli.."
+#   wget "https://cache.agilebits.com/dist/1P/op2/pkg/v2.19.0/op_linux_${ARCH}_v2.19.0.zip" -O op.zip && \
+#     unzip -d op op.zip && \
+#     sudo mv op/op /usr/local/bin && \
+#     rm -r op.zip op
+# fi
 
 if ! command -v 1password >/dev/null 2>&1; then
   echo "installing 1password.."
   cd /tmp
-  curl -sSO https://downloads.1password.com/linux/tar/stable/$arch/1password-latest.tar.gz
+  curl -sSO https://downloads.1password.com/linux/tar/stable/$ARCH/1password-latest.tar.gz
   sudo tar -xf 1password-latest.tar.gz
   sudo mkdir -p /opt/1Password
   sudo mv 1password-*/* /opt/1Password
