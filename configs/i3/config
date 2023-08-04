@@ -59,6 +59,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+workspace_layout stacking
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
@@ -107,10 +108,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-# bindsym $mod+h split h
+bindsym $mod+c split h, layout stacking
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+v split v, layout stacking
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle

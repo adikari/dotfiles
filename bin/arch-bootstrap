@@ -42,6 +42,7 @@ binaries=(
   xautolock
   feh
   picom
+  qt5ct
   
   #session management
   lxsession 
@@ -81,14 +82,6 @@ aurs=(
 
 echo "installing packages from aur"
 for i in "${aurs[@]}"; do install_aur $i; done
-#
-# if ! command -v op >/dev/null 2>&1; then
-#   echo "installing 1pasword cli.."
-#   wget "https://cache.agilebits.com/dist/1P/op2/pkg/v2.19.0/op_linux_${ARCH}_v2.19.0.zip" -O op.zip && \
-#     unzip -d op op.zip && \
-#     sudo mv op/op /usr/local/bin && \
-#     rm -r op.zip op
-# fi
 
 if ! command -v 1password >/dev/null 2>&1; then
   echo "installing 1password.."
@@ -108,6 +101,5 @@ echo "installing fnm"
 cargo install fnm
 fnm install --lts
 fnm default lts-latest
-echo "$(fnm current)" > ~/.node-version
 
 echo "🎉  completed arch bootstrap"
