@@ -32,7 +32,7 @@ set $crust     #11111b
 font pango:FantasqueSansM Nerd Font 10 
 
 # set wallpaper
-exec --no-startup-id xsetroot -solid "$base"
+exec --no-startup-id feh --bg-scale ~/dotfiles/assets/catppuccin.png
 
 # Start XDG autostart .desktop files using dex. https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
@@ -46,6 +46,9 @@ exec --no-startup-id nm-applet
 
 # start polkit for system authorisation
 exec --no-startup-id lxpolkit
+
+# start picom
+# exec_always --no-startup-id picom -b --experimental-backend --config ~/dotfiles/configs/picom/picom.conf 
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -68,6 +71,10 @@ bindsym $mod+grave [instance="terminal"] fullscreen enable, scratchpad show
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id $term
+
+# scratchpad
+bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+minus move scratchpad
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -215,8 +222,8 @@ mode "move" {
 bindsym $mod+m mode "move" focus floating
 
 # target                 title      bg        text    indicator   border
-client.focused           $green     $green    $base   $green      $green
-client.unfocused         $surface2      $base     $text   $base       $base
+client.focused           $teal      $teal     $base   $teal       $teal
+client.unfocused         $surface0  $surface0 $text   $surface0   $surface0
 client.urgent            $red       $red      $base   $red        $red
 client.placeholder       $overlay0  $surface0 $text   $overlay0   $overlay0
 client.background        $base

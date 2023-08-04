@@ -8,12 +8,6 @@ bin=/usr/local/bin
 dotfiles=$HOME/dotfiles
 
 export XDG_CONFIG_HOME="$HOME/.config"
-kitty_dir=$XDG_CONFIG_HOME/kitty
-karabiner_dir=$XDG_CONFIG_HOME/karabiner
-nvim_dir=$XDG_CONFIG_HOME/nvim
-i3_dir=$XDG_CONFIG_HOME/i3
-rofi_dir=$XDG_CONFIG_HOME/rofi/userconfig
-rofi_theme_dir=$HOME/.local/share/rofi/themes
 
 # create backup
 backup() {
@@ -51,6 +45,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   symlink $dotfiles/configs/hammerspoon/init.lua $HOME/.hammerspoon/init.lua
   symlink $dotfiles/configs/hammerspoon/yabai.lua $HOME/.hammerspoon/yabai.lua
 
+  karabiner_dir=$XDG_CONFIG_HOME/karabiner
   [ ! -d $karabiner_dir ] && mkdir $karabiner_dir
   symlink $dotfiles/configs/karabiner/karabiner.json $karabiner_dir/karabiner.json
 fi
@@ -65,15 +60,19 @@ symlink $dotfiles/configs/gitconfig $HOME/.gitconfig
 symlink $dotfiles/zsh/zshrc $HOME/.zshrc
 symlink $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 
+kitty_dir=$XDG_CONFIG_HOME/kitty
 [ ! -d $kitty_dir ] && mkdir $kitty_dir
 symlink $dotfiles/configs/kitty/kitty.conf $kitty_dir/kitty.conf
 
+i3_dir=$XDG_CONFIG_HOME/i3
 [ ! -d $i3_dir ] && mkdir $i3_dir
 symlink $dotfiles/configs/i3/config $i3_dir/config
 
+rofi_dir=$XDG_CONFIG_HOME/rofi/userconfig
 [ ! -d $rofi_dir ] && mkdir -p $rofi_dir
 symlink $dotfiles/configs/rofi/config.rasi $rofi_dir/config.rasi
 
+rofi_theme_dir=$HOME/.local/share/rofi/themes
 [ ! -d $rofi_theme_dir ] && mkdir -p $rofi_theme_dir
 symlink $dotfiles/configs/rofi/catppuccin-mocha.rasi $rofi_theme_dir/catppuccin-mocha.rasi
 
@@ -84,6 +83,7 @@ fi
 
 if has_command nvim; then
   echo "nvim found. configuring to use nvim.."
+  nvim_dir=$XDG_CONFIG_HOME/nvim
 
   if [ ! -d $nvim_dir ]; then 
     mkdir -p $nvim_dir
@@ -92,7 +92,7 @@ if has_command nvim; then
     echo "$nvim_dir is not empty. skipping.."
   fi
 
-  symlink $dotfiles/nvim $HOME/.config/nvim/lua/custom
+  symlink $dotfiles/nvim $nvim_dir/lua/custom
 fi
 
 if [[ $SHELL != *"zsh" ]]; then
@@ -100,11 +100,5 @@ if [[ $SHELL != *"zsh" ]]; then
 fi
 
 echo "Hurray!!! Dotfiles successfully setup."
-
-# source $HOME/.zshrc
-# if [ "$restart_required" = true ]; then
-#    echo "You must restart your session in order for configurations to take affect!!!"
-# else 
-#   echo "Restarting shell"
-#   exec zsh
-# fi
+echo "Restarting shell"
+exec zsh

@@ -33,13 +33,17 @@ binaries=(
   yarn
   pnpm
 
-  # window / session management
+  # window 
   i3-wm
   i3status
   i3lock
   rofi
   wmctrl
   xautolock
+  feh
+  picom
+  
+  #session management
   lxsession 
   aws-vault
 
