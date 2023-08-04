@@ -1,19 +1,47 @@
 set $mod Mod1
 set $term kitty
 
+# theme
+set $rosewater #f5e0dc
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
+
 # Font for window titles.
 font pango:FantasqueSansM Nerd Font 10 
 
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
+# set wallpaper
+exec --no-startup-id xsetroot -solid "$base"
+
+# Start XDG autostart .desktop files using dex. https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
+# system try gui for wireless networks
 exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
@@ -32,17 +60,17 @@ tiling_drag modifier titlebar
 
 # floating terminal
 exec --no-startup-id $term --name terminal
-for_window [instance="terminal"]; mark "terwin" move scratchpad; 
-bindsym $mod+grave [con_mark="^terwin$"] fullscreen enable, scratchpad show
+for_window [instance="terminal"]; move scratchpad; 
+bindsym $mod+grave [instance="terminal"] fullscreen enable, scratchpad show
 
 # start a terminal
-bindsym $mod+Return exec $term
+bindsym $mod+Return exec --no-startup-id $term
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec "rofi -modi drun,run -show drun"
-bindsym $mod+Tab exec "rofi -modi drun,run -show window"
+bindsym $mod+d exec --no-startup-id "rofi -modi drun,run -show drun"
+bindsym $mod+Tab exec --no-startup-id "rofi -modi drun,run -show window"
 
 # change focus
 bindsym $mod+h focus left
@@ -50,7 +78,7 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
+# change focus with the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -62,7 +90,7 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
+# move focused with cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -139,7 +167,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-msg exit"
 bindsym $mod+Control+l exec "i3lock -c 1e1e2e"
-exec "xautolock -detectsleep -time 3 -locker \"i3lock -c 1e1e2e\""
+exec --no-startup-id "xautolock -detectsleep -time 3 -locker \"i3lock -c 1e1e2e\""
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -182,33 +210,6 @@ mode "move" {
 }
 
 bindsym $mod+m mode "move" focus floating
-
-# theme
-set $rosewater #f5e0dc
-set $flamingo  #f2cdcd
-set $pink      #f5c2e7
-set $mauve     #cba6f7
-set $red       #f38ba8
-set $maroon    #eba0ac
-set $peach     #fab387
-set $green     #a6e3a1
-set $teal      #94e2d5
-set $sky       #89dceb
-set $sapphire  #74c7ec
-set $blue      #89b4fa
-set $lavender  #b4befe
-set $text      #cdd6f4
-set $subtext1  #bac2de
-set $subtext0  #a6adc8
-set $overlay2  #9399b2
-set $overlay1  #7f849c
-set $overlay0  #6c7086
-set $surface2  #585b70
-set $surface1  #45475a
-set $surface0  #313244
-set $base      #1e1e2e
-set $mantle    #181825
-set $crust     #11111b
 
 # target                 title      bg        text    indicator   border
 client.focused           $green     $green    $base   $green      $green
