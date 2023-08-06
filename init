@@ -2,110 +2,35 @@
 
 set -euo pipefail
 
-# create backup directory
-backup_dir="/tmp/dotfiles_$(date +%Y%m%d)"
-bin=/usr/local/bin
-dotfiles=$HOME/dotfiles
-
-export XDG_CONFIG_HOME="$HOME/.config"
-
-# create backup
-backup() {
-  if [ ! -d $backup_dir ]; then
-    mkdir "$backup_dir"
-    echo "Backup directory $backup_dir created."
-  fi
-
-  if [ -f $1 ]; then
-    echo $1
-    mv $1 $backup_dir
-    echo "$1 is backed up in $backup_dir"
-  fi
-}
-
-# check if given command is available
-has_command() {
-  command -v $1 >/dev/null 2>&1
-}
-
-# create symsymlink
-symlink() {
-  if ! diff $1 $2 &>/dev/null; then
-    backup $2; ln -sf $1 $2 
-
-    echo "$2 is successfully symlinked."
-  fi
-}
+XDG_CONFIG_HOME="$HOME/.config"
+XDG_DATA_HOME="$HOME/.local/share"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  echo "Platform is mac osx. Installing.."
+  echo "platform is mac osx. Installing.."
   ./bin/osx-bootstrap
-
-  symlink $dotfiles/configs/yabairc $HOME/.yabairc
-  symlink $dotfiles/configs/hammerspoon/init.lua $HOME/.hammerspoon/init.lua
-  symlink $dotfiles/configs/hammerspoon/yabai.lua $HOME/.hammerspoon/yabai.lua
-
-  karabiner_dir=$XDG_CONFIG_HOME/karabiner
-  [ ! -d $karabiner_dir ] && mkdir $karabiner_dir
-  symlink $dotfiles/configs/karabiner/karabiner.json $karabiner_dir/karabiner.json
 fi
 
 if [ -f /etc/arch-release ]; then
-  echo "Platform is arch. Installing.."
-  ./bin/arch-bootstrap
+  echo "platform is arch. Installing.."
+  # ./bin/arch-bootstrap
 fi
 
+nvim_dir=$XDG_CONFIG_HOME/nvim
+if [ ! -d $nvim_dir ]; then 
+  echo "setting up nvchad base"
+  mkdir -p $nvim_dir
+  git clone https://github.com/NvChad/NvChad $nvim_dir --depth 1 
+fi
+
+echo "linking dotfiles"
 stow --target=$HOME home 
-  
-kitty_dir=$XDG_CONFIG_HOME/kitty
-[ ! -d $kitty_dir ] && mkdir $kitty_dir
-symlink $dotfiles/configs/kitty/kitty.conf $kitty_dir/kitty.conf
+stow --target=$XDG_CONFIG_HOME config
+stow --target=$XDG_DATA_HOME data
 
-i3_dir=$XDG_CONFIG_HOME/i3
-[ ! -d $i3_dir ] && mkdir $i3_dir
-symlink $dotfiles/configs/i3/config $i3_dir/config
-
-rofi_dir=$XDG_CONFIG_HOME/rofi/userconfig
-[ ! -d $rofi_dir ] && mkdir -p $rofi_dir
-symlink $dotfiles/configs/rofi/config.rasi $rofi_dir/config.rasi
-
-rofi_theme_dir=$HOME/.local/share/rofi/themes
-[ ! -d $rofi_theme_dir ] && mkdir -p $rofi_theme_dir
-symlink $dotfiles/configs/rofi/catppuccin-mocha.rasi $rofi_theme_dir/catppuccin-mocha.rasi
-
-qt5ct_dir=$XDG_CONFIG_HOME/qt5ct
-[ ! -d $qt5ct_dir ] && mkdir -p $qt5ct_dir
-[ ! -d $qt5ct_dir/colors ] && mkdir -p $qt5ct_dir/colors
-symlink $dotfiles/configs/qt5ct/catppuccin-mocha.conf $qt5ct_dir/colors/catppuccin-mocha.conf
-symlink $dotfiles/configs/qt5ct/qt5ct.conf $qt5ct_dir/qt5ct.conf
-
-symlink $dotfiles/configs/fonts.conf $XDG_CONFIG_HOME/fontconfig/fonts.conf
-
-echo "$(fnm current)" > ~/.node-version
-
-echo "installing tmux-plugins"
-if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-  git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-fi
-
-if has_command nvim; then
-  echo "nvim found. configuring to use nvim.."
-  nvim_dir=$XDG_CONFIG_HOME/nvim
-
-  if [ ! -d $nvim_dir ]; then 
-    mkdir -p $nvim_dir
-    git clone https://github.com/NvChad/NvChad $nvim_dir --depth 1 
-  else 
-    echo "$nvim_dir is not empty. skipping.."
-  fi
-
-  symlink $dotfiles/nvim $nvim_dir/lua/custom
-fi
+[ ! -f ~/.node-version ] && echo "$(fnm current)" > ~/.node-version
 
 if [[ $SHELL != *"zsh" ]]; then
-  has_command zsh && chsh -s $(which zsh)
+  chsh -s $(which zsh)
 fi
 
-echo "Hurray!!! Dotfiles successfully setup."
-echo "Restarting shell"
-exec zsh
+# exec zsh

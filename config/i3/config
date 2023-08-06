@@ -48,7 +48,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id lxpolkit
 
 # start picom
-# exec_always --no-startup-id picom -b --experimental-backend --config ~/dotfiles/configs/picom/picom.conf 
+# exec_always --no-startup-id picom -b --experimental-backend --config ~/dotfiles/config/picom/picom.conf 
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -230,7 +230,7 @@ client.placeholder       $overlay0  $surface0 $text   $overlay0   $overlay0
 client.background        $base
 
 bar {
-  status_command i3status -c ~/dotfiles/configs/i3/i3status.conf
+  status_command i3status -c ~/dotfiles/config/i3/i3status.conf
   position bottom
   colors {
     background $base
