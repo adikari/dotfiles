@@ -70,8 +70,8 @@ tiling_drag modifier titlebar
 
 # floating terminal
 exec --no-startup-id $term --name terminal
-for_window [instance="terminal"]; move scratchpad; 
-bindsym $mod+grave [instance="terminal"] fullscreen enable, scratchpad show
+for_window [instance="terminal"] mark "term", move scratchpad 
+bindsym $mod+grave [con_mark="term"] fullscreen enable, scratchpad show
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id $term
