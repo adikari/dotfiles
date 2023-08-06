@@ -47,6 +47,9 @@ exec --no-startup-id nm-applet
 # start polkit for system authorisation
 exec --no-startup-id lxpolkit
 
+# set keyboard remaps
+exec --no-startup-id setxkbmap && xmodmap ~/.Xmodmap
+
 # start picom
 # exec_always --no-startup-id picom -b --experimental-backend --config ~/dotfiles/config/picom/picom.conf 
 
