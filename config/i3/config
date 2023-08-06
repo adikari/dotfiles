@@ -32,7 +32,7 @@ set $crust     #11111b
 font pango:FantasqueSansM Nerd Font 10 
 
 # set wallpaper
-exec --no-startup-id feh --bg-scale ~/dotfiles/assets/catppuccin.png
+exec --no-startup-id feh --bg-scale ~/dotfiles/assets/backgrounds/free-soul-dark.jpg
 
 # Start XDG autostart .desktop files using dex. https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3

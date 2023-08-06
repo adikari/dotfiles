@@ -43,31 +43,77 @@ binaries=(
   pnpm
 
   # desktop environment with i3 
-  plasma-desktop
-  i3-wm
-  i3status
-  i3lock
-  rofi
-  wmctrl
-  xautolock
-  feh
-  picom
-  qt5ct
-  
-  #session management
-  lxsession 
+  # plasma-desktop
+  # i3-wm
+  # i3status
+  # i3lock
+  # rofi
+  # wmctrl
+  # xautolock
+  # feh
+  # picom
+  # qt5ct
 
-  # applications
+  # desktop environment with hyprland
+  qt5-wayland 
+  qt5ct
+  qt6-wayland 
+  qt6ct
+  qt5-svg
+  qt5-quickcontrols2
+  qt5-graphicaleffects
+  gtk3 
+  polkit-gnome 
+  pipewire 
+  wireplumber 
+  wl-clipboard 
+  cliphist 
+  python-requests 
+  pacman-contrib
+  mako 
+  waybar
+  swww 
+  swaylock-effects 
+  wofi 
+  wlogout 
+  xdg-desktop-portal-hyprland 
+  swappy 
+  grim 
+  slurp 
+  thunar 
+  thunar-archive-plugin 
+  btop
+  mpv
+  pamixer 
+  pavucontrol 
+  brightnessctl 
+  bluez 
+  bluez-utils 
+  blueman 
+  network-manager-applet 
+  gvfs 
+  file-roller
+  papirus-icon-theme 
+  lxappearance 
+  xfce4-settings
+  nwg-look-bin
+  sddm
+  
+   # applications
   aws-vault
   kitty
   docker
   dolphin
   kio-gdrive
+  thunderbird
+
   # discord
   # slack
 
   # fonts
   ttf-fantasque-nerd
+  ttf-jetbrains-mono-nerd 
+  noto-fonts-emoji 
 )
 
 echo "installing pacman packages"
