@@ -53,6 +53,8 @@ fi
 if [ -f /etc/arch-release ]; then
   echo "Platform is arch. Installing.."
   ./bin/arch-bootstrap
+  sudo stow --target=/etc/keyd keyd 
+  sudo keyd reload
 fi
 
 symlink $dotfiles/configs/gitconfig $HOME/.gitconfig

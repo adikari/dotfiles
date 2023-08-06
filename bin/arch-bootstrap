@@ -21,6 +21,8 @@ binaries=(
   fzf
   ripgrep
   jq
+  make
+  stow
 
   # development
   go
@@ -94,10 +96,19 @@ if ! command -v 1password >/dev/null 2>&1; then
   cd $current_dir
 fi
 
-echo "installing default rust"
+echo "installing keyd.."
+if ! command -v keyd >/dev/null 2>&1; then
+  cd /tmp
+  git clone https://github.com/rvaiya/keyd
+  cd keyd
+  make && sudo make install 
+  sudo systemctl enable keyd && sudo systemctl start keyd
+fi
+
+echo "installing default rust.."
 rustup default stable
 
-echo "installing fnm"
+echo "installing fnm.."
 cargo install fnm
 fnm install --lts
 fnm default lts-latest
