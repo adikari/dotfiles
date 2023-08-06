@@ -3,7 +3,6 @@
 set -euo pipefail
 
 XDG_CONFIG_HOME="$HOME/.config"
-XDG_DATA_HOME="$HOME/.local/share"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "platform is mac osx. Installing.."
@@ -25,7 +24,6 @@ fi
 echo "linking dotfiles"
 stow --target=$HOME home 
 stow --target=$XDG_CONFIG_HOME config
-stow --target=$XDG_DATA_HOME data
 
 [ ! -f ~/.node-version ] && echo "$(fnm current)" > ~/.node-version
 
