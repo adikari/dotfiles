@@ -4,6 +4,10 @@ set -euo pipefail
 
 XDG_CONFIG_HOME="$HOME/.config"
 
+echo "setting up dotfiles.."
+stow --target=$HOME home 
+stow --target=$XDG_CONFIG_HOME config
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "platform is mac osx. Installing.."
   ./bin/osx-bootstrap
@@ -11,19 +15,15 @@ fi
 
 if [ -f /etc/arch-release ]; then
   echo "platform is arch. Installing.."
-  # ./bin/arch-bootstrap
+  ./bin/arch-bootstrap
 fi
 
 nvim_dir=$XDG_CONFIG_HOME/nvim
 if [ ! -d $nvim_dir ]; then 
-  echo "setting up nvchad base"
+  echo "setting up nvchad base.."
   mkdir -p $nvim_dir
   git clone https://github.com/NvChad/NvChad $nvim_dir --depth 1 
 fi
-
-echo "linking dotfiles"
-stow --target=$HOME home 
-stow --target=$XDG_CONFIG_HOME config
 
 [ ! -f ~/.node-version ] && echo "$(fnm current)" > ~/.node-version
 

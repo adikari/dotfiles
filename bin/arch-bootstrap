@@ -8,8 +8,15 @@ ARCH=$(uname -m)
 
 sudo pacman -Syu --noconfirm
 
+if ! command -v yay >/dev/null 2>&1; then
+  echo "installing yay"
+  cd /tmp
+  sudo pacman -S --needed git base-devel && \
+    git clone https://aur.archlinux.org/yay.git \
+    && cd yay && makepkg -s
+fi
+
 binaries=(
-  base-devel
   cmake
   openssl  
   zsh   
@@ -35,7 +42,8 @@ binaries=(
   yarn
   pnpm
 
-  # window 
+  # desktop environment with i3 
+  plasma-desktop
   i3-wm
   i3status
   i3lock
@@ -48,11 +56,10 @@ binaries=(
   
   #session management
   lxsession 
-  aws-vault
 
   # applications
+  aws-vault
   kitty
-  plasma-desktop
   docker
   dolphin
   kio-gdrive
@@ -63,27 +70,17 @@ binaries=(
   ttf-fantasque-nerd
 )
 
-echo "installing packages with pacman"
+echo "installing pacman packages"
 sudo pacman -S ${binaries[@]} --noconfirm
 
-install_aur() {
-  if ! pacman -Qs $1 > /dev/null 2>&1; then
-    echo "installing $1"
-    sudo pacman -S --needed git base-devel --noconfirm && \
-      cd /tmp && \
-      git clone https://aur.archlinux.org/$1.git && \
-      cd $1 && makepkg -si --noconfirm
-  fi
-}
-
-aurs=(
+yay_packages=(
   brave-bin  
   postman-bin
   1password-cli
 )
 
-echo "installing packages from aur"
-for i in "${aurs[@]}"; do install_aur $i; done
+echo "installing yay packages"
+yay -S ${yay_packages[@]} --noconfirm
 
 if ! command -v 1password >/dev/null 2>&1; then
   echo "installing 1password.."
@@ -94,15 +91,6 @@ if ! command -v 1password >/dev/null 2>&1; then
   sudo mv 1password-*/* /opt/1Password
   sudo /opt/1Password/after-install.sh
   cd $current_dir
-fi
-
-echo "installing keyd.."
-if ! command -v keyd >/dev/null 2>&1; then
-  cd /tmp
-  git clone https://github.com/rvaiya/keyd
-  cd keyd
-  make && sudo make install 
-  sudo systemctl enable keyd && sudo systemctl start keyd
 fi
 
 echo "installing default rust.."
