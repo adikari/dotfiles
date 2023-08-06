@@ -53,16 +53,10 @@ fi
 if [ -f /etc/arch-release ]; then
   echo "Platform is arch. Installing.."
   ./bin/arch-bootstrap
-  sudo stow --target=/etc/keyd keyd 
-  sudo keyd reload
 fi
 
-symlink $dotfiles/configs/gitconfig $HOME/.gitconfig
-
-symlink $dotfiles/zsh/zshrc $HOME/.zshrc
-symlink $dotfiles/configs/xprofile $HOME/.xprofile
-symlink $dotfiles/tmux/tmux.conf $HOME/.tmux.conf
-
+stow --target=$HOME home 
+  
 kitty_dir=$XDG_CONFIG_HOME/kitty
 [ ! -d $kitty_dir ] && mkdir $kitty_dir
 symlink $dotfiles/configs/kitty/kitty.conf $kitty_dir/kitty.conf
