@@ -48,6 +48,7 @@ binaries=(
  hammerspoon
  jq # lightweight json parser
  koekeishiya/formulae/yabai # MacOS window manager
+ stow
 )
 
 echo "installing binaries..."
@@ -109,11 +110,6 @@ else
   echo "rustup is ready."
 fi
 
-echo "installing nodejs"
-fnm install --lts
-fnm default lts-latest
-echo "$(fnm current)" > ~/.node-version
-
 echo "starting services"
 yabai --start-service
 
@@ -125,9 +121,5 @@ defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
 echo "cleaning up"
 rm -rf /tmp/fonts
 brew cleanup
-
-if [[ $SHELL != *"zsh" ]]; then
-  chsh -s $(which zsh)
-fi
 
 echo "🎉  completed osx bootstrap"

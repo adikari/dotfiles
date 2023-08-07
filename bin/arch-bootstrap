@@ -136,14 +136,17 @@ if ! command -v 1password >/dev/null 2>&1; then
   cd $current_dir
 fi
 
+# install graphics drivers for m1 macbook pro
+if [ $ARCH = "arm64" ]; then
+  yay -S --noconfirm linux-asahi-edge mesa-asahi-edge
+  sudo update-grub
+fi
+
 echo "installing default rust.."
 rustup default stable
 
 echo "installing fnm.."
 cargo install fnm
-fnm install --lts
-fnm default lts-latest
-[ ! -f ~/.node-version ] && echo "$(fnm current)" > ~/.node-version
 
 echo -e "Starting the Bluetooth Service..."
 sudo systemctl enable --now bluetooth.service 
@@ -165,6 +168,5 @@ if [ ! -d /usr/share/sddm/themes/sdt ]; then
   sudo chown -R $USER:$USER /usr/share/sddm/themes/sdt
 fi
 
-exec sudo systemctl start sddm
-
+# exec sudo systemctl start sddm
 echo "🎉  completed arch bootstrap"

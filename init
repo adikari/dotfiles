@@ -4,18 +4,6 @@ set -euo pipefail
 
 XDG_CONFIG_HOME="$HOME/.config"
 
-echo "setting up dotfiles.."
-stow --target=$HOME home 
-stow --target=$XDG_CONFIG_HOME config
-sudo stow --target=/etc etc
-
-nvim_dir=$XDG_CONFIG_HOME/nvim
-if [ ! -d $nvim_dir ]; then 
-  echo "setting up nvchad base.."
-  mkdir -p $nvim_dir
-  git clone https://github.com/NvChad/NvChad $nvim_dir --depth 1 
-fi
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "platform is mac osx. Installing.."
   ./bin/osx-bootstrap
@@ -25,3 +13,26 @@ if [ -f /etc/arch-release ]; then
   echo "platform is arch. Installing.."
   ./bin/arch-bootstrap
 fi
+
+nvim_dir=$XDG_CONFIG_HOME/nvim
+if [ ! -d $nvim_dir ]; then 
+  echo "setting up nvchad base.."
+  mkdir -p $nvim_dir
+  git clone https://github.com/NvChad/NvChad $nvim_dir --depth 1 
+fi
+
+echo "setting up dotfiles.."
+rm -f ~/.zshrc
+stow --target=$HOME home 
+stow --target=$XDG_CONFIG_HOME config
+sudo stow --target=/etc etc
+
+echo "installing node lts"
+fnm install --lts
+fnm default lts-latest
+[ ! -f ~/.node-version ] && echo "$(fnm current)" > ~/.node-version
+
+if [[ $SHELL != *"zsh" ]]; then
+  chsh -s $(which zsh)
+fi
+
