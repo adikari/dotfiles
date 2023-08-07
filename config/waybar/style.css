@@ -1,59 +1,76 @@
+@define-color base   #1e1e2e;
+@define-color mantle #181825;
+@define-color crust  #11111b;
+
+@define-color text     #cdd6f4;
+@define-color subtext0 #a6adc8;
+@define-color subtext1 #bac2de;
+
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color surface2 #585b70;
+
+@define-color overlay0 #6c7086;
+@define-color overlay1 #7f849c;
+@define-color overlay2 #9399b2;
+
+@define-color blue      #89b4fa;
+@define-color lavender  #b4befe;
+@define-color sapphire  #74c7ec;
+@define-color sky       #89dceb;
+@define-color teal      #94e2d5;
+@define-color green     #a6e3a1;
+@define-color yellow    #f9e2af;
+@define-color peach     #fab387;
+@define-color maroon    #eba0ac;
+@define-color red       #f38ba8;
+@define-color mauve     #cba6f7;
+@define-color pink      #f5c2e7;
+@define-color flamingo  #f2cdcd;
+@define-color rosewater #f5e0dc;
+
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font";
-    font-weight: bold;
-    font-size: 16px;
-    min-height: 0;
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 14px;
+  min-height: 0;
+  color: @text;
+  text-shadow: unset;
 }
 
 window#waybar {
-    background: rgba(21, 18, 27, 0);
-    color: #f6f7fc;
+  background-color: alpha(@base, 0.5);
+  border: 2px solid @base;
 }
 
 tooltip {
-    background: #1e1e2e;
-    opacity: 0.8;
-    border-radius: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #11111b;
+  border-radius: 10px;
+  border: 2px solid @base;
+  background-color: alpha(@base, 0.95);
 }
 
 tooltip label{
-    color: #cdd6f4;
+  color: @text;
 }
 
 #workspaces button {
-    padding: 5px;
-    color: #f6f7fc;
-    margin-right: 5px;
+  padding: 5px;
+  color: @text;
+  margin-right: 5px;
 }
 
 #workspaces button.active {
-    color: #000000;
-    background: #a6e3a1;
-    border-radius: 10px;
+  color: @base;
+  background-color: shade(@green, 0.5);
 }
 
 #workspaces button:hover {
-    background: #11111b;
-    color: #cdd6f4;
-    border-radius: 10px;
+  background-color: @green;
+  color: @base;
 }
 
-#custom-launch_wofi,
-#custom-launch_firefox,
-#custom-launch_thunderbird,
-#custom-launch_thunar,
-#custom-launch_kitty,
-#custom-lock_screen,
-#custom-light_dark,
-#custom-power_btn,
-#custom-power_profile,
 #custom-weather,
-#custom-myhyprv,
 #window,
 #cpu,
 #disk,
@@ -68,41 +85,25 @@ tooltip label{
 #workspaces,
 #idle_inhibitor,
 #backlight {
-    background: rgba(21, 18, 27, 0);
-    opacity: 1;
-    padding: 0px 8px;
-    margin: 0px 3px;
-    border: 0px;
+  background: rgba(21, 18, 27, 0);
+  opacity: 1;
+  padding: 0px 8px;
+  margin: 0px 3px;
+  border: 0px;
 }
 
 #temperature.critical {
-    color: #e92d4d;
+  color: @red;
 }
 
 #workspaces {
-    padding-right: 0px;
-    padding-left: 5px;
+  padding-right: 0px;
+  padding-left: 5px;
 }
 
 #window {
-    border-radius: 10px;
-    margin-left: 0px;
-    margin-right: 0px;
+  border-radius: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
-#custom-launch_firefox, 
-#custom-launch_thunderbird,
-#custom-launch_thunar,
-#custom-launch_wofi,
-#custom-launch_kitty,
-#custom-weather {
-    margin-left: 0px;
-    border-right: 0px;
-    font-size: 14px;
-    margin-right: 20px;
-}
-
-#custom-launch_firefox, 
-#custom-launch_kitty {
-    font-size: 20px;
-}

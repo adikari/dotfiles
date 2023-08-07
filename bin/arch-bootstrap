@@ -161,13 +161,16 @@ rustup default stable
 echo "installing fnm.."
 cargo install fnm
 
-echo -e "Starting the Bluetooth Service..."
+echo "Starting the Bluetooth Service..."
 sudo systemctl enable --now bluetooth.service 
 sleep 2
 
-echo -e "Enabling the SDDM Service..."
+echo "Enabling the SDDM Service..."
 sudo systemctl enable sddm 
 sleep 2
+
+echo "Setting timezone"
+sudo timedatectl set-timezone Australia/Melbourne
 
 echo -e "Cleaning out conflicting xdg portals..."
 

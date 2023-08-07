@@ -7,24 +7,38 @@
   "gtk-layer-shell": true,
   "height": 20,
   "modules-left": [
-    "wlr/workspaces"
+    "wlr/workspaces",
+    "wlr/taskbar"
   ],
   "modules-center": [
-    "wlr/taskbar"
   ],
   "modules-right": [
     "custom/updates",
     "idle_inhibitor",
     "cpu",
-    "pulseaudio",
-    "pulseaudio#microphone",
-    "brightness",
+    // "pulseaudio",
+    // "pulseaudio#microphone",
+    "backlight",
     "tray",
     "temperature",
     "battery",
+    "network",
     "clock",
     "custom/weather"
   ],
+
+  "network": {
+    "interface": "wlan0",
+    "format": "{ifname}",
+    "format-wifi": " ",
+    "format-ethernet": "{ipaddr}/{cidr}",
+    "format-disconnected": "", //An empty format will hide the module.
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  },
   
   "idle_inhibitor": {
     "format": "{icon}",
@@ -58,8 +72,8 @@
   },
   
   "clock": {
-    "format": "{:%H:%M}",
-    "tooltip-format": "{: %A, %e %B %Y}"
+    "format": "󰃰 {:%A %I:%M}",
+    "tooltip-format": "{:%A, %e %B %Y}"
   },
   
   "temperature": {
@@ -147,11 +161,11 @@
     "tooltip-format": " at {volume}%"
   },
 
-  "brightness": {
+  "backlight": {
     "device": "intel_backlight",
-    "format": "{icon} {percent}",
+    "format": "{icon}",
     "format-alt-click": "click-right",
-    "format-alt": "{icon} {percent}%",
+    "tooltip-format": "{icon} Brightness {percent}%",
     "format-icons": ["󰃞", "󰃟", "󰃠"],
     "on-scroll-up": "~/.config/waybar/scripts/brightness --inc",
     "on-scroll-down": "~/.config/waybar/scripts/brightness --dec"
