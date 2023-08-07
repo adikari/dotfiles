@@ -6,7 +6,11 @@ current_dir=$(pwd)
 ARCH=$(uname -m)
 [ $ARCH = "aarch64" ] && ARCH="arm64"
 
-sudo pacman -Syu --noconfirm
+remove_package() {
+  if yay -Qs $1 > /dev/null 2>&1; then
+    yay -R --noconfirm $1
+  fi
+}
 
 if ! command -v yay >/dev/null 2>&1; then
   echo "installing yay"
@@ -16,7 +20,7 @@ if ! command -v yay >/dev/null 2>&1; then
     && cd yay && makepkg -s
 fi
 
-binaries=(
+packages=(
   cmake
   openssl  
   zsh   
@@ -43,25 +47,18 @@ binaries=(
   pnpm
 
   # desktop environment with i3 
-  # plasma-desktop
-  # i3-wm
-  # i3status
-  # i3lock
-  # rofi
-  # wmctrl
-  # xautolock
-  # feh
-  # picom
-  # qt5ct
+  i3-wm
+  i3status
+  i3lock
+  rofi
+  wmctrl
+  xautolock
+  feh
+  picom
 
   # desktop environment with hyprland
-  qt5-wayland 
-  qt5ct
-  qt6-wayland 
-  qt6ct
-  qt5-svg
-  qt5-quickcontrols2
-  qt5-graphicaleffects
+  hyprland-git
+  xdg-desktop-portal-hyprland 
   gtk3 
   polkit-gnome 
   pipewire 
@@ -73,15 +70,12 @@ binaries=(
   mako 
   waybar
   swww 
-  swaylock-effects 
+  swaylock-effects  # not found in aarch64
   wofi 
-  wlogout 
-  xdg-desktop-portal-hyprland 
+  wlogout  # not found in aarch64
   swappy 
   grim 
   slurp 
-  thunar 
-  thunar-archive-plugin 
   btop
   mpv
   pamixer 
@@ -96,16 +90,28 @@ binaries=(
   papirus-icon-theme 
   lxappearance 
   xfce4-settings
-  nwg-look-bin
-  sddm
+  nwg-look-bin # not found in aarch64
   
+  sddm
+  qt5ct
+  qt5-wayland 
+  qt5ct
+  qt6-wayland 
+  qt6ct
+  qt5-svg
+  qt5-quickcontrols2
+  qt5-graphicaleffects
+ 
    # applications
   aws-vault
   kitty
   docker
-  dolphin
-  kio-gdrive
   thunderbird
+  brave-bin  
+  postman-bin
+  1password-cli
+  thunar 
+  thunar-archive-plugin 
 
   # discord
   # slack
@@ -116,17 +122,8 @@ binaries=(
   noto-fonts-emoji 
 )
 
-echo "installing pacman packages"
-sudo pacman -S ${binaries[@]} --noconfirm
-
-yay_packages=(
-  brave-bin  
-  postman-bin
-  1password-cli
-)
-
-echo "installing yay packages"
-yay -S ${yay_packages[@]} --noconfirm
+echo "installing packages"
+yay -S ${packages[@]} --noconfirm
 
 if ! command -v 1password >/dev/null 2>&1; then
   echo "installing 1password.."
@@ -146,5 +143,28 @@ echo "installing fnm.."
 cargo install fnm
 fnm install --lts
 fnm default lts-latest
+[ ! -f ~/.node-version ] && echo "$(fnm current)" > ~/.node-version
+
+echo -e "Starting the Bluetooth Service..."
+sudo systemctl enable --now bluetooth.service 
+sleep 2
+
+echo -e "Enabling the SDDM Service..."
+sudo systemctl enable sddm 
+sleep 2
+
+echo -e "Cleaning out conflicting xdg portals..."
+
+remove_package xdg-desktop-portal-gnome 
+remove_package xdg-desktop-portal-gtk 
+
+# Copy the SDDM theme
+if [ ! -d /usr/share/sddm/themes/sdt ]; then
+  echo "Setting up the login screen."
+  sudo cp -R extras/sdt /usr/share/sddm/themes/
+  sudo chown -R $USER:$USER /usr/share/sddm/themes/sdt
+fi
+
+exec sudo systemctl start sddm
 
 echo "🎉  completed arch bootstrap"

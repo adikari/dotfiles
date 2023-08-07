@@ -126,4 +126,8 @@ echo "cleaning up"
 rm -rf /tmp/fonts
 brew cleanup
 
+if [[ $SHELL != *"zsh" ]]; then
+  chsh -s $(which zsh)
+fi
+
 echo "🎉  completed osx bootstrap"
