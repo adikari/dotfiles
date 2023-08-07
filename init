@@ -3,36 +3,49 @@
 set -euo pipefail
 
 XDG_CONFIG_HOME="$HOME/.config"
+Log=/tmp/dotfiles.log
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "platform is mac osx. Installing.."
-  ./bin/osx-bootstrap
+  ./bin/osx-bootstrap  | tee -a $Log
 fi
 
 if [ -f /etc/arch-release ]; then
   echo "platform is arch. Installing.."
-  ./bin/arch-bootstrap
+  ./bin/arch-bootstrap | tee -a $Log 
 fi
 
 nvim_dir=$XDG_CONFIG_HOME/nvim
 if [ ! -d $nvim_dir ]; then 
-  echo "setting up nvchad base.."
+  echo "setting up nvchad base.." | tee -a $Log 
   mkdir -p $nvim_dir
-  git clone https://github.com/NvChad/NvChad $nvim_dir --depth 1 
+  git clone https://github.com/NvChad/NvChad $nvim_dir --depth 1 | tee -a $Log
 fi
 
-echo "setting up dotfiles.."
-rm -f ~/.zshrc
+echo "setting up dotfiles.." | tee -a $Log 
+sudo rm -f ~/.zshrc /etc/locale.conf
 stow --target=$HOME home 
 stow --target=$XDG_CONFIG_HOME config
 sudo stow --target=/etc etc
 
-echo "installing node lts"
-fnm install --lts
-fnm default lts-latest
-[ ! -f ~/.node-version ] && echo "$(fnm current)" > ~/.node-version
+echo "installing tmux plugins" | tee -a $Log
+if [ ! -d $HOME/.tmux/plugins/tpm ]; then
+  git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+fi
 
 if [[ $SHELL != *"zsh" ]]; then
   chsh -s $(which zsh)
 fi
 
+if [ -f /etc/arch-release ]; then
+  sudo locale-gen | tee -a $Log
+fi
+
+echo "installing node lts" | tee -a $Log
+fnm install --lts
+fnm default lts-latest
+[ ! -f ~/.node-version ] && echo "lts-latest" > ~/.node-version
+
+echo "all done!!"
+
+exec zsh

@@ -7,18 +7,29 @@ ARCH=$(uname -m)
 [ $ARCH = "aarch64" ] && ARCH="arm64"
 
 remove_package() {
-  if yay -Qs $1 > /dev/null 2>&1; then
+  if yay -Qs $1 &>> /dev/null; then
     yay -R --noconfirm $1
   fi
 }
 
-if ! command -v yay >/dev/null 2>&1; then
+install_package() {
+  if yay -Q $1 &>> /dev/null; then
+   echo "$1 is already installed"
+  else
+    yay -S $1 --noconfirm 
+  fi
+}
+
+if [ ! -f /sbin/yay ]; then
   echo "installing yay"
   cd /tmp
-  sudo pacman -S --needed git base-devel && \
-    git clone https://aur.archlinux.org/yay.git \
-    && cd yay && makepkg -s
+  sudo pacman -S --needed git base-devel --noconfirm
+  [ ! -d /tmp/yay ] && git clone https://aur.archlinux.org/yay.git 
+  cd yay && makepkg -si --noconfirm
+  cd $current_dir
 fi
+
+yay -Suy --noconfirm
 
 packages=(
   cmake
@@ -109,7 +120,7 @@ packages=(
   thunderbird
   brave-bin  
   postman-bin
-  1password-cli
+  #1password-cli
   thunar 
   thunar-archive-plugin 
 
@@ -123,16 +134,18 @@ packages=(
 )
 
 echo "installing packages"
-yay -S ${packages[@]} --noconfirm
+for package in ${packages[@]}; do
+  install_package $package
+done
 
-if ! command -v 1password >/dev/null 2>&1; then
+if [ ! -f /opt/1Password ]; then
   echo "installing 1password.."
   cd /tmp
   curl -sSO https://downloads.1password.com/linux/tar/stable/$ARCH/1password-latest.tar.gz
-  sudo tar -xf 1password-latest.tar.gz
-  sudo mkdir -p /opt/1Password
-  sudo mv 1password-*/* /opt/1Password
-  sudo /opt/1Password/after-install.sh
+  #sudo tar -xf 1password-latest.tar.gz
+  #sudo mkdir -p /opt/1Password
+  #sudo mv 1password-*/* /opt/1Password
+  #sudo /opt/1Password/after-install.sh
   cd $current_dir
 fi
 
