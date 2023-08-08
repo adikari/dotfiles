@@ -5,12 +5,12 @@
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
-  "height": 26,
+  "height": 28,
   "modules-left": [
-    "wlr/workspaces",
-    "wlr/taskbar"
+    "wlr/workspaces"
   ],
   "modules-center": [
+    "wlr/taskbar"
   ],
   "modules-right": [
     "custom/updates",
