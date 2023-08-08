@@ -8,6 +8,12 @@ export EDITOR=nvim
 export ZSH_COMPLETION_DIR=$HOME/.zsh_completions
 export ZSH_PLUGIN_DIR=$HOME/.zsh_plugins
 
+# enable history
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory
+
 # better autocomplete
 zstyle ':completion:*' menu select
 

@@ -56,19 +56,12 @@ packages=(
   yarn
   pnpm
   npm
-
-  # desktop environment with i3 
-  i3-wm
-  i3status
-  i3lock
-  rofi
-  wmctrl
-  xautolock
-  feh
-  picom
+  python-requests 
+  pacman-contrib
 
   # desktop environment with hyprland
   hyprland-git
+  waybar
   xdg-desktop-portal-hyprland 
   gtk3 
   polkit-gnome 
@@ -76,10 +69,7 @@ packages=(
   wireplumber 
   wl-clipboard 
   cliphist 
-  python-requests 
-  pacman-contrib
   mako 
-  waybar
   swww 
   swaylock-effects  
   wofi 
@@ -137,7 +127,7 @@ for package in ${packages[@]}; do
   install_package $package
 done
 
-if [ ! -f /opt/1Password ]; then
+if [ ! -f /opt/1Password/1password ]; then
   echo "installing 1password.."
   cd /tmp
   if [ ! -f /tmp/1password-latest.tar.gz ]; then
