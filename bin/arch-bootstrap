@@ -159,6 +159,11 @@ rustup default stable
 echo "installing fnm.."
 cargo install fnm
 
+echo -e "Cleaning out conflicting xdg portals..."
+
+remove_package xdg-desktop-portal-gnome 
+remove_package xdg-desktop-portal-gtk 
+
 echo "Starting the Bluetooth Service..."
 sudo systemctl enable --now bluetooth.service 
 sleep 2
@@ -170,17 +175,14 @@ sleep 2
 echo "Setting timezone"
 sudo timedatectl set-timezone Australia/Melbourne
 
-echo -e "Cleaning out conflicting xdg portals..."
-
-remove_package xdg-desktop-portal-gnome 
-remove_package xdg-desktop-portal-gtk 
-
 # Copy the SDDM theme
 if [ ! -d /usr/share/sddm/themes/sdt ]; then
   echo "Setting up the login screen."
   sudo cp -R extras/sdt /usr/share/sddm/themes/
   sudo chown -R $USER:$USER /usr/share/sddm/themes/sdt
 fi
+
+$HOME/dotfiles/config/hypr/set-theme
 
 # exec sudo systemctl start sddm
 echo "🎉  completed arch bootstrap"
