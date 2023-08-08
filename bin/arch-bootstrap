@@ -66,6 +66,7 @@ packages=(
   gtk3 
   polkit-gnome 
   pipewire 
+  pipewire-pulse
   wireplumber 
   mako 
   swww 
@@ -89,7 +90,6 @@ packages=(
   sddm
   qt5ct
   qt5-wayland 
-  qt5ct
   qt6-wayland 
   qt6ct
   qt5-svg

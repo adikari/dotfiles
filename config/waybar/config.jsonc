@@ -16,8 +16,8 @@
     "custom/updates",
     "idle_inhibitor",
     "cpu",
-    // "pulseaudio",
-    // "pulseaudio#microphone",
+    "pulseaudio",
+    "pulseaudio#microphone",
     "backlight",
     "tray",
     "temperature",
@@ -137,9 +137,9 @@
     "on-scroll-down": "~/.config/waybar/scripts/volume --dec",
     "scroll-step": 5,
     "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
+      "headphone": "󰋋",
+      "hands-free": "󰋋",
+      "headset": "󰋋",
       "phone": "",
       "portable": "",
       "car": "",
@@ -173,8 +173,7 @@
   },
 
   "tray": {
-    "icon-size": 16,
-    "spacing": 10
+    "icon-size": 16
   },
 
   "custom/updates": {
