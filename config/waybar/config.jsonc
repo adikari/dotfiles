@@ -68,7 +68,7 @@
     "on-click-middle": "close",
     "on-click-right": "minimize",
     "ignore-list": [
-      "wofi"
+      "rofi"
     ]
   },
   

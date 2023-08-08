@@ -70,7 +70,7 @@ packages=(
   mako 
   swww 
   swaylock-effects  
-  wofi 
+  rofi-lbonn-wayland-git
   wlogout  
   mpv
   pamixer 
