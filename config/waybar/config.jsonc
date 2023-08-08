@@ -5,7 +5,7 @@
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
-  "height": 20,
+  "height": 26,
   "modules-left": [
     "wlr/workspaces",
     "wlr/taskbar"
@@ -61,11 +61,12 @@
 
   "wlr/taskbar": {
     "format": "{icon}",
-    "icon-size": 24,
+    "icon-size": 18,
     "all-outputs": true,
     "tooltip-format": "{name} - {title}",
     "on-click": "activate",
     "on-click-middle": "close",
+    "on-click-right": "minimize",
     "ignore-list": [
       "wofi"
     ]

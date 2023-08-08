@@ -40,14 +40,17 @@
 }
 
 window#waybar {
-  background-color: alpha(@base, 0.5);
-  border: 2px solid @base;
+  background-color: alpha(@base, 0.3);
+}
+
+window#waybar button {
+  box-shadow: none;
 }
 
 tooltip {
   border-radius: 10px;
-  border: 2px solid @base;
-  background-color: alpha(@base, 0.95);
+  border: 2px solid @surface1;
+  background-color: alpha(@surface1, 0.95);
 }
 
 tooltip label{
@@ -55,19 +58,30 @@ tooltip label{
 }
 
 #workspaces button {
-  padding: 5px;
-  color: @text;
+  padding: 3px;
   margin-right: 5px;
 }
 
 #workspaces button.active {
-  color: @base;
-  background-color: shade(@green, 0.5);
+  background: shade(white, 0.9);
 }
 
-#workspaces button:hover {
-  background-color: @green;
+#workspaces button:hover,
+#taskbar button:hover {
+  background: shade(white, 0.9);
+}
+
+#workspaces button label {
+  color: @text;
+}
+
+#workspaces button.active label {
   color: @base;
+}
+
+#workspaces button:hover label,
+#taskbar button:hover label {
+  color: @base
 }
 
 #custom-weather,
@@ -106,4 +120,5 @@ tooltip label{
   margin-left: 0px;
   margin-right: 0px;
 }
+
 

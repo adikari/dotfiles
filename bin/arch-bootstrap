@@ -56,6 +56,7 @@ packages=(
   neovim
   yarn
   pnpm
+  npm
 
   # desktop environment with i3 
   i3-wm
@@ -81,9 +82,9 @@ packages=(
   mako 
   waybar
   swww 
-  swaylock-effects  # not found in aarch64
+  swaylock-effects  
   wofi 
-  wlogout  # not found in aarch64
+  wlogout  
   swappy 
   grim 
   slurp 
@@ -101,8 +102,7 @@ packages=(
   papirus-icon-theme 
   lxappearance 
   xfce4-settings
-  nwg-look-bin # not found in aarch64
-  
+  nwg-look-bin   
   sddm
   qt5ct
   qt5-wayland 
