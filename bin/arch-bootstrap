@@ -64,7 +64,7 @@ packages=(
   waybar
   xdg-desktop-portal-hyprland 
   gtk3 
-  polkit-gnome 
+  polkit-kde-agent 
   pipewire 
   pipewire-pulse
   wireplumber 
@@ -182,7 +182,7 @@ if [ ! -d /usr/share/sddm/themes/sdt ]; then
   sudo chown -R $USER:$USER /usr/share/sddm/themes/sdt
 fi
 
-$HOME/dotfiles/config/hypr/set-theme
+$HOME/dotfiles/config/hypr/script/set-theme
 
 # exec sudo systemctl start sddm
 echo "🎉  completed arch bootstrap"

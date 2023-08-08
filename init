@@ -46,6 +46,9 @@ fnm install --lts
 fnm default lts-latest
 [ ! -f ~/.node-version ] && echo "lts-latest" > ~/.node-version
 
+echo "installing lf"
+env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
+
 echo "all done!!"
 
 exec zsh
