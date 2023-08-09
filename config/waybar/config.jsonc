@@ -55,7 +55,7 @@
     "format" : "{}",
     "icon-size": 16,
     "interval" : 30,
-    "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
+    "exec" : "~/dotfiles/bin/weather",
     "return-type" : "json"
   },
 
@@ -146,10 +146,10 @@
   "pulseaudio": {
     "format": "{icon}",
     "format-muted": "",
-    "on-click": "~/.config/waybar/scripts/volume --toggle",
+    "on-click": "~/dotfiles/bin/volume --toggle",
     "on-click-right": "pavucontrol",
-    "on-scroll-up": "~/.config/waybar/scripts/volume --inc",
-    "on-scroll-down": "~/.config/waybar/scripts/volume --dec",
+    "on-scroll-up": "~/dotfiles/bin/volume --inc",
+    "on-scroll-down": "~/dotfiles/bin/volume --dec",
     "scroll-step": 5,
     "format-icons": {
       "headphone": "󰋋",
@@ -168,10 +168,10 @@
     "format": "{format_source}",
     "format-source": "",
     "format-source-muted": "",
-    "on-click": "~/.config/waybar/scripts/volume --toggle-mic",
+    "on-click": "~/dotfiles/bin/volume --toggle-mic",
     "on-click-right": "pavucontrol",
-    "on-scroll-up": "~/.config/waybar/scripts/volume --mic-inc",
-    "on-scroll-down": "~/.config/waybar/scripts/volume --mic-dec",
+    "on-scroll-up": "~/dotfiles/bin/volume --mic-inc",
+    "on-scroll-down": "~/dotfiles/bin/volume --mic-dec",
     "scroll-step": 5,
     "tooltip": true,
     "tooltip-format": " at {volume}%"
@@ -183,8 +183,8 @@
     "format-alt-click": "click-right",
     "tooltip-format": "{icon} Brightness {percent}%",
     "format-icons": ["󰃞", "󰃟", "󰃠"],
-    "on-scroll-up": "~/.config/waybar/scripts/brightness --inc",
-    "on-scroll-down": "~/.config/waybar/scripts/brightness --dec"
+    "on-scroll-up": "~/dotfiles/bin/brightness --inc",
+    "on-scroll-down": "~/dotfiles/bin/brightness --dec"
   },
 
   "tray": {
@@ -193,8 +193,8 @@
 
   "custom/updates": {
     "format": "{}",
-    "exec": "~/.config/waybar/scripts/update-sys",
-    "on-click": "~/.config/waybar/scripts/update-sys update",
+    "exec": "~/dotfiles/bin/update-sys",
+    "on-click": "~/dotfiles/bin/update-sys update",
     "interval": 300,
     "tooltip": true
   }

@@ -182,7 +182,7 @@ if [ ! -d /usr/share/sddm/themes/sdt ]; then
   sudo chown -R $USER:$USER /usr/share/sddm/themes/sdt
 fi
 
-$HOME/dotfiles/config/hypr/script/set-theme
+$HOME/dotfiles/bin/set-theme
 
 # exec sudo systemctl start sddm
 echo "🎉  completed arch bootstrap"

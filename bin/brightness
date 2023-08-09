@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Get brightness
+get_backlight() {
+	LIGHT=$(printf "%.0f\n" $(brightnessctl i))
+	echo "${LIGHT}%"
+}
+
+# Notify
+notify_user() {
+	notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Brightness : $(brightnessctl g)"
+}
+
+# Increase brightness
+inc_backlight() {
+	brightnessctl set 10%+ && notify_user
+}
+
+# Decrease brightness
+dec_backlight() {
+	brightnessctl set 10%- && notify_user
+}
+
+# Execute accordingly
+if [[ "$1" == "--get" ]]; then
+	brightnessctl g
+elif [[ "$1" == "--inc" ]]; then
+	inc_backlight
+elif [[ "$1" == "--dec" ]]; then
+	dec_backlight
+else
+	get_backlight
+fi
