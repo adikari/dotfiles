@@ -64,7 +64,8 @@ packages=(
   waybar
   xdg-desktop-portal-hyprland 
   gtk3 
-  polkit-kde-agent 
+  polkit-gnome
+  gnome-keyring
   pipewire 
   pipewire-pulse
   wireplumber 
@@ -104,6 +105,7 @@ packages=(
   slurp 
   btop
   hyprpicker-git
+  neomutt
  
    # applications
   aws-vault
@@ -121,7 +123,9 @@ packages=(
   # fonts
   ttf-fantasque-nerd
   ttf-jetbrains-mono-nerd 
+  ttf-nato-sans-nerd 
   noto-fonts-emoji 
+  noto-fonts
 )
 
 echo "installing packages"

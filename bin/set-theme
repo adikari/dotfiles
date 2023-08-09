@@ -9,5 +9,6 @@ xfconf-query -c xsettings -p /Net/ThemeName -s $theme
 xfconf-query -c xsettings -p /Net/IconThemeName -s $icon_theme
 gsettings set org.gnome.desktop.interface gtk-theme $theme
 gsettings set org.gnome.desktop.interface icon-theme $icon_theme
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 cp -f $login_wallpaper /usr/share/sddm/themes/sdt/wallpaper.jpg
 swww img $desktop_wallpaper
