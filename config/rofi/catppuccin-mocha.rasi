@@ -5,6 +5,7 @@
   crust: #11111b;
   blue: #89b4fa;
   text: #cdd6f4;
+  red: #f38ba8;
 
   width: 800;
   font: "JetbrainsMono Nerd Font 14";
@@ -85,7 +86,7 @@ message {
 }
 
 textbox {
-  padding: 6px;
-  margin: 20px 0px 0px 20px;
-  text-color: @blue;
+  padding: 12px;
+  background-color: @base;
+  text-color: @red;
 }
