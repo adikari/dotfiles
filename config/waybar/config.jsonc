@@ -14,12 +14,12 @@
   ],
   "modules-right": [
     "custom/updates",
+    "tray",
     "idle_inhibitor",
     "cpu",
     "pulseaudio",
     "pulseaudio#microphone",
     "backlight",
-    "tray",
     "temperature",
     "battery",
     "network",
@@ -188,7 +188,8 @@
   },
 
   "tray": {
-    "icon-size": 16
+    "icon-size": 16,
+    "spacing": 14
   },
 
   "custom/updates": {

@@ -122,6 +122,10 @@ tooltip label{
   border: 0px;
 }
 
+#tray {
+  margin: 0;
+}
+
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
   background-color: @red;
