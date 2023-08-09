@@ -84,7 +84,6 @@ packages=(
   gvfs 
   file-roller
   papirus-icon-theme 
-  lxappearance 
   xfce4-settings
   nwg-look-bin   
   sddm
@@ -95,6 +94,7 @@ packages=(
   qt5-svg
   qt5-quickcontrols2
   qt5-graphicaleffects
+  catppuccin-gtk-theme-mocha 
   
   cliphist 
   wl-clipboard 
