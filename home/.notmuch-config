@@ -1,0 +1,19 @@
+# For more information about notmuch, see https://notmuchmail.org
+
+[database]
+path=$HOME/.local/share/mail
+
+[user]
+name=subash adhikari
+primary_email=me@subash.com.au
+other_email=subash.adikari@gmail.com;subash.adhikari@memories.net;subash.adhikari@kobainsurance.com;
+
+[new]
+tags=new
+
+[search]
+exclude_tags=deleted,spam
+
+[maildir]
+synchronize_flags=true
+

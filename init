@@ -27,6 +27,7 @@ sudo rm -f ~/.zshrc /etc/locale.conf
 stow --target=$HOME home 
 stow --target=$XDG_CONFIG_HOME config
 sudo stow --target=/etc etc
+sudo stow --target=/usr usr
 
 echo "installing tmux plugins" | tee -a $Log
 if [ ! -d $HOME/.tmux/plugins/tpm ]; then

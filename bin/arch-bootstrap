@@ -75,7 +75,6 @@ packages=(
   swaylock-effects  
   rofi-lbonn-wayland-git
   wlogout  
-  mpv
   pamixer 
   pavucontrol 
   brightnessctl 
@@ -106,8 +105,10 @@ packages=(
   btop
   hyprpicker-git
   neomutt
+  notmuch
  
    # applications
+  mpv
   aws-vault
   kitty
   docker
