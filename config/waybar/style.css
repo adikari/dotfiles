@@ -39,6 +39,13 @@
   text-shadow: unset;
 }
 
+#window {
+  border-radius: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+
 window#waybar {
   background-color: alpha(@base, 0.3);
 }
@@ -57,31 +64,40 @@ tooltip label{
   color: @text;
 }
 
+#workspaces {
+  padding-right: 0px;
+  padding-left: 5px;
+}
+
+#workspaces {
+  padding-right: 0;
+  padding-left: 0;
+}
+
 #workspaces button {
-  padding: 3px;
-  margin-right: 5px;
-}
-
-#workspaces button.active {
-  background: shade(white, 0.9);
-}
-
-#workspaces button:hover,
-#taskbar button:hover {
-  background: shade(white, 0.9);
+  padding: 3px; 
+  margin-right: 0px;
 }
 
 #workspaces button label {
-  color: @text;
+  color: alpha(@text, 0.4);
+  font-size: 16px;
 }
 
 #workspaces button.active label {
-  color: @base;
+  color: @text;
 }
 
-#workspaces button:hover label,
+#workspaces button:hover {
+  background: alpha(@surface2, 0.4);
+}
+
 #taskbar button:hover label {
   color: @base
+}
+
+#taskbar button:hover {
+  background: alpha(@surface2, 0.4);
 }
 
 #custom-weather,
@@ -114,16 +130,3 @@ tooltip label{
 #temperature.critical {
   color: @red;
 }
-
-#workspaces {
-  padding-right: 0px;
-  padding-left: 5px;
-}
-
-#window {
-  border-radius: 10px;
-  margin-left: 0px;
-  margin-right: 0px;
-}
-
-
