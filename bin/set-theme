@@ -1,7 +1,11 @@
 #!/bin/bash
 
+login_wallpaper=~/dotfiles/wallpapers/wallpaper-dark.jpg
+desktop_wallpaper=~/dotfiles/wallpapers/wallpaper.jpg
+
 xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark"
 xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark"
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
-cp -f ~/dotfiles/extras/sdt/wallpaper.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
+cp -f $login_wallpaper /usr/share/sddm/themes/sdt/wallpaper.jpg
+swww img $desktop_wallpaper
