@@ -45,10 +45,6 @@ set trash = ""
 
 mailboxes "=[Gmail].Starred"  "=INBOX" "=[Gmail].Bin" "=[Gmail].Drafts" "=[Gmail].Spam" "=Archive" "=[Gmail].Sent\ Mail"
 
-bind index g  noop
-bind index C  noop
-bind index M  noop
-
 macro index gi "<change-folder>=INBOX<enter>" "go to inbox"
 macro index gs "<change-folder>=[Gmail].Sent\ Mail<enter>" "go to sent"
 macro index gd "<change-folder>=[Gmail].Drafts<enter>" "go to drafts"

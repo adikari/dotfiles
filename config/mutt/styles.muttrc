@@ -1,7 +1,7 @@
 # Formatting   ----------------------------------------------------------------------
 set date_format = "%a %d %h %H:%M"
 
-set index_format="  %zc %zs %zt  | %-35.35L   %@attachment_info@  %?M10?~(%1M) ?%-30.100s %> %?Y?%Y ? %(!%a %d %h %H:%M)  "
+set index_format="  %zc %zs %zt  | %-35.35L   %@attachmenjt_info@  %?M10?~(%1M) ?%-30.100s %> %?Y?%Y ? %(!%a %d %h %H:%M)  "
 set pager_format="%n %T %s%*  %{!%d %b · %H:%M} %?X? %X?%P"
 set status_format = "%D  %?u? %u ?%?R?󰉚 %R ?%?d? %d ?%?t?  %t ?%?F? %F ?%?p?  %p? \n  \n"
 set compose_format="-- NeoMutt: Compose  [Approx. msg size: %l   Atts: %a]%>-"

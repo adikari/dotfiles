@@ -29,10 +29,6 @@ source $HOME/dotfiles/zsh/aliases.zsh
 source $HOME/dotfiles/zsh/completions.zsh
 source $HOME/dotfiles/zsh/plugins.zsh
 
-# Add dotfiles bin to path
-[ -d $HOME/dotfiles/bin ] && PATH="$HOME/dotfiles/bin:$PATH"
-[ -d $HOME/dotfiles/node_modules/.bin ] && PATH="$HOME/dotfiles/node_modules/.bin:$PATH"
-
 [ -d /usr/local/sbin ] && PATH="/usr/local/sbin:$PATH"
 [ -d $HOME/bin ] && PATH="$HOME/bin:$PATH"
 [ -d $HOME/local/bin ] && PATH="$HOME/local/bin:$PATH"
