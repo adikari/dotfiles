@@ -112,6 +112,8 @@ packages=(
   mbsync
   notmuch
   pandoc
+  html2text
+  glow
  
    # applications
   mpv

@@ -1,0 +1,191 @@
+format = """
+$username\
+$hostname\
+$directory\
+$nodejs\
+$git_branch\
+$git_state\
+$git_status\
+$aws\
+$cmd_duration\
+$python\
+$rust\
+$golang\
+$line_break\
+$character"""
+
+continuation_prompt = '▶▶ '
+
+[aws]
+format = 'on [$symbol$region]($style) '
+style = 'bold blue'
+symbol = "  "
+
+[aws.region_aliases]
+ap-southeast-2 = 'syd'
+us-east-1 = 've'
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[directory]
+read_only = " 󰌾"
+style = "blue"
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[fossil_branch]
+symbol = " "
+
+[git_branch]
+format = "[$symbol$branch]($style)"
+style = "bright-black"
+symbol = " "
+
+[git_status]
+format = "[[(*$conflicted$modified$staged$renamed)](218)[$untracked](green)[$deleted](red)($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "+"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "-"
+stashed = "≡"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[golang]
+symbol = " "
+
+[guix_shell]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[hostname]
+ssh_symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = "󰍛 "
+
+[meson]
+symbol = "󰔷 "
+
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+format = 'via [${symbol}$version](bold green) '
+symbol = " "
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = "󰍲 "
+
+[package]
+symbol = "󰏗 "
+
+[pijul_channel]
+symbol = " "
+
+[python]
+symbol = " "
+format = "[$virtualenv]($style) "
+style = "bright-black"
+
+[rlang]
+symbol = "󰟔 "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+

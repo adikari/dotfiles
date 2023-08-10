@@ -60,6 +60,9 @@ for account in $accounts; do
   if [ ! -d $HOME/.local/share/mail/$account ]; then
     mkdir -p $HOME/.local/share/mail/$account
   fi
+  if [ ! -d $HOME/.local/share/mail/$account/Archive ]; then
+    mkdir -p $HOME/.local/share/mail/$account/Archive/{cur,tmp,new} 
+  fi
   syncandnotify &
 done
 
@@ -76,7 +79,7 @@ notmuch tag +inbox +unread -new -- tag:new
 # tag all messages from "me" as sent and remove tags inbox and unread 
 notmuch tag -new -inbox +sent -- \
   from:me@subash.com.au or from:subash.adikari@gmail.com \
-  from:subash.adhikari@memories.net from:subash.adhikari@kobainsurance.com
+  from:subash.adhikari@memories.net or from:subash.adhikari@kobainsurance.com
 
 #Create a touch file that indicates the time of the last run of mailsync
 touch "$HOME/.config/mutt/.mailsynclastrun"

@@ -5,7 +5,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export LC_ALL=en_AU.UTF-8
 export LANG=en_AU.UTF-8
 export TERMINAL=kitty
-export EDITOR=nvim
+# export EDITOR=nvim
 export ZSH_COMPLETION_DIR=$HOME/.zsh_completions
 export ZSH_PLUGIN_DIR=$HOME/.zsh_plugins
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
@@ -55,7 +55,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 if which fzf > /dev/null 2>&1; then
-  # osx
   zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 
   # arch
@@ -67,3 +66,4 @@ if command -v direnv 1>/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
 
+eval "$(starship init zsh)"

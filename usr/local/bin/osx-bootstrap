@@ -49,6 +49,7 @@ binaries=(
  jq # lightweight json parser
  koekeishiya/formulae/yabai # MacOS window manager
  stow
+ starship
 )
 
 echo "installing binaries..."

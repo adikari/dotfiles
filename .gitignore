@@ -10,3 +10,4 @@ Session.vim
 scratch.txt
 .mailsynclastrun
 timers.target.wants
+config/tmux/plugins

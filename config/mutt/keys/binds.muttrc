@@ -31,11 +31,11 @@ bind index,pager f change-folder
 bind index,pager \Cu half-up
 bind index,pager \Cd half-down
 bind index,pager \Cb sidebar-toggle-visible
-bind index,pager \CJ sidebar-next
-bind index,pager \CK sidebar-prev
+bind index,pager N sidebar-next
+bind index,pager P sidebar-prev
 bind index,pager \Co sidebar-open
-bind index,pager \Cn next-unread
-bind index,pager \Cp previous-unread
+bind index,pager n next-unread
+bind index,pager p previous-unread
 bind index,pager H view-raw-message
 bind index,pager v view-attachments
 bind index,pager | pipe-message
@@ -92,9 +92,8 @@ bind attach,compose | pipe-entry
 # Commands and Misc
 bind index,pager $ sync-mailbox # more like a refresh than a sync
 bind editor <Tab> complete-query
-bind index,pager n search-next
-bind index,pager N search-opposite
-bind index,pager p search-opposite
+bind index,pager s search-next
+bind index,pager S search-opposite
 bind index,pager,attach,editor,compose <F5> refresh
 macro index,pager \cl '<pipe-message>urlscan -d -w 80<enter>' "call urlscan to open links"
 macro index O "<shell-escape>mbsync -a -c $HOME/.config/isync/mbsyncrc<enter>" "run mbsync to sync all mail"
