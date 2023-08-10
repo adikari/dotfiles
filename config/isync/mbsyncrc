@@ -19,7 +19,7 @@ Channel subashcom
 Expunge Both
 Far :subashcom-remote:
 Near :subashcom-local:
-Patterns * 
+Patterns ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Trash" "[Gmail]/Drafts" "[Gmail]/Spam"
 Create Both
 SyncState *
 MaxMessages 1000
@@ -44,7 +44,7 @@ Channel personal
 Expunge Both
 Far :personal-remote:
 Near :personal-local:
-Patterns * 
+Patterns ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Bin" "[Gmail]/Drafts" "[Gmail]/Spam"
 Create Both
 SyncState *
 MaxMessages 1000
