@@ -12,7 +12,7 @@ source $HOME/.config/mutt/keys/binds.muttrc
 source ~/.config/mutt/styles.muttrc
 
 #### Accounts
-source $HOME/.config/mutt/accounts/personal.muttrc  
+source $HOME/.config/mutt/accounts/subashcom.muttrc  
 # macro index,pager i1 '<sync-mailbox><enter-command>source $HOME/.config/mutt/accounts/1-sampleaccount.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to sample account" 
 # macro index,pager i2 '<sync-mailbox><enter-command>source $HOME/.config/mutt/accounts/2-anotheraccount.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to another account" 
 # macro index,pager i3 '<sync-mailbox><enter-command>source $HOME/.config/mutt/accounts/3-someotheraccount.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to some other account" 

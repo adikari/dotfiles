@@ -17,11 +17,6 @@ setopt appendhistory
 # better autocomplete
 zstyle ':completion:*' menu select
 
-# attach tmux when terminal starts
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  tmux attach || exec tmux new-session
-fi
-
 # load fnm
 [ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd --version-file-strategy recursive)" > /dev/null 2>&1
 

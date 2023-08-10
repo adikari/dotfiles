@@ -107,6 +107,9 @@ packages=(
 
   # mutt
   neomutt
+  msmtp
+  isync
+  mbsync
   notmuch
   pandoc
  

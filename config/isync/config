@@ -1,0 +1,69 @@
+# Example Generic IMAP profile ################################################
+
+# me@subash.com.au config
+IMAPStore subashcom-remote
+Host imap.gmail.com
+Port 993
+User me@subash.com.au
+PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/dotfiles/extras/secrets/subashcom-password"
+
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore subashcom-local
+Subfolders Verbatim
+Path ~/.local/share/mail/subashcom/
+Inbox ~/.local/share/mail/subashcom/INBOX
+Flatten .
+
+Channel subashcom
+Expunge Both
+Far :subashcom-remote:
+Near :subashcom-local:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 1000
+ExpireUnread no
+
+
+# Example Office365/Outlook (IMAP enabled/allowed) profile ####################
+#
+# Change ACCOUNT_ALIAS to something meaningful (e.g. personal, work) - this should
+# match the account alias used in .config/mutt/accounts/*
+# IMAPStore ACCOUNT_ALIAS-remote
+# Host outlook.office365.com
+# Port 993
+# User myemail@corporateoverlords.com
+# NOTE that if you use 2FA you will have to generate an app password to use
+# here instead:
+# https://support.microsoft.com/en-us/account-billing/manage-app-passwords-for-two-step-verification-d6dc8c6d-4bf7-4851-ad95-6d07799387e9
+# If you can't do this you might have to use the DavMail approach instead of
+# direct IMAP - see below
+# how to get your password ('pass' and 'gpg' are good for these)
+# using 'pass')
+# PassCmd "pass my-owa-password"
+# using 'gpg'
+#PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d my-owa-password.gpg"
+# AuthMechs LOGIN
+# SSLType IMAPS
+# CertificateFile /etc/ssl/certs/ca-certificates.crt
+#
+# MaildirStore ACCOUNT_ALIAS-local
+# Subfolders Verbatim
+# Path ~/.local/share/mail/ACCOUNT_ALIAS/
+# Inbox ~/.local/share/mail/ACCOUNT_ALIAS/INBOX
+# Flatten .
+#
+# Channel ACCOUNT_ALIAS
+# Expunge Both
+# Far :ACCOUNT_ALIAS-remote:
+# Near :ACCOUNT_ALIAS-local:
+# Create Both
+# SyncState *
+# MaxMessages 1000
+# ExpireUnread no
+
+
+# vim: filetype=conf

@@ -24,6 +24,7 @@ fi
 
 echo "setting up dotfiles.." | tee -a $Log 
 sudo rm -f ~/.zshrc /etc/locale.conf
+sudo rm -rf /usr/local/bin
 stow --target=$HOME home 
 stow --target=$XDG_CONFIG_HOME config
 sudo stow --target=/etc etc
