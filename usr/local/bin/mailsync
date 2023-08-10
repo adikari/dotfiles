@@ -2,10 +2,6 @@
 
 # Sync mail and give notification if there is new mail. - originally written by Luke Smith (lukesmith.xyz)
 
-# notmuch path
-export NOTMUCH_CONFIG="$HOME/.config/notmuch/notmuchrc"
-
-
 # Run only if user logged in (prevent cron errors)
 pgrep -u "${USER:=$LOGNAME}" >/dev/null || { echo "$USER not logged in; sync will not run."; exit ;}
 
@@ -55,31 +51,32 @@ else
     done
     accounts=$*
 fi
-#
-# echo " " > /tmp/imapsyncicon_"$USER"
-# ( pkill -RTMIN+12 "${STATUSBAR:-blocks}" >/dev/null 2>&1 ) 2>/dev/null
-#
-# # Parallelize multiple accounts
-# for account in $accounts; do
-#   if [ ! -d $HOME/.local/share/mail/$account ]; then
-#     mkdir -p $HOME/.local/share/mail/$account
-#   fi
-#   syncandnotify &
-# done
-#
-# wait
-#
-# rm -f /tmp/imapsyncicon_"$USER"
-# ( pkill -RTMIN+12 "${STATUSBAR:-blocks}" >/dev/null 2>&1 ) 2>/dev/null
+
+echo " " > /tmp/imapsyncicon_"$USER"
+( pkill -RTMIN+12 "${STATUSBAR:-blocks}" >/dev/null 2>&1 ) 2>/dev/null
+
+# Parallelize multiple accounts
+for account in $accounts; do
+  if [ ! -d $HOME/.local/share/mail/$account ]; then
+    mkdir -p $HOME/.local/share/mail/$account
+  fi
+  syncandnotify &
+done
+
+wait
+
+rm -f /tmp/imapsyncicon_"$USER"
+( pkill -RTMIN+12 "${STATUSBAR:-blocks}" >/dev/null 2>&1 ) 2>/dev/null
 
 notmuch new 2>/dev/null
 
 # retag all "new" messages "inbox" and "unread"
 notmuch tag +inbox +unread -new -- tag:new
 
-# tag all messages from "me" as sent and remove tags inbox and unread (add all your email addressess here)
-# notmuch tag -new -inbox +sent -- from:myemail@email.com or from:myotheremail@email.com
-
+# tag all messages from "me" as sent and remove tags inbox and unread 
+notmuch tag -new -inbox +sent -- \
+  from:me@subash.com.au or from:subash.adikari@gmail.com \
+  from:subash.adhikari@memories.net from:subash.adhikari@kobainsurance.com
 
 #Create a touch file that indicates the time of the last run of mailsync
 touch "$HOME/.config/mutt/.mailsynclastrun"

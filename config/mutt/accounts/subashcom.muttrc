@@ -22,15 +22,15 @@ virtual-mailboxes "All Mail" "notmuch://?query=tag:inbox%20and%20path:subashcom%
 set spoolfile = "+INBOX"
 set record = "+[Gmail].Sent Mail"
 set postponed = "+[Gmail].Drafts"
-set trash = ""
+set trash = "+[Gmail].Trash"
 
 # Query with goobook
 set query_command="goobook -c ~/.config/goobook/goobookrc query %s"
 
 # a add to address book
-# macro index,pager a "<pipe-message>goobook -c ~/.config/goobook/goobookrc add<return>" "add the sender address to Google contacts"
+macro index,pager a "<pipe-message>goobook -c ~/.config/goobook/goobookrc add<return>" "add the sender address to Google contacts"
 
-mailboxes "=[Gmail].Starred"  "=INBOX" "=[Gmail].Bin" "=[Gmail].Drafts" "=[Gmail].Spam" "=Archive" "=[Gmail].Sent\ Mail"
+mailboxes "=[Gmail].Starred"  "=INBOX" "=[Gmail].Trash" "=[Gmail].Drafts" "=[Gmail].Spam" "=Archive" "=[Gmail].Sent\ Mail"
 
 macro index gi "<change-folder>=INBOX<enter>" "go to inbox"
 macro index Mi ";<save-message>=INBOX<enter><enter>" "move mail to inbox"

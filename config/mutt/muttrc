@@ -86,4 +86,3 @@ set wait_key=no
 
 # sync mailbox whenever idle
 timeout-hook 'exec sync-mailbox' 
-

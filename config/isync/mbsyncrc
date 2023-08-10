@@ -5,7 +5,7 @@ IMAPStore subashcom-remote
 Host imap.gmail.com
 Port 993
 User me@subash.com.au
-PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt $HOME/dotfiles/extras/secrets/subashcom-password"
+PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt $HOME/dotfiles/extras/secrets/subashcom-email"
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
@@ -19,7 +19,32 @@ Channel subashcom
 Expunge Both
 Far :subashcom-remote:
 Near :subashcom-local:
-Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Trash"
+Create Both
+SyncState *
+MaxMessages 1000
+ExpireUnread no
+
+# subash.adikari@gmail.com config
+IMAPStore personal-remote
+Host imap.gmail.com
+Port 993
+User subash.adikari@gmail.com
+PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt $HOME/dotfiles/extras/secrets/subashadikari-email"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore personal-local
+Subfolders Verbatim
+Path ~/.local/share/mail/personal/
+Inbox ~/.local/share/mail/personal/INBOX
+Flatten .
+
+Channel personal
+Expunge Both
+Far :personal-remote:
+Near :personal-local:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Trash"
 Create Both
 SyncState *
 MaxMessages 1000
