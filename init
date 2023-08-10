@@ -24,11 +24,9 @@ fi
 
 echo "setting up dotfiles.." | tee -a $Log 
 sudo rm -f ~/.zshrc /etc/locale.conf
-sudo rm -rf /usr/local/bin
 stow --target=$HOME home 
 stow --target=$XDG_CONFIG_HOME config
 sudo stow --target=/etc etc
-sudo stow --target=/usr usr
 
 echo "installing tmux plugins" | tee -a $Log
 if [ ! -d $HOME/.tmux/plugins/tpm ]; then
@@ -51,8 +49,9 @@ fnm default lts-latest
 echo "installing lf"
 env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
 
-# setup mutt directories
-[ ! -d ~/.cache/mutt/Personal/bodies ] && mkdir -p ~/.cache/mutt/Personal/bodies
+echo "setting email with mutt"
+systemctl --user start mailsync
+systemctl --user enable mailsync.timer
 
 echo "all done!!"
 
