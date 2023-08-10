@@ -55,7 +55,7 @@
     "format" : "{}",
     "icon-size": 16,
     "interval" : 30,
-    "exec" : "~/dotfiles/bin/weather",
+    "exec" : "weather",
     "return-type" : "json"
   },
 
@@ -146,10 +146,10 @@
   "pulseaudio": {
     "format": "{icon}",
     "format-muted": "",
-    "on-click": "~/dotfiles/bin/volume --toggle",
+    "on-click": "volume --toggle",
     "on-click-right": "pavucontrol",
-    "on-scroll-up": "~/dotfiles/bin/volume --inc",
-    "on-scroll-down": "~/dotfiles/bin/volume --dec",
+    "on-scroll-up": "volume --inc",
+    "on-scroll-down": "volume --dec",
     "scroll-step": 5,
     "format-icons": {
       "headphone": "󰋋",
@@ -168,10 +168,10 @@
     "format": "{format_source}",
     "format-source": "",
     "format-source-muted": "",
-    "on-click": "~/dotfiles/bin/volume --toggle-mic",
+    "on-click": "volume --toggle-mic",
     "on-click-right": "pavucontrol",
-    "on-scroll-up": "~/dotfiles/bin/volume --mic-inc",
-    "on-scroll-down": "~/dotfiles/bin/volume --mic-dec",
+    "on-scroll-up": "volume --mic-inc",
+    "on-scroll-down": "volume --mic-dec",
     "scroll-step": 5,
     "tooltip": true,
     "tooltip-format": " at {volume}%"
@@ -183,8 +183,8 @@
     "format-alt-click": "click-right",
     "tooltip-format": "{icon} Brightness {percent}%",
     "format-icons": ["󰃞", "󰃟", "󰃠"],
-    "on-scroll-up": "~/dotfiles/bin/brightness --inc",
-    "on-scroll-down": "~/dotfiles/bin/brightness --dec"
+    "on-scroll-up": "brightness --inc",
+    "on-scroll-down": "brightness --dec"
   },
 
   "tray": {
@@ -194,8 +194,8 @@
 
   "custom/updates": {
     "format": "{}",
-    "exec": "~/dotfiles/bin/update-sys",
-    "on-click": "~/dotfiles/bin/update-sys update",
+    "exec": "update-sys",
+    "on-click": "update-sys update",
     "interval": 300,
     "tooltip": true
   }

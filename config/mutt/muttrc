@@ -24,11 +24,60 @@ set reverse_name	            # reply as whomever it was to
 set reverse_realname=yes      # use any real name provided when replying
 set auto_tag                  # automatically apply commands to all tagged messages (if some messages are tagged)
 set include			              # include message in replies
-set mail_check=5              # to avoid lags using IMAP with some email providers 
+set mail_check=15              # to avoid lags using IMAP with some email providers 
 set timeout=5                 # how long to wait after user input until unblocking background stuff like mail syncing
 set count_alternatives=yes    # recurse into text/multipart when looking for attachement types
 set thorough_search=no        # don't process mail (via mailcap etc) before parsing with queries like ~B 
 set flag_safe                 # flagged messages can't be deleted
+set editor = "neovim"            # set editor to vim
+set charset = "utf-8"
+
+#### Notmuch Config
+set nm_query_type=threads                                   # bring in the whole thread instead of just the matched message, really useful
+set nm_default_url = "notmuch:///$HOME/.local/share/mail"   # default notmuch URL
+set nm_record_tags = "sent"                                 # default 'sent' tag
+set virtual_spoolfile=yes                                   # allow using virtual mailboxes as spoolfile 
+# macro index \Cg "<enter-command>unset wait_key<enter><shell-escape>read -p 'Enter a search: ' x; echo \$x >~/.cache/mutt_terms<enter><change-folder>All Accounts<enter><limit>~i \"\`notmuch --config ~/.config/notmuch/notmuchrc search --output=messages \$(/bin/cat ~/.cache/mutt_terms) | head -n 1000 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a' | sed 's/id://g' \`\"<enter>" "Search all mailboxes in all accounts (Global search)"
+
+#### Sidebar Config
+set sidebar_divider_char = ' 	░'
+set sidebar_folder_indent = yes
+set sidebar_indent_string = ' - '
+set sidebar_non_empty_mailbox_only = yes
+set sidebar_visible = no
+set sidebar_width   = 50
+set sidebar_next_new_wrap = yes
+set sidebar_short_path = yes
+set sidebar_component_depth = 0
+
+#### Thread ordering
+set use_threads=reverse
+set sort='last-date'
+set collapse_all = yes
+set uncollapse_new = no
+set thread_received = yes
+set narrow_tree=no
+
+#### Lists
+set auto_subscribe
+
+### Sounds
+set beep=no  # don't beep for errors
+set beep_new # beep for new messages
+
+#### Text editor
+set editor="mutt-trim %s; nvim +':set textwidth=72' +':set wrapmargin=0' +':set wrap' +':set spell' %s"
+
+#### Markdown to html email conversion
+macro compose M "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=UTF-8\n" "Convert from MD to HTML"
+
+#### Show patch files (requires git-split-diffs)
+macro attach P "|git-split-diffs --color | less -RF<enter>" "View a patch file as a diff"
+set wait_key=no
+
+
+# sync mailbox whenever idle
+timeout-hook 'exec sync-mailbox' 
 
 #### Colors, Symbols and Formatting
 source ~/.config/mutt/styles.muttrc

@@ -1,7 +1,7 @@
 # For more information about notmuch, see https://notmuchmail.org
 
 [database]
-path=$HOME/.local/share/mail
+path=.local/share/mail
 
 [user]
 name=subash adhikari

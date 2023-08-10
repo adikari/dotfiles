@@ -1,17 +1,45 @@
 # Formatting   ----------------------------------------------------------------------
 set date_format = "%a %d %h %H:%M"
+
 set index_format="  %zc %zs %zt  | %-35.35L   %@attachment_info@  %?M10?~(%1M) ?%-30.100s %> %?Y?%Y ? %(!%a %d %h %H:%M)  "
-set pager_format="%n %T %s%*  %{!%d %b · %H:%M} %?X? %X?%P"
-set status_format = " %D %?u? %u ?%?R? %R ?%?d? %d ?%?t? %t ?%?F? %F ?%?p? %p? \n  \n"
+set pager_format="%n %T %s%*  %{!%d %b · %H:%M} %?X? %X?%P"
+set status_format = "%D  %?u? %u ?%?R?󰉚 %R ?%?d? %d ?%?t?  %t ?%?F? %F ?%?p?  %p? \n  \n"
 set compose_format="-- NeoMutt: Compose  [Approx. msg size: %l   Atts: %a]%>-"
-# set vfolder_format = "%N %?n?%3n&   ?  %8m  · %f"
+# # set vfolder_format = "%N %?n?%3n&   ?  %8m  · %f"
 set attach_format = "%u%D  %T%-75.75d %?T?%&   ? %5s · %m/%M"
 set sidebar_format = '%D%?Z? [%Z]?%* %?S?%S?'
-index-format-hook attachment_info '=B text/calendar ~X 1' ' '
+index-format-hook attachment_info '=B text/calendar ~X 1' ' '
 index-format-hook attachment_info '=B text/calendar' "  "
-index-format-hook attachment_info '~X 1' "  "
+index-format-hook attachment_info '~X 1' "  󰁦"
 index-format-hook attachment_info '~A' "   "
 
+# Misc  -----------------------------------------------------------------------------
+
+# no addressed to me, to me, group, cc, sent by me, mailing list
+# icons for list view
+set to_chars="      "
+#
+# # unchanged mailbox, changed, read only, attach mode
+set status_chars = " 󰇱"
+ifdef crypt_chars set crypt_chars = " "
+set flag_chars = "      "
+set markers=no
+#
+# # hide some tags
+set hidden_tags = "unread,draft,flagged,passed,replied,attachment,signed,encrypted"
+tag-transforms "replied" "↻ "  \
+               "encrytpted" "" \
+               "signed" "" \
+               "attachment" "" \
+#
+# # The formats must start with 'G' and the entire sequence is case sensitive.
+tag-formats "replied" "GR" \
+            "encrypted" "GE" \
+            "signed" "GS" \
+            "attachment" "GA" \
+            
+
+# Theme -------------------------------------------------------------------------------
 color normal		  default default         # Text is "Text"
 color index		    color2 default ~N       # New Messages are Green
 color index		    color1 default ~F       # Flagged messages are Red
@@ -47,28 +75,4 @@ color body		color4 default		(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)     # 
 color sidebar_flagged   color1 default    # Mailboxes with flagged mails are Red
 color sidebar_new       color10 default   # Mailboxes with new mail are Green
 
-# don't put '+' at the beginning of wrapped lines
-# Misc  -----------------------------------------------------------------------------
-
-# no addressed to me, to me, group, cc, sent by me, mailing list
-set to_chars=" "
-
-# unchanged mailbox, changed, read only, attach mode
-set status_chars = " "
-ifdef crypt_chars set crypt_chars = " "
-set flag_chars = "      "
-
-# hide some tags
-set hidden_tags = "unread,draft,flagged,passed,replied,attachment,signed,encrypted"
-tag-transforms "replied" "↻ "  \
-               "encrytpted" "" \
-               "signed" "" \
-               "attachment" "" \
-
-# The formats must start with 'G' and the entire sequence is case sensitive.
-tag-formats "replied" "GR" \
-            "encrypted" "GE" \
-            "signed" "GS" \
-            "attachment" "GA" \
-            
-set markers=no
+# vim: filetype=muttrc

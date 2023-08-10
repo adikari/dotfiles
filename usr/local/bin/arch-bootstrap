@@ -104,6 +104,8 @@ packages=(
   slurp 
   btop
   hyprpicker-git
+
+  # mutt
   neomutt
   notmuch
  

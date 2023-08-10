@@ -50,6 +50,9 @@ fnm default lts-latest
 echo "installing lf"
 env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
 
+# setup mutt directories
+[ ! -d ~/.cache/mutt/Personal/bodies ] && mkdir -p ~/.cache/mutt/Personal/bodies
+
 echo "all done!!"
 
 exec zsh
