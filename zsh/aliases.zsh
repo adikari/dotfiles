@@ -1,6 +1,6 @@
 alias \
   ss="sudo su -" \
-  tmux="tmux -2" \
+  tmux="tmux -2 -f ~/.config/tmux/tmux.conf" \
   fucking=sudo \
   av=aws-vault \
   ave="aws-vault exec" \

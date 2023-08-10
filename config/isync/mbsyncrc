@@ -5,9 +5,7 @@ IMAPStore subashcom-remote
 Host imap.gmail.com
 Port 993
 User me@subash.com.au
-PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/dotfiles/extras/secrets/subashcom-password"
-
-AuthMechs LOGIN
+PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt $HOME/dotfiles/extras/secrets/subashcom-password"
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
@@ -26,7 +24,6 @@ Create Both
 SyncState *
 MaxMessages 1000
 ExpireUnread no
-
 
 # Example Office365/Outlook (IMAP enabled/allowed) profile ####################
 #

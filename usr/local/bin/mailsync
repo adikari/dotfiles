@@ -5,8 +5,10 @@
 # notmuch path
 export NOTMUCH_CONFIG="$HOME/.config/notmuch/notmuchrc"
 
+
 # Run only if user logged in (prevent cron errors)
 pgrep -u "${USER:=$LOGNAME}" >/dev/null || { echo "$USER not logged in; sync will not run."; exit ;}
+
 # Run only if not already running in other instance
 pgrep -x mbsync >/dev/null && { echo "mbsync is already running." ; exit ;}
 
@@ -49,29 +51,34 @@ if [ "$#" -eq "0" ]; then
     accounts="$(awk '/^Channel/ {print $2}' "$HOME/.config/isync/mbsyncrc")"
 else
     for arg in "$@"; do
-        [ "${arg%${arg#?}}" = '-' ] && opts="${opts:+${opts} }${arg}" && shift 1
+      [ "${arg%${arg#?}}" = '-' ] && opts="${opts:+${opts} }${arg}" && shift 1
     done
     accounts=$*
 fi
-
-echo " 🔃" > /tmp/imapsyncicon_"$USER"
-( pkill -RTMIN+12 "${STATUSBAR:-blocks}" >/dev/null 2>&1 ) 2>/dev/null
-
-# Parallelize multiple accounts
-for account in $accounts
-do
-    syncandnotify &
-done
-
-wait
-rm -f /tmp/imapsyncicon_"$USER"
-( pkill -RTMIN+12 "${STATUSBAR:-blocks}" >/dev/null 2>&1 ) 2>/dev/null
+#
+# echo " " > /tmp/imapsyncicon_"$USER"
+# ( pkill -RTMIN+12 "${STATUSBAR:-blocks}" >/dev/null 2>&1 ) 2>/dev/null
+#
+# # Parallelize multiple accounts
+# for account in $accounts; do
+#   if [ ! -d $HOME/.local/share/mail/$account ]; then
+#     mkdir -p $HOME/.local/share/mail/$account
+#   fi
+#   syncandnotify &
+# done
+#
+# wait
+#
+# rm -f /tmp/imapsyncicon_"$USER"
+# ( pkill -RTMIN+12 "${STATUSBAR:-blocks}" >/dev/null 2>&1 ) 2>/dev/null
 
 notmuch new 2>/dev/null
+
 # retag all "new" messages "inbox" and "unread"
 notmuch tag +inbox +unread -new -- tag:new
+
 # tag all messages from "me" as sent and remove tags inbox and unread (add all your email addressess here)
-notmuch tag -new -inbox +sent -- from:myemail@email.com or from:myotheremail@email.com
+# notmuch tag -new -inbox +sent -- from:myemail@email.com or from:myotheremail@email.com
 
 
 #Create a touch file that indicates the time of the last run of mailsync
