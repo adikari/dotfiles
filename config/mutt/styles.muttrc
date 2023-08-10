@@ -3,7 +3,7 @@ set date_format = "%a %d %h %H:%M"
 
 set index_format="  %zc %zs %zt  | %-35.35L   %@attachment_info@  %?M10?~(%1M) ?%-30.100s %> %?Y?%Y ? %(!%a %d %h %H:%M)  "
 set pager_format="%n %T %s%*  %{!%d %b · %H:%M} %?X? %X?%P"
-set status_format = "%D  %?u?󰇮 %u ?%?R?󰇯 %R ?%?d? %d ?%?t?  %t ?%?F? %F ?%?p? %p? \n  \n"
+set status_format = "%D  %?u? %u ?%?R?󰇮 %R ?%?d? %d ?%?t?  %t ?%?F? %F ?%?p? %p? \n  \n"
 set compose_format="-- NeoMutt: Compose  [Approx. msg size: %l   Atts: %a]%>-"
 # # set vfolder_format = "%N %?n?%3n&   ?  %8m  · %f"
 set attach_format = "%u%D  %T%-75.75d %?T?%&   ? %5s · %m/%M"
@@ -39,40 +39,116 @@ tag-formats "replied" "GR" \
             "attachment" "GA" \
             
 
-# Theme -------------------------------------------------------------------------------
-color normal		  default default         # Text is "Text"
-color index		    color2 default ~N       # New Messages are Green
-color index		    color1 default ~F       # Flagged messages are Red
-color index		    color13 default ~T      # Tagged Messages are Red
-color index		    color1 default ~D       # Messages to delete are Red
-color attachment	color5 default          # Attachments are Pink
-color signature	  color8 default          # Signatures are Surface 2
-color search		  color4 default          # Highlighted results are Blue
+# General Colors   ------------------------------------------------------------------
+color normal default default                            # general text
+color error red default                                   # error messages
+color message default default                           # messages at the bottom
+color prompt default default                            # prompt text
+color search black color10                              # search highlight
 
-color indicator		default color8          # currently highlighted message Surface 2=Background Text=Foreground
-color error		    color1 default          # error messages are Red
-color status		  color15 default         # status line "Subtext 0"
-color tree        color15 default         # thread tree arrows Subtext 0
-color tilde       color15 default         # blank line padding Subtext 0
 
-color hdrdefault  color13 default         # default headers Pink
-color header		  color13 default "^From:"
-color header	 	  color13 default "^Subject:"
+# Statusbar Colors   ----------------------------------------------------------------
+color status default default
+color status white default '([a-zA-Z0-9\.]+)( )'           # account text
+color status green default ''                             # Unread messages count
+color status blue default '󰇮 '                             # Read messages count icon
+color status yellow default ''                            # Flagged icon
+color status red default ''                               # Pending delete icon
 
-color quoted		  color15 default         # Subtext 0
-color quoted1		  color7 default          # Subtext 1
-color quoted2		  color8 default          # Surface 2
-color quoted3		  color0 default          # Surface 1
-color quoted4		  color0 default
-color quoted5		  color0 default
+# Index Colors   --------------------------------------------------------------------
+color index green default '~N'                  # new messages
+color index default default '~R'                # read messages
+color index default default '~Q'                # messages which have been replied to
+color index_collapsed default default           # collapsed thread (message count text)
+color index default default '!~Q^~p'            # sent only to me and haven't been replied to
+color index color22 default '~h X-Label..'     # messages with a complete label
+color index color6 default '~F'                 # flagged messages
+color index color6 default '~F~N'               # flagged messages (new)
+color index color14 default '~F~R'              # flagged messages (read)
+color index color1 default '~D'                 # deleted messages
+color index color1 default '~D~N'               # deleted messages (new)
+color index color9 default '~D~R'               # deleted messages (read)
+color index color3 default '~T'                 # tagged messages
+color index color3 default '~T~N'               # tagged messages (new)
+color index color11 default '~T~R'              # tagged messages (read)
+color tree  color8 color8                       # thread tree lines/arrow
+color indicator brightblack blue                # selection indicator
+color index_date color8 default                 # date is always the same colour
+color index_label color6 default                # label is always the same colour
 
-color body		color2 default		[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+               # email addresses Green
-color body	  color2 default		(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+        # URLs Green
-color body		color4 default		(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$) # *bold* text Blue
-color body		color4 default		(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)     # _underlined_ text Blue
-color body		color4 default		(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)     # /italic/ text Blue
 
-color sidebar_flagged   color1 default    # Mailboxes with flagged mails are Red
-color sidebar_new       color10 default   # Mailboxes with new mail are Green
+# Sidebar Colors   ------------------------------------------------------------------
+color sidebar_indicator brightblack blue    # currently selected mailbox
+color sidebar_highlight brightblack white   # highlighted, but not open, mailbox.
+color sidebar_ordinary white default        # Color to give mailboxes by default
+color sidebar_divider white default         # divider between sidebar & content
+color sidebar_flagged red default           # mailboxes containing flagged mail
+color sidebar_new green default             # mailboxes containing new mail
+color sidebar_unread color7 default         # mailboxes containing unread mail
+color sidebar_unread color7 default         # mailboxes containing unread mail
+
+
+# Message Headers   -----------------------------------------------------------------
+color hdrdefault color8 default
+
+
+# Message Body   --------------------------------------------------------------------
+
+# Attachments
+color attachment color8 default
+
+# Signature
+color signature color8 default
+
+# emails
+# color body  color14 default  '[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+'
+
+# hide "mailto" 
+color body color0 color0  '<mailto:[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+>'
+
+# URLs
+color body blue default  '(https?|ftp)://[-\.,/%~_:?&=\#a-zA-Z0-9\+]+'
+
+# Dividers
+color body color8 default '(^[-_]*$)'
+
+# Important info in calendar invites
+color body color6 default '^(Date\/Time|Location|Organiser|Invitees|Teams Meeting)(:| \~\~)'
+
+# Quotes
+color quoted		color61		default
+color quoted1		color117	default
+color quoted2		color84		default
+color quoted3		color215	default
+color quoted4		color212	default
+
+# Forward/reply headers
+color body color8 default '(^(To|From|Sent|Subject):.*)'
+
+# Patch syntax highlighting
+# color   body    brightwhite     default         '^[[:space:]].*'
+# color   body    yellow          default         ^(diff).*
+# color   body    white           default         ^[\-\-\-].*
+# color   body    white           default         ^[\+\+\+].*
+# color   body    green           default         ^[\+].*
+# color   body    red             default         ^[\-].*
+# color   body    brightblue      default         [@@].*
+# color   body    cyan            default         ^(Signed-off-by).*
+# color   body    brightwhite     default         ^(Cc)
+# color   body    yellow          default         "^diff \-.*"
+# color   body    brightwhite     default         "^index [a-f0-9].*"
+# color   body    brightblue      default         "^---$"
+# color   body    white           default         "^\-\-\- .*"
+# color   body    white           default         "^[\+]{3} .*"
+# color   body    green           default         "^[\+][^\+]+.*"
+# color   body    red             default         "^\-[^\-]+.*"
+# color   body    brightblue      default         "^@@ .*"
+# color   body    green           default         "LGTM"
+# color   body    brightmagenta   default         "-- Commit Summary --"
+# color   body    brightmagenta   default         "-- File Changes --"
+# color   body    brightmagenta   default         "-- Patch Links --"
+# color   body    green           default         "^Merged #.*"
+# color   body    red             default         "^Closed #.*"
+# color   body    brightblue      default         "^Reply to this email.*"
 
 # vim: filetype=muttrc
