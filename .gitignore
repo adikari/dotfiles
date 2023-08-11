@@ -11,3 +11,4 @@ scratch.txt
 .mailsynclastrun
 timers.target.wants
 config/tmux/plugins
+.ssh
