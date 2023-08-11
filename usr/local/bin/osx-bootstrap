@@ -50,6 +50,7 @@ binaries=(
  koekeishiya/formulae/yabai # MacOS window manager
  stow
  starship
+ neomutt
 )
 
 echo "installing binaries..."
