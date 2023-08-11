@@ -7,12 +7,12 @@ Log=/tmp/dotfiles.log
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "platform is mac osx. Installing.."
-  ./bin/osx-bootstrap  | tee -a $Log
+  ./usr/local/bin/osx-bootstrap  | tee -a $Log
 fi
 
 if [ -f /etc/arch-release ]; then
   echo "platform is arch. Installing.."
-  ./bin/arch-bootstrap | tee -a $Log 
+  ./usr/local/bin/arch-bootstrap | tee -a $Log 
 fi
 
 nvim_dir=$XDG_CONFIG_HOME/nvim
