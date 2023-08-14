@@ -57,6 +57,9 @@ fnm default lts-latest
 echo "installing lf"
 env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
 
+echo "logging in to github"
+github-login
+
 if [[ $SHELL != *"zsh" ]]; then
   chsh -s $(which zsh)
 fi

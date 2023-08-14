@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -eo pipefail
+
+gh auth login \
+  --hostname github.com \
+  --git-protocol ssh \
+  --with-token <<< $(read-secret --var GITHUB_TOKEN)
