@@ -1,4 +1,4 @@
-plugins_dir=$HOME/dotfiles/zsh/plugins
+plugins_dir=$HOME/.config/zsh/plugins
 
 source $plugins_dir/z/zsh-z.plugin.zsh
 source $plugins_dir/gunstage/gunstage.plugin.zsh

@@ -21,9 +21,9 @@ zstyle ':completion:*' menu select
 # load fnm
 [ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd --version-file-strategy recursive)" > /dev/null 2>&1
 
-source $HOME/dotfiles/zsh/aliases.zsh
-source $HOME/dotfiles/zsh/completions.zsh
-source $HOME/dotfiles/zsh/plugins.zsh
+source $HOME/.config/zsh/aliases.zsh
+source $HOME/.config/zsh/completions.zsh
+source $HOME/.config/zsh/plugins.zsh
 
 [ -d /usr/local/sbin ] && PATH="/usr/local/sbin:$PATH"
 [ -d $HOME/bin ] && PATH="$HOME/bin:$PATH"
@@ -66,3 +66,5 @@ if command -v direnv 1>/dev/null 2>&1; then
 fi
 
 eval "$(starship init zsh)"
+
+# vim:ft=zsh
