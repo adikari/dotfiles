@@ -11,14 +11,14 @@ host smtp.gmail.com
 port 587
 from me@subash.com.au
 user me@subash.com.au
-passwordeval "gpg --quiet --for-your-eyes-only --no-tty --decrypt $HOME/dotfiles/extras/secrets/subashcom-email"
+passwordeval "read-secret --var SUBASHCOM_EMAIL"
 
 account personal
 host smtp.gmail.com
 port 587
 from subash.adikari@gmail.com
 user subash.adikari@gmail.com
-passwordeval "gpg --quiet --for-your-eyes-only --no-tty --decrypt $HOME/dotfiles/extras/secrets/subashadikari-email"
+passwordeval "read-secret --var PERSONAL_EMAIL"
 
 # Example outlook/office365 via SMTP
 # account ACCOUNT_ALIAS

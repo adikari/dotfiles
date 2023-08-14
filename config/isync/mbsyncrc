@@ -5,7 +5,7 @@ IMAPStore subashcom-remote
 Host imap.gmail.com
 Port 993
 User me@subash.com.au
-PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt $HOME/dotfiles/extras/secrets/subashcom-email"
+PassCmd "read-secret --var SUBASHCOM_EMAIL"
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
@@ -30,7 +30,7 @@ IMAPStore personal-remote
 Host imap.gmail.com
 Port 993
 User subash.adikari@gmail.com
-PassCmd "gpg --quiet --for-your-eyes-only --no-tty --decrypt $HOME/dotfiles/extras/secrets/subashadikari-email"
+PassCmd "read-secret --var PERSONAL_EMAIL"
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
