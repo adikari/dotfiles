@@ -1,11 +1,3 @@
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
-
-export LC_ALL=en_AU.UTF-8
-export LANG=en_AU.UTF-8
-export TERMINAL=kitty
-# export EDITOR=nvim
 export ZSH_COMPLETION_DIR=$HOME/.zsh_completions
 export ZSH_PLUGIN_DIR=$HOME/.zsh_plugins
 
@@ -25,6 +17,7 @@ source $HOME/.config/zsh/aliases.zsh
 source $HOME/.config/zsh/completions.zsh
 source $HOME/.config/zsh/plugins.zsh
 
+[ -d /opt/homebrew/bin ] && PATH="/opt/homebrew/bin:$PATH"
 [ -d /usr/local/sbin ] && PATH="/usr/local/sbin:$PATH"
 [ -d $HOME/bin ] && PATH="$HOME/bin:$PATH"
 [ -d $HOME/local/bin ] && PATH="$HOME/local/bin:$PATH"
