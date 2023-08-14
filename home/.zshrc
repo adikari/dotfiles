@@ -8,7 +8,6 @@ export TERMINAL=kitty
 # export EDITOR=nvim
 export ZSH_COMPLETION_DIR=$HOME/.zsh_completions
 export ZSH_PLUGIN_DIR=$HOME/.zsh_plugins
-export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
 
 # enable history
 HISTFILE=~/.zsh_history
