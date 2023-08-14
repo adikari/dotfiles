@@ -104,7 +104,7 @@ local plugins = {
     event = "VeryLazy",
     config = function()
       require("chatgpt").setup {
-        -- api_key_cmd = "op read op://private/openai/nvim_api_key --no-newline",
+        api_key_cmd = "read-secret --var OPENAI_API_KEY",
       }
     end,
     dependencies = {
