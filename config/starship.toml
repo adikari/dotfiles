@@ -19,7 +19,7 @@ continuation_prompt = '▶▶ '
 [aws]
 format = 'on [$symbol$region]($style) '
 style = 'bold blue'
-symbol = "  "
+symbol = " "
 
 [aws.region_aliases]
 ap-southeast-2 = 'syd'
