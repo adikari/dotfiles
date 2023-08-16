@@ -10,9 +10,6 @@ setopt appendhistory
 # better autocomplete
 zstyle ':completion:*' menu select
 
-# load fnm
-[ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd --version-file-strategy recursive)" > /dev/null 2>&1
-
 source $HOME/.config/zsh/aliases.zsh
 source $HOME/.config/zsh/completions.zsh
 source $HOME/.config/zsh/plugins.zsh
@@ -45,6 +42,9 @@ fi
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+# load fnm
+[ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd --version-file-strategy recursive)" > /dev/null 2>&1
 
 if which fzf > /dev/null 2>&1; then
   zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')

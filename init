@@ -10,7 +10,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   ./usr/local/bin/osx-bootstrap  | tee -a $Log
 fi
 
-if [ "$OSTYPE" == "linux-gnu"* ]; then
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "platform is arch. Installing.."
   ./usr/local/bin/arch-bootstrap | tee -a $Log 
 fi

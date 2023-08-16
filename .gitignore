@@ -12,3 +12,4 @@ scratch.txt
 timers.target.wants
 config/tmux/plugins
 .ssh
+.zcompdump

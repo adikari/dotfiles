@@ -8,6 +8,6 @@ export LANG=en_AU.UTF-8
 export TERMINAL=kitty
 export EDITOR=nvim
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # vim:ft=zsh
