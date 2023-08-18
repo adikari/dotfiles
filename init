@@ -49,6 +49,11 @@ if [ ! -d $HOME/.tmux/plugins/tpm ]; then
 fi
 $HOME/.tmux/plugins/tpm/bin/install_plugins
 
+echo "install safebox" | tee -a $log
+if [ ! -f /usr/local/bin/safebox ]; then
+  curl -sSL https://raw.githubusercontent.com/monebag/safebox/main/scripts/install.sh | sh
+fi
+
 echo "installing node lts" | tee -a $Log
 fnm install --lts
 fnm default lts-latest
