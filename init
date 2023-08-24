@@ -3,26 +3,26 @@
 set -euo pipefail
 
 XDG_CONFIG_HOME="$HOME/.config"
-Log=/tmp/dotfiles.log
+log=/tmp/dotfiles.log
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "platform is mac osx. Installing.."
-  ./usr/local/bin/osx-bootstrap  | tee -a $Log
+  ./usr/local/bin/osx-bootstrap  | tee -a $log
 fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "platform is arch. Installing.."
-  ./usr/local/bin/arch-bootstrap | tee -a $Log 
+  ./usr/local/bin/arch-bootstrap | tee -a $log 
 fi
 
 nvim_dir=$XDG_CONFIG_HOME/nvim
 if [ ! -d $nvim_dir ]; then 
-  echo "setting up nvchad base.." | tee -a $Log 
+  echo "setting up nvchad base.." | tee -a $log 
   mkdir -p $nvim_dir
-  git clone https://github.com/NvChad/NvChad $nvim_dir --depth 1 | tee -a $Log
+  git clone https://github.com/NvChad/NvChad $nvim_dir --depth 1 | tee -a $log
 fi
 
-echo "setting up dotfiles.." | tee -a $Log 
+echo "setting up dotfiles.." | tee -a $log 
 sudo rm -f ~/.zshrc /etc/locale.conf
 stow --target=$HOME home 
 stow --target=$XDG_CONFIG_HOME config
@@ -36,14 +36,14 @@ fi
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo stow --target=/usr usr 
   
-  sudo locale-gen | tee -a $Log
+  sudo locale-gen | tee -a $log
 
   echo "setting email with mutt"
   systemctl --user start mailsync
   systemctl --user enable mailsync.timer
 fi
 
-echo "installing tmux plugins" | tee -a $Log
+echo "installing tmux plugins" | tee -a $log
 if [ ! -d $HOME/.tmux/plugins/tpm ]; then
   git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 fi
@@ -54,7 +54,7 @@ if [ ! -f /usr/local/bin/safebox ]; then
   curl -sSL https://raw.githubusercontent.com/monebag/safebox/main/scripts/install.sh | sh
 fi
 
-echo "installing node lts" | tee -a $Log
+echo "installing node lts" | tee -a $log
 fnm install --lts
 fnm default lts-latest
 [ ! -f ~/.node-version ] && echo "lts-latest" > ~/.node-version

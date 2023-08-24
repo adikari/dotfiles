@@ -99,20 +99,20 @@ local plugins = {
 
   { "christoomey/vim-tmux-navigator", lazy = false },
 
-  {
-    "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("chatgpt").setup {
-        api_key_cmd = "read-secret --var OPENAI_API_KEY",
-      }
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-  },
+  -- {
+  --   "jackMort/ChatGPT.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("chatgpt").setup {
+  --       api_key_cmd = "read-secret --var OPENAI_API_KEY",
+  --     }
+  --   end,
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-telescope/telescope.nvim",
+  --   },
+  -- },
 
   {
     "iamcco/markdown-preview.nvim",
@@ -120,6 +120,13 @@ local plugins = {
     config = function()
       vim.fn["mkdp#util#install"]()
     end,
+  },
+
+  {
+    "folke/todo-comments.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
   },
 }
 
