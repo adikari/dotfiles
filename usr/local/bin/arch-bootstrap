@@ -44,6 +44,7 @@ packages=(
   jq
   make
   stow
+  less
 
   # development
   go
@@ -69,7 +70,6 @@ packages=(
   gnome-keyring
   pipewire 
   pipewire-pulse
-  #wireplumber 
   mako 
   swww 
   swayidle
@@ -110,7 +110,6 @@ packages=(
   neomutt
   msmtp
   isync
-  #mbsync
   notmuch
   pandoc
   html2text
@@ -126,9 +125,10 @@ packages=(
   postman-bin
   thunar 
   thunar-archive-plugin 
+  slack-desktop
+  teams
 
   # discord
-  # slack
 
   # fonts
   ttf-fantasque-nerd
@@ -205,4 +205,5 @@ fi
 # $HOME/dotfiles/usr/local/bin/set-theme
 
 # exec sudo systemctl start sddm
+
 echo "🎉  completed arch bootstrap"
