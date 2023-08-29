@@ -13,3 +13,4 @@ timers.target.wants
 config/tmux/plugins
 .ssh
 .zcompdump
+config/gh/hosts.yml
