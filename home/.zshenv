@@ -8,6 +8,10 @@ export LANG=en_AU.UTF-8
 export TERMINAL=kitty
 export EDITOR=nvim
 
-# . "$HOME/.cargo/env"
+if [ -f $HOME/.cargo/env ]; then
+  . "$HOME/.cargo/env"
+fi
+
+[ -f $HOME/.rover/env ] && source "$HOME/.rover/env"
 
 # vim:ft=zsh
