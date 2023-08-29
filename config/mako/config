@@ -24,7 +24,7 @@ markup=1
 actions=1
 history=1
 text-alignment=center
-default-timeout=10
+default-timeout=5000
 max-visible=5
 layer=overlay
 
@@ -36,4 +36,5 @@ progress-color=over #313244
 
 [urgency=high]
 border-color=#fab387
+default-timeout=0
 ignore-timeout=1
