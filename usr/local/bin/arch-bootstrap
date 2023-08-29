@@ -58,6 +58,7 @@ packages=(
   npm
   python-requests 
   pacman-contrib
+  starship
 
   # desktop environment with hyprland
   hyprland-git
@@ -68,7 +69,7 @@ packages=(
   gnome-keyring
   pipewire 
   pipewire-pulse
-  wireplumber 
+  #wireplumber 
   mako 
   swww 
   swayidle
@@ -109,7 +110,7 @@ packages=(
   neomutt
   msmtp
   isync
-  mbsync
+  #mbsync
   notmuch
   pandoc
   html2text
@@ -161,10 +162,15 @@ if [ ! -f /opt/1Password/1password ]; then
   cd $current_dir
 fi
 
-# install graphics drivers for m1 macbook pro
 if [[ $ARCH = "arm64" || $ARCH = "aarch64" ]]; then
+  # install graphics drivers for m1 macbook pro
   yay -S --noconfirm linux-asahi-edge mesa-asahi-edge
   sudo update-grub
+fi
+
+if [ $ARCH = "x86_64"]; then
+  # install intel drivers
+  yay -S --noconfirm mesa
 fi
 
 echo "installing default rust.."
@@ -196,7 +202,7 @@ if [ ! -d /usr/share/sddm/themes/sdt ]; then
   sudo chown -R $USER:$USER /usr/share/sddm/themes/sdt
 fi
 
-$HOME/dotfiles/bin/set-theme
+# $HOME/dotfiles/usr/local/bin/set-theme
 
 # exec sudo systemctl start sddm
 echo "🎉  completed arch bootstrap"

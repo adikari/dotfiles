@@ -23,7 +23,7 @@ if [ ! -d $nvim_dir ]; then
 fi
 
 echo "setting up dotfiles.." | tee -a $log 
-sudo rm -f ~/.zshrc /etc/locale.conf
+sudo rm -f ~/.zshrc /etc/locale.conf /etc/locale.gen
 stow --target=$HOME home 
 stow --target=$XDG_CONFIG_HOME config
 sudo stow --target=/etc etc
@@ -49,14 +49,14 @@ if [ ! -d $HOME/.tmux/plugins/tpm ]; then
 fi
 $HOME/.tmux/plugins/tpm/bin/install_plugins
 
-echo "install safebox" | tee -a $log
-if [ ! -f /usr/local/bin/safebox ]; then
-  curl -sSL https://raw.githubusercontent.com/monebag/safebox/main/scripts/install.sh | sh
-fi
+# echo "install safebox" | tee -a $log
+# if [ ! -f /usr/local/bin/safebox ]; then
+  # curl -sSL https://raw.githubusercontent.com/monebag/safebox/main/scripts/install.sh | sh
+# fi
 
 echo "installing node lts" | tee -a $log
-fnm install --lts
-fnm default lts-latest
+$HOME/.cargo/bin/fnm install --lts
+$HOME/.cargo/bin/fnm default lts-latest
 [ ! -f ~/.node-version ] && echo "lts-latest" > ~/.node-version
 
 echo "installing lf"
