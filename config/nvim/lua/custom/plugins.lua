@@ -128,6 +128,11 @@ local plugins = {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
   },
+
+  {
+    "tpope/vim-obsession",
+    event = "VeryLazy",
+  },
 }
 
 return plugins
