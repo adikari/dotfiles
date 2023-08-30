@@ -12,3 +12,23 @@ gsettings set org.gnome.desktop.interface icon-theme $icon_theme
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 cp -f $login_wallpaper /usr/share/sddm/themes/sdt/wallpaper.jpg
 swww img $desktop_wallpaper
+
+
+# exec = hyprctl setcursor Bibata-Modern-Ice 20
+# exec = gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Ice'
+# exec = gsettings set org.gnome.desktop.interface cursor-size 20
+#
+# exec = kvantummanager --set Catppuccin-Mocha
+# exec = gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-dracula'
+# exec = gsettings set org.gnome.desktop.interface gtk-theme 'Catppuccin-Mocha'
+# exec = gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+#
+# exec = gsettings set org.gnome.desktop.interface font-name 'Cantarell 10'
+# exec = gsettings set org.gnome.desktop.interface document-font-name 'Cantarell 10'
+# exec = gsettings set org.gnome.desktop.interface monospace-font-name 'CaskaydiaCove Nerd Font Mono 9'
+# exec = gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
+# exec = gsettings set org.gnome.desktop.interface font-hinting 'full'
+#
+# env = XCURSOR_THEME,Bibata-Modern-Ice
+# env = XCURSOR_SIZE,20
+
