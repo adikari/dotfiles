@@ -127,6 +127,7 @@ packages=(
   thunar-archive-plugin 
   slack-desktop
   teams
+  firefox
 
   # discord
 
