@@ -7,6 +7,7 @@ alias \
   vim='nvim' \
   vi="nvim" \
   pn="pnpm" \
+  st="start-hypr" \
   vpn="openvpn" 
 
 alias \
