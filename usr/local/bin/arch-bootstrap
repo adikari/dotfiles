@@ -104,6 +104,8 @@ packages=(
   polkit-gnome
   gnome-keyring
   dunst
+  qt5-wayland 
+  qt6-wayland 
   swww 
   swayidle
   swaylock-effects  
@@ -121,8 +123,6 @@ packages=(
   nwg-look-bin   
   kvantum
   qt5ct
-  qt5-wayland 
-  qt6-wayland 
   qt6ct
   qt5-svg
   qt5-quickcontrols2
