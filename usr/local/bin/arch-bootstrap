@@ -19,18 +19,15 @@ install_package() {
   fi
 }
 
-if [ ! -f /sbin/yay ]; then
-  echo "installing yay"
-  cd /tmp
-  sudo pacman -S --needed git base-devel --noconfirm
-  [ ! -d /tmp/yay ] && git clone https://aur.archlinux.org/yay.git 
-  cd yay && makepkg -si --noconfirm
-  cd $current_dir
-fi
 
-yay -Suy --noconfirm
+# █▀█ ▄▀█ █▀▀ █▄▀ ▄▀█ █▀▀ █▀▀ █▀
+# █▀▀ █▀█ █▄▄ █░█ █▀█ █▄█ ██▄ ▄█
 
 packages=(
+  
+  # █▄▄ ▄▀█ █▀ █▀▀
+  # █▄█ █▀█ ▄█ ██▄
+  
   cmake
   openssl  
   zsh   
@@ -46,7 +43,10 @@ packages=(
   stow
   less
 
-  # development
+  
+  # █▀▄ █▀▀ █░█ █▀▀ █░░ █▀█ █▀█ █▀▄▀█ █▀▀ █▄░█ ▀█▀
+  # █▄▀ ██▄ ▀▄▀ ██▄ █▄▄ █▄█ █▀▀ █░▀░█ ██▄ █░▀█ ░█░
+   
   go
   rustup
   aws-cli
@@ -60,35 +60,65 @@ packages=(
   python-requests 
   pacman-contrib
   starship
+  
+ 
+  # █░█ ▀█▀ █ █░░ █ ▀█▀ █ █▀▀ █▀
+  # █▄█ ░█░ █ █▄▄ █ ░█░ █ ██▄ ▄█
+  
+  bluez 
+  bluez-utils 
+  blueman
+  brightnessctl 
+  network-manager-applet 
+  file-roller
+  swappy 
+  grim 
+  slurp
+  cliphist 
+  wl-clipboard 
+  hyprpicker-git
+  
+  
+  # ▄▀█ █░█ █▀▄ █ █▀█
+  # █▀█ █▄█ █▄▀ █ █▄█
 
-  # desktop environment with hyprland
+  pipewire 
+  wireplumber
+  pipewire-pulse
+  pipewire-alsa
+  pipewire-audio
+  pipewire-jack
+  pavucontrol 
+  pamixer 
+
+  
+  # █░█ █▄█ █▀█ █▀█ █░░ ▄▀█ █▄░█ █▀▄
+  # █▀█ ░█░ █▀▀ █▀▄ █▄▄ █▀█ █░▀█ █▄▀
+
   hyprland-git
   waybar
   xdg-desktop-portal-hyprland 
   gtk3 
   polkit-gnome
   gnome-keyring
-  pipewire 
-  pipewire-pulse
+  dunst
   mako 
   swww 
   swayidle
   swaylock-effects  
   rofi-lbonn-wayland-git
   wlogout  
-  pamixer 
-  pavucontrol 
-  brightnessctl 
-  bluez 
-  bluez-utils 
-  blueman 
-  network-manager-applet 
+  sddm
   gvfs 
-  file-roller
+   
+  
+  # ▀█▀ █░█ █▀▀ █▀▄▀█ █▀▀
+  # ░█░ █▀█ ██▄ █░▀░█ ██▄
+  
   papirus-icon-theme 
   xfce4-settings
   nwg-look-bin   
-  sddm
+  kvantum
   qt5ct
   qt5-wayland 
   qt6-wayland 
@@ -98,15 +128,10 @@ packages=(
   qt5-graphicaleffects
   catppuccin-gtk-theme-mocha 
   
-  cliphist 
-  wl-clipboard 
-  swappy 
-  grim 
-  slurp 
-  btop
-  hyprpicker-git
-
-  # mutt
+   
+  # █▀▄▀█ █░█ ▀█▀ ▀█▀
+  # █░▀░█ █▄█ ░█░ ░█░
+  
   neomutt
   msmtp
   isync
@@ -115,7 +140,11 @@ packages=(
   html2text
   glow
  
-   # applications
+  
+  # ▄▀█ █▀█ █▀█ █░░ █ █▀▀ ▄▀█ ▀█▀ █ █▀█ █▄░█ █▀
+  # █▀█ █▀▀ █▀▀ █▄▄ █ █▄▄ █▀█ ░█░ █ █▄█ █░▀█ ▄█
+  
+  btop
   mpv
   aws-vault
   kitty
@@ -131,13 +160,35 @@ packages=(
 
   # discord
 
-  # fonts
+  
+  # █▀▀ █▀█ █▄░█ ▀█▀ █▀
+  # █▀░ █▄█ █░▀█ ░█░ ▄█
+  
   ttf-fantasque-nerd
   ttf-jetbrains-mono-nerd 
   ttf-nato-sans-nerd 
   noto-fonts-emoji 
   noto-fonts
 )
+
+
+# █ █▄░█ █▀ ▀█▀ ▄▀█ █░░ █░░   █▄█ ▄▀█ █▄█
+# █ █░▀█ ▄█ ░█░ █▀█ █▄▄ █▄▄   ░█░ █▀█ ░█░
+
+if [ ! -f /sbin/yay ]; then
+  echo "installing yay"
+  cd /tmp
+  sudo pacman -S --needed git base-devel --noconfirm
+  [ ! -d /tmp/yay ] && git clone https://aur.archlinux.org/yay.git 
+  cd yay && makepkg -si --noconfirm
+  cd $current_dir
+fi
+
+
+# █ █▄░█ █▀ ▀█▀ ▄▀█ █░░ █░░   █▀█ ▄▀█ █▀▀ █▄▀ ▄▀█ █▀▀ █▀▀ █▀
+# █ █░▀█ ▄█ ░█░ █▀█ █▄▄ █▄▄   █▀▀ █▀█ █▄▄ █░█ █▀█ █▄█ ██▄ ▄█
+
+yay -Suy --noconfirm
 
 echo "installing packages"
 for package in ${packages[@]}; do
@@ -163,27 +214,39 @@ if [ ! -f /opt/1Password/1password ]; then
   cd $current_dir
 fi
 
-if [[ $ARCH = "arm64" || $ARCH = "aarch64" ]]; then
-  # install graphics drivers for m1 macbook pro
-  yay -S --noconfirm linux-asahi-edge mesa-asahi-edge
-  sudo update-grub
-fi
-
-if [ $ARCH = "x86_64"]; then
-  # install intel drivers
-  yay -S --noconfirm mesa
-fi
-
 echo "installing default rust.."
 rustup default stable
 
 echo "installing fnm.."
 cargo install fnm
 
+
+# █ █▄░█ █▀ ▀█▀ ▄▀█ █░░ █░░   █▀▄ █▀█ █ █░█ █▀▀ █▀█ █▀
+# █ █░▀█ ▄█ ░█░ █▀█ █▄▄ █▄▄   █▄▀ █▀▄ █ ▀▄▀ ██▄ █▀▄ ▄█
+
+if [[ $ARCH = "arm64" || $ARCH = "aarch64" ]]; then
+  # install graphics drivers for m1 macbook pro
+  yay -S --noconfirm linux-asahi-edge mesa-asahi-edge
+  sudo update-grub
+fi
+
+if [ $ARCH = "x86_64" ]; then
+  # install intel drivers
+  yay -S --noconfirm mesa
+fi
+
+
+# █▀▀ █░░ █▀▀ ▄▀█ █▄░█ █░█ █▀█
+# █▄▄ █▄▄ ██▄ █▀█ █░▀█ █▄█ █▀▀
+
 echo -e "Cleaning out conflicting xdg portals..."
 
 remove_package xdg-desktop-portal-gnome 
 remove_package xdg-desktop-portal-gtk 
+
+
+# █▀ ▀█▀ ▄▀█ █▀█ ▀█▀   █▀ █▀▀ █▀█ █░█ █ █▀▀ █▀▀ █▀
+# ▄█ ░█░ █▀█ █▀▄ ░█░   ▄█ ██▄ █▀▄ ▀▄▀ █ █▄▄ ██▄ ▄█
 
 echo "Starting the Bluetooth Service..."
 sudo systemctl enable --now bluetooth.service 
@@ -196,7 +259,10 @@ sleep 2
 echo "Setting timezone"
 sudo timedatectl set-timezone Australia/Melbourne
 
-# Copy the SDDM theme
+
+# ▀█▀ █░█ █▀▀ █▀▄▀█ █▀▀
+# ░█░ █▀█ ██▄ █░▀░█ ██▄
+
 if [ ! -d /usr/share/sddm/themes/sdt ]; then
   echo "Setting up the login screen."
   sudo cp -R extras/sdt /usr/share/sddm/themes/

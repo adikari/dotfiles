@@ -4,28 +4,24 @@ login_wallpaper=~/dotfiles/wallpapers/escape_velocity.jpg
 desktop_wallpaper=~/dotfiles/wallpapers/tokyo_pink.png
 theme="Catppuccin-Mocha-Standard-Mauve-dark"
 icon_theme="Papirus-Dark"
+font="Noto Sans 11"
+mono_font="JetBrainsMono Nerd Font 9"
 
 xfconf-query -c xsettings -p /Net/ThemeName -s $theme
 xfconf-query -c xsettings -p /Net/IconThemeName -s $icon_theme
+
+kvantummanager --set $theme
+
 gsettings set org.gnome.desktop.interface gtk-theme $theme
 gsettings set org.gnome.desktop.interface icon-theme $icon_theme
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface font-name "$font"
+gsettings set org.gnome.desktop.interface document-font-name "$font"
+gsettings set org.gnome.desktop.interface monospace-font-name "$mono_font"
+gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
+gsettings set org.gnome.desktop.interface cursor-size 20
+gsettings set org.gnome.desktop.interface font-hinting 'full'
+
 cp -f $login_wallpaper /usr/share/sddm/themes/sdt/wallpaper.jpg
+
 swww img $desktop_wallpaper
-
-
-# exec = hyprctl setcursor Bibata-Modern-Ice 20
-# exec = gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Ice'
-# exec = gsettings set org.gnome.desktop.interface cursor-size 20
-#
-# exec = kvantummanager --set Catppuccin-Mocha
-
-# exec = gsettings set org.gnome.desktop.interface font-name 'Cantarell 10'
-# exec = gsettings set org.gnome.desktop.interface document-font-name 'Cantarell 10'
-# exec = gsettings set org.gnome.desktop.interface monospace-font-name 'CaskaydiaCove Nerd Font Mono 9'
-# exec = gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
-# exec = gsettings set org.gnome.desktop.interface font-hinting 'full'
-#
-# env = XCURSOR_THEME,Bibata-Modern-Ice
-# env = XCURSOR_SIZE,20
-
