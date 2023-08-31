@@ -10,7 +10,7 @@ mono_font="JetBrainsMono Nerd Font 9"
 xfconf-query -c xsettings -p /Net/ThemeName -s $theme
 xfconf-query -c xsettings -p /Net/IconThemeName -s $icon_theme
 
-kvantummanager --set $theme
+# kvantummanager --set $theme
 
 gsettings set org.gnome.desktop.interface gtk-theme $theme
 gsettings set org.gnome.desktop.interface icon-theme $icon_theme

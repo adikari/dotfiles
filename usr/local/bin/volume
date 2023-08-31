@@ -9,7 +9,8 @@ get_volume() {
 
 # Notify
 notify_user() {
-	notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Volume : $(get_volume) %"
+  local vol=$(get_volume)
+  dunstify "Volume $vol% " -h string:x-canonical-private-synchronous:audio -i audio-volume-high -u low -h int:value:$vol
 }
 
 # Increase Volume
@@ -42,7 +43,8 @@ toggle_mic() {
 
 # Notify
 notify_mic_user() {
-	notify-send -h string:x-canonical-private-synchronous:sys-notify -u low "Mic-Level : $(pamixer --default-source --get-volume) %"
+  local level=$(pamixer --default-source --get-volume)
+  dunstify "Mic Level $level% " -h string:x-canonical-private-synchronous:sys-notify -u low -i audio-input-microphone -h int:value:"$level"
 }
 
 # Increase MIC Volume

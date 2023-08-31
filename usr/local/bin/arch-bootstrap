@@ -102,7 +102,6 @@ packages=(
   polkit-gnome
   gnome-keyring
   dunst
-  mako 
   swww 
   swayidle
   swaylock-effects  
