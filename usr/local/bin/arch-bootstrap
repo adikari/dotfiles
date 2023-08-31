@@ -77,6 +77,7 @@ packages=(
   cliphist 
   wl-clipboard 
   hyprpicker-git
+  socat
   
   
   # ▄▀█ █░█ █▀▄ █ █▀█
