@@ -1,7 +1,7 @@
 #!/bin/bash
 
-login_wallpaper=~/dotfiles/wallpapers/wallpaper-dark.jpg
-desktop_wallpaper=~/dotfiles/wallpapers/wallpaper.jpg
+login_wallpaper=~/dotfiles/wallpapers/escape_velocity.jpg
+desktop_wallpaper=~/dotfiles/wallpapers/tokyo_pink.png
 theme="Catppuccin-Mocha-Standard-Mauve-dark"
 icon_theme="Papirus-Dark"
 
@@ -19,10 +19,7 @@ swww img $desktop_wallpaper
 # exec = gsettings set org.gnome.desktop.interface cursor-size 20
 #
 # exec = kvantummanager --set Catppuccin-Mocha
-# exec = gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-dracula'
-# exec = gsettings set org.gnome.desktop.interface gtk-theme 'Catppuccin-Mocha'
-# exec = gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-#
+
 # exec = gsettings set org.gnome.desktop.interface font-name 'Cantarell 10'
 # exec = gsettings set org.gnome.desktop.interface document-font-name 'Cantarell 10'
 # exec = gsettings set org.gnome.desktop.interface monospace-font-name 'CaskaydiaCove Nerd Font Mono 9'
