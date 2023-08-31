@@ -5,39 +5,52 @@
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
-  "height": 28,
+  "height": 30,
+
   "modules-left": [
-    "wlr/workspaces"
-  ],
-  "modules-center": [
-    "wlr/taskbar"
-  ],
-  "modules-right": [
-    "custom/updates",
-    "tray",
-    "idle_inhibitor",
+    "custom/l_end",
     "cpu",
+    "memory",
+    "battery",
+    "custom/r_end"
+  ],
+  
+	"modules-center": [
+    "custom/l_end",
+    "wlr/workspaces",
+    "wlr/taskbar",
+    "custom/r_end"
+  ],
+  
+	"modules-right": [
+    "custom/l_end",
+    "custom/updates",
+    "network",
+    "bluetooth",
     "pulseaudio",
     "pulseaudio#microphone",
-    "backlight",
-    "temperature",
-    "battery",
-    "network",
+    "idle_inhibitor",
+    "custom/r_end",
+    
+    "custom/l_end",
     "clock",
-    "custom/weather"
+    "custom/weather",
+    "custom/r_end",
+    
+    "custom/l_end",
+    "tray",
+    "custom/r_end"
   ],
 
   "network": {
-    "interface": "wlan0",
-    "format": "{ifname}",
-    "format-wifi": " ",
-    "format-ethernet": "{ipaddr}/{cidr}",
-    "format-disconnected": "", //An empty format will hide the module.
-    "tooltip-format": "{ifname} via {gwaddr}",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-    "tooltip-format-ethernet": "{ifname} ",
-    "tooltip-format-disconnected": "Disconnected",
-    "max-length": 50
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "󰤨 {essid}",
+    "format-ethernet": "󱘖 Wired",
+    "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+    "format-linked": "󱘖 {ifname} (No IP)",
+    "format-disconnected": " Disconnected",
+    "format-alt": "󰤨 {signalStrength}%",
+    "interval": 5
   },
   
   "idle_inhibitor": {
@@ -59,24 +72,12 @@
     "return-type" : "json"
   },
 
-  "wlr/taskbar": {
-    "format": "{icon}",
-    "icon-size": 18,
-    "all-outputs": true,
-    "tooltip-format": "{name} - {title}",
-    "on-click": "activate",
-    "on-click-middle": "close",
-    "on-click-right": "minimize",
-    "ignore-list": [
-      "rofi"
-    ]
-  },
-  
   "clock": {
-    "format": "󰃰 {:%A,%e %b, %I:%M}",
-    "tooltip-format": "{:%A, %e-%B-%Y}"
+    "format": "{:󰃭 %a %d  %I:%M %p}",
+    "format-alt": "{: %b %Y 󰥔 %H:%M}",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>"
   },
-  
+   
   "temperature": {
     "thermal-zone": 1,
     "format": "",
@@ -86,26 +87,11 @@
     "format-critical": " {temperatureC}°C",
     "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
   },
- 
+
   "wlr/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
     "on-click": "activate",
-    "format": "{icon}",
-    "format-icons": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-      "6": "",
-      "7": "",
-      "8": "",
-      "9": "",
-      "10": "",
-      "default": "",
-      "active": ""
-    },
     "persistent_workspaces": {
       "1": [],
       "2": [],
@@ -120,13 +106,36 @@
     }
   },
 
+  "wlr/taskbar": {
+		"format": "{icon}",
+		"icon-size": 16,
+		"icon-theme": "Tela-circle-dracula",
+    "spacing": 0,
+		"tooltip-format": "{title}",
+		"on-click": "activate",
+		"on-click-middle": "close",
+		"ignore-list": [
+			"rofi"
+		],
+		"app_ids-mapping": {
+			"firefoxdeveloperedition": "firefox-developer-edition"
+		}
+	},
+
   "cpu": {
     "interval": 10,
-    "format": "",
+    "format": "󰍛 {usage}%",
+    "format-alt": "{icon0}{icon1}{icon2}{icon3}",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+  },
+
+  "memory": {
+    "interval": 30,
+    "format": "󰾆 {percentage}%",
+    "format-alt": "󰾅 {used}GB",
     "max-length": 10,
-    "format-alt-click": "click-right",
-    "format-alt": " {usage}%",
-    "on-click": "kitty --start-as=fullscreen --title btop sh -c 'btop'"
+    "tooltip": true,
+    "tooltip-format": " {used:0.1f}GB/{total:0.1f}GB"
   },
 
   "battery": {
@@ -135,7 +144,7 @@
       "warning": 30,
       "critical": 20
     },
-    "format": "{icon}",
+    "format": "{icon} {capacity}%",
     "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",
     "format-alt-click": "click-right",
@@ -188,8 +197,8 @@
   },
 
   "tray": {
-    "icon-size": 16,
-    "spacing": 14
+    "icon-size": 14,
+    "spacing": 6
   },
 
   "custom/updates": {
@@ -198,5 +207,49 @@
     "on-click": "update-sys update",
     "interval": 300,
     "tooltip": true
+  },
+
+  // modules for padding //
+
+  "custom/l_end": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+  },
+
+  "custom/r_end": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+  },
+
+  "custom/sl_end": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+  },
+
+  "custom/sr_end": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+  },
+
+  "custom/rl_end": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+  },
+
+  "custom/rr_end": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+  },
+
+  "custom/padd": {
+    "format": "  ",
+    "interval" : "once",
+    "tooltip": false
   }
 }
