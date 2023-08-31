@@ -22,6 +22,4 @@ gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
 gsettings set org.gnome.desktop.interface cursor-size 20
 gsettings set org.gnome.desktop.interface font-hinting 'full'
 
-cp -f $login_wallpaper /usr/share/sddm/themes/sdt/wallpaper.jpg
-
 swww img $desktop_wallpaper

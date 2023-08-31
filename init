@@ -20,7 +20,7 @@ fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "platform is arch. Installing.."
-  # ./usr/local/bin/arch-bootstrap | tee -a $log 
+  ./usr/local/bin/arch-bootstrap | tee -a $log 
 fi
 
 

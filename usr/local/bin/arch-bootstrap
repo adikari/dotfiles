@@ -111,7 +111,6 @@ packages=(
   swaylock-effects  
   rofi-lbonn-wayland-git
   wlogout  
-  sddm
   gvfs 
    
   
@@ -253,22 +252,8 @@ echo "Starting the Bluetooth Service..."
 sudo systemctl enable --now bluetooth.service 
 sleep 2
 
-echo "Enabling the SDDM Service..."
-sudo systemctl enable sddm 
-sleep 2
-
 echo "Setting timezone"
 sudo timedatectl set-timezone Australia/Melbourne
-
-
-# ▀█▀ █░█ █▀▀ █▀▄▀█ █▀▀
-# ░█░ █▀█ ██▄ █░▀░█ ██▄
-
-if [ ! -d /usr/share/sddm/themes/sdt ]; then
-  echo "Setting up the login screen."
-  sudo cp -R extras/sdt /usr/share/sddm/themes/
-  sudo chown -R $USER:$USER /usr/share/sddm/themes/sdt
-fi
 
 # $HOME/dotfiles/usr/local/bin/set-theme
 
