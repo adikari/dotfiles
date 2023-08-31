@@ -42,6 +42,15 @@
     "custom/r_end"
   ],
 
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "", // an empty format will hide the module
+    "format-connected": " {num_connections}",
+    "tooltip-format": " {device_alias}",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": " {device_alias}"
+  },
+
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
     "format-wifi": "󰤨 {essid}",
@@ -153,12 +162,13 @@
   },
 
   "pulseaudio": {
-    "format": "{icon}",
+    "format": "{icon} {volume}",
     "format-muted": "",
-    "on-click": "volume --toggle",
-    "on-click-right": "pavucontrol",
+    "on-click-middle": "volume --toggle",
     "on-scroll-up": "volume --inc",
     "on-scroll-down": "volume --dec",
+    "on-click": "pavucontrol -t 3",
+    "tooltip-format": "{icon} {desc} // {volume}%",
     "scroll-step": 5,
     "format-icons": {
       "headphone": "󰋋",
@@ -168,22 +178,19 @@
       "portable": "",
       "car": "",
       "default": ["", "", ""]
-    },
-    "tooltip": true,
-    "tooltip-format": "{icon} at {volume}%"
+    }
   },
 
   "pulseaudio#microphone": {
     "format": "{format_source}",
     "format-source": "",
     "format-source-muted": "",
-    "on-click": "volume --toggle-mic",
-    "on-click-right": "pavucontrol",
+    "on-click-middle": "volume --toggle-mic",
+    "on-click": "pavucontrol -t 4",
     "on-scroll-up": "volume --mic-inc",
     "on-scroll-down": "volume --mic-dec",
-    "scroll-step": 5,
-    "tooltip": true,
-    "tooltip-format": " at {volume}%"
+    "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
+    "scroll-step": 5
   },
 
   "backlight": {
