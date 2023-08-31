@@ -78,6 +78,7 @@ packages=(
   wl-clipboard 
   hyprpicker-git
   socat
+  neofetch
   
   
   # ▄▀█ █░█ █▀▄ █ █▀█

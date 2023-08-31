@@ -43,6 +43,7 @@
   ],
 
   "bluetooth": {
+    "on-click": "blueman-manager",
     "format": "",
     "format-disabled": "", // an empty format will hide the module
     "format-connected": " {num_connections}",
@@ -54,7 +55,7 @@
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
     "format-wifi": "󰤨 {essid}",
-    "format-ethernet": "󱘖 Wired",
+    "on-click": "blueman-manager",
     "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
     "format-linked": "󱘖 {ifname} (No IP)",
     "format-disconnected": " Disconnected",
