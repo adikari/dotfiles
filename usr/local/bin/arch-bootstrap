@@ -150,13 +150,15 @@ packages=(
   kitty
   docker
   thunderbird
-  brave-bin  
+  brave-bin
   postman-bin
   thunar 
   thunar-archive-plugin 
   slack-electron
-  teams
+  teams-for-linux-electron-bin
   firefox
+  1password-blur-me-not
+  1password-cli
 
   # discord
 
@@ -194,25 +196,6 @@ echo "installing packages"
 for package in ${packages[@]}; do
   install_package $package
 done
-
-if [ ! -f /usr/bin/op ]; then
-  echo "installing 1password cli"
-  gpg --receive-keys 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
-  yay -S 1password-cli --noconfirm
-fi
-
-if [ ! -f /opt/1Password/1password ]; then
-  echo "installing 1password.."
-  cd /tmp
-  if [ ! -f /tmp/1password-latest.tar.gz ]; then
-    curl -SO https://downloads.1password.com/linux/tar/stable/$ARCH/1password-latest.tar.gz
-    sudo tar -xf 1password-latest.tar.gz
-  fi
-  sudo mkdir -p /opt/1Password
-  sudo mv 1password-*/* /opt/1Password
-  sudo /opt/1Password/after-install.sh
-  cd $current_dir
-fi
 
 echo "installing default rust.."
 rustup default stable
