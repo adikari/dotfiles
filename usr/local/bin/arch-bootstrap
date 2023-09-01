@@ -79,6 +79,8 @@ packages=(
   hyprpicker-git
   socat
   neofetch
+  ffmpeg
+  imv
   
   
   # ▄▀█ █░█ █▀▄ █ █▀█

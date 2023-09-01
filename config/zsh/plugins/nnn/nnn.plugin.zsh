@@ -1,0 +1,4 @@
+NNN_PLUG_DEFAULT='v:imgview;b:nbak'
+NNN_PLUG="$NNN_PLUG_DEFAULT"
+
+export NNN_PLUG

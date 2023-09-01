@@ -103,6 +103,8 @@ if [[ $SHELL != *"zsh" ]]; then
   chsh -s $(which zsh)
 fi
 
+./usr/local/bin/install-nnn-plugins
+
 echo "all done!!"
 
 exec zsh
