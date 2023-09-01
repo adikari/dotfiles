@@ -92,6 +92,7 @@ packages=(
   pipewire-jack
   pavucontrol 
   pamixer 
+  man-db
 
   
   # █░█ █▄█ █▀█ █▀█ █░░ ▄▀█ █▄░█ █▀▄
