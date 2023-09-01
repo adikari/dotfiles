@@ -92,9 +92,6 @@ $HOME/.cargo/bin/fnm install --lts
 $HOME/.cargo/bin/fnm default lts-latest
 [ ! -f ~/.node-version ] && echo "lts-latest" > ~/.node-version
 
-echo "installing lf"
-env CGO_ENABLED=0 go install -ldflags="-s -w" github.com/gokcehan/lf@latest
-
 
 # █▀▄▀█ █ █▀ █▀▀
 # █░▀░█ █ ▄█ █▄▄
