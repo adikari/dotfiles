@@ -1,0 +1,15 @@
+#!/bin/sh
+
+binary=$1
+
+if [ -z $binary ]; then
+  echo "binary path must be provided"; 
+  exit 1
+fi
+
+if [ ! -f $binary ]; then
+  echo "$binary does not exist"; 
+  exit 1;
+fi
+
+version=$(strings $binary | grep '^Chrome/[0-9.]* Electron/[0-9]')
