@@ -150,7 +150,6 @@ packages=(
   kitty
   docker
   thunderbird
-  brave-bin
   postman-bin
   thunar 
   thunar-archive-plugin 
