@@ -154,7 +154,7 @@ packages=(
   postman-bin
   thunar 
   thunar-archive-plugin 
-  slack-desktop
+  slack-electron
   teams
   firefox
 

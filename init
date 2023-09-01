@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -euo pipefail
 
 XDG_CONFIG_HOME="$HOME/.config"
@@ -55,10 +54,18 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo locale-gen | tee -a $log
 
   echo "setting email with mutt"
-  # systemctl --user start mailsync
-  # systemctl --user enable mailsync.timer
+  systemctl --user start mailsync &
+  systemctl --user enable mailsync.timer
 fi
 
+
+# █▀▀ █░░ █▀▀ █▀▀ ▀█▀ █▀█ █▀█ █▄░█   █▀▀ █▀█ █▄░█ █▀▀ █ █▀▀
+# ██▄ █▄▄ ██▄ █▄▄ ░█░ █▀▄ █▄█ █░▀█   █▄▄ █▄█ █░▀█ █▀░ █ █▄█
+
+electron_versions=(24 25)
+for version in ${electron_versions[@]}; do
+  ln -s $HOME/dotfiles/config/electron-flags.conf $XDG_CONFIG_HOME/electron$version-flags.conf
+done
 
 
 # ▀█▀ █▀▄▀█ █░█ ▀▄▀   █▀█ █░░ █░█ █▀▀ █ █▄░█ █▀
