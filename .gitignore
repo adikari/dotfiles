@@ -14,3 +14,6 @@ config/tmux/plugins
 .ssh
 .zcompdump
 config/gh/hosts.yml
+home/.aws/config.lock
+home/.aws/credentials*
+home/.aws/saml*
