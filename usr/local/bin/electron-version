@@ -13,3 +13,5 @@ if [ ! -f $binary ]; then
 fi
 
 version=$(strings $binary | grep '^Chrome/[0-9.]* Electron/[0-9]')
+
+echo $version
