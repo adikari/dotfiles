@@ -239,3 +239,4 @@ user_pref("mousewheel.default.delta_multiplier_y", 275); // 250-400; adjust this
 // █▄█ ▀▄▀ ██▄ █▀▄ █▀▄ █ █▄▀ ██▄ ▄█
 
 user_pref("identity.fxaccounts.enabled", true);
+user_pref("permissions.default.desktop-notification", 0);

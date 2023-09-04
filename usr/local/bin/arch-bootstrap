@@ -161,6 +161,7 @@ packages=(
   slack-electron
   teams-for-linux-electron-bin
   firefox
+  firefox-pwa-bin
   1password-blur-me-not
   1password-cli
   nnn
