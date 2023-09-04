@@ -42,6 +42,7 @@ packages=(
   make
   stow
   less
+  python-pipx
 
   
   # █▀▄ █▀▀ █░█ █▀▀ █░░ █▀█ █▀█ █▀▄▀█ █▀▀ █▄░█ ▀█▀
@@ -208,6 +209,9 @@ rustup default stable
 
 echo "installing fnm.."
 cargo install fnm
+
+echo "installing aws-google-auth.."
+pipx install aws-google-auth
 
 
 # █ █▄░█ █▀ ▀█▀ ▄▀█ █░░ █░░   █▀▄ █▀█ █ █░█ █▀▀ █▀█ █▀

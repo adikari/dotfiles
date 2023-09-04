@@ -18,6 +18,7 @@ source $HOME/.config/zsh/plugins.zsh
 [ -d /usr/local/sbin ] && PATH="/usr/local/sbin:$PATH"
 [ -d $HOME/bin ] && PATH="$HOME/bin:$PATH"
 [ -d $HOME/local/bin ] && PATH="$HOME/local/bin:$PATH"
+[ -d $HOME/.local/bin ] && PATH="$HOME/.local/bin:$PATH"
 
 # load custom config if there is any
 if [ -f $HOME/.my_zshrc ]; then
@@ -25,7 +26,7 @@ if [ -f $HOME/.my_zshrc ]; then
 fi
 
 # add jenv to path
-if which jenv > /dev/null 2>&1; then
+if command -v jenv > /dev/null 2>&1; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
 fi
@@ -46,7 +47,7 @@ fi
 # load fnm
 [ -x "$(command -v fnm)" ] && eval "$(fnm env --use-on-cd --version-file-strategy recursive)" > /dev/null 2>&1
 
-if which fzf > /dev/null 2>&1; then
+if command -v fzf > /dev/null 2>&1; then
   zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 
   # arch
