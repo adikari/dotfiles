@@ -9,7 +9,7 @@ Session.vim
 *.log
 scratch.txt
 .mailsynclastrun
-timers.target.wants
+*.target.wants
 config/tmux/plugins
 .ssh
 .zcompdump

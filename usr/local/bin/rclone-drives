@@ -1,0 +1,38 @@
+#!/bin/sh
+
+mount() {
+ rclone mount --config=$HOME/.config/rclone/rclone.conf \
+  --allow-non-empty \
+  --dir-cache-time 5000h \
+  --log-file /opt/rclone/logs/rclone.log \
+  --log-level NOTICE \
+  --poll-interval 10s \
+  --umask 002 \
+  --user-agent rclone \
+  --rc \
+  --rc-addr 127.0.0.1:5572 \
+  --rc-no-auth \
+  --cache-dir=/tmp/cache \
+  --drive-pacer-min-sleep 10ms \
+  --drive-pacer-burst 200 \
+  --vfs-cache-mode full \
+  --vfs-cache-max-size 250G \
+  --vfs-cache-max-age 5000h \
+  --vfs-cache-poll-interval 5m \
+  --bwlimit-file 32M \
+  --password-command="secret-tool lookup application rclone" \
+  gdrive@personal: $HOME/gdrive 
+}
+
+umount() {
+  /bin/fusermount3 -u $HOME/gdrive
+}
+
+if [[ "$1" == "--mount" ]]; then
+  mount
+elif [[ "$1" == "--umount" ]]; then
+  umount
+else
+  echo "unknown parameter. supported params are --mount or --umount"
+fi
+

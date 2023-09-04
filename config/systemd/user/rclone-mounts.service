@@ -1,12 +1,13 @@
 [Unit]
 Description=RClone Drive Mounts
+Wants=network-online.target
+After=network-online.target
 
 [Service]
-
-Type=simple
-ExecStart=/usr/local/bin/cloud-drive --mount
-ExecStop=/usr/local/bin/cloud-drive --umount
-Restart=always
+Type=notify
+ExecStart=/usr/local/bin/rclone-drives --mount
+ExecStop=/usr/local/bin/rclone-drives --umount
+Restart=on-failure
 RestartSec=5
 
 [Install]

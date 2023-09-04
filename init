@@ -34,6 +34,12 @@ if [ ! -d $nvim_dir ]; then
 fi
 
 
+# █▄▀ █▀▀ █▄█ █▀█ █ █▄░█ █▀▀
+# █░█ ██▄ ░█░ █▀▄ █ █░▀█ █▄█
+
+echo -n $(read-secret --var RCLONE_PASS) | secret-tool store --label "RClone Config Password" application rclone 
+
+
 # █▀ █▀▀ ▀█▀ █░█ █▀█   █▀▄ █▀█ ▀█▀ █▀▀ █ █░░ █▀▀ █▀
 # ▄█ ██▄ ░█░ █▄█ █▀▀   █▄▀ █▄█ ░█░ █▀░ █ █▄▄ ██▄ ▄█
 
@@ -42,7 +48,6 @@ sudo rm -f ~/.zshrc /etc/locale.conf /etc/locale.gen /etc/pam.d/login
 stow --target=$HOME home 
 stow --target=$XDG_CONFIG_HOME config
 sudo stow --target=/etc etc
-
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   sudo stow --target=/usr/local/bin --dir=usr/local bin
@@ -59,6 +64,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   
   echo "setting gdrive with rclone" | tee -a $log
   [ ! -d ~/gdrive ] && mkdir ~/gdrive
+  [ ! -d /opt/rclone/logs ] && sudo mkdir -p /opt/rclone/logs
+  sudo chmod -R 777 /opt/rclone/logs
+  systemctl --user enable rclone-mounts
   systemctl --user start rclone-mounts &
 fi
 
