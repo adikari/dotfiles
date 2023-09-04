@@ -11,6 +11,7 @@
     "custom/l_end",
     "cpu",
     "memory",
+    "temperature",
     "battery",
     "custom/r_end"
   ],
@@ -90,7 +91,7 @@
    
   "temperature": {
     "thermal-zone": 1,
-    "format": "",
+    "format": " {temperatureC}°C",
     "format-alt-click": "click-right",
     "format-alt": " {temperatureC}°C",
     "critical-threshold": 70,
