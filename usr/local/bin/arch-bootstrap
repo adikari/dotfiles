@@ -106,6 +106,7 @@ packages=(
   gtk3 
   polkit-gnome
   gnome-keyring
+  seahorse
   dunst
   qt5-wayland 
   qt6-wayland 
