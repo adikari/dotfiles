@@ -5,8 +5,28 @@ After=network-online.target
 
 [Service]
 Type=notify
-ExecStart=/usr/local/bin/rclone-drives --mount
-ExecStop=/usr/local/bin/rclone-drives --umount
+ExecStart=rclone mount --config=%h/.config/rclone/rclone.conf \
+  --allow-non-empty \
+  --dir-cache-time 5000h \
+  --log-file /opt/rclone/logs/rclone.log \
+  --log-level NOTICE \
+  --poll-interval 10s \
+  --umask 002 \
+  --user-agent rclone \
+  --rc \
+  --rc-addr 127.0.0.1:5572 \
+  --rc-no-auth \
+  --cache-dir=/tmp/cache \
+  --drive-pacer-min-sleep 10ms \
+  --drive-pacer-burst 200 \
+  --vfs-cache-mode full \
+  --vfs-cache-max-size 250G \
+  --vfs-cache-max-age 5000h \
+  --vfs-cache-poll-interval 5m \
+  --bwlimit-file 32M \
+  --password-command="secret-tool lookup application rclone" \
+  gdrive@personal: %h/gdrive 
+ExecStop=/bin/fusermount3 -u %h/gdrive
 Restart=on-failure
 RestartSec=5
 
