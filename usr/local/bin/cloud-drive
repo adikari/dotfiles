@@ -1,0 +1,22 @@
+#!/bin/sh
+
+export RCLONE_PASSWORD_COMMAND="read-secret --var RCLONE_PASS"
+
+mount() {
+ rclone mount --config=$HOME/.config/rclone/rclone.conf \
+  --password-command="read-secret --var RCLONE_PASS" \
+  gdrive@personal: $HOME/gdrive 
+}
+
+umount() {
+  /bin/fusermount3 -u $HOME/gdrive
+}
+
+if [[ "$1" == "--mount" ]]; then
+  mount
+elif [[ "$1" == "--umount" ]]; then
+  umount
+else
+  echo "unknown parameter. supported params are --mount or --umount"
+fi
+

@@ -1,0 +1,13 @@
+[Unit]
+Description=RClone Drive Mounts
+
+[Service]
+
+Type=simple
+ExecStart=/usr/local/bin/cloud-drive --mount
+ExecStop=/usr/local/bin/cloud-drive --umount
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

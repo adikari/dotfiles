@@ -56,6 +56,10 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "setting email with mutt"
   # systemctl --user start mailsync &
   # systemctl --user enable mailsync.timer
+  
+  echo "setting gdrive with rclone" | tee -a $log
+  [ ! -d ~/gdrive ] && mkdir ~/gdrive
+  systemctl --user start rclone-mounts &
 fi
 
 
@@ -93,10 +97,12 @@ $HOME/.cargo/bin/fnm default lts-latest
 [ ! -f ~/.node-version ] && echo "lts-latest" > ~/.node-version
 
 
+
 # █▀▄▀█ █ █▀ █▀▀
 # █░▀░█ █ ▄█ █▄▄
+# 
 
-echo "logging in to github"
+echo "logging in to github" | tee -a $log
 github-login
 
 if [[ $SHELL != *"zsh" ]]; then
@@ -104,6 +110,9 @@ if [[ $SHELL != *"zsh" ]]; then
 fi
 
 ./usr/local/bin/install-nnn-plugins
+
+
+
 
 echo "all done!!"
 
