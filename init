@@ -39,7 +39,7 @@ fi
 
 if command -v rclone &> /dev/null; then
   if [ ! -f $XDG_CONFIG_HOME/rclone/rclone.conf ]; then
-    export RCLONE_CONFIG_PASS=$(pass show rclone_pass)
+    export RCLONE_CONFIG_PASS=$(pass rclone_pass)
     rclone config delete gdrive@personal
     rclone config create gdrive@personal drive scope drive 
   fi
@@ -61,7 +61,8 @@ fi
 # ▄█ ██▄ ░█░ █▄█ █▀▀   █▄▀ █▄█ ░█░ █▀░ █ █▄▄ ██▄ ▄█
 
 echo "setting up dotfiles.." | tee -a $log 
-sudo rm -f ~/.zshrc /etc/locale.conf /etc/locale.gen /etc/pam.d/login
+sudo rm -f ~/.zshrc /etc/locale.conf /etc/locale.gen /etc/pam.d/login /etc/pam.d/system-local-login
+
 stow --target=$HOME home 
 stow --target=$XDG_CONFIG_HOME config
 sudo stow --target=/etc etc

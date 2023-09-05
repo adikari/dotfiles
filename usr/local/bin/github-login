@@ -5,4 +5,4 @@ set -eo pipefail
 gh auth login \
   --hostname github.com \
   --git-protocol ssh \
-  --with-token <<< $(pass show github_token)
+  --with-token <<< $(pass github_token)

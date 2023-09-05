@@ -104,7 +104,7 @@ local plugins = {
   --   event = "VeryLazy",
   --   config = function()
   --     require("chatgpt").setup {
-  --       api_key_cmd = "pass show openai_api_key",
+  --       api_key_cmd = "pass openai_api_key",
   --     }
   --   end,
   --   dependencies = {
