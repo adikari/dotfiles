@@ -39,10 +39,7 @@ fi
 
 if command -v rclone &> /dev/null; then
   if [ ! -f $XDG_CONFIG_HOME/rclone/rclone.conf ]; then
-    export RCLONE_CONFIG_PASS=$(read-secret --var RCLONE_PASS)
-    
-    echo -n $RCLONE_CONFIG_PASS | secret-tool store --label "RClone Config Password" application rclone 
-    
+    export RCLONE_CONFIG_PASS=$(pass show rclone_pass)
     rclone config delete gdrive@personal
     rclone config create gdrive@personal drive scope drive 
   fi

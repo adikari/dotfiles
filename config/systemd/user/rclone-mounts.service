@@ -24,7 +24,7 @@ ExecStart=rclone mount --config=%h/.config/rclone/rclone.conf \
   --vfs-cache-max-age 5000h \
   --vfs-cache-poll-interval 5m \
   --bwlimit-file 32M \
-  --password-command="secret-tool lookup application rclone" \
+  --password-command="pass show rclone_pass" \
   gdrive@personal: %h/gdrive 
 ExecStop=/bin/fusermount3 -u %h/gdrive
 Restart=on-failure
