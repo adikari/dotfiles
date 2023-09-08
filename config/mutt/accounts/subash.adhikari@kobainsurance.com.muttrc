@@ -1,0 +1,55 @@
+set realname = "Subash Adhikari"
+set from = "subash.adhikari@kobainsurance.com
+set sendmail = "msmtp -a subash.adhikari@kobainsurance.com"
+alias me Subash Adhikari <subash.adhikari@kobainsurance.com>
+set folder = "~/.local/share/mail/subash.adhikari@kobainsurance.com"
+set header_cache = ~/.cache/mutt/subash.adhikari_kobainsurance.com/headers
+set message_cachedir = ~/.cache/mutt/subash.adhikari_kobainsurance.com/bodies
+set mbox_type = Maildir
+set hostname = "kobainsurance.com"
+source $HOME/.config/mutt/switch.muttrc
+
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set trash = "+[Gmail]/Trash"
+set record = "+[Gmail]/Sent Mail"
+
+# NOTE: consider this https://markhuge.com/post/background-fetch-mutt/
+macro index o "<shell-escape>mailsync subash.adhikari@kobainsurance.com<enter>" "run mbsync to sync subash.adhikari@kobainsurance.com account"
+
+virtual-mailboxes \
+  "All Accounts"  "notmuch://?query=tag:inbox" \
+  "All Unread"    "notmuch://?query=tag:unread" \
+  "All Starred"   "notmuch://?query=tag:flagged" \
+  "All Sent"      "notmuch://?query=tag:sent"
+
+mailboxes "=Archive" "=INBOX" "=[Gmail]/Trash" "=[Gmail]/Drafts" "=[Gmail]/Spam" "=[Gmail]/Sent Mail" "=[Gmail]/Important" "=[Gmail]/Starred"
+
+named-mailboxes "KOBA - INBOX" "=INBOX"
+
+# Query with goobook
+# set query_command="goobook -c ~/.config/goobook/goobookrc query %s"
+
+# a add to address book
+# macro index,pager a "<pipe-message>goobook -c ~/.config/goobook/goobookrc add<return>" "add the sender address to Google contacts"
+
+
+macro index gi "<change-folder>=INBOX<enter>" "go to inbox"
+macro index Mi ";<save-message>=INBOX<enter><enter>" "move mail to inbox"
+macro index Ci ";<copy-message>=INBOX<enter>" "copy mail to inbox"
+macro index gs "<change-folder>=[Gmail]/Sent\ Mail<enter>" "go to sent"
+macro index Ms ";<save-message>=[Gmail]/Sent\ Mail<enter><enter>" "move mail to sent"
+macro index Cs ";<copy-message>=[Gmail]/Sent\ Mail<enter>" "copy mail to sent"
+macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "go to drafts"
+macro index Md ";<save-message>=[Gmail]/Drafts<enter><enter>" "move mail to drafts"
+macro index Cd ";<copy-message>=[Gmail]/Drafts<enter>" "copy mail to drafts"
+macro index gS "<change-folder>=[Gmail]/Spam<enter>" "go to spam"
+macro index MS ";<save-message>=[Gmail]/Spam<enter><enter>" "move mail to spam"
+macro index CS ";<copy-message>=[Gmail]/Spam<enter>" "copy mail to spam"
+macro index ga "<change-folder>=Archive<enter>" "go to archive"
+macro index Ma ";<save-message>=Archive<enter><enter>" "move mail to archive"
+macro index Ca ";<copy-message>=Archive<enter>" "copy mail to archive"
+
+macro index \Cf "<enter-command>unset wait_key<enter><shell-escape>read -p 'Enter a search: ' x; echo \$x >~/.cache/mutt_terms<enter><change-folder>All Mail<enter><limit>~i \"\`notmuch --config ~/.config/notmuch/notmuchrc search --output=messages \"\$(/bin/cat ~/.cache/mutt_terms) path:subash.adhikari@kobainsurance.com/**\" | head -n 1000 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "Search all mail in this account"
+
+# vim: filetype=neomuttrc

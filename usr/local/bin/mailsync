@@ -1,82 +1,106 @@
 #!/bin/bash
 
-# Sync mail and give notification if there is new mail. - originally written by Luke Smith (lukesmith.xyz)
+# █░█ ▄▀█ █▀█ █ ▄▀█ █▄▄ █░░ █▀▀ █▀
+# ▀▄▀ █▀█ █▀▄ █ █▀█ █▄█ █▄▄ ██▄ ▄█
 
-# Run only if user logged in (prevent cron errors)
-pgrep -u "${USER:=$LOGNAME}" >/dev/null || { echo "$USER not logged in; sync will not run."; exit ;}
-
-# Run only if not already running in other instance
-pgrep -x mbsync >/dev/null && { echo "mbsync is already running." ; exit ;}
-
-# Checks for internet connection and set notification script.
-ping -q -c 1 1.1.1.1 > /dev/null || { echo "No internet connection detected."; exit ;}
-command -v notify-send >/dev/null || echo "Note that \`libnotify\` or \`libnotify-send\` should be installed for pop-up mail notifications with this script."
-
+config="${XDG_CONFIG_HOME:-$HOME/.config}/isync/mbsyncrc"
+maildir="${XDG_DATA_HOME:-$HOME/.local/share}/mail"
+cachedir="${XDG_CACHE_HOME:-$HOME/.cache}/mutt"
+lastrun="${XDG_CONFIG_HOME:-$HOME/.config}/mutt/.mailsynclastrun"
+mailboxes="$(printf "INBOX\\nDrafts\\nJunk\\nTrash\\nSent\\nArchive")"
 # Required to display notifications if run as a cronjob:
 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
-export DISPLAY=:0.0
+export GPG_TTY="$(tty)"
+
+
+# █░█ ▄▀█ █░░ █ █▀▄ ▄▀█ ▀█▀ █ █▀█ █▄░█
+# ▀▄▀ █▀█ █▄▄ █ █▄▀ █▀█ ░█░ █ █▄█ █░▀█
+ 
+pgrep -u "${USER:=$LOGNAME}" >/dev/null || { echo "$USER not logged in; sync will not run."; exit ;}
+pgrep -x mbsync >/dev/null && { echo "mbsync is already running." ; exit ;}
+ping -q -c 1 1.1.1.1 > /dev/null || { echo "No internet connection detected."; exit ;}
+
+
+# █▀▀ █░█ █▄░█ █▀▀ ▀█▀ █ █▀█ █▄░█ █▀
+# █▀░ █▄█ █░▀█ █▄▄ ░█░ █ █▄█ █░▀█ ▄█
 
 # Settings are different for MacOS (Darwin) systems.
 if [ "$(uname)" = "Darwin" ]; then
-    notify() { osascript -e "display notification \"$2 in $1\" with title \"You've got Mail\" subtitle \"Account: $account\"" && sleep 2 ;}
-    messageinfo() { osascript -e "display notification with title \"e $from\" subtitle \"$subject\"" ;}
+  notify() { osascript -e "display notification \"$2\" with title \"$1\"" ;} 
 else
-    # notify() { notify-send --app-name="mutt" "mutt" "📬 $2 new mail(s) in \`$1\` account." ;}
-    messageinfo() { notify-send --app-name="mutt" "$from:" "$subject" ;}
+  command -v notify-send >/dev/null || echo "\`libnotify\` or \`libnotify-send\` should be installed for notifications."
+
+  pgrepoutput="$(pgrep -ax X\(\|org\|wayland\))"
+	displays="$(echo "$pgrepoutput" | grep -wo "[0-9]*:[0-9]\+" | sort -u)"
+	[ -z "$displays" ] && [ -d /tmp/.X11-unix ] && displays=$(cd /tmp/.X11-unix && for x in X*; do echo ":${x#X}"; done)
+
+  notify() { 
+    [ -n "$pgrepoutput" ] && for x in ${displays:-:0}; do
+			export DISPLAY="$x"
+			notify-send --app-name="mutt" -i email "$1" "$2"
+		done ;
+  }
 fi
 
-# Check account for new mail. Notify if there is new content.
+# Check account for new mail. Notify if there is new mail.
 syncandnotify() {
-    acc="$(echo "$account" | sed "s/.*\///")"
-    mbsync -c $HOME/.config/isync/mbsyncrc $opts "$acc"
-    new=$(find "$HOME/.local/share/mail/$acc/INBOX/new/" "$HOME/.local/share/mail/$acc/Inbox/new/" "$HOME/.local/share/mail/$acc/inbox/new/" -type f -newer "$HOME/.config/mutt/.mailsynclastrun" 2> /dev/null)
+    acc="$(echo "$1" | sed "s/.*\///")"
+    
+    mbsync -q -c $config "$acc"
+    
+    new=$(find\
+      "$HOME/.local/share/mail/$acc/"[Ii][Nn][Bb][Oo][Xx]/new/ \
+      "$HOME/.local/share/mail/$acc/"[Ii][Nn][Bb][Oo][Xx]/cur/ \
+      -type f -newer "$lastrun" 2> /dev/null)
+    
     newcount=$(echo "$new" | sed '/^\s*$/d' | wc -l)
-    if [ "$newcount" -gt "0" ]; then
-        notify-send "$acc" "$newcount" &
+    
+    case 1 in
+      $((newcount > 5)) )
+        echo "$newcount new mail for $acc account."
+        notify "New Mail!" "$newcount new mails in $acc account."
+        ;;
+      $((newcount > 0)) )
+        echo "$newcount new mail for $acc account."
+        
         for file in $new; do
-            # Extract subject and sender from mail.
-            from=$(awk '/^From: / && ++n ==1,/^\<.*\>:/' "$file" | perl -CS -MEncode -ne 'print decode("MIME-Header", $_)' | awk '{ $1=""; if (NF>=3)$NF=""; print $0 }' | sed 's/^[[:blank:]]*[\"'\''\<]*//;s/[\"'\''\>]*[[:blank:]]*$//')
-            subject=$(awk '/^Subject: / && ++n == 1,/^\<.*\>: / && ++i == 2' "$file" | head -n 1 | perl -CS -MEncode -ne 'print decode("MIME-Header", $_)' | sed 's/^Subject: //' | sed 's/^{[[:blank:]]*[\"'\''\<]*//;s/[\"'\''\>]*[[:blank:]]*$//' | tr -d '\n')
-	    messageinfo &
+              # Extract and decode subject and sender from mail.
+          subject="$(sed -n "/^Subject:/ s|Subject: *|| p" "$file" |
+            perl -CS -MEncode -ne 'print decode("MIME-Header", $_)')"
+          from="$(sed -n "/^From:/ s|From: *|| p" "$file" |
+            perl -CS -MEncode -ne 'print decode("MIME-Header", $_)')"
+          from="${from% *}" ; from="${from%\"}" ; from="${from#\"}"
+          notify "$from:" "$subject"
         done
-    fi
+        ;;
+      *) echo "No new mail for $acc account." ;;
+    esac
 }
 
-# Sync accounts passed as argument or all.
+# █▀ █▄█ █▄░█ █▀▀
+# ▄█ ░█░ █░▀█ █▄▄
+
 if [ "$#" -eq "0" ]; then
-    accounts="$(awk '/^Channel/ {print $2}' "$HOME/.config/isync/mbsyncrc")"
+  accounts="$(awk '/^Channel/ {print $2}' "$config")"
 else
-    for arg in "$@"; do
-      [ "${arg%${arg#?}}" = '-' ] && opts="${opts:+${opts} }${arg}" && shift 1
-    done
-    accounts=$*
+  for arg in "$@"; do
+    [ "${arg%${arg#?}}" = '-' ] && opts="${opts:+${opts} }${arg}" && shift 1
+  done
+  accounts=$*
 fi
 
-echo " " > /tmp/imapsyncicon_"$USER"
-( pkill -RTMIN+12 "${STATUSBAR:-blocks}" >/dev/null 2>&1 ) 2>/dev/null
-
-# Parallelize multiple accounts
-for account in $accounts; do
-  if [ ! -d $HOME/.local/share/mail/$account ]; then
-    mkdir -p $HOME/.local/share/mail/$account
-  fi
-  if [ ! -d $HOME/.local/share/mail/$account/Archive ]; then
-    mkdir -p $HOME/.local/share/mail/$account/Archive/{cur,tmp,new} 
-  fi
-  syncandnotify &
+for acc in $accounts; do
+  safename="$(echo $acc | sed 's/@/_/g')"
+  echo "$mailboxes" | xargs -I {} mkdir -p \
+    "$maildir/$acc/{}/cur" "$maildir/$acc/{}/tmp" "$maildir/$acc/{}/new"
+  mkdir -p "$cachedir/$safename/bodies"
+  
+  syncandnotify $acc &
 done
 
 wait
 
-notmuch new 2>/dev/null
+notmuch new --quiet
 
-# retag all "new" messages "inbox" and "unread"
-notmuch tag +inbox +unread -new -- tag:new
-
-# tag all messages from "me" as sent and remove tags inbox and unread 
-notmuch tag -new -inbox +sent -- \
-  from:me@subash.com.au or from:subash.adikari@gmail.com \
-  from:subash.adhikari@memories.net or from:subash.adhikari@kobainsurance.com
-
-#Create a touch file that indicates the time of the last run of mailsync
-touch "$HOME/.config/mutt/.mailsynclastrun"
+# Create a touch file that indicates the time of the last run of mailsync
+touch "$lastrun"

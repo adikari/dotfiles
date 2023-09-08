@@ -1,40 +1,38 @@
-## Used to configure SMTP settings
-
 defaults
 auth on
 tls	on
 tls_trust_file /etc/ssl/certs/ca-certificates.crt
-logfile	~/.config/msmtp/msmtp.log
+logfile	~/.local/var/msmtp/msmtp.log
 
-account subashcom
+account me@subash.com.au
 host smtp.gmail.com
 port 587
 from me@subash.com.au
 user me@subash.com.au
-passwordeval "read-secret --var SUBASHCOM_EMAIL"
+passwordeval "pass me@subash.com.au"
 
-account personal
+account subash.adikari@gmail.com
 host smtp.gmail.com
 port 587
 from subash.adikari@gmail.com
 user subash.adikari@gmail.com
-passwordeval "read-secret --var PERSONAL_EMAIL"
+passwordeval "pass subash.adikari@gmail.com"
 
-# Example outlook/office365 via SMTP
-# account ACCOUNT_ALIAS
-# host smtp.office365.com
-# port 587
-# from myemail@corporateoverlords.com
-# user myemail@corporateoverlords.com
-# # NOTE that if you use 2FA you will have to generate an app password to use
-# # here instead:
-# # https://support.microsoft.com/en-us/account-billing/manage-app-passwords-for-two-step-verification-d6dc8c6d-4bf7-4851-ad95-6d07799387e9
-# # If you can't do this you might have to use the DavMail approach instead of
-# # direct IMAP - see below
-# # how to get your password ('pass' example)
-# passwordeval "pass my-owa-password"
-# how to get your password ('gpg' example)
-# passwordeval "gpg --quiet --for-your-eyes-only --no-tty --decrypt my-owa-password"
+account subash.adhikari@kobainsurance.com
+host smtp.gmail.com
+port 587
+from subash.adhikari@kobainsurance.com
+user subash.adhikari@kobainsurance.com
+passwordeval "pass subash.adhikari@kobainsurance.com"
+
+
+account subash.adhikari@memories.net
+host smtp.office365.com
+port 587
+from subash.adhikari@memories.net
+user subash.adhikari@memories.net
+auth xoauth2
+passwordeval "mailctl access subash.adhikari@memories.net"
 
 
 # vim: filetype=conf

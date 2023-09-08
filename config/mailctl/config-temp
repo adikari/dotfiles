@@ -1,0 +1,15 @@
+services_file: $HOME/.config/mailctl/services.yaml
+oauth2_dir: $HOME/.local/var/mailctl
+  
+encrypt_cmd:
+  exec: gpg
+  args:
+    - --encrypt
+    - --recipient
+    - me@subash.com.au
+    - -o
+      
+decrypt_cmd:
+  exec: gpg
+  args:
+    - --decrypt

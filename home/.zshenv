@@ -8,6 +8,8 @@ export LANG=en_AU.UTF-8
 export TERMINAL=kitty
 export EDITOR=nvim
 
+export LYNX_CFG_PATH="$XDG_CONFIG_HOME"/lynx/lynx.cfg
+
 if [ -f $HOME/.cargo/env ]; then
   . "$HOME/.cargo/env"
 fi

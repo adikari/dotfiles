@@ -17,3 +17,5 @@ config/gh/hosts.yml
 home/.aws/config.lock
 home/.aws/credentials*
 home/.aws/saml*
+config/mailctl/services.yaml
+config/mailctl/config.yaml

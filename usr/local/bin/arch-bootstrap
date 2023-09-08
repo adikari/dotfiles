@@ -144,8 +144,12 @@ packages=(
   isync
   notmuch
   pandoc
-  html2text
+  lynx
   glow
+  abook
+  cyrus-sasl-xoauth2-git
+  mailctl-bin
+  urlscan
   
 
   # ▄▀█ █▀█ █▀█ █░░ █ █▀▀ ▄▀█ ▀█▀ █ █▀█ █▄░█ █▀
@@ -157,7 +161,6 @@ packages=(
   aws-vault
   kitty
   docker
-  thunderbird
   postman-bin
   thunar 
   thunar-archive-plugin 

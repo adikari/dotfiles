@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+notmuch tag +spam -unread "path:/Junk|Spam/"

@@ -1,0 +1,78 @@
+# custom fields
+ field birthday = Birthday, date
+ field website = Website
+
+ view CONTACT = name, email, mobile, phone, address
+ view OTHER = website, birthday
+
+ set preserve_fields=all
+ set autosave=true
+ set show_all_emails=true
+ set mutt_command=mutt
+ set mutt_return_all_emails=true
+ # set print_command=lpr
+ # set www_command=lynx
+ set address_style=us # eu, us, uk
+ set use_ascii_only=false
+ set add_email_prevent_duplicates=true
+ set sort_field=nick
+ set show_cursor=false
+
+ set index_format=" {name:22} {email:40} {phone:12|workphone|mobile}"
+
+# color_header_fg=color Foreground color for header bar
+#
+# color_header_bg=color Background color for header bar
+#
+# color_footer_fg=color Foreground color for footer bar
+#
+# color_footer_bg=color Background color for footer bar
+#
+# color_list_even_fg=color  Foreground  color  for   normal   list
+# entries with even index in the list (starting with index 0)
+#
+# color_list_even_bg=color   Background   color  for  normal  list
+# entries with even index in the list (starting with index 0)
+#
+# color_list_odd_fg=color Foreground color for normal list entries
+# with odd index in the list (starting with index 0)
+#
+# color_list_odd_bg=color Background color for normal list entries
+# with odd index in the list (starting with index 0)
+#
+# color_list_header_fg=color Foreground color for the list header
+#
+# color_list_header_bg=color Background color for the list header
+#
+# color_list_highlight_fg=color Foreground color  for  highlighted
+# list entries
+#
+# color_list_highlight_bg=color  Background  color for highlighted
+# list entries
+#
+# color_tab_border_fg=color Foreground color for  tab  borders  on
+# details page
+#
+# color_tab_border_bg=color  Background  color  for tab borders on
+# details page
+#
+# color_tab_label_fg=color  Foreground  color  for  tab  labes  on
+# details page
+#
+# color_tab_label_bg=color  Background  color  for  tab  labes  on
+# details page
+#
+# color_field_name_fg=color Foreground color for  field  names  on
+# details page
+#
+# color_field_name_bg=color  Background  color  for field names on
+# details page
+#
+# color_field_value_fg=color Foreground color for field values  on
+# details page
+#
+# color_field_value_bg=color  Background color for field values on
+# details page
+#
+# Where color can be: default, black, red,  green,  yellow,  blue,
+# magenta, cyan, white

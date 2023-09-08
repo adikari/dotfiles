@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+unread_count() {
+  count="$(notmuch count tag:unread)"
+  
+  if [[ "$count" = "0" ]]; then
+    echo ""
+  else
+    echo "$count"
+  fi
+}
+
+if [[ "$1" == "--unread-count" ]]; then
+  unread_count
+elif [[ "$1" == "--mark-allread" ]]; then
+  notmuch tag -unread tag:unread
+else
+	unread_count
+fi

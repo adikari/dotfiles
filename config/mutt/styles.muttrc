@@ -1,13 +1,15 @@
 # Formatting   ----------------------------------------------------------------------
 set date_format = "%a %d %h %H:%M"
 
-set index_format="  %zc %zs %zt  | %-35.35L   %@attachment_info@  %?M10?~(%1M) ?%-30.100s %> %?Y?%Y ? %(!%a %d %h %H:%M)  "
+# https://github.com/neomutt/samples/blob/main/config/variable/05-001-index_format.txt
+
+set index_format="%zc %zs %zt  | %D  %-35.35L   %@attachment_info@  %?M10?->(%1M) ?%-35.100s %>"
 set pager_format="%n %T %s%*  %{!%d %b · %H:%M} %?X? %X?%P"
-set status_format = "%D  %?u? %u ?%?R?󰇮 %R ?%?d? %d ?%?t?  %t ?%?F? %F ?%?p? %p? \n  \n"
+set status_format = "  %D  %?u? %u ?%?R?󰇮 %R ?%?d? %d ?%?t?  %t ?%?F? %F ?%?p? %p? \n  \n"
 set compose_format="-- NeoMutt: Compose  [Approx. msg size: %l   Atts: %a]%>-"
 # # set vfolder_format = "%N %?n?%3n&   ?  %8m  · %f"
 set attach_format = "%u%D  %T%-75.75d %?T?%&   ? %5s · %m/%M"
-set sidebar_format = '%D%?Z? [%Z]?%* %?S?%S?'
+set sidebar_format = '%D%?F? ?%* %?N?%N/?%?S?%S?'
 index-format-hook attachment_info '=B text/calendar ~X 1' ' '
 index-format-hook attachment_info '=B text/calendar' "  "
 index-format-hook attachment_info '~X 1' "  󰁦"
@@ -41,14 +43,14 @@ tag-formats "replied" "GR" \
 
 # General Colors   ------------------------------------------------------------------
 color normal default default                            # general text
-color error red default                                   # error messages
+color error red default                                 # error messages
 color message default default                           # messages at the bottom
 color prompt default default                            # prompt text
-color search black color10                              # search highlight
+color search black red                              # search highlight
 
 
 # Statusbar Colors   ----------------------------------------------------------------
-color status default default
+color status default black
 color status white default '([a-zA-Z0-9\.]+)( )'           # account text
 color status green default ''                             # Unread messages count
 color status blue default '󰇮 '                             # Read messages count icon
@@ -56,25 +58,32 @@ color status yellow default ''                            # Flagged icon
 color status red default ''                               # Pending delete icon
 
 # Index Colors   --------------------------------------------------------------------
-color index green default '~N'                  # new messages
+
+color index_date black default                 # date is always the same colour
+color index_label cyan default                # label is always the same colour
+color index_collapsed black default           # collapsed thread (message count text)
+color tree  black default                       # thread tree lines/arrow
+color indicator brightblack blue                # selection indicator
+
+# new messages
+color index blue black '~N'                    
+color index_author blue black '~N'             
+color index_subject blue black '~N'            
+color index_date blue black '~N'            
+
 color index default default '~R'                # read messages
 color index default default '~Q'                # messages which have been replied to
-color index_collapsed default default           # collapsed thread (message count text)
 color index default default '!~Q^~p'            # sent only to me and haven't been replied to
-color index color22 default '~h X-Label..'     # messages with a complete label
-color index color6 default '~F'                 # flagged messages
-color index color6 default '~F~N'               # flagged messages (new)
-color index color14 default '~F~R'              # flagged messages (read)
-color index color1 default '~D'                 # deleted messages
-color index color1 default '~D~N'               # deleted messages (new)
-color index color9 default '~D~R'               # deleted messages (read)
-color index color3 default '~T'                 # tagged messages
-color index color3 default '~T~N'               # tagged messages (new)
-color index color11 default '~T~R'              # tagged messages (read)
-color tree  color8 color8                       # thread tree lines/arrow
-color indicator brightblack blue                # selection indicator
-color index_date color8 default                 # date is always the same colour
-color index_label color6 default                # label is always the same colour
+color index green default '~h X-Label..'     # messages with a complete label
+color index yellow default '~F'                 # flagged messages
+color index yellow default '~F~N'               # flagged messages (new)
+color index yellow default '~F~R'              # flagged messages (read)
+color index black default '~D'                 # deleted messages
+color index black default '~D~N'               # deleted messages (new)
+color index black default '~D~R'               # deleted messages (read)
+color index cyan default '~T'                 # tagged messages
+color index cyan default '~T~N'               # tagged messages (new)
+color index cyan default '~T~R'              # tagged messages (read)
 
 
 # Sidebar Colors   ------------------------------------------------------------------
@@ -84,46 +93,72 @@ color sidebar_ordinary white default        # Color to give mailboxes by default
 color sidebar_divider white default         # divider between sidebar & content
 color sidebar_flagged red default           # mailboxes containing flagged mail
 color sidebar_new green default             # mailboxes containing new mail
-color sidebar_unread color7 default         # mailboxes containing unread mail
-color sidebar_unread color7 default         # mailboxes containing unread mail
+color sidebar_unread brightwhite default         # mailboxes containing unread mail
+color sidebar_unread brightwhite default         # mailboxes containing unread mail
 
 
 # Message Headers   -----------------------------------------------------------------
-color hdrdefault color8 default
+color hdrdefault black default
 
 
 # Message Body   --------------------------------------------------------------------
 
 # Attachments
-color attachment color8 default
+color attachment black default
 
 # Signature
-color signature color8 default
+color signature black default
 
 # emails
-# color body  color14 default  '[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+'
+# color body  cyan default  '[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+'
 
 # hide "mailto" 
-color body color0 color0  '<mailto:[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+>'
+color body brightblack brightblack  '<mailto:[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+>'
 
 # URLs
 color body blue default  '(https?|ftp)://[-\.,/%~_:?&=\#a-zA-Z0-9\+]+'
 
 # Dividers
-color body color8 default '(^[-_]*$)'
+color body black default '(^[-_]*$)'
 
 # Important info in calendar invites
-color body color6 default '^(Date\/Time|Location|Organiser|Invitees|Teams Meeting)(:| \~\~)'
+color body cyan default '^(Date\/Time|Location|Organiser|Invitees|Teams Meeting)(:| \~\~)'
 
 # Quotes
-color quoted		color61		default
-color quoted1		color117	default
-color quoted2		color84		default
-color quoted3		color215	default
-color quoted4		color212	default
+color quoted		green		default
+color quoted1		blue	default
+color quoted2		cyan		default
+color quoted3		yellow	default
+color quoted4		red	default
+color quoted5		red	default
 
 # Forward/reply headers
-color body color8 default '(^(To|From|Sent|Subject):.*)'
+color body black default '(^(To|From|Sent|Subject):.*)'
+
+# Regex highlighting:
+color header magenta default "^From"
+color header cyan default "^Subject"
+color header white default "^(CC|BCC)"
+color header blue default ".*"
+color body red default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" # Email addresses
+color body blue default "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+" # URL
+color body green default "\`[^\`]*\`" # Green text between ` and `
+color body blue default "^# \.*" # Headings as bold blue
+color body cyan default "^## \.*" # Subheadings as bold cyan
+color body green default "^### \.*" # Subsubheadings as bold green
+color body yellow default "^(\t| )*(-|\\*) \.*" # List items as yellow
+color body cyan default "[;:][-o][)/(|]" # emoticons
+color body cyan default "[;:][)(|]" # emoticons
+color body cyan default "[ ][*][^*]*[*][ ]?" # more emoticon?
+color body cyan default "[ ]?[*][^*]*[*][ ]" # more emoticon?
+color body red default "(BAD signature)"
+color body cyan default "(Good signature)"
+color body black default "^gpg: Good signature .*"
+color body yellow default "^gpg: "
+color body yellow red "^gpg: BAD signature from.*"
+mono body bold "^gpg: Good signature"
+mono body bold "^gpg: BAD signature from.*"
+color body red default "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
 
 # Patch syntax highlighting
 # color   body    brightwhite     default         '^[[:space:]].*'
@@ -151,4 +186,4 @@ color body color8 default '(^(To|From|Sent|Subject):.*)'
 # color   body    red             default         "^Closed #.*"
 # color   body    brightblue      default         "^Reply to this email.*"
 
-# vim: filetype=muttrc
+# vim: filetype=neomuttrc

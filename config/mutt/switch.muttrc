@@ -1,0 +1,7 @@
+unset hostname
+unmy_hdr Organization
+unmailboxes *
+unalternates *
+unset signature
+
+# vim: filetype=neomuttrc

@@ -1,29 +1,32 @@
-# vim: filetype=neomuttrc
+# █▀ █▀█ █░█ █▀█ █▀▀ █▀▀   █▀▀ █▀█ █▄░█ █▀▀ █ █▀▀ █▀
+# ▄█ █▄█ █▄█ █▀▄ █▄▄ ██▄   █▄▄ █▄█ █░▀█ █▀░ █ █▄█ ▄█
 
-set mailcap_path = $HOME/.config/mutt/mailcap
+source $XDG_CONFIG_HOME/mutt/binds.muttrc
+source ~/.config/mutt/styles.muttrc 
+
+source $XDG_CONFIG_HOME/mutt/accounts/me@subash.com.au.muttrc  
+source $XDG_CONFIG_HOME/mutt/accounts/subash.adhikari@kobainsurance.com.muttrc
+source $XDG_CONFIG_HOME/mutt/accounts/subash.adhikari@memories.net.muttrc
+source $XDG_CONFIG_HOME/mutt/accounts/subash.adikari@gmail.com.muttrc  
+
+# █▀▀ █▀▀ █▄░█ █▀▀ █▀█ ▄▀█ █░░   █▀ █▀▀ ▀█▀ ▀█▀ █ █▄░█ █▀▀ █▀
+# █▄█ ██▄ █░▀█ ██▄ █▀▄ █▀█ █▄▄   ▄█ ██▄ ░█░ ░█░ █ █░▀█ █▄█ ▄█
+
+set mailcap_path = $XDG_CONFIG_HOME/mutt/mailcap
 set rfc2047_parameters = yes
 set check_mbox_size = yes
-
-#### General Key Bindings
-source $HOME/.config/mutt/keys/unbinds.muttrc 
-source $HOME/.config/mutt/keys/binds.muttrc
-
-#### Colors, Symbols and Formatting
-source ~/.config/mutt/styles.muttrc
-
-#### Accounts
-source $HOME/.config/mutt/accounts/personal.muttrc  # default account
-
-macro index,pager i1 '<sync-mailbox><enter-command>source $HOME/.config/mutt/accounts/personal.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to subashcom account" 
-macro index,pager i2 '<sync-mailbox><enter-command>source $HOME/.config/mutt/accounts/subashcom.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to subashcom account" 
-
-#### General Settings
 set smtp_authenticators = 'gssapi:login'
 unset help
 set sleep_time = 0		        # Pause 0 seconds for informational messages
-set pager_read_delay = 3      # View a message for 3 seconds to mark as read
+set pager_read_delay = 1      # View a message for 3 seconds to mark as read
 set mark_old = no		          # Unread mail stay unread until read
 set mime_forward = no	  	    # attachments are forwarded with mail
+set mime_type_query_command = "file --mime-type -b %s"
+set date_format="%d/%m/%y %I:%M%p"
+
+set smtp_authenticators = 'gssapi:login'
+set query_command = "abook --mutt-query '%s'"
+set editor="mutt-trim %s; nvim +':set textwidth=72' +':set wrapmargin=0' +':set wrap' +':set spell' %s"
 set wait_key = no		          # mutt won't ask "press key to continue"
 set fast_reply			          # skip to compose when replying
 set fcc_attach			          # save attachments with the body
@@ -38,21 +41,36 @@ set timeout=5                 # how long to wait after user input until unblocki
 set count_alternatives=yes    # recurse into text/multipart when looking for attachement types
 set thorough_search=no        # don't process mail (via mailcap etc) before parsing with queries like ~B 
 set flag_safe                 # flagged messages can't be deleted
+set beep=no                   # don't beep for errors
+set beep_new                  # beep for new messages
+set send_charset="us-ascii:utf-8"
 set charset = "utf-8"
-set editor="mutt-trim %s; nvim +':set textwidth=72' +':set wrapmargin=0' +':set wrap' +':set spell' %s"
+auto_view text/html		# automatically show html (mailcap uses lynx)
+auto_view application/pgp-encrypted
+#set display_filter = "tac | sed '/\\\[-- Autoview/,+1d' | tac" # Suppress autoview messages.
+alternative_order text/plain text/enriched text/html
 
-#### Notmuch Config
-set nm_query_type=threads                                   # bring in the whole thread instead of just the matched message, really useful
-set nm_default_url = "notmuch:///$HOME/.local/share/mail"   # default notmuch URL
-set nm_record_tags = "sent"                                 # default 'sent' tag
-set virtual_spoolfile=yes                                   # allow using virtual mailboxes as spoolfile 
+#### Lists
+set auto_subscribe
 
-macro index \Cg "<enter-command>unset wait_key<enter><shell-escape>read -p 'Enter a search: ' x; echo \$x >~/.cache/mutt_terms<enter><change-folder>All Accounts<enter><limit>~i \"\`notmuch --config ~/.config/notmuch/notmuchrc search --output=messages \$(/bin/cat ~/.cache/mutt_terms) | head -n 1000 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a' | sed 's/id://g' \`\"<enter>" "Search all mailboxes in all accounts (Global search)"
+#### Thread ordering
+set sort=threads
+set sort_browser=reverse-date
+set sort_aux=last-date-received
+set use_threads=reverse
+set collapse_all = yes
+set uncollapse_new = no
+set thread_received = yes
+set narrow_tree=no
 
-#### Sidebar Config
-set sidebar_divider_char = ' 	░'
+
+# █▀ █ █▀▄ █▀▀ █▄▄ ▄▀█ █▀█   █▀▀ █▀█ █▄░█ █▀▀ █ █▀▀
+# ▄█ █ █▄▀ ██▄ █▄█ █▀█ █▀▄   █▄▄ █▄█ █░▀█ █▀░ █ █▄█
+
+set mail_check_stats
+set sidebar_divider_char = ' │'
 set sidebar_folder_indent = yes
-set sidebar_indent_string = ' - '
+set sidebar_indent_string = ' '
 set sidebar_non_empty_mailbox_only = yes
 set sidebar_visible = no
 set sidebar_width   = 30
@@ -60,27 +78,18 @@ set sidebar_next_new_wrap = yes
 set sidebar_short_path = yes
 set sidebar_component_depth = 0
 
-#### Thread ordering
-set use_threads=reverse
-set sort='last-date'
-set collapse_all = yes
-set uncollapse_new = no
-set thread_received = yes
-set narrow_tree=no
 
-#### Lists
-set auto_subscribe
+# █▄░█ █▀█ ▀█▀ █▀▄▀█ █░█ █▀▀ █░█   █▀▀ █▀█ █▄░█ █▀▀ █ █▀▀
+# █░▀█ █▄█ ░█░ █░▀░█ █▄█ █▄▄ █▀█   █▄▄ █▄█ █░▀█ █▀░ █ █▄█
 
-### Sounds
-set beep=no  # don't beep for errors
-set beep_new # beep for new messages
+set nm_query_type=threads                                   # bring in the whole thread instead of just the matched message, really useful
+set nm_default_url = "notmuch:///$HOME/.local/share/mail"   # default notmuch URL
+set nm_record_tags = "sent"                                 # default 'sent' tag
+set virtual_spoolfile=yes                                   # allow using virtual mailboxes as spoolfile 
 
-#### Markdown to html email conversion
-macro compose M "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=UTF-8\n" "Convert from MD to HTML"
+# █▀▄▀█ █ █▀ █▀▀
+# █░▀░█ █ ▄█ █▄▄
 
-#### Show patch files (requires git-split-diffs)
-macro attach P "|git-split-diffs --color | less -RF<enter>" "View a patch file as a diff"
-set wait_key=no
+timeout-hook 'exec sync-mailbox'  # sync mailbox whenever idle
 
-# sync mailbox whenever idle
-timeout-hook 'exec sync-mailbox' 
+# vim: filetype=neomuttrc

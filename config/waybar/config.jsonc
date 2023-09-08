@@ -1,3 +1,5 @@
+// read: https://github.com/Alexays/Waybar/wiki/Module:-Custom#module-custom-config-return-type
+
 {
   "layer": "top",
   "position": "bottom",
@@ -25,6 +27,7 @@
   
 	"modules-right": [
     "custom/l_end",
+    "custom/email",
     "custom/updates",
     "network",
     "bluetooth",
@@ -56,7 +59,7 @@
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
     "format-wifi": "󰤨 {essid}",
-    "on-click": "blueman-manager",
+    "on-click": "nm-connection-editor",
     "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
     "format-linked": "󱘖 {ifname} (No IP)",
     "format-disconnected": " Disconnected",
@@ -216,6 +219,13 @@
     "on-click": "update-sys update",
     "interval": 300,
     "tooltip": true
+  },
+
+  "custom/email": {
+    "format": "󰇮 {}",
+    "exec": "email --unread-count",
+    "on-click": "kitty -1 --class email -e neomutt",
+    "interval": 10
   },
 
   // modules for padding //

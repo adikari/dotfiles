@@ -1,3 +1,9 @@
+# unbinds
+bind index,pager i noop
+bind index,pager,attach g noop
+bind index C noop
+bind index M noop
+
 # General Navigation
 bind index <Left> collapse-thread
 bind index <Right> collapse-thread
@@ -101,6 +107,23 @@ macro attach s '<save-entry><kill-line>~/Downloads/<enter>a' "Save file to ~/Dow
 macro browser h '<change-dir><kill-line>..<enter>' "Go to parent folder"
 macro index \Ca "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 macro attach,compose \cl "<pipe-entry> urlscan -d -w 80<Enter>" "call urlscan to extract URLs out of a message"
+
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+macro index O "<shell-escape>mailsync<enter>" "run mailsync to sync all mail"
+
+macro index \Cf "<enter-command>unset wait_key<enter><shell-escape>printf 'Enter a search term to find with notmuch: '; read x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;s/\^id:// for@a;$,=\"|\";print@a' | perl -le '@a=<>; chomp@a; s/\\+/\\\\+/ for@a;print@a' \`\"<enter>" "show only messages matching a notmuch pattern"
+
+macro index A "<limit>all\n" "show all messages (undo limit)"
+
+macro compose M "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=UTF-8\n" "Convert from MD to HTML"
+
+macro index \Cg "<enter-command>unset wait_key<enter><shell-escape>read -p 'Enter a search: ' x; echo \$x >~/.cache/mutt_terms<enter><change-folder>All Accounts<enter><limit>~i \"\`notmuch --config ~/.config/notmuch/notmuchrc search --output=messages \$(/bin/cat ~/.cache/mutt_terms) | head -n 1000 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a' | sed 's/id://g' \`\"<enter>" "Search all mailboxes in all accounts (Global search)"
+
+macro index,pager i1 '<sync-mailbox><enter-command>source $HOME/.config/mutt/accounts/subash.adikari@gmail.com.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to subash.adikari@gmail.com account" 
+macro index,pager i2 '<sync-mailbox><enter-command>source $HOME/.config/mutt/accounts/me@subash.com.au.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to me@subash.com.au account" 
+macro index,pager i3 '<sync-mailbox><enter-command>source $HOME/.config/mutt/accounts/subash.adhikari@memories.net.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to subash.adhikari@memories.net account" 
+macro index,pager i4 '<sync-mailbox><enter-command>source $HOME/.config/mutt/accounts/subash.adhikari@kobainsurance.com.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to subash.adhikari@kobainsurance.com account" 
 
 set abort_key = "<Esc>"
 

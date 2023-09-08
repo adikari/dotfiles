@@ -61,7 +61,7 @@ fi
 # ▄█ ██▄ ░█░ █▄█ █▀▀   █▄▀ █▄█ ░█░ █▀░ █ █▄▄ ██▄ ▄█
 
 echo "setting up dotfiles.." | tee -a $log 
-sudo rm -f ~/.zshrc /etc/locale.conf /etc/locale.gen /etc/pam.d/login /etc/pam.d/system-local-login
+sudo rm -f $HOME/.zshrc /etc/locale.conf /etc/locale.gen /etc/pam.d/login /etc/pam.d/system-local-login 
 
 stow --target=$HOME home 
 stow --target=$XDG_CONFIG_HOME config
@@ -77,8 +77,15 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo locale-gen | tee -a $log
 
   echo "setting email with mutt"
-  # systemctl --user start mailsync &
-  # systemctl --user enable mailsync.timer
+  systemctl --user start mailsync &
+  systemctl --user enable mailsync.timer
+
+  echo "configuring mailctl"
+  export memories_client_id=$(pass subash.adhikari@memories.net/client_id)
+  export memories_client_secret=$(pass subash.adhikari@memories.net/client_secret)
+  mkdir -p $HOME/.local/var/mailctl $HOME/.local/var/msmtp
+  envsubst <"$HOME/dotfiles/config/mailctl/services-temp" >"$XDG_CONFIG_HOME/mailctl/services.yaml"
+  envsubst <"$HOME/dotfiles/config/mailctl/config-temp" >"$XDG_CONFIG_HOME/mailctl/config.yaml"
   
   echo "setting gdrive with rclone" | tee -a $log
   [ ! -d $HOME/gdrive ] && mkdir $HOME/gdrive
@@ -136,9 +143,6 @@ if [[ $SHELL != *"zsh" ]]; then
 fi
 
 ./usr/local/bin/install-nnn-plugins
-
-
-
 
 echo "all done!!"
 

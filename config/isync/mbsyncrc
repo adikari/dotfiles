@@ -1,91 +1,113 @@
-# Example Generic IMAP profile ################################################
+# █▀ █░█ █▄▄ ▄▀█ █▀ █░█ ░ █▀▀ █▀█ █▀▄▀█ ░ ▄▀█ █░█
+# ▄█ █▄█ █▄█ █▀█ ▄█ █▀█ ▄ █▄▄ █▄█ █░▀░█ ▄ █▀█ █▄█
 
-# me@subash.com.au config
-IMAPStore subashcom-remote
+IMAPStore me@subash.com.au-remote
 Host imap.gmail.com
 Port 993
 User me@subash.com.au
-PassCmd "pass professional_mutt_appsecret"
+PassCmd "pass me@subash.com.au"
+AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
-MaildirStore subashcom-local
+MaildirStore me@subash.com.au-local
 Subfolders Verbatim
-Path ~/.local/share/mail/subashcom/
-Inbox ~/.local/share/mail/subashcom/INBOX
-Flatten .
+Path ~/.local/share/mail/me@subash.com.au/
+Inbox ~/.local/share/mail/me@subash.com.au/INBOX
 
-Channel subashcom
+Channel me@subash.com.au
 Expunge Both
-Far :subashcom-remote:
-Near :subashcom-local:
-Patterns ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Trash" "[Gmail]/Drafts" "[Gmail]/Spam"
+Far :me@subash.com.au-remote:
+Near :me@subash.com.au-local:
+Patterns * !"[Gmail]/All Mail" !"*fts-flatcurve*" !"*virtual*"
 Create Both
 SyncState *
-MaxMessages 1000
+MaxMessages 0
 ExpireUnread no
 
-# subash.adikari@gmail.com config
-IMAPStore personal-remote
+
+# █▀▀ █▀▄▀█ ▄▀█ █ █░░ ░ █▀▀ █▀█ █▀▄▀█
+# █▄█ █░▀░█ █▀█ █ █▄▄ ▄ █▄▄ █▄█ █░▀░█
+#
+IMAPStore subash.adikari@gmail.com-remote
 Host imap.gmail.com
 Port 993
 User subash.adikari@gmail.com
-PassCmd "pass personal_mutt_appsecret"
+PassCmd "pass subash.adikari@gmail.com"
+AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
-MaildirStore personal-local
+MaildirStore subash.adikari@gmail.com-local
 Subfolders Verbatim
-Path ~/.local/share/mail/personal/
-Inbox ~/.local/share/mail/personal/INBOX
-Flatten .
+Path ~/.local/share/mail/subash.adikari@gmail.com/
+Inbox ~/.local/share/mail/subash.adikari@gmail.com/INBOX
 
-Channel personal
+Channel subash.adikari@gmail.com
 Expunge Both
-Far :personal-remote:
-Near :personal-local:
-Patterns ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Bin" "[Gmail]/Drafts" "[Gmail]/Spam"
+Far :subash.adikari@gmail.com-remote:
+Near :subash.adikari@gmail.com-local:
+Patterns * !"[Gmail]/All Mail" !"*fts-flatcurve*" !"*virtual*"
 Create Both
 SyncState *
-MaxMessages 1000
+MaxMessages 3000
 ExpireUnread no
 
-# Example Office365/Outlook (IMAP enabled/allowed) profile ####################
-#
-# Change ACCOUNT_ALIAS to something meaningful (e.g. personal, work) - this should
-# match the account alias used in .config/mutt/accounts/*
-# IMAPStore ACCOUNT_ALIAS-remote
-# Host outlook.office365.com
-# Port 993
-# User myemail@corporateoverlords.com
-# NOTE that if you use 2FA you will have to generate an app password to use
-# here instead:
-# https://support.microsoft.com/en-us/account-billing/manage-app-passwords-for-two-step-verification-d6dc8c6d-4bf7-4851-ad95-6d07799387e9
-# If you can't do this you might have to use the DavMail approach instead of
-# direct IMAP - see below
-# how to get your password ('pass' and 'gpg' are good for these)
-# using 'pass')
-# PassCmd "pass my-owa-password"
-# using 'gpg'
-#PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d my-owa-password.gpg"
-# AuthMechs LOGIN
-# SSLType IMAPS
-# CertificateFile /etc/ssl/certs/ca-certificates.crt
-#
-# MaildirStore ACCOUNT_ALIAS-local
-# Subfolders Verbatim
-# Path ~/.local/share/mail/ACCOUNT_ALIAS/
-# Inbox ~/.local/share/mail/ACCOUNT_ALIAS/INBOX
-# Flatten .
-#
-# Channel ACCOUNT_ALIAS
-# Expunge Both
-# Far :ACCOUNT_ALIAS-remote:
-# Near :ACCOUNT_ALIAS-local:
-# Create Both
-# SyncState *
-# MaxMessages 1000
-# ExpireUnread no
+
+# █▄▀ █▀█ █▄▄ ▄▀█
+# █░█ █▄█ █▄█ █▀█
+
+IMAPStore subash.adhikari@kobainsurance.com-remote
+Host imap.gmail.com
+Port 993
+User subash.adhikari@kobainsurance.com
+PassCmd "pass subash.adhikari@kobainsurance.com"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore subash.adhikari@kobainsurance.com-local
+Subfolders Verbatim
+Path ~/.local/share/mail/subash.adhikari@kobainsurance.com/
+Inbox ~/.local/share/mail/subash.adhikari@kobainsurance.com/INBOX
+
+Channel subash.adhikari@kobainsurance.com
+Expunge Both
+Far :subash.adhikari@kobainsurance.com-remote:
+Near :subash.adhikari@kobainsurance.com-local:
+Patterns * !"[Gmail]/All Mail" !"*fts-flatcurve*" !"*virtual*"
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
+
+
+# █▀▄▀█ █▀▀ █▀▄▀█ █▀█ █▀█ █ █▀▀ █▀
+# █░▀░█ ██▄ █░▀░█ █▄█ █▀▄ █ ██▄ ▄█
+
+IMAPStore subash.adhikari@memories.net-remote
+Host outlook.office365.com
+Port 993
+User subash.adhikari@memories.net
+PassCmd "mailctl access subash.adhikari@memories.net"
+AuthMechs XOAUTH2
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore subash.adhikari@memories.net-local
+Subfolders Verbatim
+Path ~/.local/share/mail/subash.adhikari@memories.net/
+Inbox ~/.local/share/mail/subash.adhikari@memories.net/INBOX
+
+Channel subash.adhikari@memories.net
+Expunge Both
+Far :subash.adhikari@memories.net-remote:
+Near :subash.adhikari@memories.net-local:
+Patterns * !Contacts !Calendar !Journal
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
 
 
 # vim: filetype=conf
