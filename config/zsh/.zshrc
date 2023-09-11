@@ -1,6 +1,3 @@
-export ZSH_COMPLETION_DIR=$HOME/.zsh_completions
-export ZSH_PLUGIN_DIR=$HOME/.zsh_plugins
-
 # enable history
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
@@ -19,29 +16,24 @@ source $HOME/.config/zsh/plugins.zsh
 [ -d $HOME/bin ] && PATH="$HOME/bin:$PATH"
 [ -d $HOME/local/bin ] && PATH="$HOME/local/bin:$PATH"
 [ -d $HOME/.local/bin ] && PATH="$HOME/.local/bin:$PATH"
+[ -d $XDG_DATA_HOME/pnpm ] && PATH="$XDG_DATA_HOME/pnpm:$PATH"
+[ -d $HOME/.cargo ] && PATH="$HOME/.cargo/bin:$PATH"
+[ -d $HOME/go ] && PATH="$HOME/go/bin:$PATH"
 
 # load custom config if there is any
-if [ -f $HOME/.my_zshrc ]; then
-  source $HOME/.my_zshrc
-fi
+[ -f $HOME/.my_zshrc ] && source $HOME/.my_zshrc
 
-# add jenv to path
 if command -v jenv > /dev/null 2>&1; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
 fi
 
-if [ -d $HOME/go ]; then
-  export GO111MODULE=on
-  export PATH="$HOME/go/bin:$PATH"
-fi
-
-if [ -d $HOME/.cargo ]; then
-  export PATH="$HOME/.cargo/bin:$PATH"
-fi
-
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
+fi
+
+if command -v direnv 1>/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
 fi
 
 # load fnm
@@ -53,10 +45,6 @@ if command -v fzf > /dev/null 2>&1; then
   # arch
   zvm_after_init_commands+=('[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh')
   zvm_after_init_commands+=('[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh')
-fi
-
-if command -v direnv 1>/dev/null 2>&1; then
-  eval "$(direnv hook zsh)"
 fi
 
 eval "$(starship init zsh)"

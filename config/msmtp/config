@@ -9,21 +9,21 @@ host smtp.gmail.com
 port 587
 from me@subash.com.au
 user me@subash.com.au
-passwordeval "pass me@subash.com.au"
+passwordeval "pass me@subash.com.au/app_pass"
 
 account subash.adikari@gmail.com
 host smtp.gmail.com
 port 587
 from subash.adikari@gmail.com
 user subash.adikari@gmail.com
-passwordeval "pass subash.adikari@gmail.com"
+passwordeval "pass subash.adikari@gmail.com/app_pass"
 
 account subash.adhikari@kobainsurance.com
 host smtp.gmail.com
 port 587
 from subash.adhikari@kobainsurance.com
 user subash.adhikari@kobainsurance.com
-passwordeval "pass subash.adhikari@kobainsurance.com"
+passwordeval "pass subash.adhikari@kobainsurance.com/app_pass"
 
 
 account subash.adhikari@memories.net

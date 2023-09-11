@@ -4,4 +4,3 @@ Description=Mailbox synchronization service
 [Service]
 Type=oneshot
 ExecStart=/usr/local/bin/mailsync
-ExecStartPost=/usr/bin/notmuch new

@@ -136,9 +136,9 @@ packages=(
   starship
   
    
-  # █▀▄▀█ █░█ ▀█▀ ▀█▀
-  # █░▀░█ █▄█ ░█░ ░█░
-  
+  # █▀█ █▀▀ █▀▀ █ █▀▀ █▀▀
+  # █▄█ █▀░ █▀░ █ █▄▄ ██▄
+   
   neomutt
   msmtp
   isync
@@ -149,6 +149,9 @@ packages=(
   abook
   cyrus-sasl-xoauth2-git
   mailctl-bin
+  davmail
+  vdirsyncer
+  python-aiohttp-oauthlib
   urlscan
   
 

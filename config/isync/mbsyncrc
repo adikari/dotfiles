@@ -5,7 +5,7 @@ IMAPStore me@subash.com.au-remote
 Host imap.gmail.com
 Port 993
 User me@subash.com.au
-PassCmd "pass me@subash.com.au"
+PassCmd "pass me@subash.com.au/app_pass"
 AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
@@ -33,7 +33,7 @@ IMAPStore subash.adikari@gmail.com-remote
 Host imap.gmail.com
 Port 993
 User subash.adikari@gmail.com
-PassCmd "pass subash.adikari@gmail.com"
+PassCmd "pass subash.adikari@gmail.com/app_pass"
 AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
@@ -61,7 +61,7 @@ IMAPStore subash.adhikari@kobainsurance.com-remote
 Host imap.gmail.com
 Port 993
 User subash.adhikari@kobainsurance.com
-PassCmd "pass subash.adhikari@kobainsurance.com"
+PassCmd "pass subash.adhikari@kobainsurance.com/app_pass"
 AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt

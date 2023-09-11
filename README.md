@@ -13,7 +13,8 @@ Currently this dotfiles depends on the following. If you have dependencies missi
 Dependencies are automatically installed in osx
 
 ### Mandatory
-1. NeoVim 
+
+1. NeoVim
 2. zsh shell
 
 ## How to set up
@@ -27,22 +28,22 @@ The setup of dotfiles is done using the `init.sh` script.
     $ ./init
 ```
 
-Thats all we need to do. The script will set up everything and prepare the environment.
+## Post setup
 
-The dotfiles will set up:
+Calendar and Email sync requires Oauth tokens and have to be ran manually for the first time. After the initial token is received, it is refreshed automatically.
 
-### 1. zsh
-All the configurations and plugins for zsh in inside `zsh` directory.
+```
+# get calendar token
+vdirsyncer discover
 
-### 2. [Git config]
-The dotfiles also sets up some git configurations. Update the `configs/gitconfig` file to your liking. At least update the `[user]` section.
+# get email token
+mailctl authorize microsoft <email address>
 
-### 3. [Tmux]
-The dotfiles also sets up some tmux configuration. Tmux configuration is inside `tmux` directory.
+# google drive token
+rclone config create gdrive@personal drive scope drive
+rclone config # set password
 
-**Note**: Tmux by default uses `Ctrl+b` for inputting commands. This dotfile uses `Ctrl+a`.
-
-#### 4. [NeoVim]
-Neo vim configuration is inside `nvim` directory. 
-
-If you have any issues, please contact me at me@subash.com.au. Feel free to clone and modify the repo.
+# davmail
+1. navigate to localhost:1080
+2. enter username password and complete oauth setup
+```

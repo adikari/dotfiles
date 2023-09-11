@@ -54,6 +54,7 @@ color status default black
 color status white default '([a-zA-Z0-9\.]+)( )'           # account text
 color status green default ''                             # Unread messages count
 color status blue default '󰇮 '                             # Read messages count icon
+color status cyan default ' '                             # Draft messages count icon
 color status yellow default ''                            # Flagged icon
 color status red default ''                               # Pending delete icon
 

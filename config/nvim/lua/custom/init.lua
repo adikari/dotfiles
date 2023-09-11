@@ -10,8 +10,10 @@ vim.g.loaded_netrwPlugin = 1
 -- })
 
 local function set_filetype_autocmd(path, filetype)
-  local cmd = string.format("autocmd BufNewFile,BufRead %s set filetype=%s", vim.fn.fnameescape(path), filetype)
+  local cmd = string.format("autocmd BufNewFile,BufRead %s set filetype=%s", path, filetype)
   vim.api.nvim_exec(cmd, false)
 end
 
 set_filetype_autocmd("~/note", "markdown")
+set_filetype_autocmd("/tmp/calcurse*", "markdown")
+set_filetype_autocmd("~/.calcurse/notes/*", "markdown")

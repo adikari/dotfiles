@@ -1,0 +1,70 @@
+[general]
+status_path = "~/.calendars/status"
+
+
+# █▀▀ █▀▄▀█ ▄▀█ █ █░░ ░ █▀▀ █▀█ █▀▄▀█
+# █▄█ █░▀░█ █▀█ █ █▄▄ ▄ █▄▄ █▄█ █░▀░█
+
+[pair personal_calendar]
+a = "personal_calendar_local"
+b = "personal_calendar_remote"
+collections = ["from a", "from b"]
+conflict_resolution = "a wins"
+metadata = ["color", "displayname"]
+
+[storage personal_calendar_remote]
+type = "google_calendar"
+token_file = "~/.vdirsyncer/personal_token"
+client_id.fetch = ["command", "pass", "subash.adikari@gmail.com/client_id"]
+client_secret.fetch = ["command", "pass", "subash.adikari@gmail.com/client_secret"]
+
+[storage personal_calendar_local]
+type = "filesystem"
+path = "~/.calendars/personal"
+fileext = ".ics"
+
+
+# █▄▀ █▀█ █▄▄ ▄▀█
+# █░█ █▄█ █▄█ █▀█
+
+[pair koba_calendar]
+a = "koba_calendar_local"
+b = "koba_calendar_remote"
+collections = ["from a", "from b"]
+conflict_resolution = "a wins"
+metadata = ["color", "displayname"]
+
+[storage koba_calendar_remote]
+type = "google_calendar"
+token_file = "~/.vdirsyncer/koba_token"
+client_id.fetch = ["command", "pass", "subash.adikari@gmail.com/client_id"]
+client_secret.fetch = ["command", "pass", "subash.adikari@gmail.com/client_secret"]
+
+[storage koba_calendar_local]
+type = "filesystem"
+path = "~/.calendars/koba"
+fileext = ".ics"
+
+
+# █▀▄▀█ █▀▀ █▀▄▀█ █▀█ █▀█ █ █▀▀ █▀
+# █░▀░█ ██▄ █░▀░█ █▄█ █▀▄ █ ██▄ ▄█
+
+[pair memories_calendar]
+a = "memories_calendar_local"
+b = "memories_calendar_remote"
+collections = ["from a", "from b"]
+conflict_resolution = "a wins"
+metadata = ["color", "displayname"]
+
+[storage memories_calendar_remote]
+type = "caldav"
+url = "http://localhost:1080/users/subash.adhikari@memories.net/calendar/"
+username = "subash.adhikari@memories.net"
+password.fetch = ["command", "pass", "subash.adhikari@memories.net/password"]
+
+[storage memories_calendar_local]
+type = "filesystem"
+path = "~/.calendars/memories"
+fileext = ".ics"
+
+# vim: ft=config

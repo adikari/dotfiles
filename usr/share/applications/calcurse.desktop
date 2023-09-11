@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Calcurse
+GenericName=Calendar
+Comment=Calendar and appointments
+TryExec=calcurse
+Exec=kitty --title calendar -e calcurse
+Terminal=false
+Type=Application
+Keywords=Calendar;editor;
+Icon=calendar
+Categories=Utility;Calendar;Tasks;Todo;
+StartupWMClass=calendar
+StartupNotify=false
