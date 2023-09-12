@@ -1,0 +1,148 @@
+#!/bin/env bash
+
+set -euo pipefail
+
+# █░█ ▄▀█ █▀█ █ ▄▀█ █▄▄ █░░ █▀▀ █▀
+# ▀▄▀ █▀█ █▀▄ █ █▀█ █▄█ █▄▄ ██▄ ▄█
+
+config="${XDG_CONFIG_HOME:-$HOME/.config}/vdirsyncer/config"
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
+lastrun="${XDG_CONFIG_HOME:-$HOME/.config}/vdirsyncer/.calendarsynclastrun"
+
+
+# █░█ ▄▀█ █░░ █ █▀▄ ▄▀█ ▀█▀ █ █▀█ █▄░█
+# ▀▄▀ █▀█ █▄▄ █ █▄▀ █▀█ ░█░ █ █▄█ █░▀█
+ 
+pgrep -x vdirsyncer >/dev/null && { echo "vdirsyncer is already running." ; exit ;}
+ping -q -c 1 1.1.1.1 > /dev/null || { echo "No internet connection detected."; exit ;}
+
+if [ "$(uname)" = "Darwin" ]; then
+  notify() { osascript -e "display notification \"$2\" with title \"$1\"" ;} 
+else
+  command -v notify-send >/dev/null || echo "\`libnotify\` or \`libnotify-send\` should be installed for notifications."
+
+  pgrepoutput="$(pgrep -ax X\(\|org\|wayland\))"
+	displays="$(echo "$pgrepoutput" | grep -wo "[0-9]*:[0-9]\+" | sort -u)"
+	[ -z "$displays" ] && [ -d /tmp/.X11-unix ] && displays=$(cd /tmp/.X11-unix && for x in X*; do echo ":${x#X}"; done)
+
+  notify() { 
+    [ -n "$pgrepoutput" ] && for x in ${displays:-:0}; do
+			export DISPLAY="$x"
+			notify-send --app-name="calendar" -i calendar "$1" "$2"
+		done ;
+  }
+fi
+
+extract_datetime() {
+  local event_data="$1"
+  local field="$2"
+  local datetime=""
+
+  local value=$(echo "$event_data" | grep -oP "(?<=${field}).*")
+  
+  if [[ $value =~ TZID=([^:]+):(.*) ]]; then
+    local tzid="${BASH_REMATCH[1]}"
+    local dt="${BASH_REMATCH[2]}"
+    dt="${dt:0:4}-${dt:4:2}-${dt:6:2}T${dt:9:2}:${dt:11:2}"
+  
+    datetime=$(TZ="$tzid" date -d "$dt")
+  else
+    # No timezone information, assume UTC
+    datetime=$(date -u -d "$value")
+  fi
+  
+  echo "$datetime"
+}
+
+schedule_notification() {
+  local file="$1"
+  local event_data=""
+  local in_event=false
+  local alarm_data=""
+  local in_alarm=false
+
+  # Arrays to store extracted event information
+  local summary=""
+  local location=""
+  local start_date=""
+  local end_date=""
+  local trigger=""
+
+  while IFS= read -r line; do
+    if [[ $line == "BEGIN:VEVENT" ]]; then
+      in_event=true
+      event_data=""
+    fi
+
+    # End of an event
+    if [[ $line == "END:VEVENT" ]]; then
+      in_event=false
+      
+      summary="$(echo "$event_data" | grep -oP '(?<=SUMMARY:).*')"
+      location="$(echo "$event_data" | grep -oP '(?<=LOCATION:).*')"
+      start_date="$(extract_datetime "$event_data" "DTSTART")"
+      end_date="$(extract_datetime "$event_data" "DTEND")"
+    fi
+    
+    if [[ $line == "BEGIN:VALARM" ]]; then
+      in_alarm=true
+      alarm_data=""
+    fi
+ 
+    if [[ $line == "END:VALARM" ]]; then
+      in_alarm=false
+      trigger=$(echo "$alarm_data" | grep -oP '(?<=TRIGGER:).*')
+      
+      # Schedule the notification using 'at'
+      # echo "echo 'Alarm triggered for event' | at $notification_time"
+    fi
+
+    if [[ $in_alarm == true ]]; then
+      alarm_data+="$line"$'\n'
+    fi
+
+    if [[ $in_event == true ]]; then
+      event_data+="$line"$'\n'
+    fi
+  done < "$file"
+  
+  notification_time=$(date -d "$start_date - 15 minutes")
+  echo $start_date
+  echo $end_date
+  echo $notification_time
+
+  #
+  # if [ ! -z $notification_time ]; then
+  #   # notify-send ""
+  #   echo "$notification_time"
+  #   echo "$summary" 
+  #   echo "$location" 
+  #   echo "$start_date"
+  # fi
+}
+
+
+syncandnotify() {
+  # vdirsyncer sync
+  
+  new=$(find $HOME/.calendars -type f -name "*.icss" 2> /dev/null)
+
+  newcount=$(echo "$new" | sed '/^\s*$/d' | wc -l)
+   
+  case 1 in
+    $((newcount > 0)) )
+      for file in $new; do
+        echo "$newcount new events scheduled soon."
+        schedule_notification "$file"
+      done
+      ;;
+    *) echo "No new events coming soon." ;;
+  esac
+
+}
+
+syncandnotify &
+wait
+
+# Create a touch file that indicates the time of the last run of vdirsyncer
+# touch "$lastrun"
