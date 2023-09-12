@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-set -euo pipefail
+# set -euo pipefail
 
 # █░█ ▄▀█ █▀█ █ ▄▀█ █▄▄ █░░ █▀▀ █▀
 # ▀▄▀ █▀█ █▀▄ █ █▀█ █▄█ █▄▄ ██▄ ▄█
@@ -36,19 +36,25 @@ fi
 extract_datetime() {
   local event_data="$1"
   local field="$2"
+  local tzid="$3"
   local datetime=""
 
   local value=$(echo "$event_data" | grep -oP "(?<=${field}).*")
   
   if [[ $value =~ TZID=([^:]+):(.*) ]]; then
-    local tzid=$(echo "${BASH_REMATCH[1]}" | sed 's/\"//g')
+    tzid=$(echo "${BASH_REMATCH[1]}" | sed 's/\"//g')
     local dt="${BASH_REMATCH[2]}"
     dt="${dt:0:4}-${dt:4:2}-${dt:6:2}T${dt:9:2}:${dt:11:2}"
   
     datetime=$(TZ="$tzid" date -d "$dt")
+  elif [[ $value =~ VALUE=(.*):(.*) ]]; then
+    local dt="${BASH_REMATCH[2]}"
+    dt="${dt:0:4}-${dt:4:2}-${dt:6:2}"
+    
+    datetime=$(TZ="$tzid" date -d "$dt")
   else
-    # No timezone information, assume UTC
-    datetime=$(date -u -d "$value")
+    local dt="${value:1:4}-${value:5:2}-${value:7:2}T${value:10:2}:${value:12:2}"
+    datetime=$(TZ="$tzid" date -d "$dt")
   fi
   
   echo "$datetime"
@@ -57,6 +63,7 @@ extract_datetime() {
 extract_notification_time() {
   local start_date="$1" 
   local trigger="$2" 
+  local tzid="$3" 
   local hours=0
   local minutes=0
 
@@ -68,7 +75,7 @@ extract_notification_time() {
     minutes=$(echo "$trigger" | grep -oP '[0-9]+M' | sed 's/M//')
   fi
 
-  notification_time=$(TZ="Australia/Melbourne" date -d "$start_date - $hours hours - $minutes minutes")
+  notification_time=$(TZ="$tzid" date -d "$start_date - $hours hours - $minutes minutes" +"%s")
 
   echo "$notification_time"
 }
@@ -83,8 +90,9 @@ schedule_notification() {
   local summary=()
   local location=()
   local start_date=()
-  local end_date=()
   local trigger=""
+
+  local tzid="$(grep -m 1 -oP '(?<=TZID:).*' "$file")"
 
   while IFS= read -r line; do
     if [[ $line == "BEGIN:VEVENT" ]]; then
@@ -97,8 +105,7 @@ schedule_notification() {
        
       summary+=("$(echo "$event_data" | grep -oP '(?<=SUMMARY:).*')")
       location+=("$(echo "$event_data" | grep -oP '(?<=LOCATION:).*')")
-      start_date+=("$(extract_datetime "$event_data" "DTSTART")")
-      end_date+=("$(extract_datetime "$event_data" "DTEND")")
+      start_date+=("$(extract_datetime "$event_data" "DTSTART" "$tzid")")
     fi
  
     if [[ $in_event == true ]]; then
@@ -120,26 +127,32 @@ schedule_notification() {
     fi
   done < "$file"
    
+  now=$(date -d "$(date)" +"%s")
+  hour_from_now=$(date -d "+1 hours" +"%s")
+
   for ((i = 0; i < ${#summary[@]}; i++)); do
     [ -z "${trigger}" ] && continue
-    
-    notification_time=$(extract_notification_time "${start_date[i]}" "${trigger}")
-    echo "start date" ${start_date[i]}
-    echo "notification" $notification_time
+    notification_time=$(extract_notification_time "${start_date[i]}" "${trigger}" "$tzid")
+
+    if [ ! -z $notification_time ] && [ "$notification_time" -ge "$now" ] && [ "$notification_time" -le "$hour_from_now" ]; then
+      echo "The input date is within the next 1 hours. ========"
+    else
+      echo "The input date is NOT within the next 1 hours."
+    fi
   done
 }
 
 syncandnotify() {
   # vdirsyncer sync
   
-  new=$(find $HOME/.calendars -type f -name "*.icss" 2> /dev/null)
+  new=$(find $HOME/.calendars -type f -name "*.ics" 2> /dev/null)
 
   newcount=$(echo "$new" | sed '/^\s*$/d' | wc -l)
    
   case 1 in
     $((newcount > 0)) )
       for file in $new; do
-        echo "$newcount new events scheduled soon."
+        # echo "$newcount new events scheduled soon."
         schedule_notification "$file"
       done
       ;;
