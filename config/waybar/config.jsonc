@@ -17,15 +17,15 @@
     "battery",
     "custom/r_end"
   ],
-  
-	"modules-center": [
+
+  "modules-center": [
     "custom/l_end",
     "wlr/workspaces",
     "wlr/taskbar",
     "custom/r_end"
   ],
-  
-	"modules-right": [
+
+  "modules-right": [
     "custom/l_end",
     "custom/email",
     "custom/updates",
@@ -35,12 +35,12 @@
     "pulseaudio#microphone",
     "idle_inhibitor",
     "custom/r_end",
-    
+
     "custom/l_end",
     "clock",
     "custom/weather",
     "custom/r_end",
-    
+
     "custom/l_end",
     "tray",
     "custom/r_end"
@@ -66,7 +66,7 @@
     "format-alt": "󰤨 {signalStrength}%",
     "interval": 5
   },
-  
+
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
@@ -75,12 +75,12 @@
     },
     "tooltip": true
   },
-  
+
   "custom/weather": {
-    "tooltip" : true,
-    "format" : "{}",
+    "tooltip": true,
+    "format": "{}",
     "icon-size": 16,
-    "interval" : 30,
+    "interval": 30,
     "exec": "weather",
     "return-type": "json"
   },
@@ -90,7 +90,7 @@
     "format-alt": "{: %b %Y 󰥔 %H:%M}",
     "on-click": "kitty --title calendar -e calcurse",
     "tooltip-format": "<tt><big>{calendar}</big></tt>",
-    "actions":  {
+    "actions": {
       "on-scroll-up": "shift_down",
       "on-scroll-down": "shift_up",
       "on-click-right": "mode"
@@ -103,7 +103,7 @@
       }
     }
   },
- 
+
   "cpu": {
     "interval": 10,
     "format": "󰍛 {usage}%",
@@ -121,7 +121,7 @@
     "tooltip": true,
     "tooltip-format": " {used:0.1f}GB/{total:0.1f}GB"
   },
-  
+
   "temperature": {
     "thermal-zone": 1,
     "format": " {temperatureC}°C",
@@ -151,20 +151,18 @@
   },
 
   "wlr/taskbar": {
-		"format": "{icon}",
-		"icon-size": 16,
-		"icon-theme": "Tela-circle-dracula",
+    "format": "{icon}",
+    "icon-size": 16,
+    "icon-theme": "Tela-circle-dracula",
     "spacing": 0,
-		"tooltip-format": "{title}",
-		"on-click": "activate",
-		"on-click-middle": "close",
-		"ignore-list": [
-			"rofi"
-		],
-		"app_ids-mapping": {
-			"firefoxdeveloperedition": "firefox-developer-edition"
-		}
-	},
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": ["rofi"],
+    "app_ids-mapping": {
+      "firefoxdeveloperedition": "firefox-developer-edition"
+    }
+  },
 
   "battery": {
     "states": {
@@ -246,43 +244,43 @@
 
   "custom/l_end": {
     "format": " ",
-    "interval" : "once",
+    "interval": "once",
     "tooltip": false
   },
 
   "custom/r_end": {
     "format": " ",
-    "interval" : "once",
+    "interval": "once",
     "tooltip": false
   },
 
   "custom/sl_end": {
     "format": " ",
-    "interval" : "once",
+    "interval": "once",
     "tooltip": false
   },
 
   "custom/sr_end": {
     "format": " ",
-    "interval" : "once",
+    "interval": "once",
     "tooltip": false
   },
 
   "custom/rl_end": {
     "format": " ",
-    "interval" : "once",
+    "interval": "once",
     "tooltip": false
   },
 
   "custom/rr_end": {
     "format": " ",
-    "interval" : "once",
+    "interval": "once",
     "tooltip": false
   },
 
   "custom/padd": {
     "format": "  ",
-    "interval" : "once",
+    "interval": "once",
     "tooltip": false
   }
 }

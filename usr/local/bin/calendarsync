@@ -41,7 +41,7 @@ extract_datetime() {
   local value=$(echo "$event_data" | grep -oP "(?<=${field}).*")
   
   if [[ $value =~ TZID=([^:]+):(.*) ]]; then
-    local tzid="${BASH_REMATCH[1]}"
+    local tzid=$(echo "${BASH_REMATCH[1]}" | sed 's/\"//g')
     local dt="${BASH_REMATCH[2]}"
     dt="${dt:0:4}-${dt:4:2}-${dt:6:2}T${dt:9:2}:${dt:11:2}"
   
@@ -68,24 +68,23 @@ extract_notification_time() {
     minutes=$(echo "$trigger" | grep -oP '[0-9]+M' | sed 's/M//')
   fi
 
-  notification_time=$(date -d "$start_date - $hours hours - $minutes minutes")
+  notification_time=$(TZ="Australia/Melbourne" date -d "$start_date - $hours hours - $minutes minutes")
 
   echo "$notification_time"
 }
 
 schedule_notification() {
   local file="$1"
+  local alarm_data=""
   local event_data=""
   local in_event=false
-  local alarm_data=""
   local in_alarm=false
 
-  # Arrays to store extracted event information
   local summary=()
   local location=()
   local start_date=()
   local end_date=()
-  local trigger=()
+  local trigger=""
 
   while IFS= read -r line; do
     if [[ $line == "BEGIN:VEVENT" ]]; then
@@ -101,35 +100,34 @@ schedule_notification() {
       start_date+=("$(extract_datetime "$event_data" "DTSTART")")
       end_date+=("$(extract_datetime "$event_data" "DTEND")")
     fi
-    
+ 
+    if [[ $in_event == true ]]; then
+      event_data+="$line"$'\n'
+    fi
+
     if [[ $line == "BEGIN:VALARM" ]]; then
       in_alarm=true
       alarm_data=""
     fi
- 
+
     if [[ $line == "END:VALARM" ]]; then
       in_alarm=false
-      trigger+=($(echo "$alarm_data" | grep -oP '(?<=TRIGGER:).*'))
+      trigger=$(echo "$alarm_data" | grep -oP '(?<=-P).*')
     fi
 
     if [[ $in_alarm == true ]]; then
       alarm_data+="$line"$'\n'
     fi
-
-    if [[ $in_event == true ]]; then
-      event_data+="$line"$'\n'
-    fi
   done < "$file"
-
-  
+   
   for ((i = 0; i < ${#summary[@]}; i++)); do
-    if [ ! -z "$trigger" ]; then
-      notification_time=$(extract_notification_time "${start_date[i]}" "${trigger[i]}")
-      echo $notification_time
-    fi
+    [ -z "${trigger}" ] && continue
+    
+    notification_time=$(extract_notification_time "${start_date[i]}" "${trigger}")
+    echo "start date" ${start_date[i]}
+    echo "notification" $notification_time
   done
 }
-
 
 syncandnotify() {
   # vdirsyncer sync
@@ -147,7 +145,6 @@ syncandnotify() {
       ;;
     *) echo "No new events coming soon." ;;
   esac
-
 }
 
 syncandnotify &
