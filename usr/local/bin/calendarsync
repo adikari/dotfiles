@@ -54,6 +54,25 @@ extract_datetime() {
   echo "$datetime"
 }
 
+extract_notification_time() {
+  local start_date="$1" 
+  local trigger="$2" 
+  local hours=0
+  local minutes=0
+
+  if [[ "$trigger" =~ [0-9]+H ]]; then
+    hours=$(echo "$trigger" | grep -oP '[0-9]+H' | sed 's/H//')
+  fi
+
+  if [[ "$trigger" =~ [0-9]+M ]]; then
+    minutes=$(echo "$trigger" | grep -oP '[0-9]+M' | sed 's/M//')
+  fi
+
+  notification_time=$(date -d "$start_date - $hours hours - $minutes minutes")
+
+  echo "$notification_time"
+}
+
 schedule_notification() {
   local file="$1"
   local event_data=""
@@ -62,11 +81,11 @@ schedule_notification() {
   local in_alarm=false
 
   # Arrays to store extracted event information
-  local summary=""
-  local location=""
-  local start_date=""
-  local end_date=""
-  local trigger=""
+  local summary=()
+  local location=()
+  local start_date=()
+  local end_date=()
+  local trigger=()
 
   while IFS= read -r line; do
     if [[ $line == "BEGIN:VEVENT" ]]; then
@@ -74,14 +93,13 @@ schedule_notification() {
       event_data=""
     fi
 
-    # End of an event
     if [[ $line == "END:VEVENT" ]]; then
       in_event=false
-      
-      summary="$(echo "$event_data" | grep -oP '(?<=SUMMARY:).*')"
-      location="$(echo "$event_data" | grep -oP '(?<=LOCATION:).*')"
-      start_date="$(extract_datetime "$event_data" "DTSTART")"
-      end_date="$(extract_datetime "$event_data" "DTEND")"
+       
+      summary+=("$(echo "$event_data" | grep -oP '(?<=SUMMARY:).*')")
+      location+=("$(echo "$event_data" | grep -oP '(?<=LOCATION:).*')")
+      start_date+=("$(extract_datetime "$event_data" "DTSTART")")
+      end_date+=("$(extract_datetime "$event_data" "DTEND")")
     fi
     
     if [[ $line == "BEGIN:VALARM" ]]; then
@@ -91,10 +109,7 @@ schedule_notification() {
  
     if [[ $line == "END:VALARM" ]]; then
       in_alarm=false
-      trigger=$(echo "$alarm_data" | grep -oP '(?<=TRIGGER:).*')
-      
-      # Schedule the notification using 'at'
-      # echo "echo 'Alarm triggered for event' | at $notification_time"
+      trigger+=($(echo "$alarm_data" | grep -oP '(?<=TRIGGER:).*'))
     fi
 
     if [[ $in_alarm == true ]]; then
@@ -105,20 +120,14 @@ schedule_notification() {
       event_data+="$line"$'\n'
     fi
   done < "$file"
-  
-  notification_time=$(date -d "$start_date - 15 minutes")
-  echo $start_date
-  echo $end_date
-  echo $notification_time
 
-  #
-  # if [ ! -z $notification_time ]; then
-  #   # notify-send ""
-  #   echo "$notification_time"
-  #   echo "$summary" 
-  #   echo "$location" 
-  #   echo "$start_date"
-  # fi
+  
+  for ((i = 0; i < ${#summary[@]}; i++)); do
+    if [ ! -z "$trigger" ]; then
+      notification_time=$(extract_notification_time "${start_date[i]}" "${trigger[i]}")
+      echo $notification_time
+    fi
+  done
 }
 
 
