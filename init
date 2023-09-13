@@ -105,10 +105,10 @@ done
 # ░█░ █░▀░█ █▄█ █░█   █▀▀ █▄▄ █▄█ █▄█ █ █░▀█ ▄█
 
 echo "installing tmux plugins" | tee -a $log
-if [ ! -d $HOME/.tmux/plugins/tpm ]; then
-  git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+if [ ! -d $XDG_CONFIG_HOME/tmux/plugins/tpm ]; then
+  git clone https://github.com/tmux-plugins/tpm $XDG_CONFIG_HOME/tmux/plugins/tpm
 fi
-$HOME/.tmux/plugins/tpm/bin/install_plugins
+$XDG_CONFIG_HOME/tmux/plugins/tpm/bin/install_plugins
 
 # echo "install safebox" | tee -a $log
 # if [ ! -f /usr/local/bin/safebox ]; then
