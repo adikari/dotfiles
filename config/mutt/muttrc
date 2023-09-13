@@ -37,7 +37,7 @@ set reverse_realname=yes      # use any real name provided when replying
 set auto_tag                  # automatically apply commands to all tagged messages (if some messages are tagged)
 set include			              # include message in replies
 set mail_check=15              # to avoid lags using IMAP with some email providers 
-set timeout=5                 # how long to wait after user input until unblocking background stuff like mail syncing
+set timeout=3                 # how long to wait after user input until unblocking background stuff like mail syncing
 set count_alternatives=yes    # recurse into text/multipart when looking for attachement types
 set thorough_search=no        # don't process mail (via mailcap etc) before parsing with queries like ~B 
 set flag_safe                 # flagged messages can't be deleted

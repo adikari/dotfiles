@@ -140,6 +140,8 @@ schedule_notification() {
       echo "The input date is NOT within the next 1 hours."
     fi
   done
+
+  echo "notify-send -u critical -i calendar 'hello' 'scheduled message'" | at -M "now + 1 minute"
 }
 
 syncandnotify() {

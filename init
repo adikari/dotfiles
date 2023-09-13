@@ -74,6 +74,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
   echo "starting davmail service" | tee -a $log
   systemctl --user enable --now davmail@subash.adhikari@memories.net
+  
+  echo "enable atd service" | tee -a $log
+  sudo systemctl enable --now atd
 
   echo "configuring mailctl" | tee -a $log
   export memories_client_id=$(pass subash.adhikari@memories.net/client_id)
