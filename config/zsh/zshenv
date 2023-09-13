@@ -20,6 +20,7 @@ export _Z_DATA="$XDG_DATA_HOME/z"
 export GO111MODULE=on
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 export LYNX_CFG_PATH="$XDG_CONFIG_HOME"/lynx/lynx.cfg
+export PASSWORD_STORE_DIR="$HOME/dotfiles/passwords"
 
 [ -f $HOME/.cargo/env ] && source "$HOME/.cargo/env"
 [ -f $HOME/.rover/env ] && source "$HOME/.rover/env"
