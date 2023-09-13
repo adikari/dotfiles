@@ -1,0 +1,27 @@
+ZDOTDIR="$HOME/.config/zsh"
+
+XDG_CONFIG_HOME="$HOME/.config"
+XDG_STATE_HOME="$HOME/.local/state"
+XDG_DATA_HOME="$HOME/.local/share"
+XDG_CACHE_HOME="$HOME/.cache"
+
+XDG_CONFIG_DIRS="/etc/xdg"
+XDG_DATA_DIRS="/usr/local/share:/usr/share"
+
+LC_ALL=en_AU.UTF-8
+LANG=en_AU.UTF-8
+TERMINAL=kitty
+EDITOR=nvim
+
+ZSH_COMPLETION_DIR=$XDG_DATA_HOME/zsh/completions
+ZSH_PLUGIN_DIR=$XDG_DATA_HOME/zsh/plugins
+_Z_DATA="$XDG_DATA_HOME/z"
+
+GO111MODULE=on
+PNPM_HOME="$XDG_DATA_HOME/pnpm"
+LYNX_CFG_PATH="$XDG_CONFIG_HOME"/lynx/lynx.cfg
+
+[ -f $HOME/.cargo/env ] && source "$HOME/.cargo/env"
+[ -f $HOME/.rover/env ] && source "$HOME/.rover/env"
+
+# vim:ft=zsh

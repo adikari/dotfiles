@@ -1,5 +1,6 @@
 # enable history
-HISTFILE=~/.zsh_history
+[ ! -d "$XDG_STATE_HOME/zsh" ] && mkdir -p "$XDG_STATE_HOME/zsh"
+HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory

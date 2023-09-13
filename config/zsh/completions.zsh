@@ -1,4 +1,7 @@
 [ ! -d $ZSH_COMPLETION_DIR ] && mkdir -p $ZSH_COMPLETION_DIR
+
+# compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+
 fpath=($ZSH_COMPLETION_DIR $fpath)
 
 completions=(
