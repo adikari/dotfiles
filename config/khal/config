@@ -15,28 +15,28 @@ external_edit = E
 [calendars]
 
 [[personal]]
-path = ~/.calendars/personal/subash.adikari@gmail.com
+path = ~/.local/share/calendars/personal/subash.adikari@gmail.com
 color = dark green
 
 [[family]]
-path = ~/.calendars/personal/family16082567923069906214@group.calendar.google.com
+path = ~/.local/share/calendars/personal/family16082567923069906214@group.calendar.google.com
 color = dark cyan
 
 [[holidays]]
-path = ~/.calendars/personal/cln2sobledq74obcd5gms8r8dtm6ip31f506esjfelo2sthecdgmopbechgn4bj7dtnmer355phmur8@virtual
+path = ~/.local/share/calendars/personal/cln2sobledq74obcd5gms8r8dtm6ip31f506esjfelo2sthecdgmopbechgn4bj7dtnmer355phmur8@virtual
 color = dark magenta
 readonly = True
 
 [[koba]]
-path = ~/.calendars/koba/subash.adhikari@kobainsurance.com
+path = ~/.local/share/calendars/koba/subash.adhikari@kobainsurance.com
 color = brown
 
 [[memories]]
-path = ~/.calendars/memories/calendar/
+path = ~/.local/share/calendars/memories/calendar/
 color = dark blue
 
 [[local]]
-path = ~/.calendars/local/*
+path = ~/.local/share/calendars/local/*
 type = discover
 
 # vim: ft=config

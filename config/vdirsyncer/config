@@ -1,5 +1,5 @@
 [general]
-status_path = "~/.calendars/status"
+status_path = "~/.local/state/vdirsyncer/status"
 
 
 # █▀▀ █▀▄▀█ ▄▀█ █ █░░ ░ █▀▀ █▀█ █▀▄▀█
@@ -14,13 +14,13 @@ metadata = ["color", "displayname"]
 
 [storage personal_calendar_remote]
 type = "google_calendar"
-token_file = "~/.vdirsyncer/personal_token"
+token_file = "~/.local/state/vdirsyncer/personal_token"
 client_id.fetch = ["command", "pass", "subash.adikari@gmail.com/client_id"]
 client_secret.fetch = ["command", "pass", "subash.adikari@gmail.com/client_secret"]
 
 [storage personal_calendar_local]
 type = "filesystem"
-path = "~/.calendars/personal"
+path = "~/.local/share/calendars/personal"
 fileext = ".ics"
 
 
@@ -36,13 +36,13 @@ metadata = ["color", "displayname"]
 
 [storage koba_calendar_remote]
 type = "google_calendar"
-token_file = "~/.vdirsyncer/koba_token"
+token_file = "~/.local/state/vdirsyncer/koba_token"
 client_id.fetch = ["command", "pass", "subash.adikari@gmail.com/client_id"]
 client_secret.fetch = ["command", "pass", "subash.adikari@gmail.com/client_secret"]
 
 [storage koba_calendar_local]
 type = "filesystem"
-path = "~/.calendars/koba"
+path = "~/.local/share/calendars/koba"
 fileext = ".ics"
 
 
@@ -64,7 +64,7 @@ password.fetch = ["command", "pass", "subash.adhikari@memories.net/password"]
 
 [storage memories_calendar_local]
 type = "filesystem"
-path = "~/.calendars/memories"
+path = "~/.local/share/calendars/memories"
 fileext = ".ics"
 
 # vim: ft=config
