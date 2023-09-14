@@ -13,12 +13,12 @@ log=/tmp/dotfiles.log
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   echo "platform is mac osx. Installing.."
-  ./usr/local/bin/osx-bootstrap  | tee -a $log
+  ./local/bin/osx-bootstrap  | tee -a $log
 fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "platform is arch. Installing.."
-  ./usr/local/bin/arch-bootstrap | tee -a $log 
+  ./local/bin/arch-bootstrap | tee -a $log 
 fi
 
 
@@ -51,19 +51,16 @@ fi
 # ▄█ ██▄ ░█░ █▄█ █▀▀   █▄▀ █▄█ ░█░ █▀░ █ █▄▄ ██▄ ▄█
 
 echo "setting up dotfiles.." | tee -a $log 
-sudo rm -rf $HOME/.zshrc /etc/locale.conf /etc/locale.gen /etc/pam.d/login /etc/pam.d/system-local-login $XDG_CONFIG_HOME/calcurse /etc/zsh/zshenv
+sudo rm -rf $HOME/.zshrc /etc/locale.conf /etc/locale.gen \
+  /etc/pam.d/login /etc/pam.d/system-local-login \
+  $XDG_CONFIG_HOME/calcurse /etc/zsh/zshenv 
 
 stow --target=$HOME home 
 stow --target=$XDG_CONFIG_HOME config
+stow --target=$HOME/.local local
 sudo stow --target=/etc etc
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  sudo stow --target=/usr/local/bin --dir=usr/local bin
-fi
-
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  sudo stow --target=/usr usr 
-  
   sudo locale-gen | tee -a $log
  
   echo "starting mutt service" | tee -a $log
@@ -140,7 +137,7 @@ if [[ $SHELL != *"zsh" ]]; then
   chsh -s $(which zsh)
 fi
 
-./usr/local/bin/install-nnn-plugins
+./local/bin/install-nnn-plugins
 
 echo "all done!!"
 
