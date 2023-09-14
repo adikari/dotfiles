@@ -14,7 +14,9 @@ else
   notify() { 
     [ -n "$pgrepoutput" ] && for x in ${displays:-:0}; do
 			export DISPLAY="$x"
-			dunstify "$1" "$2" --app-name="calendar" -i calendar -u critical 
+			dunstify "$@"
 		done ;
   }
 fi
+
+notify "$@"

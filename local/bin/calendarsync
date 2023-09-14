@@ -14,6 +14,14 @@ lastrun="${XDG_CONFIG_HOME:-$HOME/.config}/vdirsyncer/.calendarsynclastrun"
 pgrep -x vdirsyncer >/dev/null && { echo "vdirsyncer is already running." ; exit ;}
 ping -q -c 1 1.1.1.1 > /dev/null || { echo "No internet connection detected."; exit ;}
 
+
+# █▀▀ █░█ █▄░█ █▀▀ ▀█▀ █ █▀█ █▄░█ █▀
+# █▀░ █▄█ █░▀█ █▄▄ ░█░ █ █▄█ █░▀█ ▄█
+
+notify() { 
+  $HOME/.local/bin/notify "$1" "$2" -a calendar -i calendar -u critical
+}
+
 extract_datetime() {
   local event_data="$1"
   local field="$2"
@@ -125,7 +133,7 @@ schedule_notification() {
 
 syncandnotify() {
   # vdirsyncer sync
-  
+
   new=$(find $HOME/.calendars -type f -name "*.ics" 2> /dev/null)
 
   newcount=$(echo "$new" | sed '/^\s*$/d' | wc -l)
@@ -141,6 +149,10 @@ syncandnotify() {
     *) echo "No new events coming soon." ;;
   esac
 }
+
+
+# █▀ █▄█ █▄░█ █▀▀
+# ▄█ ░█░ █░▀█ █▄▄
 
 syncandnotify &
 wait

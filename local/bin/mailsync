@@ -9,7 +9,6 @@ cachedir="${XDG_CACHE_HOME:-$HOME/.cache}/mutt"
 lastrun="${XDG_CONFIG_HOME:-$HOME/.config}/mutt/.mailsynclastrun"
 mailboxes="$(printf "INBOX\\nDrafts\\nJunk\\nTrash\\nSent\\nArchive")"
 # Required to display notifications if run as a cronjob:
-DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
 export GPG_TTY="$(tty)"
 
 
@@ -24,23 +23,9 @@ ping -q -c 1 1.1.1.1 > /dev/null || { echo "No internet connection detected."; e
 # █▀▀ █░█ █▄░█ █▀▀ ▀█▀ █ █▀█ █▄░█ █▀
 # █▀░ █▄█ █░▀█ █▄▄ ░█░ █ █▄█ █░▀█ ▄█
 
-# Settings are different for MacOS (Darwin) systems.
-if [ "$(uname)" = "Darwin" ]; then
-  notify() { osascript -e "display notification \"$2\" with title \"$1\"" ;} 
-else
-  command -v dunstify >/dev/null || echo "\`dunstify\` should be installed for notifications."
-
-  pgrepoutput="$(pgrep -ax X\(\|org\|wayland\))"
-	displays="$(echo "$pgrepoutput" | grep -wo "[0-9]*:[0-9]\+" | sort -u)"
-	[ -z "$displays" ] && [ -d /tmp/.X11-unix ] && displays=$(cd /tmp/.X11-unix && for x in X*; do echo ":${x#X}"; done)
-
-  notify() { 
-    [ -n "$pgrepoutput" ] && for x in ${displays:-:0}; do
-			export DISPLAY="$x"
-			dunstify --app-name="mutt" -i email "$1" "$2"
-		done ;
-  }
-fi
+notify() { 
+  $HOME/.local/bin/notify "$1" "$2" -a "mutt" -i email 
+}
 
 # Check account for new mail. Notify if there is new mail.
 syncandnotify() {
