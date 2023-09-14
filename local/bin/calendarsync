@@ -1,0 +1,75 @@
+#!/bin/env bash
+
+# █░█ ▄▀█ █░░ █ █▀▄ ▄▀█ ▀█▀ █ █▀█ █▄░█
+# ▀▄▀ █▀█ █▄▄ █ █▄▀ █▀█ ░█░ █ █▄█ █░▀█
+ 
+pgrep -x vdirsyncer >/dev/null && { echo "vdirsyncer is already running." ; exit ;}
+ping -q -c 1 1.1.1.1 > /dev/null || { echo "No internet connection detected."; exit ;}
+
+
+# █▀▀ █░█ █▄░█ █▀▀ ▀█▀ █ █▀█ █▄░█ █▀
+# █▀░ █▄█ █░▀█ █▄▄ ░█░ █ █▄█ █░▀█ ▄█
+
+notify() { 
+  $HOME/.local/bin/notify "$1" "$2" \
+    -a calendar -i calendar -u critical 
+}
+
+convert_to_systemd_on_calendar() {
+  local bash_date="$1"
+  local systemd_date
+
+  year=$(date -d "$bash_date" +%Y)
+  month=$(date -d "$bash_date" +%m)
+  day=$(date -d "$bash_date" +%d)
+  hour=$(date -d "$bash_date" +%H)
+  minute=$(date -d "$bash_date" +%M)
+  second=$(date -d "$bash_date" +%S)
+
+  systemd_date="${year}-${month}-${day} ${hour}:${minute}:${second}"
+
+  echo "$systemd_date"
+}
+
+
+# █▀ █▄█ █▄░█ █▀▀
+# ▄█ ░█░ █░▀█ █▄▄
+
+vdirsyncer sync
+
+IFS=$'\n' 
+events=($(khal list --notstarted \
+  --day-format='' \
+  --format="{start-date-full}#{start-time-full}#{status}#{title}#{location}" \
+  today today
+))
+
+if [ ${#events[@]} -eq 0 ]; then
+  echo "No new events to schedule"
+  return
+fi
+
+now=$(date +"%s")
+
+for item in "${events[@]}"; do
+  IFS="#" read -r start_date time status title location <<< "$item"
+  
+  start_date=$(echo "$start_date" | sed 's/\//-/g')
+  start_date=$(awk -F'-' '{printf("%04d-%02d-%02d\n",$3,$2,$1)}' <<< $start_date)
+  start_time=$(date -d "$start_date $time")
+
+  unit_name=$(systemd-escape "cal_notify_$title")
+  found=$(systemctl --user is-enabled $unit_name)
+  
+  if [ $found == "not-found" ] && [ "$(date -d $start_time +"%s")" -ge "$now" ]; then
+    message=" $(date -d $start_time +"%I:%M %p")"
+    [[ ! -z "$location" ]] && message="$message\n $location"
+
+    notification_time=$(convert_to_systemd_on_calendar $(date -d "$start_time - 15 minutes"))
+    
+    systemd-run --user --on-calendar="$notification_time" \
+      --property=Restart=on-failure --property=RestartSec=5 \
+      -u $unit_name \
+      $HOME/.local/bin/notify "$title" "$message"
+  fi
+done

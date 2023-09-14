@@ -1,15 +1,21 @@
 export ZDOTDIR="$HOME/.config/zsh"
+
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+
+export XDG_CONFIG_DIRS="/etc/xdg"
+export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 
 export LC_ALL=en_AU.UTF-8
 export LANG=en_AU.UTF-8
 export TERMINAL=kitty
 export EDITOR=nvim
 
-export ZSH_COMPLETION_DIR=$HOME/.zsh_completions
-export ZSH_PLUGIN_DIR=$HOME/.zsh_plugins
+export ZSH_COMPLETION_DIR=$XDG_DATA_HOME/zsh/completions
+export ZSH_PLUGIN_DIR=$XDG_DATA_HOME/zsh/plugins
+export _Z_DATA="$XDG_DATA_HOME/z"
 
 export GO111MODULE=on
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"

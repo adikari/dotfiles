@@ -1,4 +1,3 @@
-[ ! -d $ZSH_COMPLETION_DIR ] && mkdir -p $ZSH_COMPLETION_DIR
 fpath=($ZSH_COMPLETION_DIR $fpath)
 
 completions=(
@@ -14,5 +13,9 @@ done
 
 (( ${+commands[gh]} )) && gh completion -s zsh > "${ZSH_COMPLETION_DIR}/_gh"
 
-autoload -U compinit; compinit
+zstyle ':completion:*' \
+  menu select \
+  cache-path $XDG_CACHE_HOME/zsh/zcompcache
+
+autoload -U compinit; compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 

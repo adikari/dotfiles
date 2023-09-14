@@ -12,14 +12,17 @@ appearance.sidebarwidth=41
 appearance.theme=blue on default
 appearance.todoview=hide-completed
 appearance.headingpos=right-justified
+
 daemon.enable=no
-daemon.log=no
+daemon.log=yes
+
 format.inputdate=2
 format.notifydate=%a %F
 format.notifytime=%T
 format.appointmenttime=%H:%M
 format.outputdate=%D
 format.dayheading=%B %e, %Y
+
 general.autogc=yes
 general.autosave=yes
 general.confirmdelete=yes
@@ -28,6 +31,7 @@ general.firstdayofweek=monday
 general.multipledays=yes
 general.periodicsave=1
 general.systemevents=yes
+
 notification.command=printf '\a'
 notification.notifyall=all
 notification.warning=600

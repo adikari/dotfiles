@@ -1,11 +1,12 @@
 # enable history
-HISTFILE=~/.zsh_history
+[ ! -d "$XDG_STATE_HOME/zsh" ] && mkdir -p "$XDG_STATE_HOME/zsh"
+[ ! -d "$XDG_CACHE_HOME/zsh" ] && mkdir -p "$XDG_CACHE_HOME/zsh"
+[ ! -d $ZSH_COMPLETION_DIR ] && mkdir -p $ZSH_COMPLETION_DIR
+
+HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory
-
-# better autocomplete
-zstyle ':completion:*' menu select
 
 source $HOME/.config/zsh/aliases.zsh
 source $HOME/.config/zsh/completions.zsh

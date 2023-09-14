@@ -1,0 +1,22 @@
+#!/bin/env bash
+
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
+
+if [ "$(uname)" = "Darwin" ]; then
+  notify() { osascript -e "display notification \"$2\" with title \"$1\"" ;} 
+else
+  command -v dunstify >/dev/null || echo "\`dunstify\` should be installed for notifications."
+
+  pgrepoutput="$(pgrep -ax X\(\|org\|wayland\))"
+	displays="$(echo "$pgrepoutput" | grep -wo "[0-9]*:[0-9]\+" | sort -u)"
+	[ -z "$displays" ] && [ -d /tmp/.X11-unix ] && displays=$(cd /tmp/.X11-unix && for x in X*; do echo ":${x#X}"; done)
+
+  notify() { 
+    [ -n "$pgrepoutput" ] && for x in ${displays:-:0}; do
+			export DISPLAY="$x"
+			dunstify "$@"
+		done ;
+  }
+fi
+
+notify "$@"
