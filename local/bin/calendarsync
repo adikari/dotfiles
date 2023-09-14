@@ -5,8 +5,8 @@
 # █░█ ▄▀█ █▀█ █ ▄▀█ █▄▄ █░░ █▀▀ █▀
 # ▀▄▀ █▀█ █▀▄ █ █▀█ █▄█ █▄▄ ██▄ ▄█
 
-config="${XDG_CONFIG_HOME:-$HOME/.config}/vdirsyncer/config"
-lastrun="${XDG_CONFIG_HOME:-$HOME/.config}/vdirsyncer/.calendarsynclastrun"
+config="$XDG_CONFIG_HOME/vdirsyncer/config"
+lastrun="$XDG_STATE_HOME/vdirsyncer/.lastrun"
 
 # █░█ ▄▀█ █░░ █ █▀▄ ▄▀█ ▀█▀ █ █▀█ █▄░█
 # ▀▄▀ █▀█ █▄▄ █ █▄▀ █▀█ ░█░ █ █▄█ █░▀█
@@ -17,10 +17,6 @@ ping -q -c 1 1.1.1.1 > /dev/null || { echo "No internet connection detected."; e
 
 # █▀▀ █░█ █▄░█ █▀▀ ▀█▀ █ █▀█ █▄░█ █▀
 # █▀░ █▄█ █░▀█ █▄▄ ░█░ █ █▄█ █░▀█ ▄█
-
-notify() { 
-  $HOME/.local/bin/notify "$1" "$2" -a calendar -i calendar -u critical
-}
 
 extract_datetime() {
   local event_data="$1"
@@ -116,17 +112,29 @@ schedule_notification() {
     fi
   done < "$file"
    
-  now=$(date -d "$(date)" +"%s")
-  hour_from_now=$(date -d "+1 hours" +"%s")
 
+  now=$(date -d "$(date)" +"%s")
+  
   for ((i = 0; i < ${#summary[@]}; i++)); do
     [ -z "${trigger}" ] && continue
+    
     notification_time=$(extract_notification_time "${start_date[i]}" "${trigger}" "$tzid")
 
-    if [ ! -z $notification_time ] && [ "$notification_time" -ge "$now" ] && [ "$notification_time" -le "$hour_from_now" ]; then
-      echo "The input date is within the next 1 hours. ========"
-    else
-      echo "The input date is NOT within the next 1 hours."
+    if [ ! -z $notification_time ] && [ "$notification_time" -ge "$now" ]; then
+      local sd="$(date -d "${start_date[i]}" +"%I:%M %p")"
+      local lc="${location[i]}"
+      local nt="$(date -d @"$notification_time" +"%I:%M %p %B %d %Y")"
+
+      message=""
+      [[ ! -z "$lc" ]] && message="$lc"
+      
+      if [ -z "$message" ]; then
+        message="$message$sd"
+      else
+        message="$message\n$sd"
+      fi
+            
+      # echo "notify -a calendar -i calendar -u critical \"${summary[i]}\" \"$message\"" | at -M "$nt"
     fi
   done
 }
@@ -134,15 +142,18 @@ schedule_notification() {
 syncandnotify() {
   # vdirsyncer sync
 
-  new=$(find $HOME/.calendars -type f -name "*.ics" 2> /dev/null)
+  new=$(find $XDG_DATA_HOME/calendars -type f -name "*.ics" -newer "$lastrun" 2> /dev/null)
 
   newcount=$(echo "$new" | sed '/^\s*$/d' | wc -l)
    
-  echo "$notify 'hello' 'scheduled message'" | at -M "now + 1 minute"
+  title="title"
+  message="message"
+  
   case 1 in
     $((newcount > 0)) )
       for file in $new; do
-        # echo "$newcount new events scheduled soon."
+        echo 
+        echo "$newcount new event notifications will be scheduled."
         schedule_notification "$file"
       done
       ;;
