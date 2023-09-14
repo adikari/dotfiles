@@ -6,13 +6,14 @@ alias \
   ave="aws-vault exec" \
   vim='nvim' \
   vi="nvim" \
-  lynx="lynx -cfg=$XDG_CONFIG_HOME/lynx/lynx.cfg -lss=$XDG_CONFIG_HOME/lynx/lynx.lss" \
-  abook="abook --config "$XDG_CONFIG_HOME"/abook/abookrc --datafile "$XDG_DATA_HOME"/abook/addressbook" \
   pn="pnpm" \
   lf="nnn -e" \
   hyp="Hyprland" \
   mutt="neomutt" \
-  vpn="openvpn" 
+  vpn="openvpn" \
+  lynx="lynx -cfg=$XDG_CONFIG_HOME/lynx/lynx.cfg -lss=$XDG_CONFIG_HOME/lynx/lynx.lss" \
+  abook="abook --config "$XDG_CONFIG_HOME"/abook/abookrc --datafile "$XDG_DATA_HOME"/abook/addressbook" \
+  ikhal="ikhal -l ~/.local/var/khal/ikhal.log"
 
 alias \
  aws-koba-playground='aws-google-auth -p koba-playground; export AWS_PROFILE=koba-playground;' \
