@@ -48,7 +48,6 @@ packages=(
   # █░█ ▀█▀ █ █░░ █ ▀█▀ █ █▀▀ █▀
   # █▄█ ░█░ █ █▄▄ █ ░█░ █ ██▄ ▄█
   
-  at
   bluez 
   bluez-utils 
   blueman

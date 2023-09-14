@@ -18,6 +18,11 @@ ping -q -c 1 1.1.1.1 > /dev/null || { echo "No internet connection detected."; e
 # █▀▀ █░█ █▄░█ █▀▀ ▀█▀ █ █▀█ █▄░█ █▀
 # █▀░ █▄█ █░▀█ █▄▄ ░█░ █ █▄█ █░▀█ ▄█
 
+notify() { 
+  $HOME/.local/bin/notify "$1" "$2" \
+    -a calendar -i calendar -u critical 
+}
+
 extract_datetime() {
   local event_data="$1"
   local field="$2"
@@ -48,21 +53,63 @@ extract_datetime() {
 extract_notification_time() {
   local start_date="$1" 
   local trigger="$2" 
-  local tzid="$3" 
-  local hours=0
-  local minutes=0
+  local tzid="$3"
+  local rule="$4"
+  
+  # event has recurring rule
+  if [ ! -z "$rule" ]; then
+    # RRULE:FREQ=WEEKLY;UNTIL=20231218T003000Z;INTERVAL=1;BYDAY=MO;WKST=SU
+    # RRULE:FREQ=WEEKLY;COUNT=52;INTERVAL=1;BYDAY=FR;WKST=MO
+    # RRULE:FREQ=WEEKLY;COUNT=30;INTERVAL=2;BYDAY=TH;WKST=MO
+    # BYMONTH=1;BYDAY=SU,MO,TU,WE,TH,FR,SA
+    # RRULE:FREQ=MONTHLY;BYMONTHDAY=10
+    # systemctl --user stop timer-name.timer
 
-  if [[ "$trigger" =~ [0-9]+H ]]; then
-    hours=$(echo "$trigger" | grep -oP '[0-9]+H' | sed 's/H//')
+    local freq=""
+    local until=""
+    local interval=""
+    local byday=""
+    local bymonth=""
+    local year=""
+    
+    while IFS=';' read -ra fields; do
+      for field in "${fields[@]}"; do
+        IFS='=' read -r key value <<< "$field"
+        case "$key" in
+          FREQ) freq="$value" ;;
+          UNTIL) until="$value" ;;
+          INTERVAL) interval="$value" ;;
+          BYDAY) byday="$value" ;;
+          BYMONTH) bymonth="$value" ;;
+          BYYEAR) byyear="$value" ;;
+        esac
+      done
+    done <<< "$rule"
+
+    echo "FREQ: $freq"
+    echo "UNTIL: $until"
+    echo "INTERVAL: $interval"
+    echo "BYDAY: $byday"
+    echo "BYMONTH: $bymonth"
+    echo "BYYEAR: $byyear"
+
+  # event occurs one time
+  else
+    local hours=0
+    local minutes=0
+
+    if [[ "$trigger" =~ [0-9]+H ]]; then
+      hours=$(echo "$trigger" | grep -oP '[0-9]+H' | sed 's/H//')
+    fi
+
+    if [[ "$trigger" =~ [0-9]+M ]]; then
+      minutes=$(echo "$trigger" | grep -oP '[0-9]+M' | sed 's/M//')
+    fi
+
+    notification_time=$(TZ="$tzid" date -d "$start_date - $hours hours - $minutes minutes" +"%s")
+
+    echo "$notification_time"
   fi
-
-  if [[ "$trigger" =~ [0-9]+M ]]; then
-    minutes=$(echo "$trigger" | grep -oP '[0-9]+M' | sed 's/M//')
-  fi
-
-  notification_time=$(TZ="$tzid" date -d "$start_date - $hours hours - $minutes minutes" +"%s")
-
-  echo "$notification_time"
 }
 
 schedule_notification() {
@@ -76,6 +123,7 @@ schedule_notification() {
   local location=()
   local start_date=()
   local trigger=""
+  local rule=()
 
   local tzid="$(grep -m 1 -oP '(?<=TZID:).*' "$file")"
 
@@ -84,13 +132,13 @@ schedule_notification() {
       in_event=true
       event_data=""
     fi
-
+    
     if [[ $line == "END:VEVENT" ]]; then
       in_event=false
-       
       summary+=("$(echo "$event_data" | grep -oP '(?<=SUMMARY:).*')")
       location+=("$(echo "$event_data" | grep -oP '(?<=LOCATION:).*')")
       start_date+=("$(extract_datetime "$event_data" "DTSTART" "$tzid")")
+      rule+=("$(echo "$event_data" | grep -oP '(?<=RRULE:).*')")
     fi
  
     if [[ $in_event == true ]]; then
@@ -118,31 +166,40 @@ schedule_notification() {
   for ((i = 0; i < ${#summary[@]}; i++)); do
     [ -z "${trigger}" ] && continue
     
-    notification_time=$(extract_notification_time "${start_date[i]}" "${trigger}" "$tzid")
+    extract_notification_time "${start_date[i]}" "${trigger}" "$tzid" "${rule[i]}"
+    notification_time=$(extract_notification_time "${start_date[i]}" "${trigger}" "$tzid" "${rule[i]}")
 
-    if [ ! -z $notification_time ] && [ "$notification_time" -ge "$now" ]; then
-      local sd="$(date -d "${start_date[i]}" +"%I:%M %p")"
-      local lc="${location[i]}"
-      local nt="$(date -d @"$notification_time" +"%I:%M %p %B %d %Y")"
-
-      message=""
-      [[ ! -z "$lc" ]] && message="$lc"
-      
-      if [ -z "$message" ]; then
-        message="$message$sd"
-      else
-        message="$message\n$sd"
-      fi
-            
-      # echo "notify -a calendar -i calendar -u critical \"${summary[i]}\" \"$message\"" | at -M "$nt"
-    fi
+    # if [ ! -z $notification_time ] && [ "$notification_time" -ge "$now" ]; then
+    #   local sd="$(date -d "${start_date[i]}" +"%I:%M %p")"
+    #   local lc="${location[i]}"
+    #   local nt="$(date -d @"$notification_time" +"%I:%M %p %B %d %Y")"
+    #
+    #   message=""
+    #   [[ ! -z "$lc" ]] && message="$lc"
+    #   
+    #   if [ -z "$message" ]; then
+    #     message="$message$sd"
+    #   else
+    #     message="$message\n$sd"
+    #   fi
+    #         
+    #   # systemd transient timers: https://github.com/lfos/calcurse/issues/285
+    #   # https://wiki.archlinux.org/title/Systemd/Timers#Transient_.timer_units
+    #   # DayOfWeek Year-Month-Day Hour:Minute:Second
+    #   
+    #   # systemd-run --user --on-calendar="10sec" \
+    #   #   --property=Restart=on-failure --property=RestartSec=5 \
+    #   #   -u "Calendar_Reminder_for_$notification_time" \
+    #   #   notify "${summary[i]}" "$message"
+    # fi
   done
 }
 
 syncandnotify() {
   # vdirsyncer sync
 
-  new=$(find $XDG_DATA_HOME/calendars -type f -name "*.ics" -newer "$lastrun" 2> /dev/null)
+  # new=$(find $XDG_DATA_HOME/calendars -type f -name "*.ics" -newer "$lastrun" 2> /dev/null)
+  new=$(find $XDG_DATA_HOME/calendars -type f -name "*.icss" 2> /dev/null)
 
   newcount=$(echo "$new" | sed '/^\s*$/d' | wc -l)
    
