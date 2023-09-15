@@ -58,7 +58,7 @@
   format = "<b>%s</b>\n%b"
   alignment = left
   vertical_alignment = top
-  show_age_threshold = 60
+  show_age_threshold = -1
   ellipsize = middle
   ignore_newline = no
   stack_duplicates = true
@@ -123,14 +123,14 @@ icon_path = /usr/share/icons/Papirus-Dark/16x16/actions:/usr/share/icons/Papirus
   foreground = "#CDD6F4"
   frame_color = "#CDD6F4"
   highlight = "#cba6f7"
-  timeout = 10
+  timeout = 15
 
 [urgency_normal]
   background = "#1E1E2E"
   foreground = "#CDD6F4"
   frame_color = "#cba6f7"
   highlight = "#cba6f7"
-  timeout = 10
+  timeout = 15
 
 [urgency_critical]
   background = "#1E1E2E"
