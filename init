@@ -60,6 +60,8 @@ stow --target=$XDG_CONFIG_HOME config
 stow --target=$HOME/.local local
 sudo stow --target=/etc etc
 
+update-desktop-database $HOME/.local/share/applications
+
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo locale-gen | tee -a $log
  

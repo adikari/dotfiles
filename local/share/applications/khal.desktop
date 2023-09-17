@@ -1,9 +1,9 @@
 [Desktop Entry]
-Name=Calcurse
-GenericName=Calendar
-Comment=Calendar and appointments
-TryExec=calcurse
-Exec=kitty --title calendar -e calcurse
+Name=ikhal
+GenericName=Calendar application
+Comment=Terminal CLI calendar application
+TryExec=ikhal
+Exec=kitty --title calendar -e ikhal
 Terminal=false
 Type=Application
 Keywords=Calendar;editor;
@@ -11,3 +11,4 @@ Icon=calendar
 Categories=Utility;Calendar;Tasks;Todo;
 StartupWMClass=calendar
 StartupNotify=false
+MimeType=text/calendar
