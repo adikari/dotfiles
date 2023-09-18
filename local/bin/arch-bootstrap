@@ -123,6 +123,7 @@ packages=(
    
   go
   rustup
+  lldb
   aws-cli
   github-cli
   lua

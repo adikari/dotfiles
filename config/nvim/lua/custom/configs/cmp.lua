@@ -13,6 +13,7 @@ opts.sources = {
   { name = "buffer" },
   { name = "nvim_lua" },
   { name = "path" },
+  { name = "crates" },
 }
 
 -- https://github.com/zbirenbaum/copilot-cmp#comparators

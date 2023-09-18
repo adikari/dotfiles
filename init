@@ -123,6 +123,7 @@ $HOME/.cargo/bin/fnm install --lts
 $HOME/.cargo/bin/fnm default lts-latest
 [ ! -f ~/.node-version ] && echo "lts-latest" > ~/.node-version
 
+rustup component add rust-analyzer
 
 
 # █▀▄▀█ █ █▀ █▀▀

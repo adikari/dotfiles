@@ -3,6 +3,9 @@
   email = me@subash.com.au
 	signingkey = ~/.ssh/github_id_rsa.pub
 
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
 [core]
   ignorecase = false
   filemode = false

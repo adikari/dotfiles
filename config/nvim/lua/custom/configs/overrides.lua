@@ -11,6 +11,7 @@ M.treesitter = {
     "tsx",
     "c",
     "graphql",
+    "rust",
     "markdown",
     "markdown_inline",
   },
@@ -37,6 +38,8 @@ M.mason = {
     "graphql-language-service-cli",
     "yaml-language-server",
     "json-lsp",
+
+    "rust-analyzer",
 
     -- c/cpp stuff
     "clangd",

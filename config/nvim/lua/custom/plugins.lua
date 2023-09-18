@@ -1,6 +1,5 @@
 local overrides = require "custom.configs.overrides"
 
----@type NvPluginSpec[]
 local plugins = {
   {
     "neovim/nvim-lspconfig",
@@ -99,20 +98,35 @@ local plugins = {
 
   { "christoomey/vim-tmux-navigator", lazy = false },
 
-  -- {
-  --   "jackMort/ChatGPT.nvim",
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require("chatgpt").setup {
-  --       api_key_cmd = "pass openai_api_key",
-  --     }
-  --   end,
-  --   dependencies = {
-  --     "MunifTanjim/nui.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-telescope/telescope.nvim",
-  --   },
-  -- },
+  { "mfussenegger/nvim-dap" },
+
+  {
+    "rust-lang/rust.vim",
+    ft = "rust",
+    init = function()
+      vim.g.rustfmt_autosave = 1
+    end,
+  },
+
+  {
+    "simrat39/rust-tools.nvim",
+    ft = "rust",
+    dependencies = "neovim/nvim-lspconfig",
+    init = function()
+      require("rust-tools").setup()
+    end,
+  },
+
+  {
+    "saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function(_, opt)
+      local crates = require "crates"
+      crates.setup(opt)
+      crates.show()
+    end,
+  },
 
   {
     "iamcco/markdown-preview.nvim",
