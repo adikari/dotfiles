@@ -165,6 +165,7 @@ packages=(
   aws-vault
   kitty
   docker
+  docker-compose
   postman-bin
   thunar 
   thunar-archive-plugin 
