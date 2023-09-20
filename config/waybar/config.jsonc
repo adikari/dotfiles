@@ -81,14 +81,14 @@
     "format": "{}",
     "icon-size": 16,
     "interval": 30,
-    "exec": "weather",
+    "exec": "~/.local/bin/weather",
     "return-type": "json"
   },
 
   "clock": {
     "format": "{:󰃭 %a %d  %I:%M %p}",
     "format-alt": "{: %b %Y 󰥔 %H:%M}",
-    "on-click": "kitty --title calendar -e calcurse",
+    "on-click": "kitty --title calendar -e ikhal",
     "tooltip-format": "<tt><big>{calendar}</big></tt>",
     "actions": {
       "on-scroll-up": "shift_down",
@@ -181,9 +181,9 @@
   "pulseaudio": {
     "format": "{icon} {volume}",
     "format-muted": "",
-    "on-click-middle": "volume --toggle",
-    "on-scroll-up": "volume --inc",
-    "on-scroll-down": "volume --dec",
+    "on-click-middle": "~/.local/bin/volume --toggle",
+    "on-scroll-up": "~/.local/bin/volume --inc",
+    "on-scroll-down": "~/.local/bin/volume --dec",
     "on-click": "pavucontrol -t 3",
     "tooltip-format": "{icon} {desc} // {volume}%",
     "scroll-step": 5,
@@ -202,10 +202,10 @@
     "format": "{format_source}",
     "format-source": "",
     "format-source-muted": "",
-    "on-click-middle": "volume --toggle-mic",
+    "on-click-middle": "~/.local/bin/volume --toggle-mic",
     "on-click": "pavucontrol -t 4",
-    "on-scroll-up": "volume --mic-inc",
-    "on-scroll-down": "volume --mic-dec",
+    "on-scroll-up": "~/.local/bin/volume --mic-inc",
+    "on-scroll-down": "~/.local/bin/volume --mic-dec",
     "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
     "scroll-step": 5
   },
@@ -216,8 +216,8 @@
     "format-alt-click": "click-right",
     "tooltip-format": "{icon} Brightness {percent}%",
     "format-icons": ["󰃞", "󰃟", "󰃠"],
-    "on-scroll-up": "brightness --inc",
-    "on-scroll-down": "brightness --dec"
+    "on-scroll-up": "~/.local/bin/brightness --inc",
+    "on-scroll-down": "~/.local/bin/brightness --dec"
   },
 
   "tray": {
@@ -227,15 +227,15 @@
 
   "custom/updates": {
     "format": "{}",
-    "exec": "update-sys",
-    "on-click": "update-sys update",
+    "exec": "~/.local/bin/update-sys",
+    "on-click": "~/.local/bin/update-sys update",
     "interval": 300,
     "tooltip": true
   },
 
   "custom/email": {
     "format": "󰇮 {}",
-    "exec": "email --unread-count",
+    "exec": "~/.local/bin/email --unread-count",
     "on-click": "kitty --title email -e neomutt",
     "interval": 10
   },
