@@ -16,7 +16,7 @@ alias \
   ikhal="ikhal -l ~/.local/var/khal/ikhal.log"
 
 alias \
- aws-koba-playground='aws-google-auth -p koba-playground; export AWS_PROFILE=koba-playground;' \
- aws-koba-dev='aws-google-auth -p koba-dev; export AWS_PROFILE=koba-dev;'
+ aws-koba-playground='op read -n op://Koba/yjg2lckw3srvxf72hcu5ab24zq/password | aws-google-auth -p koba-playground; export AWS_PROFILE=koba-playground;' \
+ aws-koba-dev='op read -n op://Koba/yjg2lckw3srvxf72hcu5ab24zq/password | aws-google-auth -p koba-dev; export AWS_PROFILE=koba-dev;'
 
 command -v xdg-open &> /dev/null && alias open="xdg-open"
