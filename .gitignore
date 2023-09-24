@@ -25,3 +25,11 @@ home/.aws/saml*
 
 config/mailctl/services.yaml
 config/mailctl/config.yaml
+
+*.kbx*
+private-keys*
+
+local/share/z
+local/share/zsh
+local/share/nvim
+local/share/fnm

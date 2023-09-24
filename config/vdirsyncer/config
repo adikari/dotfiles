@@ -15,8 +15,8 @@ metadata = ["color", "displayname"]
 [storage personal_calendar_remote]
 type = "google_calendar"
 token_file = "~/.local/state/vdirsyncer/personal_token"
-client_id.fetch = ["command", "pass", "subash.adikari@gmail.com/client_id"]
-client_secret.fetch = ["command", "pass", "subash.adikari@gmail.com/client_secret"]
+client_id.fetch = ["command", "pass", "personal/subash.adikari@gmail.com/client_id"]
+client_secret.fetch = ["command", "pass", "personal/subash.adikari@gmail.com/client_secret"]
 
 [storage personal_calendar_local]
 type = "filesystem"
@@ -37,8 +37,8 @@ metadata = ["color", "displayname"]
 [storage koba_calendar_remote]
 type = "google_calendar"
 token_file = "~/.local/state/vdirsyncer/koba_token"
-client_id.fetch = ["command", "pass", "subash.adikari@gmail.com/client_id"]
-client_secret.fetch = ["command", "pass", "subash.adikari@gmail.com/client_secret"]
+client_id.fetch = ["command", "pass", "personal/subash.adikari@gmail.com/client_id"]
+client_secret.fetch = ["command", "pass", "personal/subash.adikari@gmail.com/client_secret"]
 
 [storage koba_calendar_local]
 type = "filesystem"
@@ -60,7 +60,7 @@ metadata = ["color", "displayname"]
 type = "caldav"
 url = "http://localhost:1080/users/subash.adhikari@memories.net/calendar/"
 username = "subash.adhikari@memories.net"
-password.fetch = ["command", "pass", "subash.adhikari@memories.net/password"]
+password.fetch = ["command", "pass", "memories/outlook/password"]
 
 [storage memories_calendar_local]
 type = "filesystem"

@@ -74,8 +74,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   systemctl --user enable --now davmail@subash.adhikari@memories.net
  
   echo "configuring mailctl" | tee -a $log
-  export memories_client_id=$(pass subash.adhikari@memories.net/client_id)
-  export memories_client_secret=$(pass subash.adhikari@memories.net/client_secret)
+  export memories_client_id=$(pass memories/outlook/client_id)
+  export memories_client_secret=$(pass memories/outlook/client_secret)
   mkdir -p $HOME/.local/var/mailctl $HOME/.local/var/msmtp
   envsubst <"$HOME/dotfiles/config/mailctl/services-temp" >"$XDG_CONFIG_HOME/mailctl/services.yaml"
   envsubst <"$HOME/dotfiles/config/mailctl/config-temp" >"$XDG_CONFIG_HOME/mailctl/config.yaml"
@@ -117,12 +117,16 @@ $XDG_CONFIG_HOME/tmux/plugins/tpm/bin/install_plugins
 # █▀▄▀█ █▀█ █▀█ █▀▀   █▀█ ▄▀█ █▀▀ █▄▀ ▄▀█ █▀▀ █▀▀ █▀
 # █░▀░█ █▄█ █▀▄ ██▄   █▀▀ █▀█ █▄▄ █░█ █▀█ █▄█ ██▄ ▄█
 
-echo "installing node lts" | tee -a $log
-$HOME/.cargo/bin/fnm install --lts
-$HOME/.cargo/bin/fnm default lts-latest
-[ ! -f ~/.node-version ] && echo "lts-latest" > ~/.node-version
+echo "installing default rust.."
+rustup default stable
 
 rustup component add rust-analyzer
+
+
+echo "installing node lts" | tee -a $log
+fnm install --lts
+fnm default lts-latest
+[ ! -f ~/.node-version ] && echo "lts-latest" > ~/.node-version
 
 
 # █▀▄▀█ █ █▀ █▀▀
@@ -133,7 +137,8 @@ echo "logging in to github" | tee -a $log
 github-login
 
 if [[ $SHELL != *"zsh" ]]; then
-  chsh -s $(which zsh)
+  command -v zsh | sudo tee -a /etc/shells
+  chsh -s $(which zsh) $(whoami)
 fi
 
 ./local/bin/install-nnn-plugins

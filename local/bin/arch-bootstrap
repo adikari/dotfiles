@@ -65,6 +65,7 @@ packages=(
   ffmpeg
   imv
   pass
+  pass-otp
   pam-gnupg
   
   
@@ -130,6 +131,7 @@ packages=(
   tmux
   neovim
   yarn
+  fnm
   pnpm
   npm
   python-requests 
@@ -213,12 +215,6 @@ echo "installing packages"
 for package in ${packages[@]}; do
   install_package $package
 done
-
-echo "installing default rust.."
-rustup default stable
-
-echo "installing fnm.."
-cargo install fnm
 
 echo "installing aws-google-auth.."
 pipx install aws-google-auth
