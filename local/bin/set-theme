@@ -2,7 +2,7 @@
 
 login_wallpaper=~/dotfiles/wallpapers/escape_velocity.jpg
 desktop_wallpaper=~/dotfiles/wallpapers/tokyo_pink.png
-theme="Catppuccin-Mocha-Standard-Mauve-dark"
+theme="Catppuccin-Mocha-Standard-Mauve-Dark"
 icon_theme="Papirus-Dark"
 font="Noto Sans 11"
 mono_font="JetBrainsMono Nerd Font 9"
