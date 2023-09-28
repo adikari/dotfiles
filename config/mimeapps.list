@@ -39,6 +39,8 @@ application/photoshop=imv.desktop
 application/psd=imv.desktop
 image/psd=imv.desktop
 
+application/pdf=org.pwmt.zathura.desktop
+
 [Added Associations]
 x-scheme-handler/webcal=khal.desktop;
 x-scheme-handler/webcals=khal.desktop;

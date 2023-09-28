@@ -178,6 +178,8 @@ packages=(
   1password
   1password-cli
   nnn
+  zathura
+  zathura-pdf-mupdf
 
   # discord
 
