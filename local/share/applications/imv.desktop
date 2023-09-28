@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=imv
+GenericName=IMV Image Viewer
+Comment=Image viewer application
+TryExec=imv
+Exec=imv
+Terminal=false
+Type=Application
+Keywords=image;image viewer;
+Icon=image
+Categories=Utility;Image Viewer;
+StartupWMClass=image-viewer
+StartupNotify=false
+MimeType=image/png;image/jpg;image/jpeg;image/gif;
