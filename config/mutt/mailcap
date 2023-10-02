@@ -1,10 +1,10 @@
-text/html; openfile %s ; nametemplate=%s.html
+text/html; $HOME/.local/bin/openfile %s ; nametemplate=%s.html
 text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump -width=1024 %s; nametemplate=%s.html; copiousoutput;
 
-text/calendar; render-calendar-attachment.py %s; copiousoutput;
-application/ics; mutt-viewical; copiousoutput;
+# text/calendar; render-calendar-attachment.py %s; copiousoutput;
+# application/ics; mutt-viewical; copiousoutput;
 
-image/*; openfile %s ;
+image/*; imv %s ;
 
 video/*; mpv --autofit-larger=90\%x90\% %s; needsterminal;
 video/*; setsid mpv --quiet %s &; copiousoutput
@@ -14,7 +14,7 @@ audio/*; mpv %s ;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; sc-im %s; needsterminal
 
 # open anything else externally
-application/pdf; openfile %s;
+application/pdf; zathura %s;
 application/pgp-encrypted; gpg -d '%s'; copiousoutput;
 application/pgp-keys; gpg --import '%s'; copiousoutput;
 application/x-subrip; $EDITOR %s ;

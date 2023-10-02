@@ -47,6 +47,8 @@ set send_charset="us-ascii:utf-8"
 set charset = "utf-8"
 auto_view text/html		# automatically show html (mailcap uses lynx)
 auto_view application/pgp-encrypted
+# auto_view text/calendar
+# auto_view application/ics
 #set display_filter = "tac | sed '/\\\[-- Autoview/,+1d' | tac" # Suppress autoview messages.
 alternative_order text/plain text/enriched text/html
 
