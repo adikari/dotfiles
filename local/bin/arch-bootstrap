@@ -172,7 +172,7 @@ packages=(
   thunar 
   thunar-archive-plugin 
   slack-desktop
-  teams-for-linux-electron-bin
+  ms-teams-for-linux-bin
   firefox
   firefox-pwa-bin
   1password
