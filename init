@@ -89,6 +89,16 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 
+# █▀▀ █░░ █▀▀ █▀▀ ▀█▀ █▀█ █▀█ █▄░█   █▀▀ █▀█ █▄░█ █▀▀ █ █▀▀
+# ██▄ █▄▄ ██▄ █▄▄ ░█░ █▀▄ █▄█ █░▀█   █▄▄ █▄█ █░▀█ █▀░ █ █▄█
+
+electron_versions=(24 25)
+for version in ${electron_versions[@]}; do
+  file=$XDG_CONFIG_HOME/electron$version-flags.conf
+  [ ! -f $file ] && ln -s $HOME/dotfiles/config/electron-flags.conf $file
+done
+
+
 # ▀█▀ █▀▄▀█ █░█ ▀▄▀   █▀█ █░░ █░█ █▀▀ █ █▄░█ █▀
 # ░█░ █░▀░█ █▄█ █░█   █▀▀ █▄▄ █▄█ █▄█ █ █░▀█ ▄█
 
