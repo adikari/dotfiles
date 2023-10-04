@@ -11,6 +11,7 @@ setopt appendhistory
 source $HOME/.config/zsh/aliases.zsh
 source $HOME/.config/zsh/completions.zsh
 source $HOME/.config/zsh/plugins.zsh
+source $HOME/.config/zsh/functions.zsh
 
 [ -d /opt/homebrew/bin ] && PATH="/opt/homebrew/bin:$PATH"
 [ -d /usr/local/sbin ] && PATH="/usr/local/sbin:$PATH"
