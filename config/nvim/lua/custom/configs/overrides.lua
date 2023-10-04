@@ -13,6 +13,7 @@ M.treesitter = {
     "graphql",
     "rust",
     "markdown",
+    "terraform",
     "markdown_inline",
   },
   indent = {
@@ -25,25 +26,17 @@ M.treesitter = {
 
 M.mason = {
   ensure_installed = {
-    -- lua stuff
     "lua-language-server",
     "stylua",
-
-    -- web dev stuff
     "css-lsp",
     "html-lsp",
     "tailwindcss-language-server",
     "typescript-language-server",
-    "deno",
     "graphql-language-service-cli",
     "yaml-language-server",
     "json-lsp",
-
+    "terraform-ls",
     "rust-analyzer",
-
-    -- c/cpp stuff
-    "clangd",
-    "clang-format",
   },
 }
 
