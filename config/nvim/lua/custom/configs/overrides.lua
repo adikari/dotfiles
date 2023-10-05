@@ -11,6 +11,7 @@ M.treesitter = {
     "tsx",
     "c",
     "graphql",
+    "go",
     "rust",
     "markdown",
     "terraform",
@@ -36,6 +37,7 @@ M.mason = {
     "yaml-language-server",
     "json-lsp",
     "terraform-ls",
+    "gopls",
     "rust-analyzer",
   },
 }
