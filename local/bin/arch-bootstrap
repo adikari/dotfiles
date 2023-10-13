@@ -255,6 +255,7 @@ sleep 2
 
 echo "Setting timezone"
 sudo timedatectl set-timezone Australia/Melbourne
+sudo systemctl enable --now systemd-timesyncd.service
 
 # $HOME/dotfiles/usr/local/bin/set-theme
 
