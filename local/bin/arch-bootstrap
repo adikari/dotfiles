@@ -67,6 +67,11 @@ packages=(
   pass
   pass-otp
   pam-gnupg
+  zoxide
+  man-db
+  tldr
+  scc
+  git-delta
   
   
   # ▄▀█ █░█ █▀▄ █ █▀█
@@ -80,7 +85,6 @@ packages=(
   pipewire-jack
   pavucontrol 
   pamixer 
-  man-db
 
   
   # █░█ █▄█ █▀█ █▀█ █░░ ▄▀█ █▄░█ █▀▄

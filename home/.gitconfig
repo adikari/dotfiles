@@ -10,6 +10,7 @@
   ignorecase = false
   filemode = false
   editor = nvim
+  pager = delta
   
 [color]
   ui = true
@@ -20,7 +21,22 @@
 [format]
   pretty = format:%C(yellow)%h %Cblue %ad %Cgreen %aN%Cred%d %Creset%s
 
-[diftool]
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  light = false      
+  line-numbers = true
+  ; side-by-side = true
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+    
+[difftool]
   prompt = false
 
 [credential]
@@ -37,4 +53,5 @@
   
 [commit]
   gpgsign = true
+
 

@@ -51,6 +51,7 @@ binaries=(
  stow
  starship
  neomutt
+ zoxide
 )
 
 echo "installing binaries..."

@@ -10,6 +10,7 @@ alias \
   lf="nnn -e" \
   hyp="Hyprland" \
   mutt="neomutt" \
+  cat="bat" \
   vpn="openvpn" \
   lynx="lynx -cfg=$XDG_CONFIG_HOME/lynx/lynx.cfg -lss=$XDG_CONFIG_HOME/lynx/lynx.lss" \
   abook="abook --config "$XDG_CONFIG_HOME"/abook/abookrc --datafile "$XDG_DATA_HOME"/abook/addressbook" \

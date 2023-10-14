@@ -49,6 +49,7 @@ if command -v fzf > /dev/null 2>&1; then
   zvm_after_init_commands+=('[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh')
 fi
 
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 # vim:ft=zsh
