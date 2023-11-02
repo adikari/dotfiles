@@ -18,9 +18,9 @@ start() {
 
   echo "VPN starting..."
   
-  username=$(op item get ufhstqlvehaaeatbd5tf7fakqu --fields username)
-  otp=$(op item get ufhstqlvehaaeatbd5tf7fakqu --otp)
-  config=$HOME/.config/koba-config.ovpn
+  username=$(pass koba/vpn/username)
+  otp=$(pass otp koba/vpn/otp)
+  config=$XDG_DATA_HOME/vpn/koba-config.ovpn
 
   if [ ! -f $config ]; then
     echo "open vpn config is missing"
