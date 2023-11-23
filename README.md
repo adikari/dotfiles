@@ -10,12 +10,7 @@ This dotfiles has various tools, plugins, key-bindings and configurations that I
 
 Currently this dotfiles depends on the following. If you have dependencies missing you will be asked to install it during installation.
 
-Dependencies are automatically installed in osx
-
-### Mandatory
-
-1. NeoVim
-2. zsh shell
+Dependencies are automatically installed in osx or arch linux.
 
 ## How to set up
 
