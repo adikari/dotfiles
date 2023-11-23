@@ -23,6 +23,7 @@ home/.aws/config.lock
 home/.aws/credentials*
 home/.aws/saml*
 home/.gnupg/trustdb.gpg
+home/.gnupg/random_seed
 home/.password-store/aws-vault/sts*
 
 config/mailctl/services.yaml
@@ -35,3 +36,9 @@ local/share/z
 local/share/zsh
 local/share/nvim
 local/share/fnm
+
+# homeserver
+config/systemd/user/dns-updater.service
+config/systemd/user/dns-updater.timer
+local/bin/update-dns
+
