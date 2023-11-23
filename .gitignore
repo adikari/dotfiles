@@ -23,6 +23,7 @@ home/.aws/config.lock
 home/.aws/credentials*
 home/.aws/saml*
 home/.gnupg/trustdb.gpg
+home/.gnupg/random_seed
 home/.password-store/aws-vault/sts*
 
 config/mailctl/services.yaml

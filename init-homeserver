@@ -46,22 +46,21 @@ packages=(
   pam-gnupg
   mandb
   neofetch
-  go
-  rustup
   aws-cli
   aws-vault
   github-cli
   lua
-  thmux
+  rustup
   neovim
-  pnpm
-  npm
-  yarn
   starship
   btop
-  nnn
   fnm
   ttf-jetbrains-mono-nerd
+  zoxide
+  bat
+  git-delta
+  fuse
+  mergerfs
 )
 
 
@@ -114,14 +113,7 @@ stow --target=$XDG_CONFIG_HOME config
 stow --target=$HOME/.local local
 sudo stow --target=/etc etc
 
-sudo rm -rf /etc/zsh/zshenv
-
 sudo locale-gen | tee -a $log
-
-echo "Setting font"
-termux_dir=/host-rootfs/data/data/tech.ula/files/home/.termux
-[ ! -d $termux_dir ] && mkdir -p $termux_dir
-[ ! -f $termux_dir/font.ttf ] && cp /usr/share/fonts/TTF/JetBrainsMonoNerdFont-Regular.ttf $termux_dir/font.ttf
 
 
 # ▀█▀ █▀▄▀█ █░█ ▀▄▀   █▀█ █░░ █░█ █▀▀ █ █▄░█ █▀
@@ -137,10 +129,8 @@ $XDG_CONFIG_HOME/tmux/plugins/tpm/bin/install_plugins
 # █▀▄▀█ █▀█ █▀█ █▀▀   █▀█ ▄▀█ █▀▀ █▄▀ ▄▀█ █▀▀ █▀▀ █▀
 # █░▀░█ █▄█ █▀▄ ██▄   █▀▀ █▀█ █▄▄ █░█ █▀█ █▄█ ██▄ ▄█
 
-
 echo "installing default rust.."
 rustup default stable
-
 rustup component add rust-analyzer
 
 echo "installing node lts" | tee -a $log
@@ -149,7 +139,7 @@ fnm default lts-latest
 [ ! -f ~/.node-version ] && echo "lts-latest" > ~/.node-version
 
 echo "logging in to github" | tee -a $log
-github-login
+$HOME/dotfiles/local/bin/github-login
 
 if [[ $SHELL != *"zsh" ]]; then
   command -v zsh | sudo tee -a /etc/shells
