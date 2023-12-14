@@ -19,23 +19,6 @@ local plugins = {
 
   {
     "hrsh7th/nvim-cmp",
-    dependencies = {
-      {
-        "zbirenbaum/copilot-cmp",
-        dependencies = {
-          {
-            "zbirenbaum/copilot.lua",
-            opts = {
-              suggestion = { enabled = false },
-              panel = { enabled = false },
-            },
-          },
-        },
-        config = function()
-          require("copilot_cmp").setup()
-        end,
-      },
-    },
     config = function()
       require "plugins.configs.cmp"
       require "custom.configs.cmp"
