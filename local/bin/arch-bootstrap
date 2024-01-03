@@ -188,8 +188,7 @@ packages=(
   thunar-archive-plugin 
   slack-desktop
   teams-for-linux-electron-bin
-  firefox
-  firefox-pwa-bin
+  brave-bin
   1password
   1password-cli
   nnn
