@@ -40,6 +40,7 @@ application/psd=imv.desktop
 image/psd=imv.desktop
 
 application/pdf=org.pwmt.zathura.desktop
+x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
 
 [Added Associations]
 x-scheme-handler/webcal=khal.desktop;

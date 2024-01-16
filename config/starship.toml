@@ -17,8 +17,8 @@ $character"""
 continuation_prompt = '▶▶ '
 
 [aws]
-format = 'on [$symbol$region]($style) '
-style = 'bold blue'
+format = 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+style = 'bold yellow'
 symbol = " "
 
 [aws.region_aliases]
