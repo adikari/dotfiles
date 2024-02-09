@@ -134,6 +134,15 @@ local plugins = {
     "tpope/vim-obsession",
     event = "VeryLazy",
   },
+
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    ft = { "typescript", "javascript", "typescriptreact", "javascriptreact", "typescript.tsx", "javascript.jsx" },
+    config = function()
+      require "custom.configs.typescript-tools"
+    end,
+  },
 }
 
 return plugins

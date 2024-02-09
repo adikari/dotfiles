@@ -22,29 +22,6 @@ lspconfig.tailwindcss.setup {
   root_dir = util.root_pattern ".git",
 }
 
--- typescript lsp configuration
-lspconfig.tsserver.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = { "typescript-language-server", "--stdio" },
-  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-  init_options = { hostInfo = "neovim" },
-  root_dir = util.root_pattern ".git",
-  single_file_support = false,
-  commands = {
-    TSToolsOrganizeImports = {
-      function()
-        vim.lsp.buf.execute_command {
-          command = "_typescript.organizeImports",
-          arguments = { vim.api.nvim_buf_get_name(0) },
-          title = "",
-        }
-      end,
-      description = "Organize Imports",
-    },
-  },
-}
-
 -- graphql lsp configuration
 lspconfig.graphql.setup {
   on_attach = on_attach,
