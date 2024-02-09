@@ -77,7 +77,11 @@ local plugins = {
     end,
   },
 
-  { "ThePrimeagen/harpoon", event = "VeryLazy", dependencies = { "nvim-lua/plenary.nvim" } },
+  {
+    "ThePrimeagen/harpoon",
+    event = "VeryLazy",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
 
   { "christoomey/vim-tmux-navigator", lazy = false },
 

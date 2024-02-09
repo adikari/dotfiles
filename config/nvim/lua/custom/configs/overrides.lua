@@ -31,6 +31,8 @@ M.mason = {
     "stylua",
     "css-lsp",
     "html-lsp",
+    "eslint_d",
+    "dockerfile-language-server",
     "tailwindcss-language-server",
     "typescript-language-server",
     "graphql-language-service-cli",
@@ -38,6 +40,7 @@ M.mason = {
     "json-lsp",
     "terraform-ls",
     "gopls",
+    "goimports",
     "rust-analyzer",
   },
 }

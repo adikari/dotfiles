@@ -5,7 +5,7 @@ local util = require "lspconfig/util"
 local lspconfig = require "lspconfig"
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tailwindcss", "yamlls", "jsonls", "terraformls", "gopls" }
+local servers = { "html", "cssls", "yamlls", "jsonls", "terraformls", "gopls", "dockerls" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -14,6 +14,14 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- tailwindcss lsp configuration
+lspconfig.tailwindcss.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "tailwindcss-language-server", "--stdio" },
+  root_dir = util.root_pattern ".git",
+}
+
 -- typescript lsp configuration
 lspconfig.tsserver.setup {
   on_attach = on_attach,
@@ -21,10 +29,10 @@ lspconfig.tsserver.setup {
   cmd = { "typescript-language-server", "--stdio" },
   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
   init_options = { hostInfo = "neovim" },
-  root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
-  single_file_support = true,
+  root_dir = util.root_pattern ".git",
+  single_file_support = false,
   commands = {
-    OrganizeImports = {
+    TSToolsOrganizeImports = {
       function()
         vim.lsp.buf.execute_command {
           command = "_typescript.organizeImports",
@@ -90,6 +98,11 @@ lspconfig.lua_ls.setup {
 }
 
 -- disable inline diagnostic and display floating window on cursor hold
-vim.diagnostic.config { virtual_text = false }
+vim.diagnostic.config {
+  virtual_text = false,
+  underline = true,
+  signs = true,
+}
+
 vim.o.updatetime = 250
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

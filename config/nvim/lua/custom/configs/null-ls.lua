@@ -9,7 +9,7 @@ local b = null_ls.builtins
 local sources = {
   -- webdev stuff
   b.formatting.prettier,
-  b.diagnostics.eslint,
+  b.diagnostics.eslint_d,
 
   -- Go
   b.formatting.gofmt,
