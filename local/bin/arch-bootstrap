@@ -43,6 +43,7 @@ packages=(
   stow
   less
   python-pipx
+  ripgrep
   
  
   # █░█ ▀█▀ █ █░░ █ ▀█▀ █ █▀▀ █▀
