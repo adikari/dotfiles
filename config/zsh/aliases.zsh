@@ -12,6 +12,9 @@ alias \
   mutt="neomutt" \
   cat="bat" \
   vpn="openvpn" \
+  cd="z" \
+  ls="exa" \
+  tree="exa -T" \
   lynx="lynx -cfg=$XDG_CONFIG_HOME/lynx/lynx.cfg -lss=$XDG_CONFIG_HOME/lynx/lynx.lss" \
   abook="abook --config "$XDG_CONFIG_HOME"/abook/abookrc --datafile "$XDG_DATA_HOME"/abook/addressbook" \
   ikhal="ikhal -l ~/.local/var/khal/ikhal.log" \
