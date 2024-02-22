@@ -46,7 +46,27 @@ packages=(
   ripgrep
   exa
   
- 
+  
+  # █▀█ █▀█ █ █▄░█ ▀█▀ █▀▀ █▀█
+  # █▀▀ █▀▄ █ █░▀█ ░█░ ██▄ █▀▄
+   
+  cups
+  ghostscript
+  brlaser-git
+  
+  
+  # ▄▀█ █░█ █▀▄ █ █▀█
+  # █▀█ █▄█ █▄▀ █ █▄█
+
+  pipewire 
+  wireplumber
+  pipewire-pulse
+  pipewire-alsa
+  pipewire-audio
+  pipewire-jack
+  pavucontrol 
+  pamixer 
+
   # █░█ ▀█▀ █ █░░ █ ▀█▀ █ █▀▀ █▀
   # █▄█ ░█░ █ █▄▄ █ ░█░ █ ██▄ ▄█
   
@@ -78,31 +98,12 @@ packages=(
   bind
   inetutils
 
-  
-  # █▀█ █▀█ █ █▄░█ ▀█▀ █▀▀ █▀█
-  # █▀▀ █▀▄ █ █░▀█ ░█░ ██▄ █▀▄
-   
-  cups
-  ghostscript
-  brlaser-git
-  
-  
-  # ▄▀█ █░█ █▀▄ █ █▀█
-  # █▀█ █▄█ █▄▀ █ █▄█
-
-  pipewire 
-  wireplumber
-  pipewire-pulse
-  pipewire-alsa
-  pipewire-audio
-  pipewire-jack
-  pavucontrol 
-  pamixer 
-
+ 
   
   # █░█ █▄█ █▀█ █▀█ █░░ ▄▀█ █▄░█ █▀▄
   # █▀█ ░█░ █▀▀ █▀▄ █▄▄ █▀█ █░▀█ █▄▀
 
+  hyprlang
   hyprland-git
   waybar
   xdg-desktop-portal-hyprland 
@@ -252,6 +253,18 @@ if [ $ARCH = "x86_64" ]; then
   yay -S --noconfirm mesa
 fi
 
+# Graphics Drivers find and install
+gpu_type=$(lspci)
+if grep -E "NVIDIA|GeForce" <<< ${gpu_type}; then
+  yay -S --noconfirm --needed nvidia
+elif lspci | grep 'VGA' | grep -E "Radeon|AMD"; then
+  yay -S --noconfirm --needed xf86-video-amdgpu
+elif grep -E "Integrated Graphics Controller" <<< ${gpu_type}; then
+  yay -S --noconfirm --needed libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils lib32-mesa
+elif grep -E "Intel Corporation UHD" <<< ${gpu_type}; then
+  yay -S --needed --noconfirm libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils lib32-mesa
+fi
+
 
 # █▀▀ █░░ █▀▀ ▄▀█ █▄░█ █░█ █▀█
 # █▄▄ █▄▄ ██▄ █▀█ █░▀█ █▄█ █▀▀
@@ -271,7 +284,7 @@ sleep 2
 
 echo "Starting printer service"
 sudo systemctl enable --now cups.service
-sudo systemctl enable --now cups.socker
+sudo systemctl enable --now cups.socket
 
 echo "Setting timezone"
 sudo timedatectl set-timezone Australia/Melbourne
