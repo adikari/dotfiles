@@ -47,3 +47,25 @@ rclone config # set password
 1. navigate to localhost:1080
 2. enter username password and complete oauth setup
 ```
+
+## SSH and GPG keys
+
+1. GPG keys are in 1 password
+
+```
+op document list
+op document get <public_key_id> --out-file public_key
+op document get <private_key_id> --out-file private_key
+gpg --import private_key
+gpg --import public_key
+```
+
+2. Get github ssh keys
+Create `~/.ssh/github_id_rsa` and `~/.ssh/github_id_rsa.pub`
+Copy the content of keys from 1 password then add it in the file
+Update the ssh key permissions
+
+```
+chmod 600 ~/.ssh/github_id_rsa
+chmod 644 ~/.ssh/github_id_rsa.pub
+```

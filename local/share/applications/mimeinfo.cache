@@ -1,0 +1,22 @@
+[MIME Cache]
+application/x-shellscript=neomutt.desktop;
+image/gif=imv.desktop;
+image/jpeg=imv.desktop;
+image/jpg=imv.desktop;
+image/png=imv.desktop;
+text/calendar=khal.desktop;
+text/english=neomutt.desktop;
+text/plain=neomutt.desktop;
+text/x-c=neomutt.desktop;
+text/x-c++=neomutt.desktop;
+text/x-c++hdr=neomutt.desktop;
+text/x-c++src=neomutt.desktop;
+text/x-chdr=neomutt.desktop;
+text/x-csrc=neomutt.desktop;
+text/x-java=neomutt.desktop;
+text/x-makefile=neomutt.desktop;
+text/x-moc=neomutt.desktop;
+text/x-pascal=neomutt.desktop;
+text/x-tcl=neomutt.desktop;
+text/x-tex=neomutt.desktop;
+x-scheme-handler/slack=slack.desktop;
