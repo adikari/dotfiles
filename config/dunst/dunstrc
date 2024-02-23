@@ -148,4 +148,8 @@ timeout = 0
 appname = Slack
 new_icon = slack
 
+[betterbird]
+appname = Betterbird
+new_icon = email
+
 # vim: ft=cfg

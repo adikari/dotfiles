@@ -87,9 +87,9 @@ packages=(
   socat
   neofetch
   ffmpeg
-  imv
-  pass
-  pass-otp
+  imv                         # image viewer
+  pass                        # password manager
+  pass-otp                    # otp manager
   pam-gnupg
   zoxide
   man-db
