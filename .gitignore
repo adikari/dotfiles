@@ -36,7 +36,6 @@ local/share/z
 local/share/zsh
 local/share/nvim
 local/share/fnm
-local/share/applications
 local/share/applications/brave*
 
 # homeserver
