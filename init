@@ -64,21 +64,21 @@ update-desktop-database $HOME/.local/share/applications
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo locale-gen | tee -a $log
  
-  echo "starting mutt service" | tee -a $log
-  systemctl --user enable --now mailsync.timer
+  # echo "starting mutt service" | tee -a $log
+  # systemctl --user enable --now mailsync.timer
   
-  echo "starting vdirsyncer service" | tee -a $log
-  systemctl --user enable --now vdirsyncer.timer
+  # echo "starting vdirsyncer service" | tee -a $log
+  # systemctl --user enable --now vdirsyncer.timer
 
-  echo "starting davmail service" | tee -a $log
-  systemctl --user enable --now davmail@subash.adhikari@memories.net
+  # echo "starting davmail service" | tee -a $log
+  # systemctl --user enable --now davmail@subash.adhikari@memories.net
  
-  echo "configuring mailctl" | tee -a $log
-  export memories_client_id=$(pass memories/outlook/client_id)
-  export memories_client_secret=$(pass memories/outlook/client_secret)
-  mkdir -p $HOME/.local/var/mailctl $HOME/.local/var/msmtp
-  envsubst <"$HOME/dotfiles/config/mailctl/services-temp" >"$XDG_CONFIG_HOME/mailctl/services.yaml"
-  envsubst <"$HOME/dotfiles/config/mailctl/config-temp" >"$XDG_CONFIG_HOME/mailctl/config.yaml"
+  # echo "configuring mailctl" | tee -a $log
+  # export memories_client_id=$(pass memories/outlook/client_id)
+  # export memories_client_secret=$(pass memories/outlook/client_secret)
+  # mkdir -p $HOME/.local/var/mailctl $HOME/.local/var/msmtp
+  # envsubst <"$HOME/dotfiles/config/mailctl/services-temp" >"$XDG_CONFIG_HOME/mailctl/services.yaml"
+  # envsubst <"$HOME/dotfiles/config/mailctl/config-temp" >"$XDG_CONFIG_HOME/mailctl/config.yaml"
   
   echo "setting gdrive with rclone" | tee -a $log
   [ ! -d $HOME/gdrive ] && mkdir $HOME/gdrive

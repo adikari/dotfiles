@@ -162,42 +162,44 @@ packages=(
   # █▀█ █▀▀ █▀▀ █ █▀▀ █▀▀
   # █▄█ █▀░ █▀░ █ █▄▄ ██▄
    
-  neomutt
-  msmtp
-  isync
-  notmuch
-  pandoc
-  lynx
-  glow
-  abook
-  cyrus-sasl-xoauth2-git
-  mailctl-bin
-  davmail
-  vdirsyncer
-  python-aiohttp-oauthlib
-  urlscan
+  # neomutt
+  # ikhal
+  # abook
+  # msmtp
+  # davmail
+  # mailctl-bin
+  # vdirsyncer
+  # isync
+  # notmuch
+  # pandoc
+  # lynx
+  # glow
+  # cyrus-sasl-xoauth2-git
+  # python-aiohttp-oauthlib
+  # urlscan
+  betterbird-bin
   
 
   # ▄▀█ █▀█ █▀█ █░░ █ █▀▀ ▄▀█ ▀█▀ █ █▀█ █▄░█ █▀
   # █▀█ █▀▀ █▀▀ █▄▄ █ █▄▄ █▀█ ░█░ █ █▄█ █░▀█ ▄█
   
   btop
-  mpv
-  rclone
+  mpv                     # media player
+  rclone                  # used for gdrive sync
   aws-vault
   kitty
   docker
   docker-compose
   postman-bin
-  thunar 
+  thunar                  # GUI file explorer
   thunar-archive-plugin 
   slack-desktop
   brave-bin
   1password
   1password-cli
-  nnn
-  zathura
-  zathura-pdf-mupdf
+  nnn                    # CLI file explorer
+  zathura                # pdf viewer
+  zathura-pdf-mupdf      # pdf viewer
 
   # discord
 
