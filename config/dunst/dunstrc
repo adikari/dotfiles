@@ -150,6 +150,6 @@ new_icon = slack
 
 [betterbird]
 appname = Betterbird
-new_icon = email
+new_icon = thunderbird
 
 # vim: ft=cfg
