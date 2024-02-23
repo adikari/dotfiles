@@ -52,7 +52,8 @@ fi
 
 echo "setting up dotfiles.." | tee -a $log 
 sudo rm -rf $HOME/.zshrc /etc/locale.conf /etc/locale.gen \
-  /etc/pam.d/login /etc/pam.d/system-local-login /etc/zsh/zshenv
+  /etc/pam.d/login /etc/pam.d/system-local-login /etc/zsh/zshenv \
+  /etc/default/grub /etc/mkinitcpio.conf
 
 stow --target=$HOME home 
 stow --target=$XDG_CONFIG_HOME config
