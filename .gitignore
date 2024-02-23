@@ -36,6 +36,7 @@ local/share/z
 local/share/zsh
 local/share/nvim
 local/share/fnm
+local/share/applications
 
 # homeserver
 config/systemd/user/dns-updater.service
