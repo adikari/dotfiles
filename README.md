@@ -69,3 +69,16 @@ Update the ssh key permissions
 chmod 600 ~/.ssh/github_id_rsa
 chmod 644 ~/.ssh/github_id_rsa.pub
 ```
+
+## Adding printer
+
+1. Open cups administration http://localhost:631/admin. Enter operating system username and password
+2. Add a new printer
+
+```
+Description:	Brother MFC-L2800DW
+Location:	Office
+Driver:	Brother MFC-L2710DW series, using brlaser v6 (grayscale, 2-sided printing)
+Connection:	lpd://192.168.0.2/BINARY_P1
+Defaults:	job-sheets=none, none media=iso_a4_210x297mm sides=two-sided-long-edge
+```
