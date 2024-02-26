@@ -1,0 +1,10 @@
+[Unit]
+Description=Notify on battery status (timer)
+
+[Timer]
+OnBootSec=1m
+OnUnitActiveSec=3m
+Unit=battery-alert.service
+
+[Install]
+WantedBy=timers.target

@@ -87,6 +87,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo chmod -R 777 /opt/rclone/logs
   systemctl --user enable rclone
   systemctl --user start rclone &
+
+  echo "setting up battery alerts"
+  systemctl --user enable --now battery-alert.timer
 fi
 
 

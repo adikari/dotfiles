@@ -34,6 +34,7 @@ packages=(
   bash
   openvpn
   curl
+  wget
   unzip
   tar
   fzf
@@ -45,6 +46,7 @@ packages=(
   python-pipx
   ripgrep
   exa
+  acpi            # CLI utility for power management
   
   
   # █▀█ █▀█ █ █▄░█ ▀█▀ █▀▀ █▀█
