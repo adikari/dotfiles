@@ -46,7 +46,6 @@ packages=(
   python-pipx
   ripgrep
   exa
-  acpi            # CLI utility for power management
   
   
   # █▀█ █▀█ █ █▄░█ ▀█▀ █▀▀ █▀█
@@ -101,7 +100,11 @@ packages=(
   bat
   bind
   inetutils
-
+  acpi                      # CLI utility for power management
+  usbutils                  # utilities for working with usb
+  imagemagick
+  fprintd                   # finterprint support
+  # pam-fprint-grosshack      # pam module to enable simultaneous fingerprint (fprintd) and password auth
  
   
   # █░█ █▄█ █▀█ █▀█ █░░ ▄▀█ █▄░█ █▀▄

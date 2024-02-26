@@ -2,24 +2,24 @@
 text/html=brave-browser.desktop
 x-scheme-handler/http=brave-browser.desktop
 x-scheme-handler/https=brave-browser.desktop
-x-scheme-handler/chrome=firefox.desktop
-application/x-extension-htm=firefox.desktop
-application/x-extension-html=firefox.desktop
-application/x-extension-shtml=firefox.desktop
-application/xhtml+xml=firefox.desktop
-application/x-extension-xhtml=firefox.desktop
-application/x-extension-xht=firefox.desktop
+x-scheme-handler/chrome=brave-browser.desktop
+application/x-extension-htm=brave-browser.desktop
+application/x-extension-html=brave-browser.desktop
+application/x-extension-shtml=brave-browser.desktop
+application/xhtml+xml=brave-browser.desktop
+application/x-extension-xhtml=brave-browser.desktop
+application/x-extension-xht=brave-browser.desktop
 
-x-scheme-handler/mailto=neomutt.desktop
-message/rfc822=neomutt.desktop
-x-scheme-handler/mid=neomutt.desktop
-x-scheme-handler/mailto=neomutt.desktop;
-x-scheme-handler/mid=neomutt.desktop;
+x-scheme-handler/mailto=betterbird.desktop
+message/rfc822=betterbird.desktop
+x-scheme-handler/mid=betterbird.desktop
+x-scheme-handler/mailto=betterbird.desktop;
+x-scheme-handler/mid=betterbird.desktop;
 
-x-scheme-handler/webcal=khal.desktop
-text/calendar=khal.desktop
-application/x-extension-ics=khal.desktop
-x-scheme-handler/webcals=khal.desktop
+x-scheme-handler/webcal=betterbird.desktop
+text/calendar=betterbird.desktop
+application/x-extension-ics=betterbird.desktop
+x-scheme-handler/webcals=betterbird.desktop
 
 x-scheme-handler/msteams=teams.desktop
 x-scheme-handler/postman=Postman.desktop
@@ -32,7 +32,7 @@ image/tiff=imv.desktop
 image/webp=imv.desktop
 image/avif=imv.desktop
 image/apng=imv.desktop
-image/svg+xml=imv.desktop=imv.desktop
+image/svg+xml=imv.desktop
 image/vnd.adobe.photoshop=imv.desktop
 application/x-photoshop=imv.desktop
 application/photoshop=imv.desktop
@@ -45,18 +45,18 @@ x-scheme-handler/about=brave-browser.desktop
 x-scheme-handler/unknown=brave-browser.desktop
 
 [Added Associations]
-x-scheme-handler/webcal=khal.desktop;
-x-scheme-handler/webcals=khal.desktop;
+x-scheme-handler/webcal=betterbird.desktop;
+x-scheme-handler/webcals=betterbird.desktop;
 
-text/html=firefox.desktop;
-x-scheme-handler/http=firefox.desktop;
-x-scheme-handler/https=firefox.desktop;
-x-scheme-handler/chrome=firefox.desktop;
-application/x-extension-htm=firefox.desktop;
-application/x-extension-html=firefox.desktop;
-application/x-extension-shtml=firefox.desktop;
-application/xhtml+xml=firefox.desktop;
-application/x-extension-xhtml=firefox.desktop;
-application/x-extension-xht=firefox.desktop;
+text/html=brave-browser.desktop;
+x-scheme-handler/http=brave-browser.desktop;
+x-scheme-handler/https=brave-browser.desktop;
+x-scheme-handler/chrome=brave-browser.desktop;
+application/x-extension-htm=brave-browser.desktop;
+application/x-extension-html=brave-browser.desktop;
+application/x-extension-shtml=brave-browser.desktop;
+application/xhtml+xml=brave-browser.desktop;
+application/x-extension-xhtml=brave-browser.desktop;
+application/x-extension-xht=brave-browser.desktop;
 
 [Removed Associations]

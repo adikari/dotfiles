@@ -82,3 +82,25 @@ Driver:	Brother MFC-L2710DW series, using brlaser v6 (grayscale, 2-sided printin
 Connection:	lpd://192.168.0.2/BINARY_P1
 Defaults:	job-sheets=none, none media=iso_a4_210x297mm sides=two-sided-long-edge
 ```
+
+## Enrolling finger print
+
+1. Register right index finger
+
+```
+fprintd-enroll
+
+# verify
+fprintd-verify
+```
+
+2. Register left index finger
+
+```
+fprintd-enroll -f left-index-finger
+
+# verify
+fprintd-verify -f left-index-finger
+```
+
+
