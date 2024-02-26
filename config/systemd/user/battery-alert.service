@@ -1,6 +1,6 @@
 [Unit]
-Description=Notify on battery status (service)
+Description=Notify battery status (service)
 
 [Service]
 Type=oneshot
-ExecStart=%h/.local/bin/battery status
+ExecStart=%h/.local/bin/battery-alert

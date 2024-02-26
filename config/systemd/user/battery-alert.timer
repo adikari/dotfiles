@@ -1,5 +1,5 @@
 [Unit]
-Description=Notify on battery status (timer)
+Description=Notify battery status (timer)
 
 [Timer]
 OnBootSec=1m
