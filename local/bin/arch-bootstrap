@@ -263,6 +263,7 @@ fi
 # Graphics Drivers find and install
 gpu_type=$(lspci)
 if grep -E "NVIDIA|GeForce" <<< ${gpu_type}; then
+  # TODO: install invidia driver
   yay -S --noconfirm --needed nvidia
 elif lspci | grep 'VGA' | grep -E "Radeon|AMD"; then
   yay -S --noconfirm --needed xf86-video-amdgpu

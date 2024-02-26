@@ -58,6 +58,7 @@ op document get <public_key_id> --out-file public_key
 op document get <private_key_id> --out-file private_key
 gpg --import private_key
 gpg --import public_key
+gpg --edit-key me@subash.com.au trust # set to 5 (ultimate trust)
 ```
 
 2. Get github ssh keys
