@@ -12,13 +12,53 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
 
 BATTERY_STATE=$1
 BATTERY_LEVEL=$(acpi -b | grep "Battery 0" | grep -P -o '[0-9]+(?=%)')
+FULL_FILE=/tmp/.bat-full
+EMPTY_FILE=/tmp/.bat-empty
+CRITICAL_FILE=/tmp/.bat-critical
 
-# My battery takes a couple of seconds to recognize as charging, so this is a hacky way to deal with it
+get_icon() {
+  label=""
+  [ "$BATTERY_STATE" == "charging" ] && label="-charging"
+  
+  if [ "$BATTERY_LEVEL" -gt 99 ]; then
+    icon="100"
+    [ "$BATTERY_STATE" -eq "charging" ] && label="-charged"
+  elif [ "$BATTERY_LEVEL" -ge 90 ] && [ "$BATTERY_LEVEL" -le 99 ]; then
+    icon="090"
+  elif [ "$BATTERY_LEVEL" -ge 80 ] && [ "$BATTERY_LEVEL" -lt 90 ]; then
+    icon="080"
+  elif [ "$BATTERY_LEVEL" -ge 70 ] && [ "$BATTERY_LEVEL" -lt 80 ]; then
+    icon="070"
+  elif [ "$BATTERY_LEVEL" -ge 60 ] && [ "$BATTERY_LEVEL" -lt 70 ]; then
+    icon="060"
+  elif [ "$BATTERY_LEVEL" -ge 50 ] && [ "$BATTERY_LEVEL" -lt 60 ]; then
+    icon="050"
+  elif [ "$BATTERY_LEVEL" -ge 40 ] && [ "$BATTERY_LEVEL" -lt 50 ]; then
+    icon="040"
+  elif [ "$BATTERY_LEVEL" -ge 30 ] && [ "$BATTERY_LEVEL" -lt 40 ]; then
+    icon="030"
+  elif [ "$BATTERY_LEVEL" -ge 20 ] && [ "$BATTERY_LEVEL" -lt 30 ]; then
+    icon="020"
+  elif [ "$BATTERY_LEVEL" -ge 10 ] && [ "$BATTERY_LEVEL" -lt 20 ]; then
+    icon="010"
+  elif [ "$BATTERY_LEVEL" -lt 10 ]; then
+    icon="000"
+  fi
+
+  echo "battery-${icon}${label}"
+}
+
 case "$BATTERY_STATE" in
-	"charging") BATTERY_CHARGING="Battery Charging" ; BATTERY_ICON="100-charged" ;;
-	"discharging") BATTERY_CHARGING="Battery Discharging" ; BATTERY_ICON="090" ;;
+	"charging") 
+    BATTERY_CHARGING="Battery Charging"; 
+    [ -f $EMPTY_FILE ] && rm $EMPTY_FILE;
+    [ -f $CRITICAL_FILE ] && rm $CRITICAL_FILE;
+    ;;
+	"discharging") 
+    BATTERY_CHARGING="Battery Discharging"; 
+    [ -f $FULL_FILE ] && rm $FULL_FILE
+    ;;
 esac
 
-# Send notification
-notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% of battery charged." \
-  -u normal -i "battery-${BATTERY_ICON}" -t 5000 -r 9991
+notify-send "${BATTERY_CHARGING}" "${BATTERY_LEVEL}% battery remaining." \
+  -u normal -i "$(get_icon)" -t 5000 -r 9991
