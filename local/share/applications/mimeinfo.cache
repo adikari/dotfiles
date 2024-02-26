@@ -1,1 +1,16 @@
-
+[MIME Cache]
+application/x-extension-ics=betterbird.desktop;
+application/x-xpinstall=betterbird.desktop;
+image/gif=imv.desktop;
+image/jpeg=imv.desktop;
+image/jpg=imv.desktop;
+image/png=imv.desktop;
+message/rfc822=betterbird.desktop;
+text/calendar=betterbird.desktop;
+text/vcard=betterbird.desktop;
+text/x-vcard=betterbird.desktop;
+x-scheme-handler/mailto=betterbird.desktop;
+x-scheme-handler/mid=betterbird.desktop;
+x-scheme-handler/slack=slack.desktop;
+x-scheme-handler/webcal=betterbird.desktop;
+x-scheme-handler/webcals=betterbird.desktop;

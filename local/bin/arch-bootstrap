@@ -249,27 +249,35 @@ pipx install aws-google-auth
 # █ █▄░█ █▀ ▀█▀ ▄▀█ █░░ █░░   █▀▄ █▀█ █ █░█ █▀▀ █▀█ █▀
 # █ █░▀█ ▄█ ░█░ █▀█ █▄▄ █▄▄   █▄▀ █▀▄ █ ▀▄▀ ██▄ █▀▄ ▄█
 
+
+# Graphics Drivers find and install
+gpu_type=$(lspci)
+
 if [[ $ARCH = "arm64" || $ARCH = "aarch64" ]]; then
   # install graphics drivers for m1 macbook pro
   yay -S --noconfirm linux-asahi-edge mesa-asahi-edge
   sudo update-grub
 fi
 
-if [ $ARCH = "x86_64" ]; then
-  # install intel drivers
-  yay -S --noconfirm mesa
+if grep -E "NVIDIA|GeForce" <<< ${gpu_type}; then
+  yay -S --noconfirm --needed nvidia-dkms nvidia-settings libva libva-nvidia-driver-git
+  sudo sed -i 's/MODULES=()/MODULES=(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+  sudo mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
+  echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf 
+  sudo systemctl enable nvidia-suspend.service
+  sudo systemctl enable nvidia-hibernate.service
+  sudo systemctl enable nvidia-resume.service
 fi
 
-# Graphics Drivers find and install
-gpu_type=$(lspci)
-if grep -E "NVIDIA|GeForce" <<< ${gpu_type}; then
-  # TODO: install invidia driver
-  yay -S --noconfirm --needed nvidia
-elif lspci | grep 'VGA' | grep -E "Radeon|AMD"; then
+if lspci | grep 'VGA' | grep -E "Radeon|AMD"; then
   yay -S --noconfirm --needed xf86-video-amdgpu
-elif grep -E "Integrated Graphics Controller" <<< ${gpu_type}; then
+fi
+
+if grep -E "Integrated Graphics Controller" <<< ${gpu_type}; then
   yay -S --noconfirm --needed libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils lib32-mesa
-elif grep -E "Intel Corporation UHD" <<< ${gpu_type}; then
+fi
+
+if grep -E "Intel Corporation UHD" <<< ${gpu_type}; then
   yay -S --needed --noconfirm libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils lib32-mesa
 fi
 
@@ -297,13 +305,6 @@ sudo systemctl enable --now cups.socket
 echo "Setting timezone"
 sudo timedatectl set-timezone Australia/Melbourne
 sudo systemctl enable --now systemd-timesyncd.service
-
-if grep -E "NVIDIA|GeForce" <<< ${gpu_type}; then
-  sudo systemctl enable --now nvidia-suspend.service
-  sudo systemctl enable --now nvidia-hibernate.service
-  sudo systemctl enable --now nvidia-resume.service
-fi
-
 # $HOME/dotfiles/usr/local/bin/set-theme
 
 echo "🎉  completed arch bootstrap"
