@@ -114,6 +114,7 @@ packages=(
   hyprland-git
   waybar
   xdg-desktop-portal-hyprland 
+  xwaylandvideobridge-git
   gtk3 
   polkit-gnome
   gnome-keyring
