@@ -150,7 +150,7 @@ packages=(
   go
   rustup
   lldb
-  aws-cli
+  aws-cli-v2
   github-cli
   lua
   tmux

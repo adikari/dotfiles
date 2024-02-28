@@ -37,6 +37,7 @@ local/share/zsh
 local/share/nvim
 local/share/fnm
 local/share/applications/brave*
+local/share/applications/_usr*
 
 # homeserver
 config/systemd/user/dns-updater.service
