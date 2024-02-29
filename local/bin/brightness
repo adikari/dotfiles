@@ -1,25 +1,35 @@
 #!/usr/bin/env bash
 
-# Get brightness
+INC=10
+
 get_backlight() {
-	LIGHT=$(printf "%.0f\n" $(brightnessctl i))
-	echo "${LIGHT}%"
+  level=$(brightnessctl -m | awk -F, '{print substr($4, 0, length($4)-1)}')
+
+  remainder=$(bc <<< "$level % $INC")
+
+  if ($remainder == 0); then
+    echo $level
+  else
+    echo $(bc <<< "$level-$remainder")
+  fi
 }
 
 # Notify
 notify_user() {
-  local level=$(brightnessctl g)
+  local level=$(get_backlight)
 	dunstify "Brightness $level% " -h string:x-canonical-private-synchronous:sys-notify -i brightnesssettings -u low -h int:value:"$level"
 }
 
 # Increase brightness
 inc_backlight() {
-	brightnessctl set 10%+ && notify_user
+  local level=$(bc <<< "$(get_backlight)+$INC")
+	brightnessctl set $level% && notify_user
 }
 
 # Decrease brightness
 dec_backlight() {
-	brightnessctl set 10%- && notify_user
+  local level=$(bc <<< "$(get_backlight)-$INC")
+	brightnessctl set $level% && notify_user
 }
 
 # Execute accordingly
@@ -30,5 +40,5 @@ elif [[ "$1" == "--inc" ]]; then
 elif [[ "$1" == "--dec" ]]; then
 	dec_backlight
 else
-	get_backlight
+  echo "$(get_backlight)%"
 fi
