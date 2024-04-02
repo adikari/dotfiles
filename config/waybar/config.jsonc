@@ -1,5 +1,4 @@
 // read: https://github.com/Alexays/Waybar/wiki/Module:-Custom#module-custom-config-return-type
-
 {
   "layer": "top",
   "position": "bottom",
@@ -8,26 +7,22 @@
   "passthrough": false,
   "gtk-layer-shell": true,
   "height": 30,
-
   "modules-left": [
     "custom/l_end",
     "cpu",
     "memory",
     "temperature",
     "battery",
-    "custom/r_end"
+    "custom/r_end",
   ],
-
   "modules-center": [
     "custom/l_end",
     "wlr/workspaces",
     "wlr/taskbar",
-    "custom/r_end"
+    "custom/r_end",
   ],
-
   "modules-right": [
     "custom/l_end",
-    "custom/email",
     "custom/updates",
     "network",
     "bluetooth",
@@ -35,17 +30,14 @@
     "pulseaudio#microphone",
     "idle_inhibitor",
     "custom/r_end",
-
     "custom/l_end",
     "clock",
     "custom/weather",
     "custom/r_end",
-
     "custom/l_end",
     "tray",
-    "custom/r_end"
+    "custom/r_end",
   ],
-
   "bluetooth": {
     "on-click": "blueman-manager",
     "format": "",
@@ -53,9 +45,8 @@
     "format-connected": " {num_connections}",
     "tooltip-format": " {device_alias}",
     "tooltip-format-connected": "{device_enumerate}",
-    "tooltip-format-enumerate-connected": " {device_alias}"
+    "tooltip-format-enumerate-connected": " {device_alias}",
   },
-
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
     "format-wifi": "󰤨 {essid}",
@@ -64,54 +55,58 @@
     "format-linked": "󱘖 {ifname} (No IP)",
     "format-disconnected": " Disconnected",
     "format-alt": "󰤨 {signalStrength}%",
-    "interval": 5
+    "interval": 5,
   },
-
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": "󰛐",
-      "deactivated": "󰛑"
+      "deactivated": "󰛑",
     },
-    "tooltip": true
+    "tooltip": true,
   },
-
   "custom/weather": {
     "tooltip": true,
     "format": "{}",
     "icon-size": 16,
     "interval": 30,
     "exec": "~/.local/bin/weather",
-    "return-type": "json"
+    "return-type": "json",
   },
-
   "clock": {
-    "format": "{:󰃭 %a %d  %I:%M %p}",
-    "format-alt": "{: %b %Y 󰥔 %H:%M}",
-    "on-click": "kitty --title calendar -e ikhal",
+    "format": "󰃭 {:%a %d  %I:%M %p}",
+    "format-alt": " {:%b %Y 󰥔 %H:%M}",
+    // "on-click": "kitty --title calendar -e ikhal",
     "tooltip-format": "<tt><big>{calendar}</big></tt>",
     "actions": {
       "on-scroll-up": "shift_down",
       "on-scroll-down": "shift_up",
-      "on-click-right": "mode"
+      "on-click-right": "mode",
     },
     "calendar": {
       "on-scroll": 1,
       "on-click-right": "mode",
       "format": {
-        "today": "<span color='#f38ba8'><b>{}</b></span>"
-      }
-    }
+        "today": "<span color='#f38ba8'><b>{}</b></span>",
+      },
+    },
   },
-
   "cpu": {
     "interval": 10,
     "format": "󰍛 {usage}%",
     "format-alt": "{icon0}{icon1}{icon2}{icon3}",
     "on-click": "kitty --title btop sh -c 'btop -p 2'",
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+    "format-icons": [
+      "▁",
+      "▂",
+      "▃",
+      "▄",
+      "▅",
+      "▆",
+      "▇",
+      "█"
+    ],
   },
-
   "memory": {
     "interval": 30,
     "format": "󰾆 {percentage}%",
@@ -119,9 +114,8 @@
     "max-length": 10,
     "on-click": "kitty --title btop sh -c 'btop -p 3'",
     "tooltip": true,
-    "tooltip-format": " {used:0.1f}GB/{total:0.1f}GB"
+    "tooltip-format": " {used:0.1f}GB/{total:0.1f}GB",
   },
-
   "temperature": {
     "thermal-zone": 1,
     "format": " {temperatureC}°C",
@@ -129,9 +123,8 @@
     "format-alt": " {temperatureC}°C",
     "critical-threshold": 70,
     "format-critical": " {temperatureC}°C",
-    "on-click": "kitty --title btop sh -c 'btop -p 1'"
+    "on-click": "kitty --title btop sh -c 'btop -p 1'",
   },
-
   "wlr/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
@@ -146,10 +139,9 @@
       "7": [],
       "8": [],
       "9": [],
-      "10": []
-    }
+      "10": [],
+    },
   },
-
   "wlr/taskbar": {
     "format": "{icon}",
     "icon-size": 16,
@@ -158,26 +150,38 @@
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
-    "ignore-list": ["rofi"],
+    "ignore-list": [
+      "rofi"
+    ],
     "app_ids-mapping": {
-      "firefoxdeveloperedition": "firefox-developer-edition"
-    }
+      "firefoxdeveloperedition": "firefox-developer-edition",
+    },
   },
-
   "battery": {
     "states": {
       "good": 80,
       "warning": 30,
-      "critical": 20
+      "critical": 20,
     },
     "format": "{icon} {capacity}%",
     "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",
     "format-alt-click": "click-right",
     "format-alt": "{icon} {capacity}%",
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
   },
-
   "pulseaudio": {
     "format": "{icon} {volume}",
     "format-muted": "",
@@ -194,10 +198,13 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", "", ""]
-    }
+      "default": [
+        "",
+        "",
+        ""
+      ],
+    },
   },
-
   "pulseaudio#microphone": {
     "format": "{format_source}",
     "format-source": "",
@@ -207,80 +214,66 @@
     "on-scroll-up": "~/.local/bin/volume --mic-inc",
     "on-scroll-down": "~/.local/bin/volume --mic-dec",
     "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
-    "scroll-step": 5
+    "scroll-step": 5,
   },
-
   "backlight": {
     "device": "intel_backlight",
     "format": "{icon}",
     "format-alt-click": "click-right",
     "tooltip-format": "{icon} Brightness {percent}%",
-    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "format-icons": [
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ],
     "on-scroll-up": "~/.local/bin/brightness --inc",
-    "on-scroll-down": "~/.local/bin/brightness --dec"
+    "on-scroll-down": "~/.local/bin/brightness --dec",
   },
-
   "tray": {
     "icon-size": 14,
-    "spacing": 6
+    "spacing": 6,
   },
-
   "custom/updates": {
     "format": "{}",
     "exec": "~/.local/bin/update-sys",
     "on-click": "~/.local/bin/update-sys update",
     "interval": 300,
-    "tooltip": true
+    "tooltip": true,
   },
-
-  "custom/email": {
-    "format": "󰇮 {}",
-    "exec": "~/.local/bin/email --unread-count",
-    "on-click": "kitty --title email -e neomutt",
-    "interval": 10
-  },
-
   // modules for padding //
-
   "custom/l_end": {
     "format": " ",
     "interval": "once",
-    "tooltip": false
+    "tooltip": false,
   },
-
   "custom/r_end": {
     "format": " ",
     "interval": "once",
-    "tooltip": false
+    "tooltip": false,
   },
-
   "custom/sl_end": {
     "format": " ",
     "interval": "once",
-    "tooltip": false
+    "tooltip": false,
   },
-
   "custom/sr_end": {
     "format": " ",
     "interval": "once",
-    "tooltip": false
+    "tooltip": false,
   },
-
   "custom/rl_end": {
     "format": " ",
     "interval": "once",
-    "tooltip": false
+    "tooltip": false,
   },
-
   "custom/rr_end": {
     "format": " ",
     "interval": "once",
-    "tooltip": false
+    "tooltip": false,
   },
-
   "custom/padd": {
     "format": "  ",
     "interval": "once",
-    "tooltip": false
-  }
+    "tooltip": false,
+  },
 }
