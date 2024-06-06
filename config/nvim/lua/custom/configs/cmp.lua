@@ -8,8 +8,8 @@ local opts = require "plugins.configs.cmp"
 local format = opts.formatting.format
 
 opts.sources = {
-  { name = "supermaven" },
   { name = "nvim_lsp" },
+  { name = "supermaven" },
   { name = "path" },
   { name = "buffer" },
   { name = "luasnip" },

@@ -122,9 +122,9 @@ packages=(
   dunst
   qt5-wayland 
   qt6-wayland 
-  swww 
   hypridle
   hyprlock
+  hyprpaper
   rofi-lbonn-wayland-git
   wlogout  
   gvfs 
