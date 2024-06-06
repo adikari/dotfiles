@@ -143,6 +143,14 @@ local plugins = {
       require "custom.configs.typescript-tools"
     end,
   },
+
+  {
+    "supermaven-inc/supermaven-nvim",
+    event = "VeryLazy",
+    config = function()
+      require "custom.configs.supermaven"
+    end,
+  },
 }
 
 return plugins
