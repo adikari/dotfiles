@@ -22,17 +22,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 
-# █▄░█ █░█ █▀▀ █░█ ▄▀█ █▀▄
-# █░▀█ ▀▄▀ █▄▄ █▀█ █▀█ █▄▀
-
-nvim_dir=$XDG_CONFIG_HOME/nvim
-if [ ! -d $nvim_dir ]; then 
-  echo "setting up nvchad base.." | tee -a $log 
-  mkdir -p $nvim_dir
-  git clone https://github.com/NvChad/NvChad $nvim_dir --depth 1 | tee -a $log
-fi
-
-
 # █▀▄ █▀█ █▀▀ █▄▀ █▀▀ █▀█
 # █▄▀ █▄█ █▄▄ █░█ ██▄ █▀▄
 
