@@ -4,7 +4,7 @@ if not present then
   return
 end
 
-local opts = require "plugins.configs.cmp"
+local opts = require "nvchad.configs.cmp"
 local format = opts.formatting.format
 
 opts.sources = {

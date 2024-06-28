@@ -1,6 +1,6 @@
 local util = require "lspconfig/util"
-local on_attach = require("plugins.configs.lspconfig").on_attach
-local capabilities = require("plugins.configs.lspconfig").capabilities
+local on_attach = require("nvchad.configs.lspconfig").on_attach
+local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 require("typescript-tools").setup {
   on_attach = on_attach,
