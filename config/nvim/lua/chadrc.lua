@@ -2,25 +2,20 @@
 -- https://github.com/NvChad/ui/blob/v2.5/lua/nvconfig.lua
 
 ---@type ChadrcConfig
-local M = {}
-
-M.ui = {
-  theme = "catppuccin",
-  theme_toggle = { "catppuccin", "gruvbox" },
-
-  hl_override = {
-    Comment = {
-      italic = true,
+return {
+  ui = {
+    theme = "catppuccin",
+    theme_toggle = { "catppuccin", "gruvbox" },
+    hl_override = {
+      Comment = {
+        italic = true,
+      },
+    },
+    hl_add = {
+      NvimTreeOpenedFolderName = { fg = "green", bold = true },
+    },
+    statusline = {
+      theme = "vscode_colored",
     },
   },
-
-  hl_add = {
-    NvimTreeOpenedFolderName = { fg = "green", bold = true },
-  },
-
-  statusline = {
-    theme = "vscode_colored",
-  },
 }
-
-return M

@@ -4,8 +4,14 @@ local options = {
     css = { "prettier" },
     html = { "prettier" },
     javascript = { "prettier" },
+    javascriptreact = { "prettier" },
     typescript = { "prettier" },
+    typescriptreact = { "prettier" },
     go = { "goimports", "gofmt" },
+    rust = { "rustfmt" },
+    cpp = { "clang_format" },
+    c = { "clang_format" },
+    ["*"] = { "trim_whitespace" },
   },
 
   format_on_save = {
