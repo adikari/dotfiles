@@ -15,7 +15,7 @@ install_package() {
   if yay -Q $1 &>> /dev/null; then
    echo "$1 is already installed"
   else
-    yay -S $1 --noconfirm 
+    yay -S $1 --noconfirm
   fi
 }
 
@@ -24,13 +24,13 @@ install_package() {
 # █▀▀ █▀█ █▄▄ █░█ █▀█ █▄█ ██▄ ▄█
 
 packages=(
-  
+
   # █▄▄ ▄▀█ █▀ █▀▀
   # █▄█ █▀█ ▄█ ██▄
-  
+
   cmake
-  openssl  
-  zsh   
+  openssl
+  zsh
   bash
   openvpn
   curl
@@ -46,44 +46,44 @@ packages=(
   python-pipx
   ripgrep
   exa
-  
-  
+
+
   # █▀█ █▀█ █ █▄░█ ▀█▀ █▀▀ █▀█
   # █▀▀ █▀▄ █ █░▀█ ░█░ ██▄ █▀▄
-   
+
   cups
   ghostscript
   brlaser-git
-  
-  
+
+
   # ▄▀█ █░█ █▀▄ █ █▀█
   # █▀█ █▄█ █▄▀ █ █▄█
 
   sof-firmware
-  pipewire 
+  pipewire
   wireplumber
   pipewire-pulse
   pipewire-alsa
   pipewire-audio
   pipewire-jack
-  pavucontrol 
-  pamixer 
+  pavucontrol
+  pamixer
   alsa-utils
 
   # █░█ ▀█▀ █ █░░ █ ▀█▀ █ █▀▀ █▀
   # █▄█ ░█░ █ █▄▄ █ ░█░ █ ██▄ ▄█
-  
-  bluez 
-  bluez-utils 
+
+  bluez
+  bluez-utils
   blueman
-  brightnessctl 
-  network-manager-applet 
+  brightnessctl
+  network-manager-applet
   file-roller
-  swappy 
-  grim 
+  swappy
+  grim
   slurp
-  cliphist 
-  wl-clipboard 
+  cliphist
+  wl-clipboard
   hyprpicker-git
   socat
   neofetch
@@ -105,69 +105,69 @@ packages=(
   imagemagick
   fprintd                   # finterprint support
   # pam-fprint-grosshack      # pam module to enable simultaneous fingerprint (fprintd) and password auth
- 
-  
+
+
   # █░█ █▄█ █▀█ █▀█ █░░ ▄▀█ █▄░█ █▀▄
   # █▀█ ░█░ █▀▀ █▀▄ █▄▄ █▀█ █░▀█ █▄▀
 
   hyprlang
   hyprland-git
   waybar
-  xdg-desktop-portal-hyprland 
+  xdg-desktop-portal-hyprland
   xwaylandvideobridge-git
-  gtk3 
+  gtk3
   polkit-gnome
   gnome-keyring
   seahorse
   dunst
-  qt5-wayland 
-  qt6-wayland 
+  qt5-wayland
+  qt6-wayland
   hypridle
   hyprlock
   hyprpaper
   rofi-lbonn-wayland-git
-  wlogout  
-  gvfs 
-   
-  
+  wlogout
+  gvfs
+
+
   # ▀█▀ █░█ █▀▀ █▀▄▀█ █▀▀
   # ░█░ █▀█ ██▄ █░▀░█ ██▄
-  
-  papirus-icon-theme 
+
+  papirus-icon-theme
   xfce4-settings
-  nwg-look-bin   
+  nwg-look-bin
   kvantum
   qt5ct
   qt6ct
   qt5-svg
   qt5-quickcontrols2
   qt5-graphicaleffects
-  catppuccin-gtk-theme-mocha 
-  
-  
+  catppuccin-gtk-theme-mocha
+
+
   # █▀▄ █▀▀ █░█ █▀▀ █░░ █▀█ █▀█ █▀▄▀█ █▀▀ █▄░█ ▀█▀
   # █▄▀ ██▄ ▀▄▀ ██▄ █▄▄ █▄█ █▀▀ █░▀░█ ██▄ █░▀█ ░█░
-   
+
   go
   rustup
   lldb
   aws-cli-v2
   github-cli
   lua
-  tmux
+  tmux-git
   neovim
   yarn
   fnm
   pnpm
   npm
-  python-requests 
+  python-requests
   pacman-contrib
   starship
-  
-   
+
+
   # █▀█ █▀▀ █▀▀ █ █▀▀ █▀▀
   # █▄█ █▀░ █▀░ █ █▄▄ ██▄
-   
+
   # neomutt
   # ikhal
   # abook
@@ -184,11 +184,11 @@ packages=(
   # python-aiohttp-oauthlib
   # urlscan
   betterbird-bin
-  
+
 
   # ▄▀█ █▀█ █▀█ █░░ █ █▀▀ ▄▀█ ▀█▀ █ █▀█ █▄░█ █▀
   # █▀█ █▀▀ █▀▀ █▄▄ █ █▄▄ █▀█ ░█░ █ █▄█ █░▀█ ▄█
-  
+
   btop
   mpv                     # media player
   rclone                  # used for gdrive sync
@@ -198,7 +198,7 @@ packages=(
   docker-compose
   postman-bin
   thunar                  # GUI file explorer
-  thunar-archive-plugin 
+  thunar-archive-plugin
   slack-desktop
   brave-bin
   1password
@@ -209,14 +209,14 @@ packages=(
 
   # discord
 
-  
+
   # █▀▀ █▀█ █▄░█ ▀█▀ █▀
   # █▀░ █▄█ █░▀█ ░█░ ▄█
-  
+
   ttf-fantasque-nerd
-  ttf-jetbrains-mono-nerd 
-  ttf-nato-sans-nerd 
-  noto-fonts-emoji 
+  ttf-jetbrains-mono-nerd
+  ttf-nato-sans-nerd
+  noto-fonts-emoji
   noto-fonts
 )
 
@@ -228,7 +228,7 @@ if [ ! -f /sbin/yay ]; then
   echo "installing yay"
   cd /tmp
   sudo pacman -S --needed git base-devel --noconfirm
-  [ ! -d /tmp/yay ] && git clone https://aur.archlinux.org/yay.git 
+  [ ! -d /tmp/yay ] && git clone https://aur.archlinux.org/yay.git
   cd yay && makepkg -si --noconfirm
   cd $current_dir
 fi
@@ -265,7 +265,7 @@ if grep -E "NVIDIA|GeForce" <<< ${gpu_type}; then
   yay -S --noconfirm --needed nvidia-dkms nvidia-settings libva libva-nvidia-driver-git
   sudo sed -i 's/MODULES=()/MODULES=(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
   sudo mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
-  echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf 
+  echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
   sudo systemctl enable nvidia-suspend.service
   sudo systemctl enable nvidia-hibernate.service
   sudo systemctl enable nvidia-resume.service
@@ -289,15 +289,15 @@ fi
 
 echo -e "Cleaning out conflicting xdg portals..."
 
-remove_package xdg-desktop-portal-gnome 
-remove_package xdg-desktop-portal-gtk 
+remove_package xdg-desktop-portal-gnome
+remove_package xdg-desktop-portal-gtk
 
 
 # █▀ ▀█▀ ▄▀█ █▀█ ▀█▀   █▀ █▀▀ █▀█ █░█ █ █▀▀ █▀▀ █▀
 # ▄█ ░█░ █▀█ █▀▄ ░█░   ▄█ ██▄ █▀▄ ▀▄▀ █ █▄▄ ██▄ ▄█
 
 echo "Starting the Bluetooth Service..."
-sudo systemctl enable --now bluetooth.service 
+sudo systemctl enable --now bluetooth.service
 sleep 2
 
 echo "Starting printer service"
