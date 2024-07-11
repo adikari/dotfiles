@@ -14,6 +14,26 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+lspconfig.biome.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "biome", "lsp-proxy" },
+  root_dir = util.root_pattern("biome.json", "biome.jsonc"),
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "typescript",
+    "typescript.tsx",
+    "typescriptreact",
+    "astro",
+    "svelte",
+    "vue",
+    "css",
+  },
+}
+
 -- tailwindcss lsp configuration
 lspconfig.tailwindcss.setup {
   on_attach = on_attach,
