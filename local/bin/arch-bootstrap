@@ -73,6 +73,7 @@ packages=(
   # █░█ ▀█▀ █ █░░ █ ▀█▀ █ █▀▀ █▀
   # █▄█ ░█░ █ █▄▄ █ ░█░ █ ██▄ ▄█
 
+  snapd
   bluez
   bluez-utils
   blueman
@@ -295,6 +296,11 @@ remove_package xdg-desktop-portal-gtk
 
 # █▀ ▀█▀ ▄▀█ █▀█ ▀█▀   █▀ █▀▀ █▀█ █░█ █ █▀▀ █▀▀ █▀
 # ▄█ ░█░ █▀█ █▀▄ ░█░   ▄█ ██▄ █▀▄ ▀▄▀ █ █▄▄ ██▄ ▄█
+
+echo "Enabling snapd"
+systemctl restart apparmor.service
+systemctl restart snapd.service
+systemctl enable --now snapd.apparmor.service
 
 echo "Starting the Bluetooth Service..."
 sudo systemctl enable --now bluetooth.service
