@@ -1,0 +1,197 @@
+#!/bin/bash
+
+set -euo pipefail
+
+current_dir=$(pwd)
+ARCH=$(uname -m)
+
+remove_package() {
+  if yay -Qs $1 &>> /dev/null; then
+    yay -R --noconfirm $1
+  fi
+}
+
+install_package() {
+  if yay -Q $1 &>> /dev/null; then
+   echo "$1 is already installed"
+  else
+    yay -S $1 --noconfirm
+  fi
+}
+
+# █▀█ ▄▀█ █▀▀ █▄▀ ▄▀█ █▀▀ █▀▀ █▀
+# █▀▀ █▀█ █▄▄ █░█ █▀█ █▄█ ██▄ ▄█
+
+packages=(
+
+  # █▄▄ ▄▀█ █▀ █▀▀
+  # █▄█ █▀█ ▄█ ██▄
+
+  cmake
+  openssl
+  zsh
+  bash
+  openvpn
+  curl
+  wget
+  unzip
+  tar
+  fzf
+  ripgrep
+  jq
+  make
+  stow
+  less
+  python-pipx
+  ripgrep
+  exa
+
+
+  # █▀█ █▀█ █ █▄░█ ▀█▀ █▀▀ █▀█
+  # █▀▀ █▀▄ █ █░▀█ ░█░ ██▄ █▀▄
+
+  cups
+  ghostscript
+  brlaser-git
+
+  # █░█ ▀█▀ █ █░░ █ ▀█▀ █ █▀▀ █▀
+  # █▄█ ░█░ █ █▄▄ █ ░█░ █ ██▄ ▄█
+
+  snapd
+  brightnessctl
+  network-manager-applet
+  neofetch
+  pass                        # password manager
+  pass-otp                    # otp manager
+  pam-gnupg
+  zoxide
+  man-db
+  tldr
+  scc
+  git-delta
+  bat
+  bind
+  inetutils
+  acpi                      # CLI utility for power management
+  usbutils                  # utilities for working with usb
+  imagemagick
+
+
+  # █▀▄ █▀▀ █░█ █▀▀ █░░ █▀█ █▀█ █▀▄▀█ █▀▀ █▄░█ ▀█▀
+  # █▄▀ ██▄ ▀▄▀ ██▄ █▄▄ █▄█ █▀▀ █░▀░█ ██▄ █░▀█ ░█░
+
+  go
+  rustup
+  lldb
+  aws-cli-v2
+  github-cli
+  lua
+  tmux-git
+  neovim
+  yarn
+  fnm
+  pnpm
+  npm
+  python-requests
+  pacman-contrib
+  starship
+
+
+  # ▄▀█ █▀█ █▀█ █░░ █ █▀▀ ▄▀█ ▀█▀ █ █▀█ █▄░█ █▀
+  # █▀█ █▀▀ █▀▀ █▄▄ █ █▄▄ █▀█ ░█░ █ █▄█ █░▀█ ▄█
+
+  btop
+  mpv                     # media player
+  rclone                  # used for gdrive sync
+  aws-vault
+  docker
+  docker-compose
+  nnn                    # CLI file explorer
+
+  # █▀▀ █▀█ █▄░█ ▀█▀ █▀
+  # █▀░ █▄█ █░▀█ ░█░ ▄█
+
+  ttf-fantasque-nerd
+  ttf-jetbrains-mono-nerd
+  ttf-nato-sans-nerd
+  noto-fonts-emoji
+  noto-fonts
+)
+
+# █ █▄░█ █▀ ▀█▀ ▄▀█ █░░ █░░   █▄█ ▄▀█ █▄█
+# █ █░▀█ ▄█ ░█░ █▀█ █▄▄ █▄▄   ░█░ █▀█ ░█░
+
+if [ ! -f /sbin/yay ]; then
+  echo "installing yay"
+  cd /tmp
+  sudo pacman -S --needed git base-devel --noconfirm
+  [ ! -d /tmp/yay ] && git clone https://aur.archlinux.org/yay.git
+  cd yay && makepkg -si --noconfirm
+  cd $current_dir
+fi
+
+# █ █▄░█ █▀ ▀█▀ ▄▀█ █░░ █░░   █▀█ ▄▀█ █▀▀ █▄▀ ▄▀█ █▀▀ █▀▀ █▀
+# █ █░▀█ ▄█ ░█░ █▀█ █▄▄ █▄▄   █▀▀ █▀█ █▄▄ █░█ █▀█ █▄█ ██▄ ▄█
+
+yay -Suy --noconfirm
+
+echo "installing packages"
+for package in ${packages[@]}; do
+  install_package $package
+done
+
+echo "🎉  completed arch bootstrap"
+
+# █ █▄░█ █▀ ▀█▀ ▄▀█ █░░ █░░   █▀▄ █▀█ █ █░█ █▀▀ █▀█ █▀
+# █ █░▀█ ▄█ ░█░ █▀█ █▄▄ █▄▄   █▄▀ █▀▄ █ ▀▄▀ ██▄ █▀▄ ▄█
+
+
+# Graphics Drivers find and install
+gpu_type=$(lspci)
+
+if [[ $ARCH = "arm64" || $ARCH = "aarch64" ]]; then
+  # install graphics drivers for m1 macbook pro
+  yay -S --noconfirm linux-asahi-edge mesa-asahi-edge
+  sudo update-grub
+fi
+
+if grep -E "NVIDIA|GeForce" <<< ${gpu_type}; then
+  yay -S --noconfirm --needed nvidia-dkms nvidia-settings libva libva-nvidia-driver-git
+  sudo sed -i 's/MODULES=()/MODULES=(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+  sudo mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
+  echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
+  sudo systemctl enable nvidia-suspend.service
+  sudo systemctl enable nvidia-hibernate.service
+  sudo systemctl enable nvidia-resume.service
+fi
+
+if lspci | grep 'VGA' | grep -E "Radeon|AMD"; then
+  yay -S --noconfirm --needed xf86-video-amdgpu
+fi
+
+if grep -E "Integrated Graphics Controller" <<< ${gpu_type}; then
+  yay -S --noconfirm --needed libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils lib32-mesa
+fi
+
+if grep -E "Intel Corporation UHD" <<< ${gpu_type}; then
+  yay -S --needed --noconfirm libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils lib32-mesa
+fi
+
+
+# █▀ ▀█▀ ▄▀█ █▀█ ▀█▀   █▀ █▀▀ █▀█ █░█ █ █▀▀ █▀▀ █▀
+# ▄█ ░█░ █▀█ █▀▄ ░█░   ▄█ ██▄ █▀▄ ▀▄▀ █ █▄▄ ██▄ ▄█
+
+echo "Enabling snapd"
+sudo systemctl restart apparmor.service
+sudo systemctl restart snapd.service
+sudo systemctl enable --now snapd.apparmor.service
+
+echo "Starting printer service"
+sudo systemctl enable --now cups.service
+sudo systemctl enable --now cups.socket
+
+echo "Setting timezone"
+sudo timedatectl set-timezone Australia/Melbourne
+sudo systemctl enable --now systemd-timesyncd.service
+
+echo "🎉  completed arch bootstrap"

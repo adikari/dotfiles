@@ -7,20 +7,10 @@ XDG_CACHE_HOME="$HOME/.cache"
 
 log=/tmp/dotfiles.log
 
+current_dir=$(pwd)
+root_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/.. && pwd )"
 
-# █ █▄░█ █▀ ▀█▀ ▄▀█ █░░ █░░
-# █ █░▀█ ▄█ ░█░ █▀█ █▄▄ █▄▄
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  echo "platform is mac osx. Installing.."
-  ./local/bin/osx-bootstrap  | tee -a $log
-fi
-
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  echo "platform is arch. Installing.."
-  ./local/bin/arch-bootstrap | tee -a $log 
-fi
-
+cd $root_dir
 
 # █▀▄ █▀█ █▀▀ █▄▀ █▀▀ █▀█
 # █▄▀ █▄█ █▄▄ █░█ ██▄ █▀▄
@@ -39,12 +29,12 @@ fi
 # █▀ █▀▀ ▀█▀ █░█ █▀█   █▀▄ █▀█ ▀█▀ █▀▀ █ █░░ █▀▀ █▀
 # ▄█ ██▄ ░█░ █▄█ █▀▀   █▄▀ █▄█ ░█░ █▀░ █ █▄▄ ██▄ ▄█
 
-echo "setting up dotfiles.." | tee -a $log 
+echo "setting up dotfiles.." | tee -a $log
 sudo rm -rf $HOME/.zshrc /etc/locale.conf /etc/locale.gen \
   /etc/pam.d/login /etc/pam.d/system-local-login /etc/zsh/zshenv \
   /etc/default/grub /etc/mkinitcpio.conf /etc/modprobe.d/nvidia.conf /etc/issue
 
-stow --target=$HOME home 
+stow --target=$HOME home
 stow --target=$XDG_CONFIG_HOME config
 stow --target=$HOME/.local local
 sudo stow --target=/etc etc
@@ -53,23 +43,23 @@ update-desktop-database $HOME/.local/share/applications
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo locale-gen | tee -a $log
- 
+
   # echo "starting mutt service" | tee -a $log
   # systemctl --user enable --now mailsync.timer
-  
+
   # echo "starting vdirsyncer service" | tee -a $log
   # systemctl --user enable --now vdirsyncer.timer
 
   # echo "starting davmail service" | tee -a $log
   # systemctl --user enable --now davmail@subash.adhikari@memories.net
- 
+
   # echo "configuring mailctl" | tee -a $log
   # export memories_client_id=$(pass memories/outlook/client_id)
   # export memories_client_secret=$(pass memories/outlook/client_secret)
   # mkdir -p $HOME/.local/var/mailctl $HOME/.local/var/msmtp
   # envsubst <"$HOME/dotfiles/config/mailctl/services-temp" >"$XDG_CONFIG_HOME/mailctl/services.yaml"
   # envsubst <"$HOME/dotfiles/config/mailctl/config-temp" >"$XDG_CONFIG_HOME/mailctl/config.yaml"
-  
+
   echo "setting gdrive with rclone" | tee -a $log
   [ ! -d $HOME/gdrive ] && mkdir $HOME/gdrive
   [ ! -d /opt/rclone/logs ] && sudo mkdir -p /opt/rclone/logs
@@ -124,7 +114,7 @@ fnm default lts-latest
 
 # █▀▄▀█ █ █▀ █▀▀
 # █░▀░█ █ ▄█ █▄▄
-# 
+#
 
 echo "logging in to github" | tee -a $log
 github-login
@@ -136,6 +126,7 @@ fi
 
 ./local/bin/install-nnn-plugins
 
+cd $current_dir
 echo "all done!!"
 
 exec zsh

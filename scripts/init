@@ -1,0 +1,32 @@
+#!/bin/bash
+set -euo pipefail
+
+XDG_CONFIG_HOME="$HOME/.config"
+XDG_DATA_HOME="$HOME/.local/share"
+XDG_CACHE_HOME="$HOME/.cache"
+
+log=/tmp/dotfiles.log
+
+current_dir=$(pwd)
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+cd $script_dir
+
+# █ █▄░█ █▀ ▀█▀ ▄▀█ █░░ █░░
+# █ █░▀█ ▄█ ░█░ █▀█ █▄▄ █▄▄
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  echo "platform is mac osx. Installing.."
+  ./osx-bootstrap  | tee -a $log
+fi
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  echo "platform is arch. Installing.."
+  ./arch-base-bootstrap | tee -a $log
+  ./arch-bootstrap | tee -a $log
+fi
+
+./post-install
+
+cd $current_dir
+echo "all done!!"
