@@ -19,7 +19,7 @@ install_package() {
   if yay -Q $1 &>> /dev/null; then
    echo "$1 is already installed"
   else
-    yay -S $1 --noconfirm 
+    yay -S $1 --noconfirm
   fi
 }
 
@@ -72,7 +72,7 @@ if [ ! -f /sbin/yay ]; then
   echo "installing yay"
   cd /tmp
   sudo pacman -S --needed git base-devel --noconfirm
-  [ ! -d /tmp/yay ] && git clone https://aur.archlinux.org/yay.git 
+  [ ! -d /tmp/yay ] && git clone https://aur.archlinux.org/yay.git
   cd yay && makepkg -si --noconfirm
   cd $current_dir
 fi
@@ -93,13 +93,13 @@ echo "🎉  completed arch bootstrap"
 # █▀ █▀▀ ▀█▀ █░█ █▀█   █▀▄ █▀█ ▀█▀ █▀▀ █ █░░ █▀▀ █▀
 # ▄█ ██▄ ░█░ █▄█ █▀▀   █▄▀ █▄█ ░█░ █▀░ █ █▄▄ ██▄ ▄█
 
-echo "setting up dotfiles.." | tee -a $log 
+echo "setting up dotfiles.." | tee -a $log
 sudo rm -rf $HOME/.zshrc /etc/locale.conf /etc/locale.gen \
-  /etc/pam.d/login /etc/pam.d/system-local-login /etc/zsh/zshenv 
+  /etc/pam.d/login /etc/pam.d/system-local-login /etc/zsh/zshenv
 
 mkdir -p $HOME/.local
 
-stow --target=$HOME home 
+stow --target=$HOME home
 stow --target=$XDG_CONFIG_HOME config
 stow --target=$HOME/.local local
 sudo stow --target=/etc etc

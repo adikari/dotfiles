@@ -6,6 +6,6 @@ NNN_PLUG="$NNN_PLUG_DEFAULT"
 export NNN_PLUG
 export NNN_FIFO=/tmp/nnn.fifo
 
-if [[ "$(tty)" = "/dev/tty1" ]]; then
+if [[ "$(tty)" = "/dev/tty1" ]] && command -v Hyprland &> /dev/null; then
   pgrep Hyprland || exec Hyprland
 fi
