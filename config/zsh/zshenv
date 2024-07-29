@@ -27,4 +27,7 @@ export AWS_VAULT_PASS_PREFIX=aws-vault
 [ -f $HOME/.cargo/env ] && source "$HOME/.cargo/env"
 [ -f $HOME/.rover/env ] && source "$HOME/.rover/env"
 
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 # vim:ft=zsh

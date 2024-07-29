@@ -53,3 +53,6 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 # vim:ft=zsh
+
+# bun completions
+[ -s "/home/subash/.bun/_bun" ] && source "/home/subash/.bun/_bun"
