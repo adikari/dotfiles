@@ -60,6 +60,7 @@ packages=(
   snapd
   brightnessctl
   network-manager-applet
+  nfs-utils
   neofetch
   pass                        # password manager
   pass-otp                    # otp manager
