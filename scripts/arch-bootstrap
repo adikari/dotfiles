@@ -43,9 +43,8 @@ packages=(
   # █▄█ ░█░ █ █▄▄ █ ░█░ █ ██▄ ▄█
 
   snapd
-  bluez
-  bluez-utils
   blueman
+  network-manager-applet
   file-roller
   swappy
   grim
@@ -192,14 +191,3 @@ echo -e "Cleaning out conflicting xdg portals..."
 
 remove_package xdg-desktop-portal-gnome
 remove_package xdg-desktop-portal-gtk
-
-
-# █▀ ▀█▀ ▄▀█ █▀█ ▀█▀   █▀ █▀▀ █▀█ █░█ █ █▀▀ █▀▀ █▀
-# ▄█ ░█░ █▀█ █▀▄ ░█░   ▄█ ██▄ █▀▄ ▀▄▀ █ █▄▄ ██▄ ▄█
-
-
-echo "Starting the Bluetooth Service..."
-sudo systemctl enable --now bluetooth.service
-sleep 2
-
-

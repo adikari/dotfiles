@@ -59,7 +59,10 @@ packages=(
 
   snapd
   brightnessctl
-  network-manager-applet
+  rsync
+  networkmanager
+  bluez
+  bluez-utils
   nfs-utils
   neofetch
   pass                        # password manager
@@ -200,5 +203,9 @@ sudo systemctl enable --now systemd-timesyncd.service
 
 echo "enable systemd-resolved"
 sudo systemctl enable --now systemd-resolved.service
+
+echo "Starting the Bluetooth Service..."
+sudo systemctl enable --now bluetooth.service
+sleep 2
 
 echo "🎉  completed arch bootstrap"
