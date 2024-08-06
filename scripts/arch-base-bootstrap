@@ -76,6 +76,9 @@ packages=(
   acpi                      # CLI utility for power management
   usbutils                  # utilities for working with usb
   imagemagick
+  wg-tools
+  systemd-resolvconf
+  speedtest-cli
 
 
   # █▀▄ █▀▀ █░█ █▀▀ █░░ █▀█ █▀█ █▀▄▀█ █▀▀ █▄░█ ▀█▀
@@ -194,5 +197,8 @@ sudo systemctl enable --now cups.socket
 echo "Setting timezone"
 sudo timedatectl set-timezone Australia/Melbourne
 sudo systemctl enable --now systemd-timesyncd.service
+
+echo "enable systemd-resolved"
+sudo systemctl enable --now systemd-resolved.service
 
 echo "🎉  completed arch bootstrap"

@@ -104,4 +104,10 @@ fprintd-enroll -f left-index-finger
 fprintd-verify -f left-index-finger
 ```
 
+## Connecting to VPN
+
+1. Firstly, copy the peer config and place it in `/etc/wireguard/peer_name.conf`
+2. Change the owner of `/etc/wireguard` to current user if it is not already owned by current user
+3. Enable the wg-quick systemd service `sudo systemctl enable --now wg-quick@peer_name`
+
 
