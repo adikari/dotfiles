@@ -57,12 +57,12 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # envsubst <"$HOME/dotfiles/config/mailctl/services-temp" >"$XDG_CONFIG_HOME/mailctl/services.yaml"
   # envsubst <"$HOME/dotfiles/config/mailctl/config-temp" >"$XDG_CONFIG_HOME/mailctl/config.yaml"
 
-  echo "setting gdrive with rclone" | tee -a $log
-  [ ! -d $HOME/gdrive ] && mkdir $HOME/gdrive
-  [ ! -d /opt/rclone/logs ] && sudo mkdir -p /opt/rclone/logs
-  sudo chmod -R 777 /opt/rclone/logs
-  systemctl --user enable rclone
-  systemctl --user start rclone &
+  # echo "setting gdrive with rclone" | tee -a $log
+  # [ ! -d $HOME/gdrive ] && mkdir $HOME/gdrive
+  # [ ! -d /opt/rclone/logs ] && sudo mkdir -p /opt/rclone/logs
+  # sudo chmod -R 777 /opt/rclone/logs
+  # systemctl --user enable rclone
+  # systemctl --user start rclone &
 
   echo "setting up battery alerts"
   systemctl --user enable --now battery-alert.timer
