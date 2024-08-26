@@ -5,7 +5,7 @@ local util = require "lspconfig/util"
 local lspconfig = require "lspconfig"
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "yamlls", "jsonls", "terraformls", "gopls", "dockerls", "eslint" }
+local servers = { "html", "cssls", "yamlls", "jsonls", "terraformls", "gopls", "dockerls", "eslint", "sqlls" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -100,6 +100,13 @@ vim.diagnostic.config {
   underline = true,
   signs = true,
 }
+
+-- update gutter signs
+local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
 vim.o.updatetime = 250
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
