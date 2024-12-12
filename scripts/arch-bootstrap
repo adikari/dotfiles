@@ -62,7 +62,7 @@ packages=(
   # █▀█ ░█░ █▀▀ █▀▄ █▄▄ █▀█ █░▀█ █▄▀
 
   hyprlang
-  hyprland-git
+  hyprland
   waybar
   xdg-desktop-portal-hyprland
   xwaylandvideobridge-git
