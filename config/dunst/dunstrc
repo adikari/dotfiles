@@ -13,7 +13,7 @@ follow = none
 # █▄█ ██▄ █▄█ █░▀░█ ██▄ ░█░ █▀▄ ░█░
 
 width = 300
-height = 300
+height = 80
 origin = top-right
 offset = 20x20
 scale = 0 # auto-detected if value is 0
@@ -30,7 +30,7 @@ progress_bar_min_width = 228
 progress_bar_max_width = 228
 progress_bar_corner_radius = 4
 
- 
+
 # █▀▀ █▀█ ▄▀█ █▀▄▀█ █▀▀
 # █▀░ █▀▄ █▀█ █░▀░█ ██▄
 
