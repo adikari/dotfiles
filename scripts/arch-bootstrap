@@ -51,11 +51,11 @@ packages=(
   slurp
   cliphist
   wl-clipboard
-  hyprpicker-git
   socat
   ffmpeg
-  imv                         # image viewer
+  imv                       # image viewer
   fprintd                   # finterprint support
+  udiskie                   # auto mount usb drives
 
 
   # █░█ █▄█ █▀█ █▀█ █░░ ▄▀█ █▄░█ █▀▄
@@ -63,19 +63,21 @@ packages=(
 
   hyprlang
   hyprland
+  hypridle
+  hyprlock
+  hyprpaper
+  hyprsunset
+  hyprpolkitagent
+  hyprpicker-git
   waybar
   xdg-desktop-portal-hyprland
   xwaylandvideobridge-git
   gtk3
-  polkit-gnome
   gnome-keyring
   seahorse
   dunst
   qt5-wayland
   qt6-wayland
-  hypridle
-  hyprlock
-  hyprpaper
   rofi-lbonn-wayland-git
   wlogout
   gvfs
@@ -180,6 +182,8 @@ echo "installing packages"
 for package in ${packages[@]}; do
   install_package $package
 done
+
+systemctl --user enable --now hyprpolkitagent.service
 
 echo "🎉  completed arch bootstrap"
 
