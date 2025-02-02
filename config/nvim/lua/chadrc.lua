@@ -4,18 +4,25 @@
 ---@type ChadrcConfig
 return {
   ui = {
+    statusline = {
+      theme = "vscode_colored",
+    },
+    cmp = {
+      format_colors = {
+        tailwind = true,
+      },
+    },
+    telescope = { style = "bordered" },
+  },
+  base46 = {
     theme = "catppuccin",
     theme_toggle = { "catppuccin", "gruvbox" },
     hl_override = {
-      Comment = {
-        italic = true,
-      },
+      Comment = { italic = true },
+      ["@comment"] = { italic = true },
     },
     hl_add = {
       NvimTreeOpenedFolderName = { fg = "green", bold = true },
-    },
-    statusline = {
-      theme = "vscode_colored",
     },
   },
 }

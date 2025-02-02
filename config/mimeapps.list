@@ -10,7 +10,7 @@ application/xhtml+xml=brave-browser.desktop
 application/x-extension-xhtml=brave-browser.desktop
 application/x-extension-xht=brave-browser.desktop
 
-x-scheme-handler/mailto=betterbird.desktop
+x-scheme-handler/mailto=brave-browser.desktop
 message/rfc822=betterbird.desktop
 x-scheme-handler/mid=betterbird.desktop
 x-scheme-handler/mailto=betterbird.desktop;
