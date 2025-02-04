@@ -39,7 +39,7 @@ lspconfig.tailwindcss.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "tailwindcss-language-server", "--stdio" },
-  root_dir = util.root_pattern ".git",
+  root_dir = util.root_pattern(".git", "tailwind.config.ts"),
 }
 
 -- graphql lsp configuration
@@ -94,9 +94,8 @@ lspconfig.lua_ls.setup {
   },
 }
 
--- disable inline diagnostic and display floating window on cursor hold
 vim.diagnostic.config {
-  virtual_text = false,
+  virtual_text = true,
   underline = true,
   signs = true,
 }
@@ -109,4 +108,5 @@ for type, icon in pairs(signs) do
 end
 
 vim.o.updatetime = 250
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+-- open floating windown for diagnostics
+-- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

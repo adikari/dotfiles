@@ -26,3 +26,6 @@ map("n", "<leader>dus", function()
   local sidebar = widgets.sidebar(widgets.scopes)
   sidebar.open()
 end, { desc = "Open debugging sidebar" })
+
+-- add mapping for zen mode
+map("n", "<leader>z", "<cmd>ZenMode<CR>", { desc = "Toggle Zen Mode" })
