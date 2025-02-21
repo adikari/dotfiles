@@ -1,19 +1,31 @@
 return {
   ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-  provider = "claude", -- Recommend using Claude
+  provider = "xai",
   auto_suggestions_provider = "claude",
+
   claude = {
     endpoint = "https://api.anthropic.com",
     model = "claude-3-5-sonnet-20241022",
     temperature = 0,
     max_tokens = 4096,
   },
+
   openai = {
     endpoint = "https://api.openai.com/v1",
-    model = "davinci-002", -- your desired model (or use gpt-4o, etc.)
+    model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
     timeout = 30000, -- timeout in milliseconds
     temperature = 0, -- adjust if needed
     max_tokens = 4096,
+    reasoning_effort = "high",
+  },
+
+  vendors = {
+    xai = {
+      __inherited_from = "openai",
+      endpoint = "https://api.x.ai/v1",
+      api_key_name = "XAI_API_KEY",
+      model = "grok-2-latest",
+    },
   },
 
   ---Specify the special dual_boost mode
