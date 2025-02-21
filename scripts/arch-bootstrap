@@ -71,6 +71,7 @@ packages=(
   hyprpicker-git
   waybar
   xdg-desktop-portal-hyprland
+  xdg-desktop-portal-gtk # required as hyprland doesnt implement file picker
   xwaylandvideobridge-git
   gtk3
   gnome-keyring
