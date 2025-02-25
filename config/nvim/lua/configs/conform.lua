@@ -16,10 +16,10 @@ local function biome_lsp_or_prettier(bufnr)
   }, { upward = true })[1]
 
   if has_prettier then
-    return { "prettier" }
+    return { "prettier", "biome-organize-imports" }
   end
 
-  return { "biome" }
+  return { "biome", "biome-organize-imports" }
 end
 
 local options = {
@@ -57,8 +57,18 @@ local options = {
     end
 
     -- Disable autoformat for files in a certain path
-    local bufname = vim.api.nvim_buf_get_name(bufnr)
-    if bufname:match "/node_modules/" then
+
+    local ignore_paths = {
+      "/node_modules/",
+      "/.sst/",
+      "/.next/",
+    }
+
+    local isIgnoredPath = vim.tbl_contains(ignore_paths, function(path)
+      return vim.api.nvim_buf_get_name(bufnr):match(path)
+    end)
+
+    if isIgnoredPath then
       return
     end
 

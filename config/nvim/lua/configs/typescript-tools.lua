@@ -52,13 +52,3 @@ require("typescript-tools").setup {
     },
   },
 }
-
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  desc = "Format typescript code",
-  callback = function(opts)
-    local fts = { "javascript", "typescript", "typescriptreact", "javascriptreact" }
-    if vim.tbl_contains(fts, vim.bo[opts.buf].filetype) then
-      vim.cmd "TSToolsOrganizeImports"
-    end
-  end,
-})
