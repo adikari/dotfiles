@@ -40,6 +40,12 @@ return {
   },
 
   {
+    "nvim-pack/nvim-spectre",
+    dependencies = "nvim-lua/plenary.nvim",
+    event = "VeryLazy",
+  },
+
+  {
     "max397574/better-escape.nvim",
     event = "VeryLazy",
     config = function()
