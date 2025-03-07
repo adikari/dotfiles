@@ -28,6 +28,10 @@ return {
     },
   },
 
+  web_search_engine = {
+    provider = "tavily", -- tavily, serpapi, searchapi, google or kagi
+  },
+
   ---Specify the special dual_boost mode
   ---1. enabled: Whether to enable dual_boost mode. Default to false.
   ---2. first_provider: The first provider to generate response. Default to "openai".

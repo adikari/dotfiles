@@ -21,6 +21,7 @@ source $HOME/.config/zsh/functions.zsh
 [ -d $XDG_DATA_HOME/pnpm ] && PATH="$XDG_DATA_HOME/pnpm:$PATH"
 [ -d $HOME/.cargo ] && PATH="$HOME/.cargo/bin:$PATH"
 [ -d $HOME/go ] && PATH="$HOME/go/bin:$PATH"
+[ -d $HOME/.rvm/bin ] && PATH="$PATH:$HOME/.rvm/bin"
 
 # load custom config if there is any
 [ -f $HOME/.my_zshrc ] && source $HOME/.my_zshrc
@@ -49,10 +50,10 @@ if command -v fzf > /dev/null 2>&1; then
   zvm_after_init_commands+=('[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh')
 fi
 
+[ -s "/home/subash/.bun/_bun" ] && source "/home/subash/.bun/_bun"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 # vim:ft=zsh
-
-# bun completions
-[ -s "/home/subash/.bun/_bun" ] && source "/home/subash/.bun/_bun"
