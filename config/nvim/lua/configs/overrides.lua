@@ -2,6 +2,7 @@ local M = {}
 
 M.treesitter = {
   ensure_installed = {
+    "ruby",
     "vim",
     "lua",
     "html",
@@ -46,6 +47,7 @@ M.mason = {
     "sqlls",
     "goimports",
     "rust-analyzer",
+    "ruby-lsp",
   },
 }
 
