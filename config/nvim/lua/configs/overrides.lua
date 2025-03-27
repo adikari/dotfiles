@@ -47,7 +47,7 @@ M.mason = {
     "sqlls",
     "goimports",
     "rust-analyzer",
-    "ruby-lsp",
+    -- "ruby-lsp", -- best to install via rvm
   },
 }
 

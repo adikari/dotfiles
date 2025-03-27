@@ -15,7 +15,6 @@ local servers = {
   "dockerls",
   "eslint",
   "sqlls",
-  "ruby_lsp",
 }
 
 for _, lsp in ipairs(servers) do
@@ -25,6 +24,21 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- ruby lsp configuration
+lspconfig.solargraph.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "ruby-lsp" },
+  mason = false,
+  filetypes = { "ruby" },
+  root_dir = util.root_pattern("Gemfile", ".git"),
+  init_options = {
+    formatter = "standard",
+    linters = { "standard" },
+  },
+}
+
+-- biome lsp configuration for formatting
 lspconfig.biome.setup {
   on_attach = on_attach,
   capabilities = capabilities,
