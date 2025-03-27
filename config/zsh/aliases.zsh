@@ -14,6 +14,9 @@ alias \
   vpn="openvpn" \
   cd="z" \
   ls="exa" \
+  pnpm="corepack pnpm" \
+  yarn="corepack yarn" \
+  npm="corepack npm" \
   tree="exa -T" \
   hyprctl="hyprctl --instance 0" \
   lynx="lynx -cfg=$XDG_CONFIG_HOME/lynx/lynx.cfg -lss=$XDG_CONFIG_HOME/lynx/lynx.lss" \
