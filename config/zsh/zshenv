@@ -27,6 +27,8 @@ export AWS_VAULT_PASS_PREFIX=aws-vault
 [ -f $HOME/.cargo/env ] && source "$HOME/.cargo/env"
 [ -f $HOME/.rover/env ] && source "$HOME/.rover/env"
 
+export ELECTRON_OZONE_PLATFORM_HINT=auto
+
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
