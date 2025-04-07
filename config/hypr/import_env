@@ -3,7 +3,7 @@ set -e
 
 [[ -n $HYPRLAND_DEBUG_CONF ]] && exit 0
 USAGE="\
-Import environment variables 
+Import environment variables
 Usgae: $0 <command>
 Commands:
    tmux         import to tmux server
@@ -39,6 +39,10 @@ _envs=(
 	GRIM_DEFAULT_DIR
 	# ssh
 	SSH_AUTH_SOCK
+  # nvidia
+  LIBVA_DRIVER_NAME
+  __GLX_VENDOR_LIBRARY_NAME
+  NVD_BACKEND
 )
 
 case "$1" in

@@ -164,17 +164,11 @@ echo "🎉  completed arch bootstrap"
 # Graphics Drivers find and install
 gpu_type=$(lspci)
 
-if [[ $ARCH = "arm64" || $ARCH = "aarch64" ]]; then
-  # install graphics drivers for m1 macbook pro
-  yay -S --noconfirm linux-asahi-edge mesa-asahi-edge
-  sudo update-grub
-fi
-
 if grep -E "NVIDIA|GeForce" <<< ${gpu_type}; then
   yay -S --noconfirm --needed nvidia-dkms nvidia-settings libva libva-nvidia-driver-git
   sudo sed -i 's/MODULES=()/MODULES=(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+  echo -e "options nvidia-drm modeset=1 fbdev=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
   sudo mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
-  echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
   sudo systemctl enable nvidia-suspend.service
   sudo systemctl enable nvidia-hibernate.service
   sudo systemctl enable nvidia-resume.service
