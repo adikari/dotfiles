@@ -30,7 +30,7 @@ lspconfig.solargraph.setup {
   capabilities = capabilities,
   cmd = { "ruby-lsp" },
   mason = false,
-  filetypes = { "ruby" },
+  filetypes = { "ruby", "eruby" },
   root_dir = util.root_pattern("Gemfile", ".git"),
   init_options = {
     formatter = "standard",
