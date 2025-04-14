@@ -165,7 +165,7 @@ echo "🎉  completed arch bootstrap"
 gpu_type=$(lspci)
 
 if grep -E "NVIDIA|GeForce" <<< ${gpu_type}; then
-  yay -S --noconfirm --needed nvidia-dkms nvidia-settings libva libva-nvidia-driver-git
+  yay -S --noconfirm --needed nvidia-dkms nvidia-settings libva libva-nvidia-driver
   sudo sed -i 's/MODULES=()/MODULES=(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
   echo -e "options nvidia-drm modeset=1 fbdev=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
   sudo chmod 644 /etc/modprobe.d/nvidia.conf
