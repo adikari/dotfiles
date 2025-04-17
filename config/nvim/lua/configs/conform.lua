@@ -59,12 +59,7 @@ local options = {
     end
 
     -- Disable autoformat for files in a certain path
-
-    local ignore_paths = {
-      "/node_modules/",
-      "/.sst/",
-      "/.next/",
-    }
+    local ignore_paths = { "/node_modules/", "/.sst/", "/.next/" }
 
     local isIgnoredPath = vim.tbl_contains(ignore_paths, function(path)
       return vim.api.nvim_buf_get_name(bufnr):match(path)
@@ -74,7 +69,7 @@ local options = {
       return
     end
 
-    return { timeout_ms = 500, lsp_format = "fallback" }
+    return { timeout_ms = 2000, lsp_format = "fallback" }
   end,
 }
 
