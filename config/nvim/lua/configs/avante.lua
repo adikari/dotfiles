@@ -3,28 +3,36 @@ return {
   provider = "claude",
   auto_suggestions_provider = "claude",
 
-  claude = {
-    endpoint = "https://api.anthropic.com",
-    model = "claude-sonnet-4-20250514",
-    temperature = 0,
-    max_tokens = 4096,
-  },
+  providers = {
+    claude = {
+      endpoint = "https://api.anthropic.com",
+      model = "claude-sonnet-4-20250514",
+      extra_request_body = {
+        temperature = 0,
+        max_tokens = 6000,
+      },
+    },
 
-  openai = {
-    endpoint = "https://api.openai.com/v1",
-    model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-    timeout = 30000, -- timeout in milliseconds
-    temperature = 0, -- adjust if needed
-    max_tokens = 4096,
-    reasoning_effort = "high",
-  },
+    openai = {
+      endpoint = "https://api.openai.com/v1",
+      model = "gpt-4.1-2025-04-14", -- your desired model (or use gpt-4o, etc.)
+      timeout = 30000, -- timeout in milliseconds
+      extra_request_body = {
+        temperature = 0,
+        max_tokens = 6000,
+        -- reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+      },
+    },
 
-  vendors = {
     xai = {
       __inherited_from = "openai",
       endpoint = "https://api.x.ai/v1",
       api_key_name = "XAI_API_KEY",
       model = "grok-3",
+      extra_request_body = {
+        temperature = 1,
+        max_tokens = 32768,
+      },
     },
   },
 
