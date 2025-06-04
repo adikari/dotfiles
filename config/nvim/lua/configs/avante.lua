@@ -5,7 +5,7 @@ return {
 
   claude = {
     endpoint = "https://api.anthropic.com",
-    model = "claude-3-7-sonnet-latest",
+    model = "claude-sonnet-4-20250514",
     temperature = 0,
     max_tokens = 4096,
   },
@@ -24,7 +24,7 @@ return {
       __inherited_from = "openai",
       endpoint = "https://api.x.ai/v1",
       api_key_name = "XAI_API_KEY",
-      model = "grok-2-latest",
+      model = "grok-3",
     },
   },
 
