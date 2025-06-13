@@ -1,3 +1,57 @@
 {
-	"autoCompact": true
+	"autoCompact": true,
+	"agents": {
+		"coder": {
+			"model": "claude-sonnet-4-20250514",
+			"maxTokens": 8000
+		},
+		"task": {
+			"model": "claude-sonnet-4-20250514",
+			"maxTokens": 6000
+		},
+		"title": {
+			"model": "claude-sonnet-4-20250514",
+			"maxTokens": 80
+		}
+	},
+	"mcpServers": {
+		"server-sequential-thinking": {
+			"type": "stdio",
+			"command": "bunx",
+			"args": ["@modelcontextprotocol/server-sequential-thinking"],
+			"env": []
+		},
+		"playwright": {
+			"type": "stdio",
+			"command": "bunx",
+			"args": ["@playwright/mcp@latest"],
+			"env": []
+		},
+		"linear": {
+			"type": "stdio",
+			"command": "bunx",
+			"args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"],
+			"env": []
+		}
+	},
+	"shell": {
+		"path": "/usr/bin/zsh",
+		"args": []
+	},
+	"lsp": {
+		"go": {
+			"disabled": false,
+			"command": "gopls"
+		},
+		"typescript": {
+			"disabled": false,
+			"command": "typescript-language-server",
+			"args": ["--stdio"]
+		},
+		"ruby": {
+			"disabled": false,
+			"command": "ruby-lsp",
+			"args": []
+		}
+	}
 }

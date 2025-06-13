@@ -44,4 +44,4 @@ config/systemd/user/dns-updater.service
 config/systemd/user/dns-updater.timer
 config/davmail/*
 local/bin/update-dns
-
+memory.json
