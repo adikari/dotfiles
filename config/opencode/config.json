@@ -59,8 +59,12 @@
 			"type": "local",
 			"command": ["bunx", "-y", "@modelcontextprotocol/server-memory"],
 			"environment": {
-				"MEMORY_FILE_PATH": "/home/subash/.config/opencode/mcp/memory.json"
+				"MEMORY_FILE_PATH": "/home/subash/.config/opencode/memory.json"
 			}
+		},
+		"playwright": {
+			"type": "local",
+			"command": ["bunx", "-y", "@playwright/mcp"]
 		},
 		"linear": {
 			"type": "local",
@@ -68,16 +72,7 @@
 		},
 		"github": {
 			"type": "local",
-			"command": [
-				"docker",
-				"run",
-				"-i",
-				"--rm",
-				"-e",
-				"GITHUB_PERSONAL_ACCESS_TOKEN",
-				"ghcr.io/github/github-mcp-server"
-			],
-			"environment": {}
+			"command": ["/home/subash/.config/opencode/commands/github"]
 		}
 	}
 }
