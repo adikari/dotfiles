@@ -1,68 +1,38 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "theme": "catppuccin",
-  "autoshare": false,
-  "autoupdate": true,
-  "keybinds": {
-    "leader": "ctrl+x",
-    "help": "<leader>h",
-    "editor_open": "<leader>e",
-    "session_new": "<leader>n",
-    "session_list": "<leader>l",
-    "session_share": "<leader>s",
-    "session_interrupt": "esc",
-    "session_compact": "<leader>c",
-    "tool_details": "<leader>d",
-    "model_list": "<leader>m",
-    "theme_list": "<leader>t",
-    "project_init": "<leader>i",
-    "input_clear": "ctrl+c",
-    "input_paste": "ctrl+v",
-    "input_submit": "enter",
-    "input_newline": "shift+enter,ctrl+j",
-    "history_previous": "up",
-    "history_next": "down",
-    "messages_page_up": "pgup",
-    "messages_page_down": "pgdown",
-    "messages_half_page_up": "ctrl+alt+u",
-    "messages_half_page_down": "ctrl+alt+d",
-    "messages_previous": "ctrl+alt+k",
-    "messages_next": "ctrl+alt+j",
-    "messages_first": "ctrl+g",
-    "messages_last": "ctrl+alt+g",
-    "app_exit": "ctrl+c,<leader>q"
-  },
-  "mcp": {
-    "sequential-thinking": {
-      "type": "local",
-      "command": ["bunx", "@modelcontextprotocol/server-sequential-thinking"]
-    },
-    "memory": {
-      "type": "local",
-      "command": ["bunx", "-y", "@modelcontextprotocol/server-memory"],
-      "environment": {
-        "MEMORY_FILE_PATH": "/home/subash/.config/opencode/memory.json"
-      }
-    },
-    "playwright": {
-      "type": "local",
-      "command": ["bunx", "-y", "@playwright/mcp"]
-    },
-    "context7": {
-      "type": "local",
-      "command": ["bunx", "-y", "@upstash/context7-mcp"]
-    },
-    "linear": {
-      "type": "local",
-      "command": ["bunx", "-y", "mcp-remote", "https://mcp.linear.app/sse"]
-    },
-    "github": {
-      "type": "local",
-      "command": ["/home/subash/.config/opencode/commands/github"]
-    },
-    "ddg-search": {
-      "type": "local",
-      "command": ["uvx", "duckduckgo-mcp-server"]
-    }
-  }
+	"$schema": "https://opencode.ai/config.json",
+	"theme": "catppuccin",
+	"model": "xai/grok-4",
+	"mcp": {
+		"sequential-thinking": {
+			"type": "local",
+			"command": ["bunx", "@modelcontextprotocol/server-sequential-thinking"]
+		},
+		"memory": {
+			"type": "local",
+			"command": ["bunx", "-y", "@modelcontextprotocol/server-memory"],
+			"environment": {
+				"MEMORY_FILE_PATH": "/home/subash/.config/opencode/memory.json"
+			}
+		},
+		"playwright": {
+			"type": "local",
+			"command": ["bunx", "-y", "@playwright/mcp"]
+		},
+		"context7": {
+			"type": "local",
+			"command": ["bunx", "-y", "@upstash/context7-mcp"]
+		},
+		"linear": {
+			"type": "local",
+			"command": ["bunx", "-y", "mcp-remote", "https://mcp.linear.app/sse"]
+		},
+		"github": {
+			"type": "local",
+			"command": ["/home/subash/.config/opencode/commands/github"]
+		},
+		"ddg-search": {
+			"type": "local",
+			"command": ["uvx", "duckduckgo-mcp-server"]
+		}
+	}
 }
