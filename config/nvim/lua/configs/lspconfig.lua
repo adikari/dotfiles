@@ -59,6 +59,12 @@ lspconfig.biome.setup {
   },
 }
 
+-- deno lsp configuration
+lspconfig.denols.setup {
+  on_attach = on_attach,
+  root_dir = util.root_pattern("deno.json", "deno.jsonc"),
+}
+
 -- tailwindcss lsp configuration
 lspconfig.tailwindcss.setup {
   on_attach = on_attach,

@@ -36,6 +36,7 @@ M.mason = {
     "eslint_d",
     "eslint-lsp",
     "biome",
+    "deno",
     "dockerfile-language-server",
     "tailwindcss-language-server",
     "typescript-language-server",
