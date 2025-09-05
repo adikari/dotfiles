@@ -1,154 +1,63 @@
-@define-color bar-bg rgba(0, 0, 0, 0);
-
-@define-color main-color #cdd6f4;
-@define-color main-bg #11111b;
-
-@define-color tool-bg #1e1e2e;
-@define-color tool-color #cdd6f4;
-@define-color tool-border #11111b;
-
-@define-color wb-color #cdd6f4;
-
-@define-color wb-act-bg #cba6f7;
-@define-color wb-taskbar-act-bg #a6adc8;
-@define-color wb-act-color #313244;
-
-@define-color wb-hvr-bg #f5c2e7;
-@define-color wb-hvr-color #313244;
+@import "../omarchy/current/theme/waybar.css";
 
 * {
+  background-color: @background;
+  color: @foreground;
+
   border: none;
-  border-radius: 0px;
-  font-family: "JetBrainsMono Nerd Font";
-  font-weight: bold;
-  font-size: 11px;
-  min-height: 10px;
-  background: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: CaskaydiaMono Nerd Font;
+  font-size: 12px;
 }
 
-window#waybar {
-  background: @bar-bg;
+.modules-left {
+  margin-left: 8px;
 }
 
-tooltip {
-  background: @tool-bg;
-  color: @tool-color;
-  border-radius: 10px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: @tool-border;
+.modules-right {
+  margin-right: 8px;
 }
 
-#workspaces button, #taskbar button {
-  box-shadow: none;
-  text-shadow: none;
-  padding: 0px;
-  border-radius: 9px;
-  margin-left: 3px;
-  padding-left: 3px;
-  padding-right: 3px;
-  color: @wb-color;
-  animation: gradient_f 20s ease-in infinite;
-  transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+#workspaces button {
+  all: initial;
+  padding: 0 6px;
+  margin: 0 1.5px;
+  min-width: 9px;
 }
 
-#workspaces button.active, #taskbar button.active {
-  background: @wb-act-bg;
-  color: @wb-act-color;
-  padding-left: 3px;
-  padding-right: 3px;
-  margin-right: 3px;
-  animation: gradient_f 20s ease-in infinite;
-  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+#workspaces button.empty {
+  opacity: 0.5;
 }
 
-#taskbar button.active {
-  background: @wb-taskbar-act-bg;
-}
-
-#workspaces button:hover, #taskbar button:hover {
-  background: @wb-hvr-bg;
-  color: @wb-hvr-color;
-  padding-left: 6px;
-  padding-right: 6px;
-  animation: gradient_f 20s ease-in infinite;
-  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
+#tray,
 #cpu,
-#memory,
 #battery,
-#clock,
-#workspaces,
-#window,
-#taskbar,
 #network,
 #bluetooth,
 #pulseaudio,
-#temperature,
-#mpris,
-#idle_inhibitor,
-#custom-email,
-#custom-weather,
-#custom-updates,
-#custom-wallchange,
-#custom-mode,
-#custom-cliphist,
-#custom-power,
-#custom-wbar,
-#custom-l_end,
-#custom-r_end,
-#custom-sl_end,
-#custom-sr_end,
-#custom-rl_end,
-#custom-rr_end,
-#tray {
-  color: @main-color;
-  background: @main-bg;
-  opacity: 1;
-  margin: 4px 0px 4px 0px;
-  padding-left: 4px;
-  padding-right: 4px;
+#custom-omarchy,
+#custom-update {
+  min-width: 12px;
+  margin: 0 7.5px;
 }
 
-#workspaces,
-#taskbar {
-  padding: 0px;
+#custom-expand-icon {
+  margin-right: 7px;
 }
 
-#custom-r_end {
-  border-radius: 0px 21px 21px 0px;
-  margin-right: 9px;
-  padding-right: 3px;
+tooltip {
+  padding: 2px;
 }
 
-#custom-l_end {
-  border-radius: 21px 0px 0px 21px;
-  margin-left: 9px;
-  padding-left: 3px;
+#custom-update {
+  font-size: 10px;
 }
 
-#custom-sr_end {
-  border-radius: 0px;
-  margin-right: 9px;
-  padding-right: 3px;
+#clock {
+  margin-left: 8.75px;
 }
 
-#custom-sl_end {
-  border-radius: 0px;
-  margin-left: 9px;
-  padding-left: 3px;
+.hidden {
+  opacity: 0;
 }
-
-#custom-rr_end {
-  border-radius: 0px 7px 7px 0px;
-  margin-right: 9px;
-  padding-right: 3px;
-}
-
-#custom-rl_end {
-  border-radius: 7px 0px 0px 7px;
-  margin-left: 9px;
-  padding-left: 3px;
-}
-
