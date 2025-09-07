@@ -45,3 +45,4 @@ config/systemd/user/dns-updater.timer
 config/davmail/*
 local/bin/update-dns
 memory.json
+home/.password-store
