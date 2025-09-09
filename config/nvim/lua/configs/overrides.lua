@@ -15,6 +15,7 @@ M.treesitter = {
     "go",
     "rust",
     "sql",
+    "php",
     "markdown",
     "terraform",
     "markdown_inline",
@@ -48,6 +49,9 @@ M.mason = {
     "sqlls",
     "goimports",
     "rust-analyzer",
+    "intelephense",
+    "phpstan",
+    "pint",
     -- "ruby-lsp", -- best to install via rvm
   },
 }

@@ -14,6 +14,7 @@ alias \
   vpn="openvpn" \
   cd="z" \
   ls="exa" \
+  dc="docker-compose" \
   pnpm="corepack pnpm" \
   yarn="corepack yarn" \
   npm="corepack npm" \

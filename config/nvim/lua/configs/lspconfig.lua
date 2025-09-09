@@ -100,6 +100,21 @@ lspconfig.gopls.setup {
   },
 }
 
+-- php lsp configuration
+lspconfig.intelephense.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "php", "blade" },
+  settings = {
+    intelephense = {
+      files = {
+        associations = { "*.php", "*.blade.php" },
+        maxSize = 5000000,
+      },
+    },
+  },
+}
+
 -- lua lsp configuration
 lspconfig.lua_ls.setup {
   on_attach = on_attach,

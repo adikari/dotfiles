@@ -1,4 +1,5 @@
 local conform = require "conform"
+local util = require "nvchad.utils"
 
 local function biome_lsp_or_prettier()
   local has_prettier = vim.fs.find({
@@ -41,6 +42,7 @@ local options = {
     rust = { "rustfmt" },
     eruby = { "htmlbeautifier" },
     ruby = { "rubocop" },
+    php = { "pint" },
     cpp = { "clang_format" },
     c = { "clang_format" },
     ["_"] = { "trim_whitespace" },
@@ -49,6 +51,11 @@ local options = {
     biome = {
       command = "biome",
       args = { "check", "--write", "--unsafe", "$FILENAME" },
+      stdin = false,
+    },
+    pint = {
+      command = "pint",
+      args = { "$FILENAME" },
       stdin = false,
     },
   },
