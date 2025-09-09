@@ -35,6 +35,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+if command -v frum 1>/dev/null 2>&1; then
+  eval "$(frum init)"
+fi
+
 if command -v direnv 1>/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
