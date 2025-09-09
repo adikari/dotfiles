@@ -46,3 +46,5 @@ config/davmail/*
 local/bin/update-dns
 memory.json
 home/.password-store
+config/omarchy/current
+config/omarchy/themes
