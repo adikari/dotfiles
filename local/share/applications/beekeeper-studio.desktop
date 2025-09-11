@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Beekeeper Studio
+Exec=beekeeper-studio --disable-gpu %U
+Terminal=false
+Type=Application
+Icon=beekeeper-studio
+StartupWMClass=beekeeper-studio
+Comment=Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more
+MimeType=application/vnd.sqlite3;application/vnd.sqlite3;application/vnd.sqlite3;application/vnd.duckdb;application/vnd.duckdb;x-scheme-handler/redshift;x-scheme-handler/cockroachdb;x-scheme-handler/cockroach;x-scheme-handler/mariadb;x-scheme-handler/tidb;x-scheme-handler/mysql;x-scheme-handler/postgresql;x-scheme-handler/postgres;x-scheme-handler/psql;x-scheme-handler/sqlite;x-scheme-handler/sqlserver;x-scheme-handler/microsoftsqlserver;x-scheme-handler/mssql;
+Categories=Development;
