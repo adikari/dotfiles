@@ -39,7 +39,7 @@ application/photoshop=imv.desktop
 application/psd=imv.desktop
 image/psd=imv.desktop
 
-application/pdf=org.pwmt.zathura.desktop
+application/pdf=documentviewer.desktop
 x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
 x-scheme-handler/about=brave-browser.desktop
 x-scheme-handler/unknown=brave-browser.desktop
