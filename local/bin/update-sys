@@ -13,7 +13,7 @@ case $1 in
 esac
 
 if [ "$1" = "update" ]; then
-  kitty --title update-sys sh -c 'yay -Syu'
+  $TERMINAL --title update-sys sh -c 'yay -Syu'
 fi
 
 if [ "$1" = "" ]; then

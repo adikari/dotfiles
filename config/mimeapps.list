@@ -9,21 +9,17 @@ application/x-extension-shtml=brave-browser.desktop
 application/xhtml+xml=brave-browser.desktop
 application/x-extension-xhtml=brave-browser.desktop
 application/x-extension-xht=brave-browser.desktop
-
 x-scheme-handler/mailto=brave-browser.desktop
 message/rfc822=betterbird.desktop
 x-scheme-handler/mid=betterbird.desktop
 x-scheme-handler/mailto=betterbird.desktop;
 x-scheme-handler/mid=betterbird.desktop;
-
 x-scheme-handler/webcal=betterbird.desktop
 text/calendar=betterbird.desktop
 application/x-extension-ics=betterbird.desktop
 x-scheme-handler/webcals=betterbird.desktop
-
 x-scheme-handler/msteams=teams.desktop
 x-scheme-handler/postman=Postman.desktop
-
 image/png=imv.desktop
 image/jpg=imv.desktop
 image/jpeg=imv.desktop
@@ -38,8 +34,7 @@ application/x-photoshop=imv.desktop
 application/photoshop=imv.desktop
 application/psd=imv.desktop
 image/psd=imv.desktop
-
-application/pdf=documentviewer.desktop
+application/pdf=org.gnome.Evince.desktop
 x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
 x-scheme-handler/about=brave-browser.desktop
 x-scheme-handler/unknown=brave-browser.desktop
@@ -47,7 +42,6 @@ x-scheme-handler/unknown=brave-browser.desktop
 [Added Associations]
 x-scheme-handler/webcal=betterbird.desktop;
 x-scheme-handler/webcals=betterbird.desktop;
-
 text/html=brave-browser.desktop;
 x-scheme-handler/http=brave-browser.desktop;
 x-scheme-handler/https=brave-browser.desktop;
@@ -58,5 +52,6 @@ application/x-extension-shtml=brave-browser.desktop;
 application/xhtml+xml=brave-browser.desktop;
 application/x-extension-xhtml=brave-browser.desktop;
 application/x-extension-xht=brave-browser.desktop;
+application/pdf=org.gnome.Evince.desktop;
 
 [Removed Associations]

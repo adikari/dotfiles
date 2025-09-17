@@ -60,6 +60,7 @@ brew install ${binaries[@]}
 # install applications
 apps=(
   kitty
+  alacritty
   docker
   brave-browser
   1password
