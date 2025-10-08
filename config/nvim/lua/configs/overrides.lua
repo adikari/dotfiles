@@ -11,6 +11,7 @@ M.treesitter = {
     "typescript",
     "tsx",
     "c",
+    "blade",
     "graphql",
     "go",
     "rust",
