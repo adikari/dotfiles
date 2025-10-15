@@ -2,6 +2,10 @@
 	"$schema": "https://opencode.ai/config.json",
 	"theme": "catppuccin",
 	"model": "grok-code",
+	"keybinds": {
+		"messages_half_page_up": "ctrl+u",
+		"messages_half_page_down": "ctrl+d"
+	},
 	"mcp": {
 		"sequential-thinking": {
 			"type": "local",
@@ -28,7 +32,7 @@
 		},
 		"github": {
 			"type": "local",
-			"command": ["/home/subash/.config/opencode/commands/github"]
+			"command": ["/home/subash/.config/opencode/command/github"]
 		},
 		"ddg-search": {
 			"type": "local",
