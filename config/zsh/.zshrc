@@ -22,6 +22,7 @@ source $HOME/.config/zsh/functions.zsh
 [ -d $HOME/.cargo ] && PATH="$HOME/.cargo/bin:$PATH"
 [ -d $HOME/go ] && PATH="$HOME/go/bin:$PATH"
 [ -d $HOME/.rvm/bin ] && PATH="$PATH:$HOME/.rvm/bin"
+[ -d $HOME/.local/share/omarchy/bin ] && PATH="$PATH:$HOME/.local/share/omarchy/bin"
 
 # load custom config if there is any
 [ -f $HOME/.my_zshrc ] && source $HOME/.my_zshrc

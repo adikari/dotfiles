@@ -44,7 +44,7 @@
 	},
 	"custom/omarchy": {
 		"format": "<span font='omarchy'>󰥺</span>",
-		"on-click": "omarchy-menu",
+		"on-click": "/home/subash/.local/share/omarchy/bin/omarchy-menu",
 		"tooltip-format": "Omarchy Menu\n\nAlt + Space"
 	},
 	"custom/update": {
@@ -64,7 +64,7 @@
 		"format": "{:L%d %B - %A %H:%M}",
 		"format-alt": "{:L%d %B W%V %Y}",
 		"tooltip": false,
-		"on-click-right": "omarchy-cmd-tzupdate"
+		"on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
 	},
 	"network": {
 		"format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
