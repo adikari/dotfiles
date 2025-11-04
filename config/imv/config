@@ -10,6 +10,7 @@ suppress_default_binds = true
 [binds]
 q = quit
 <Shift+X> = exec rm "$imv_current_file"; close
+<Ctrl+p> = exec lp $imv_current_file
 
 # Image navigation
 <Shift+J> = prev
