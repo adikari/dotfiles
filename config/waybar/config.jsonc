@@ -44,7 +44,7 @@
 		}
 	},
 	"custom/omarchy": {
-		"format": "<span font='omarchy'>󰥺</span>",
+		"format": "<span font='omarchy'>ॐ</span>",
 		"on-click": "/home/subash/.local/share/omarchy/bin/omarchy-menu",
 		"tooltip-format": "Omarchy Menu\n\nAlt + Space"
 	},
