@@ -15,6 +15,7 @@ alias \
   cd="z" \
   ls="exa" \
   dc="docker-compose" \
+  pr="prime-run" \
   pnpm="corepack pnpm" \
   yarn="corepack yarn" \
   npm="corepack npm" \

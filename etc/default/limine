@@ -1,0 +1,21 @@
+TARGET_OS_NAME="Omarchy"
+
+ESP_PATH="/boot"
+
+KERNEL_CMDLINE[default]="cryptdevice=PARTUUID=166c360a-9b23-4a3e-ad27-a214b8fe3506:root root=/dev/mapper/root zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs"
+KERNEL_CMDLINE[default]+=" quiet splash pcie_aspm=off i915.enable_psr=0 nowatchdog"
+KERNEL_CMDLINE[default]+=" nvidia-drm.modeset=1"
+
+ENABLE_UKI=yes
+CUSTOM_UKI_NAME="omarchy"
+
+ENABLE_LIMINE_FALLBACK=yes
+
+# Find and add other bootloaders
+FIND_BOOTLOADERS=yes
+
+BOOT_ORDER="*, *fallback, Snapshots"
+
+MAX_SNAPSHOT_ENTRIES=5
+
+SNAPSHOT_FORMAT_CHOICE=5
