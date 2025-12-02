@@ -1,6 +1,6 @@
 [user]
   name = subash
-  email = me@subash.com.au
+  email = me@subash.tech
 	signingkey = ~/.ssh/github_id_rsa.pub
 
 [url "git@github.com:"]
