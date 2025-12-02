@@ -1,9 +1,6 @@
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-local util = require "lspconfig/util"
-local lspconfig = require "lspconfig"
-
 -- if you just want default config for the servers then put them in a table
 local servers = {
   "html",
@@ -18,32 +15,34 @@ local servers = {
 }
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+  vim.lsp.config(lsp, {
     on_attach = on_attach,
     capabilities = capabilities,
-  }
+  })
+  vim.lsp.enable(lsp)
 end
 
 -- ruby lsp configuration
-lspconfig.solargraph.setup {
+vim.lsp.config("solargraph", {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "ruby-lsp" },
   mason = false,
   filetypes = { "ruby", "eruby" },
-  root_dir = util.root_pattern("Gemfile", ".git"),
+  root_dir = vim.fs.root(0, { "Gemfile", ".git" }),
   init_options = {
     formatter = "standard",
     linters = { "standard" },
   },
-}
+})
+vim.lsp.enable "solargraph"
 
 -- biome lsp configuration for formatting
-lspconfig.biome.setup {
+vim.lsp.config("biome", {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "biome", "lsp-proxy" },
-  root_dir = util.root_pattern("biome.json", "biome.jsonc"),
+  root_dir = vim.fs.root(0, { "biome.json", "biome.jsonc" }),
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -57,38 +56,42 @@ lspconfig.biome.setup {
     "vue",
     "css",
   },
-}
+})
+vim.lsp.enable "biome"
 
 -- deno lsp configuration
-lspconfig.denols.setup {
+vim.lsp.config("denols", {
   on_attach = on_attach,
-  root_dir = util.root_pattern("deno.json", "deno.jsonc"),
-}
+  root_dir = vim.fs.root(0, { "deno.json", "deno.jsonc" }),
+})
+vim.lsp.enable "denols"
 
 -- tailwindcss lsp configuration
-lspconfig.tailwindcss.setup {
+vim.lsp.config("tailwindcss", {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "tailwindcss-language-server", "--stdio" },
-  root_dir = util.root_pattern(".git", "tailwind.config.ts"),
-}
+  root_dir = vim.fs.root(0, { ".git", "tailwind.config.ts" }),
+})
+vim.lsp.enable "tailwindcss"
 
 -- graphql lsp configuration
-lspconfig.graphql.setup {
+vim.lsp.config("graphql", {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "graphql-lsp", "server", "-m", "stream" },
   filetypes = { "graphql", "gql", "typescript", "typescriptreact", "javascript", "javascriptreact" },
-  root_dir = util.root_pattern(".git", ".graphqlrc*", ".graphql.config.*", "graphql.config.*"),
-}
+  root_dir = vim.fs.root(0, { ".git", ".graphqlrc*", ".graphql.config.*", "graphql.config.*" }),
+})
+vim.lsp.enable "graphql"
 
 -- go lsp configuration
-lspconfig.gopls.setup {
+vim.lsp.config("gopls", {
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = { "gopls" },
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+  root_dir = vim.fs.root(0, { "go.work", "go.mod", ".git" }),
   settings = {
     gopls = {
       completeUnimported = true,
@@ -98,10 +101,11 @@ lspconfig.gopls.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable "gopls"
 
 -- php lsp configuration
-lspconfig.intelephense.setup {
+vim.lsp.config("intelephense", {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "php", "blade" },
@@ -113,10 +117,11 @@ lspconfig.intelephense.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable "intelephense"
 
 -- lua lsp configuration
-lspconfig.lua_ls.setup {
+vim.lsp.config("lua_ls", {
   on_attach = on_attach,
   capabilities = capabilities,
 
@@ -138,7 +143,8 @@ lspconfig.lua_ls.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable "lua_ls"
 
 vim.diagnostic.config {
   virtual_text = true,

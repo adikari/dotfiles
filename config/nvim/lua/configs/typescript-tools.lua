@@ -1,11 +1,11 @@
-local util = require "lspconfig/util"
+-- util is no longer needed with vim.lsp.config
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 require("typescript-tools").setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  root_dir = util.root_pattern ".git",
+  root_dir = vim.fs.root(0, {".git"}),
   single_file_support = false,
   init_options = { hostInfo = "neovim" },
   settings = {

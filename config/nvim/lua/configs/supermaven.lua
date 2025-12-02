@@ -1,10 +1,7 @@
 local supermaven = require "supermaven-nvim"
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local capabilities = require("nvchad.configs.lspconfig").capabilities
+-- supermaven is not an LSP server, so no need for lspconfig requires
 
 supermaven.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
 
   keymaps = {
     accept_suggestion = "<C-j>",

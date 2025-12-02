@@ -118,14 +118,15 @@ return {
     end,
   },
 
-  {
-    "simrat39/rust-tools.nvim",
-    ft = "rust",
-    dependencies = "neovim/nvim-lspconfig",
-    init = function()
-      require("rust-tools").setup()
-    end,
-  },
+   -- Temporarily disabled rust-tools as it uses deprecated lspconfig API
+   -- {
+   --   "simrat39/rust-tools.nvim",
+   --   ft = "rust",
+   --   dependencies = "neovim/nvim-lspconfig",
+   --   init = function()
+   --     require("rust-tools").setup()
+   --   end,
+   -- },
 
   {
     "saecki/crates.nvim",
@@ -164,14 +165,14 @@ return {
     event = "VeryLazy",
   },
 
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    ft = { "typescript", "javascript", "typescriptreact", "javascriptreact", "typescript.tsx", "javascript.jsx" },
-    config = function()
-      require "configs.typescript-tools"
-    end,
-  },
+   {
+     "pmizio/typescript-tools.nvim",
+     dependencies = { "nvim-lua/plenary.nvim" }, -- removed nvim-lspconfig dependency
+     ft = { "typescript", "javascript", "typescriptreact", "javascriptreact", "typescript.tsx", "javascript.jsx" },
+     config = function()
+       require "configs.typescript-tools"
+     end,
+   },
 
   {
     "supermaven-inc/supermaven-nvim",
