@@ -22,6 +22,7 @@ alias \
   tree="exa -T" \
   hyprctl="hyprctl --instance 0" \
   lynx="lynx -cfg=$XDG_CONFIG_HOME/lynx/lynx.cfg -lss=$XDG_CONFIG_HOME/lynx/lynx.lss" \
+  sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)' \
   abook="abook --config "$XDG_CONFIG_HOME"/abook/abookrc --datafile "$XDG_DATA_HOME"/abook/addressbook" \
   ikhal="ikhal -l ~/.local/var/khal/ikhal.log" \
   notes="cat ~/note | glow" \
